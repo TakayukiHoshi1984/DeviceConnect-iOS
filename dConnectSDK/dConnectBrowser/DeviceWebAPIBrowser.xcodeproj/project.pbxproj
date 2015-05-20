@@ -119,7 +119,6 @@
 		AB5B2B4F1A9ABAEE0038CCF6 /* dConnectDeviceChromecast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5B2B4D1A9ABAEE0038CCF6 /* dConnectDeviceChromecast.framework */; };
 		ABBD5F0019861CFA00B81007 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABBD5EFD19861CFA00B81007 /* CoreFoundation.framework */; };
 		ABBD5F0119861CFA00B81007 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABBD5EFE19861CFA00B81007 /* CoreMotion.framework */; };
-		ABBD5F0219861CFA00B81007 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABBD5EFF19861CFA00B81007 /* ExternalAccessory.framework */; };
 		ABDC54001B0C617700B9E392 /* CLIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC53E81B0C617700B9E392 /* CLIColor.m */; };
 		ABDC54011B0C617700B9E392 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC53EB1B0C617700B9E392 /* DDAbstractDatabaseLogger.m */; };
 		ABDC54021B0C617700B9E392 /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC53ED1B0C617700B9E392 /* DDASLLogCapture.m */; };
@@ -291,7 +290,6 @@
 		AB5B2B4D1A9ABAEE0038CCF6 /* dConnectDeviceChromecast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dConnectDeviceChromecast.framework; path = ../../dConnectDevicePlugin/dConnectDeviceChromeCast/bin/dConnectDeviceChromecast.framework; sourceTree = "<group>"; };
 		ABBD5EFD19861CFA00B81007 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		ABBD5EFE19861CFA00B81007 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		ABBD5EFF19861CFA00B81007 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		ABDC53E71B0C617700B9E392 /* CLIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIColor.h; sourceTree = "<group>"; };
 		ABDC53E81B0C617700B9E392 /* CLIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIColor.m; sourceTree = "<group>"; };
 		ABDC53E91B0C617700B9E392 /* CocoaLumberjack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaLumberjack.h; sourceTree = "<group>"; };
@@ -316,6 +314,7 @@
 		ABDC53FD1B0C617700B9E392 /* DDDispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDDispatchQueueLogFormatter.m; sourceTree = "<group>"; };
 		ABDC53FE1B0C617700B9E392 /* DDMultiFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMultiFormatter.h; sourceTree = "<group>"; };
 		ABDC53FF1B0C617700B9E392 /* DDMultiFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMultiFormatter.m; sourceTree = "<group>"; };
+		ABDC540A1B0C653200B9E392 /* DeviceWebAPIBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DeviceWebAPIBrowser.entitlements; sourceTree = "<group>"; };
 		ABFDF0EA1B032AFB00B88B24 /* icon_512px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_512px.png; sourceTree = "<group>"; };
 		D699E71719C02B2A002F334C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		D699E71819C02B2A002F334C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main_iPad.strings; sourceTree = "<group>"; };
@@ -336,7 +335,6 @@
 				2518284419B9537E0042C95A /* dConnectDeviceIRKit.framework in Frameworks */,
 				ABBD5F0019861CFA00B81007 /* CoreFoundation.framework in Frameworks */,
 				ABBD5F0119861CFA00B81007 /* CoreMotion.framework in Frameworks */,
-				ABBD5F0219861CFA00B81007 /* ExternalAccessory.framework in Frameworks */,
 				25D555431977E13D002AA492 /* dConnectDeviceHue.framework in Frameworks */,
 				AB5B2B4F1A9ABAEE0038CCF6 /* dConnectDeviceChromecast.framework in Frameworks */,
 				AB08A05E19908B410024C996 /* DCMDevicePluginSDK.framework in Frameworks */,
@@ -492,6 +490,7 @@
 		8E2C5B2C1960FF36005DFCDC = {
 			isa = PBXGroup;
 			children = (
+				ABDC540A1B0C653200B9E392 /* DeviceWebAPIBrowser.entitlements */,
 				259D0B7A1978B460005978DF /* DevicePlugins */,
 				8E2C5B3E1960FF36005DFCDC /* Browser */,
 				8E2C5B601960FF37005DFCDC /* BrowserTests */,
@@ -528,7 +527,6 @@
 				254111A519C2CD7D00F74C31 /* GoogleCast.framework */,
 				ABBD5EFD19861CFA00B81007 /* CoreFoundation.framework */,
 				ABBD5EFE19861CFA00B81007 /* CoreMotion.framework */,
-				ABBD5EFF19861CFA00B81007 /* ExternalAccessory.framework */,
 				254111A719C2CDAD00F74C31 /* MediaAccessibility.framework */,
 				8E9A145E196257680004DDB3 /* CoreData.framework */,
 				8E2C5B381960FF36005DFCDC /* Foundation.framework */,
@@ -830,6 +828,11 @@
 				TargetAttributes = {
 					8E2C5B341960FF36005DFCDC = {
 						DevelopmentTeam = 7D7Z93T4FG;
+						SystemCapabilities = {
+							com.apple.WAC = {
+								enabled = 0;
+							};
+						};
 					};
 					AB0E2E481A942DE500A46DE1 = {
 						CreatedOnToolsVersion = 6.1.1;
