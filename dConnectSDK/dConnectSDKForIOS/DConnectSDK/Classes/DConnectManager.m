@@ -27,9 +27,6 @@
 #import "DConnectOriginParser.h"
 #import "LocalOAuth2Main.h"
 
-NSString *const DConnectManagerName = @"Device Connect Manager";
-NSString *const DConnectManagerVersion = @"1.0.0";
-
 NSString *const DConnectApplicationDidEnterBackground = @"DConnectApplicationDidEnterBackground";
 NSString *const DConnectApplicationWillEnterForeground = @"DConnectApplicationWillEnterForeground";
 NSString *const DConnectStoryboardName = @"DConnectSDK";
@@ -284,8 +281,8 @@ NSString *const DConnectAttributeNameRequestAccessToken = @"requestAccessToken";
 }
 
 - (void) sendResponse:(DConnectResponseMessage *)response {
-    [response setString:DConnectManagerName forKey:DConnectMessageProduct];
-    [response setString:DConnectManagerVersion forKey:DConnectMessageVersion];
+    [response setString:self.productName forKey:DConnectMessageProduct];
+    [response setString:self.versionName forKey:DConnectMessageVersion];
     
     DConnectResponseCallbackInfo *info = nil;
     @synchronized (_mResponseBlockMap) {
@@ -316,6 +313,8 @@ NSString *const DConnectAttributeNameRequestAccessToken = @"requestAccessToken";
         
         // DConnect設定を初期化
         _settings = [DConnectSettings new];
+        self.productName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleDisplayName"];
+        self.versionName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
         
         // イベント管理クラス
         Class key = [self class];
@@ -345,8 +344,8 @@ NSString *const DConnectAttributeNameRequestAccessToken = @"requestAccessToken";
 - (void) executeRequest:(DConnectRequestMessage *)request
                response:(DConnectResponseMessage *)response
                callback:(DConnectResponseBlocks)callback {
-    [request setString:DConnectManagerName forKey:DConnectMessageProduct];
-    [request setString:DConnectManagerVersion forKey:DConnectMessageVersion];
+    [request setString:self.productName forKey:DConnectMessageProduct];
+    [request setString:self.versionName forKey:DConnectMessageVersion];
     
     DConnectProfile *profile = [self profileWithName:[request profile]];
     
@@ -407,30 +406,36 @@ NSString *const DConnectAttributeNameRequestAccessToken = @"requestAccessToken";
         }
         
         if (self.settings.useLocalOAuth) {
-            // Local OAuthチェック
-            NSArray *scopes = DConnectIgnoreProfiles();
-            NSString *accessToken = [request accessToken];
-            LocalOAuth2Main *oauth = [LocalOAuth2Main sharedOAuthForClass:[DConnectManager class]];
-            LocalOAuthCheckAccessTokenResult *result = [oauth checkAccessTokenWithScope:profileName
-                                                                          specialScopes:scopes
-                                                                            accessToken:accessToken];
-            if ([result checkResult]) {
-                [_self executeRequest:request response:response callback:callback];
-            } else {
-                // Local OAuth認証失敗
-                if (accessToken == nil) {
-                    [response setErrorToEmptyAccessToken];
-                } else if (![result isExistAccessToken]) {
-                    [response setErrorToNotFoundClientId];
-                } else if (![result isExistClientId]) {
-                    [response setErrorToNotFoundClientId];
-                } else if (![result isExistScope]) {
-                    [response setErrorToScope];
-                } else if (![result isExistNotExpired]) {
-                    [response setErrorToExpiredAccessToken];
+            @try {
+                // Local OAuthチェック
+                NSArray *scopes = DConnectIgnoreProfiles();
+                NSString *accessToken = [request accessToken];
+                LocalOAuth2Main *oauth = [LocalOAuth2Main sharedOAuthForClass:[DConnectManager class]];
+                LocalOAuthCheckAccessTokenResult *result = [oauth checkAccessTokenWithScope:profileName
+                                                                              specialScopes:scopes
+                                                                                accessToken:accessToken];
+                if ([result checkResult]) {
+                    
+                    [_self executeRequest:request response:response callback:callback];
                 } else {
-                    [response setErrorToAuthorization];
+                    // Local OAuth認証失敗
+                    if (accessToken == nil) {
+                        [response setErrorToEmptyAccessToken];
+                    } else if (![result isExistAccessToken]) {
+                        [response setErrorToNotFoundClientId];
+                    } else if (![result isExistClientId]) {
+                        [response setErrorToNotFoundClientId];
+                    } else if (![result isExistScope]) {
+                        [response setErrorToScope];
+                    } else if (![result isExistNotExpired]) {
+                        [response setErrorToExpiredAccessToken];
+                    } else {
+                        [response setErrorToAuthorization];
+                    }
+                    [_self sendResponse:response];
                 }
+            } @catch (NSString *exception) {
+                [response setErrorToInvalidRequestParameterWithMessage:exception];
                 [_self sendResponse:response];
             }
         } else {
