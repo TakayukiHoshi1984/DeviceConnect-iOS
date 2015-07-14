@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>DPIRKitVersion</key>
-	<string>2.0.0</string>
+	<string>1.0.0</string>
 	<key>DPIRKitAPIKey</key>
 	<string>[Your API Key]</string>
 </dict>

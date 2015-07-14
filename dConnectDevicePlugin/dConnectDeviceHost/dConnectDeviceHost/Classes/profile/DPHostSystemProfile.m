@@ -71,7 +71,7 @@ didReceiveDeleteEventsRequest:(DConnectRequestMessage *)request
 #pragma mark - DConnectSystemProfileDataSource
 
 - (NSString *) versionOfSystemProfile:(DConnectSystemProfile *)profile {
-    return @"2.0.0";
+    return @"1.0.0";
 }
 
 - (UIViewController *) profile:(DConnectSystemProfile *)sender
