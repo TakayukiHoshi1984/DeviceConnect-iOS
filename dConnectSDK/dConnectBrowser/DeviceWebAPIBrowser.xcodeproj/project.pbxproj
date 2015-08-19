@@ -27,12 +27,9 @@
 		2562A2A519C3DA410032EF17 /* dConnectDeviceSonyCamera_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2562A2A419C3DA410032EF17 /* dConnectDeviceSonyCamera_resources.bundle */; };
 		2562A2BB19C3E6600032EF17 /* dConnectDeviceIRKit_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2562A2BA19C3E6600032EF17 /* dConnectDeviceIRKit_resources.bundle */; };
 		2562A2C719C3F2F80032EF17 /* dConnectDeviceHue_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2562A2C619C3F2F80032EF17 /* dConnectDeviceHue_resources.bundle */; };
-<<<<<<< HEAD:dConnectSDK/dConnectBrowser/DeviceWebAPIBrowser.xcodeproj/project.pbxproj
-=======
 		25851BDC1B57756F00CB732E /* dConnectDeviceAllJoyn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25851BDB1B57756F00CB732E /* dConnectDeviceAllJoyn.framework */; };
 		25851BDE1B57776800CB732E /* dConnectDeviceAllJoyn_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25851BDD1B57776800CB732E /* dConnectDeviceAllJoyn_resources.bundle */; };
 		259F7CE219C33D7700F66D93 /* dConnectDeviceSphero_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 259F7CE119C33D7700F66D93 /* dConnectDeviceSphero_resources.bundle */; };
->>>>>>> master:dConnectSDK/dConnectBrowser/dConnectBrowser.xcodeproj/project.pbxproj
 		259F7CE419C33DA800F66D93 /* DConnectSDK_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 259F7CE319C33DA800F66D93 /* DConnectSDK_resources.bundle */; };
 		259F7CE819C343CE00F66D93 /* dConnectDeviceHost_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 259F7CE719C343CE00F66D93 /* dConnectDeviceHost_resources.bundle */; };
 		25D555431977E13D002AA492 /* dConnectDeviceHue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25D555351977E13C002AA492 /* dConnectDeviceHue.framework */; };
@@ -131,15 +128,12 @@
 		AB97BD351B1BF71D00C95DCB /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB97BD341B1BF71D00C95DCB /* ExternalAccessory.framework */; };
 		ABBD5F0019861CFA00B81007 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABBD5EFD19861CFA00B81007 /* CoreFoundation.framework */; };
 		ABBD5F0119861CFA00B81007 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABBD5EFE19861CFA00B81007 /* CoreMotion.framework */; };
-<<<<<<< HEAD:dConnectSDK/dConnectBrowser/DeviceWebAPIBrowser.xcodeproj/project.pbxproj
 		ABFDF0EB1B032AFB00B88B24 /* icon_512px.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFDF0EA1B032AFB00B88B24 /* icon_512px.png */; };
-=======
 		ABBD5F0219861CFA00B81007 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABBD5EFF19861CFA00B81007 /* ExternalAccessory.framework */; };
 		ABE627431B79FBFB0093D7D2 /* dConnectDeviceTheta_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ABE627411B79FBFB0093D7D2 /* dConnectDeviceTheta_resources.bundle */; };
 		ABE627441B79FBFB0093D7D2 /* dConnectDeviceTheta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE627421B79FBFB0093D7D2 /* dConnectDeviceTheta.framework */; };
 		ABE627461B79FC2B0093D7D2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE627451B79FC2B0093D7D2 /* ImageIO.framework */; };
 		ABE627481B79FC340093D7D2 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE627471B79FC340093D7D2 /* libiconv.dylib */; };
->>>>>>> master:dConnectSDK/dConnectBrowser/dConnectBrowser.xcodeproj/project.pbxproj
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,12 +144,8 @@
 		2562A2A419C3DA410032EF17 /* dConnectDeviceSonyCamera_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceSonyCamera_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceSonyCamera/bin/dConnectDeviceSonyCamera_resources.bundle; sourceTree = "<group>"; };
 		2562A2BA19C3E6600032EF17 /* dConnectDeviceIRKit_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceIRKit_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceIRKit/bin/dConnectDeviceIRKit_resources.bundle; sourceTree = "<group>"; };
 		2562A2C619C3F2F80032EF17 /* dConnectDeviceHue_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceHue_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceHue/bin/dConnectDeviceHue_resources.bundle; sourceTree = "<group>"; };
-<<<<<<< HEAD:dConnectSDK/dConnectBrowser/DeviceWebAPIBrowser.xcodeproj/project.pbxproj
-=======
 		25851BDB1B57756F00CB732E /* dConnectDeviceAllJoyn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dConnectDeviceAllJoyn.framework; path = "../../dConnectDevicePlugin/dConnectDeviceAllJoyn/build/Debug-iphoneos/dConnectDeviceAllJoyn.framework"; sourceTree = "<group>"; };
 		25851BDD1B57776800CB732E /* dConnectDeviceAllJoyn_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceAllJoyn_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceAllJoyn/bin/dConnectDeviceAllJoyn_resources.bundle; sourceTree = "<group>"; };
-		259F7CE119C33D7700F66D93 /* dConnectDeviceSphero_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceSphero_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceSphero/bin/dConnectDeviceSphero_resources.bundle; sourceTree = "<group>"; };
->>>>>>> master:dConnectSDK/dConnectBrowser/dConnectBrowser.xcodeproj/project.pbxproj
 		259F7CE319C33DA800F66D93 /* DConnectSDK_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DConnectSDK_resources.bundle; path = ../dConnectSDKForIOS/bin/DConnectSDK_resources.bundle; sourceTree = "<group>"; };
 		259F7CE719C343CE00F66D93 /* dConnectDeviceHost_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceHost_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceHost/bin/dConnectDeviceHost_resources.bundle; sourceTree = "<group>"; };
 		25D555351977E13C002AA492 /* dConnectDeviceHue.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dConnectDeviceHue.framework; path = ../../dConnectDevicePlugin/dConnectDeviceHue/bin/dConnectDeviceHue.framework; sourceTree = "<group>"; };
@@ -313,16 +303,13 @@
 		AB97BD341B1BF71D00C95DCB /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		ABBD5EFD19861CFA00B81007 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		ABBD5EFE19861CFA00B81007 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-<<<<<<< HEAD:dConnectSDK/dConnectBrowser/DeviceWebAPIBrowser.xcodeproj/project.pbxproj
 		ABDC540A1B0C653200B9E392 /* DeviceWebAPIBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DeviceWebAPIBrowser.entitlements; sourceTree = "<group>"; };
 		ABFDF0EA1B032AFB00B88B24 /* icon_512px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_512px.png; sourceTree = "<group>"; };
-=======
 		ABBD5EFF19861CFA00B81007 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		ABE627411B79FBFB0093D7D2 /* dConnectDeviceTheta_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceTheta_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceTheta/bin/dConnectDeviceTheta_resources.bundle; sourceTree = "<group>"; };
 		ABE627421B79FBFB0093D7D2 /* dConnectDeviceTheta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dConnectDeviceTheta.framework; path = ../../dConnectDevicePlugin/dConnectDeviceTheta/bin/dConnectDeviceTheta.framework; sourceTree = "<group>"; };
 		ABE627451B79FC2B0093D7D2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		ABE627471B79FC340093D7D2 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
->>>>>>> master:dConnectSDK/dConnectBrowser/dConnectBrowser.xcodeproj/project.pbxproj
 		D699E71719C02B2A002F334C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		D699E71819C02B2A002F334C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		D699E71919C02B2A002F334C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Popup.strings; sourceTree = "<group>"; };
@@ -336,13 +323,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD:dConnectSDK/dConnectBrowser/DeviceWebAPIBrowser.xcodeproj/project.pbxproj
 				AB97BD351B1BF71D00C95DCB /* ExternalAccessory.framework in Frameworks */,
-=======
 				ABE627481B79FC340093D7D2 /* libiconv.dylib in Frameworks */,
 				ABE627461B79FC2B0093D7D2 /* ImageIO.framework in Frameworks */,
 				25851BDC1B57756F00CB732E /* dConnectDeviceAllJoyn.framework in Frameworks */,
->>>>>>> master:dConnectSDK/dConnectBrowser/dConnectBrowser.xcodeproj/project.pbxproj
 				6B6F584A1ACE68F90027A21F /* GoogleCast.framework in Frameworks */,
 				254111A819C2CDAD00F74C31 /* MediaAccessibility.framework in Frameworks */,
 				9700DDE71998E0DD00209D1A /* dConnectDeviceHost.framework in Frameworks */,
@@ -352,11 +336,8 @@
 				25D555431977E13D002AA492 /* dConnectDeviceHue.framework in Frameworks */,
 				AB5B2B4F1A9ABAEE0038CCF6 /* dConnectDeviceChromecast.framework in Frameworks */,
 				AB08A05E19908B410024C996 /* DCMDevicePluginSDK.framework in Frameworks */,
-<<<<<<< HEAD:dConnectSDK/dConnectBrowser/DeviceWebAPIBrowser.xcodeproj/project.pbxproj
-=======
 				2562A2B519C3E2480032EF17 /* dConnectDevicePebble.framework in Frameworks */,
 				ABE627441B79FBFB0093D7D2 /* dConnectDeviceTheta.framework in Frameworks */,
->>>>>>> master:dConnectSDK/dConnectBrowser/dConnectBrowser.xcodeproj/project.pbxproj
 				25D5554B1977E13D002AA492 /* dConnectDeviceSonyCamera.framework in Frameworks */,
 				25262487196E5BB000AE4F1F /* DConnectSDK.framework in Frameworks */,
 				8E9A145F196257680004DDB3 /* CoreData.framework in Frameworks */,
@@ -541,18 +522,15 @@
 		8E2C5B371960FF36005DFCDC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD:dConnectSDK/dConnectBrowser/DeviceWebAPIBrowser.xcodeproj/project.pbxproj
 				AB97BD341B1BF71D00C95DCB /* ExternalAccessory.framework */,
 				AB97BD301B1BF2F600C95DCB /* PebbleKit.framework */,
 				AB97BD311B1BF2F600C95DCB /* PebbleVendor.framework */,
 				AB97BD2C1B1BF2EB00C95DCB /* dConnectDevicePebble_resources.bundle */,
 				AB97BD2D1B1BF2EB00C95DCB /* dConnectDevicePebble.framework */,
-=======
 				ABE627471B79FC340093D7D2 /* libiconv.dylib */,
 				ABE627451B79FC2B0093D7D2 /* ImageIO.framework */,
 				ABE627411B79FBFB0093D7D2 /* dConnectDeviceTheta_resources.bundle */,
 				ABE627421B79FBFB0093D7D2 /* dConnectDeviceTheta.framework */,
->>>>>>> master:dConnectSDK/dConnectBrowser/dConnectBrowser.xcodeproj/project.pbxproj
 				6B6F58491ACE68F90027A21F /* GoogleCast.framework */,
 				AB5B2B4C1A9ABAEE0038CCF6 /* dConnectDeviceChromecast_resources.bundle */,
 				AB5B2B4D1A9ABAEE0038CCF6 /* dConnectDeviceChromecast.framework */,
@@ -891,11 +869,8 @@
 				8E9A14C2196291EC0004DDB3 /* GTMNSString-HTML.podspec in Resources */,
 				AB97BD2E1B1BF2EB00C95DCB /* dConnectDevicePebble_resources.bundle in Resources */,
 				8E24CFFD1964EC25008D9C10 /* folder@2x.png in Resources */,
-<<<<<<< HEAD:dConnectSDK/dConnectBrowser/DeviceWebAPIBrowser.xcodeproj/project.pbxproj
 				ABFDF0EB1B032AFB00B88B24 /* icon_512px.png in Resources */,
-=======
 				ABE627431B79FBFB0093D7D2 /* dConnectDeviceTheta_resources.bundle in Resources */,
->>>>>>> master:dConnectSDK/dConnectBrowser/dConnectBrowser.xcodeproj/project.pbxproj
 				8E24CFFE1964EC25008D9C10 /* history@2x.png in Resources */,
 				8EEC171D1985E43C004EB5DC /* reload@2x.png in Resources */,
 				8E24D02819652516008D9C10 /* addBookmark@2x.png in Resources */,
@@ -1169,7 +1144,7 @@
 					"$(PROJECT_DIR)/../../dConnectDevicePlugin/dConnectDevicePebble/bin",
 					"$(PROJECT_DIR)/../../dConnectDevicePlugin/dConnectDevicePebble",
 					"$(PROJECT_DIR)/../../dConnectDevicePlugin/dConnectDeviceAllJoyn/bin",
-					"/Users/hoshit/project/Docomo/d-connect/github/dConnect/DeviceConnect-iOS/dConnectDevicePlugin/dConnectDeviceTheta/bin",
+					"$(PROJECT_DIR)/../../dConnectDevicePlugin/dConnectDeviceTheta/bin",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Browser/Browser-Prefix.pch";
@@ -1202,7 +1177,7 @@
 					"$(PROJECT_DIR)/../../dConnectDevicePlugin/dConnectDevicePebble/bin",
 					"$(PROJECT_DIR)/../../dConnectDevicePlugin/dConnectDevicePebble",
 					"$(PROJECT_DIR)/../../dConnectDevicePlugin/dConnectDeviceAllJoyn/bin",
-					"/Users/hoshit/project/Docomo/d-connect/github/dConnect/DeviceConnect-iOS/dConnectDevicePlugin/dConnectDeviceTheta/bin",
+					"$(PROJECT_DIR)/../../dConnectDevicePlugin/dConnectDeviceTheta/bin",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Browser/Browser-Prefix.pch";
