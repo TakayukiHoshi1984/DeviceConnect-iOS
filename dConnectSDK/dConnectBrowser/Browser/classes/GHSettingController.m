@@ -123,7 +123,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [(NSArray*)[self.datasource objectAtIndex:section] count];
+    return [(NSArray *)[self.datasource objectAtIndex:section] count];
 }
 
 

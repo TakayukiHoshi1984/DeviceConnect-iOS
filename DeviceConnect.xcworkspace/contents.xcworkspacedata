@@ -5,6 +5,15 @@
       location = "group:dConnectSDK/dConnectBrowser/DeviceWebAPIBrowser.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:dConnectDevicePlugin/dConnectDeviceTheta/dConnectDeviceTheta.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:dConnectSDK/dConnectSDKForIOS/DConnectSDK.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:dConnectDevicePlugin/dConnectDeviceAllJoyn/dConnectDeviceAllJoyn.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:dConnectDevicePlugin/dConnectDeviceChromeCast/dConnectDeviceChromecast.xcodeproj">
    </FileRef>
    <FileRef
@@ -27,9 +36,6 @@
    </FileRef>
    <FileRef
       location = "group:dConnectDevicePlugin/DCMDevicePluginSDK/DCMDevicePluginSDK.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:dConnectSDK/dConnectSDKForIOS/DConnectSDK.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:dConnectDevicePlugin/dConnectDeviceTest/dConnectDeviceTest.xcodeproj">
