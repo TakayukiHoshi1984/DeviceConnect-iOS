@@ -38,7 +38,6 @@
 		64278B6419B8AC5100AC54E5 /* DPHueSettingViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 64278B6319B8AC5100AC54E5 /* DPHueSettingViewController2.m */; };
 		64278B6719B8AC6C00AC54E5 /* DPHueSettingViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 64278B6619B8AC6C00AC54E5 /* DPHueSettingViewController3.m */; };
 		64278B6A19B8AEA800AC54E5 /* DPHueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64278B6919B8AEA800AC54E5 /* DPHueViewController.m */; };
-		645C472919CEBE06004D9459 /* DCMDevicePluginSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 645C472819CEBE06004D9459 /* DCMDevicePluginSDK.framework */; };
 		645C472B19CEC24E004D9459 /* DConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 645C472A19CEC24E004D9459 /* DConnectSDK.framework */; };
 		64A3E56119B9393400B83DAF /* DPHueModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A3E55F19B9393400B83DAF /* DPHueModelController.m */; };
 		64A3E56419B93AE400B83DAF /* DPHueSettingViewControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A3E56319B93AE400B83DAF /* DPHueSettingViewControllerBase.m */; };
@@ -103,7 +102,6 @@
 		64278B6619B8AC6C00AC54E5 /* DPHueSettingViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPHueSettingViewController3.m; sourceTree = "<group>"; };
 		64278B6819B8AEA800AC54E5 /* DPHueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPHueViewController.h; sourceTree = "<group>"; };
 		64278B6919B8AEA800AC54E5 /* DPHueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPHueViewController.m; sourceTree = "<group>"; };
-		645C472819CEBE06004D9459 /* DCMDevicePluginSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DCMDevicePluginSDK.framework; path = ../DCMDevicePluginSDK/bin/DCMDevicePluginSDK.framework; sourceTree = "<group>"; };
 		645C472A19CEC24E004D9459 /* DConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DConnectSDK.framework; path = ../../dConnectSDK/dConnectSDKForIOS/bin/DConnectSDK.framework; sourceTree = "<group>"; };
 		64A3E55F19B9393400B83DAF /* DPHueModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPHueModelController.m; sourceTree = "<group>"; };
 		64A3E56019B9393400B83DAF /* DPHueModelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPHueModelController.h; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 				64BAEB541998D6A000BCDBDA /* UIKit.framework in Frameworks */,
 				AB1815C5196A3651000BE265 /* Foundation.framework in Frameworks */,
 				64BB087D19C335EE00C66903 /* HueSDK_iOS.framework in Frameworks */,
-				645C472919CEBE06004D9459 /* DCMDevicePluginSDK.framework in Frameworks */,
 				645C472B19CEC24E004D9459 /* DConnectSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,7 +236,6 @@
 		AB1815C3196A3651000BE265 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				645C472819CEBE06004D9459 /* DCMDevicePluginSDK.framework */,
 				64BB087C19C335EE00C66903 /* HueSDK_iOS.framework */,
 				64BAEB531998D6A000BCDBDA /* UIKit.framework */,
 				645C472A19CEC24E004D9459 /* DConnectSDK.framework */,
@@ -607,6 +603,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -626,7 +623,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "b91a49b5-3034-4597-a4d0-a577e72256a1";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -647,6 +644,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -657,7 +655,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PROVISIONING_PROFILE = "b91a49b5-3034-4597-a4d0-a577e72256a1";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -666,18 +664,19 @@
 		AB1815E5196A3651000BE265 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DSTROOT = /tmp/dConnectDeviceHue.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-					"$(PROJECT_DIR)/../DCMDevicePluginSDK/bin",
 					"$(PROJECT_DIR)/deps/PhilipsHueSDK-iOS-OSX",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDeviceHue/dConnectDeviceHue-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -685,18 +684,19 @@
 		AB1815E6196A3651000BE265 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DSTROOT = /tmp/dConnectDeviceHue.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-					"$(PROJECT_DIR)/../DCMDevicePluginSDK/bin",
 					"$(PROJECT_DIR)/deps/PhilipsHueSDK-iOS-OSX",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDeviceHue/dConnectDeviceHue-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -704,6 +704,7 @@
 		AB1815E8196A3651000BE265 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -718,6 +719,7 @@
 				);
 				INFOPLIST_FILE = "dConnectDeviceHueTests/dConnectDeviceHueTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -725,6 +727,7 @@
 		AB1815E9196A3651000BE265 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -735,6 +738,7 @@
 				GCC_PREFIX_HEADER = "dConnectDeviceHue/dConnectDeviceHue-Prefix.pch";
 				INFOPLIST_FILE = "dConnectDeviceHueTests/dConnectDeviceHueTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -742,6 +746,7 @@
 		AB181680196A6916000BE265 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = NO;
 				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)-resources";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -755,6 +760,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -763,6 +769,7 @@
 		AB181681196A6916000BE265 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = NO;
 				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)-resources";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -773,6 +780,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -781,28 +789,36 @@
 		AB181693196A6969000BE265 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		AB181694196A6969000BE265 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
 		AB28219B1A96CC48007B3D6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		AB28219C1A96CC48007B3D6F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

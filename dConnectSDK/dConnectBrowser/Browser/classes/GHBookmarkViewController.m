@@ -278,11 +278,15 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:(GHPageViewCell *)[tableView cellForRowAtIndexPath:indexPath]
-                    atIndexPath:indexPath
+        {
+            
+            GHPageViewCell *cell = (GHPageViewCell *)[tableView cellForRowAtIndexPath:newIndexPath];
+            [self configureCell:cell
+                    atIndexPath:newIndexPath
                      controller:controller];
             break;
-            
+        }
+
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -302,7 +306,9 @@
            controller:(NSFetchedResultsController *)controller
 {
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
-    
+    if (!controller) {
+        controller = [self fetchedResultsController];
+    }
     Page* page = [controller objectAtIndexPath:indexPath];
     cell.textLabel.text = page.title;
     
@@ -340,19 +346,23 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-    Page* fromPage = [self.fetchedResultsController objectAtIndexPath:fromIndexPath];
-    NSNumber *fromPriority = fromPage.priority;
+    NSInteger diff = toIndexPath.row - fromIndexPath.row;
+    BOOL moveDown = diff > 0;
     
+    Page* fromPage = [self.fetchedResultsController objectAtIndexPath:fromIndexPath];
     Page* toPage   = [self.fetchedResultsController objectAtIndexPath:toIndexPath];
     NSNumber *toPriority = toPage.priority;
     
     fromPage.priority = toPriority;
-    toPage.priority = fromPriority;
-    
+
+    NSInteger index = moveDown ? fromIndexPath.row + 1 : toIndexPath.row;
+    for (int i = 0; i < ABS(diff); i++) {
+        Page* targetPage   = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:index+i inSection:0]];
+        targetPage.priority = @([targetPage.priority integerValue] + (moveDown ? -1 : 1));
+    }
+ 
     [[GHDataManager shareManager]save];
 }
-
-
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -365,11 +375,7 @@
 targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath*)sourceIndexPath
       toProposedIndexPath:(NSIndexPath*)proposedDestinationIndexPath
 {
-    if (  (proposedDestinationIndexPath.row > 1) && (proposedDestinationIndexPath.section == sourceIndexPath.section)) {
-        return proposedDestinationIndexPath;
-    } else {
-        return sourceIndexPath;
-    }
+    return proposedDestinationIndexPath;
 }
 
 

@@ -27,7 +27,7 @@
     self = [super init];
     
     if (self) {
-        self.pluginName = @"Sphero 1.0.0";
+        self.pluginName = @"Sphero (Device Connect Device Plug-in)";
 
         Class key = [self class];
         [[DConnectEventManager sharedManagerForClass:key]
@@ -41,13 +41,13 @@
         // Sphero Profileの追加
         DPSpheroSensorProfile *spheroProfile = [DPSpheroSensorProfile new];
         DPSpheroDriveControllerProfile *DCMDriveControllerProfile = [DPSpheroDriveControllerProfile new];
-        DPSpheroLightProfile *DCMLightProfile = [DPSpheroLightProfile new];
+        DPSpheroLightProfile *DConnectLightProfile = [DPSpheroLightProfile new];
         DPSpheroDeviceOrientationProfile *deviceorientationProfile = [DPSpheroDeviceOrientationProfile new];
         [self addProfile:networkProfile];
         [self addProfile:systemProfile];
         [self addProfile:spheroProfile];
         [self addProfile:DCMDriveControllerProfile];
-        [self addProfile:DCMLightProfile];
+        [self addProfile:DConnectLightProfile];
         [self addProfile:deviceorientationProfile];
         [self addProfile:[DConnectServiceInformationProfile new]];
         __weak typeof(self) _self = self;
