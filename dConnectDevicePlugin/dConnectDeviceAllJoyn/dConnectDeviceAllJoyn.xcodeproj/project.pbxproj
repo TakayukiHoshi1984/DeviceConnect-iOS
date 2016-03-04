@@ -91,7 +91,6 @@
 		258843CB1B5F43F9003E5257 /* NSArray+Query.h in Headers */ = {isa = PBXBuildFile; fileRef = 258843C91B5F43F9003E5257 /* NSArray+Query.h */; };
 		258843CC1B5F43F9003E5257 /* NSArray+Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 258843CA1B5F43F9003E5257 /* NSArray+Query.m */; };
 		2589F0621B61F32200C7B4C0 /* DPAllJoynLightingResponseCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 2589F0611B61F06300C7B4C0 /* DPAllJoynLightingResponseCode.h */; };
-		258FD3C71B78CF3E00F6EA35 /* libAllJoynFramework_iOS_fix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258FD3C61B78CF3E00F6EA35 /* libAllJoynFramework_iOS_fix.a */; };
 		258FD3CA1B78CF4F00F6EA35 /* liballjoyn_about_cpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258FD3C81B78CF4F00F6EA35 /* liballjoyn_about_cpp.a */; };
 		258FD3CB1B78CF4F00F6EA35 /* liballjoyn_about_objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258FD3C91B78CF4F00F6EA35 /* liballjoyn_about_objc.a */; };
 		258FD3CE1B78CF5A00F6EA35 /* libajrouter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258FD3CC1B78CF5A00F6EA35 /* libajrouter.a */; };
@@ -162,7 +161,6 @@
 		258843CE1B5F942D003E5257 /* LSFLamp.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LSFLamp.xml; sourceTree = "<group>"; };
 		258843D01B5F95B9003E5257 /* LSFControllerService.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LSFControllerService.xml; sourceTree = "<group>"; };
 		2589F0611B61F06300C7B4C0 /* DPAllJoynLightingResponseCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DPAllJoynLightingResponseCode.h; sourceTree = "<group>"; };
-		258FD3C61B78CF3E00F6EA35 /* libAllJoynFramework_iOS_fix.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAllJoynFramework_iOS_fix.a; path = "deps/AllJoynIOS_libc++/Release/libAllJoynFramework_iOS_fix.a"; sourceTree = "<group>"; };
 		258FD3C81B78CF4F00F6EA35 /* liballjoyn_about_cpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liballjoyn_about_cpp.a; path = deps/AllJoyn/darwin/arm/iphoneos/release/dist/about/lib/liballjoyn_about_cpp.a; sourceTree = "<group>"; };
 		258FD3C91B78CF4F00F6EA35 /* liballjoyn_about_objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liballjoyn_about_objc.a; path = deps/AllJoyn/darwin/arm/iphoneos/release/dist/about/lib/liballjoyn_about_objc.a; sourceTree = "<group>"; };
 		258FD3CC1B78CF5A00F6EA35 /* libajrouter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libajrouter.a; path = deps/AllJoyn/darwin/arm/iphoneos/release/dist/cpp/lib/libajrouter.a; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				25851BBA1B573C3100CB732E /* DConnectSDK.framework in Frameworks */,
-				258FD3C71B78CF3E00F6EA35 /* libAllJoynFramework_iOS_fix.a in Frameworks */,
 				258FD3CA1B78CF4F00F6EA35 /* liballjoyn_about_cpp.a in Frameworks */,
 				258FD3CB1B78CF4F00F6EA35 /* liballjoyn_about_objc.a in Frameworks */,
 				258FD3CE1B78CF5A00F6EA35 /* libajrouter.a in Frameworks */,
@@ -246,7 +243,6 @@
 				258FD3CD1B78CF5A00F6EA35 /* liballjoyn.a */,
 				258FD3C81B78CF4F00F6EA35 /* liballjoyn_about_cpp.a */,
 				258FD3C91B78CF4F00F6EA35 /* liballjoyn_about_objc.a */,
-				258FD3C61B78CF3E00F6EA35 /* libAllJoynFramework_iOS_fix.a */,
 				25851BB91B573C3100CB732E /* DConnectSDK.framework */,
 			);
 			name = Frameworks;
@@ -916,6 +912,12 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/deps/CocoaPods/Pods/OpenSSL-Static/lib-ios",
+					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/about/lib",
+					"$(PROJECT_DIR)/deps/AllJoyn/darwin/$(CURRENT_ARCH)/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/lib",
+				);
 				MACH_O_TYPE = staticlib;
 				OTHER_CFLAGS = (
 					"-DQCC_OS_GROUP_POSIX",
@@ -945,6 +947,12 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/deps/CocoaPods/Pods/OpenSSL-Static/lib-ios",
+					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/about/lib",
+					"$(PROJECT_DIR)/deps/AllJoyn/darwin/$(CURRENT_ARCH)/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/lib",
+				);
 				MACH_O_TYPE = staticlib;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",

@@ -128,13 +128,13 @@
 		AB97BD331B1BF2F600C95DCB /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB97BD311B1BF2F600C95DCB /* PebbleVendor.framework */; };
 		ABBD5F0019861CFA00B81007 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABBD5EFD19861CFA00B81007 /* CoreFoundation.framework */; };
 		ABBD5F0119861CFA00B81007 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABBD5EFE19861CFA00B81007 /* CoreMotion.framework */; };
-		ABD0F8411BD48F170011425D /* logoLandscapeRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = ABD0F83F1BD48F170011425D /* logoLandscapeRetina.png */; settings = {ASSET_TAGS = (); }; };
-		ABD0F8421BD48F170011425D /* logoPortraitRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = ABD0F8401BD48F170011425D /* logoPortraitRetina.png */; settings = {ASSET_TAGS = (); }; };
-		ABD0F8451BD48F1E0011425D /* logoLandscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABD0F8431BD48F1E0011425D /* logoLandscape@2x.png */; settings = {ASSET_TAGS = (); }; };
+		ABD0F8411BD48F170011425D /* logoLandscapeRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = ABD0F83F1BD48F170011425D /* logoLandscapeRetina.png */; };
+		ABD0F8421BD48F170011425D /* logoPortraitRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = ABD0F8401BD48F170011425D /* logoPortraitRetina.png */; };
+		ABD0F8451BD48F1E0011425D /* logoLandscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABD0F8431BD48F1E0011425D /* logoLandscape@2x.png */; };
 		ABE627431B79FBFB0093D7D2 /* dConnectDeviceTheta_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ABE627411B79FBFB0093D7D2 /* dConnectDeviceTheta_resources.bundle */; };
 		ABE627441B79FBFB0093D7D2 /* dConnectDeviceTheta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE627421B79FBFB0093D7D2 /* dConnectDeviceTheta.framework */; };
 		ABE627461B79FC2B0093D7D2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE627451B79FC2B0093D7D2 /* ImageIO.framework */; };
-		ABEF4DC71BD491A900B940DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABEF4DC61BD491A900B940DC /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		ABEF4DC71BD491A900B940DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABEF4DC61BD491A900B940DC /* LaunchScreen.storyboard */; };
 		ABEF4DC81BD49C7600B940DC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEF4DCA1BD49C7600B940DC /* Default@2x.png */; };
 		ABFDF0EB1B032AFB00B88B24 /* icon_512px.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFDF0EA1B032AFB00B88B24 /* icon_512px.png */; };
 /* End PBXBuildFile section */
