@@ -1105,7 +1105,7 @@
 				PROVISIONING_PROFILE = "a52dff0a-b5ea-4dc8-bfb2-acf3b27f8a0f";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7s armv7 arm64";
+				VALID_ARCHS = "arm64 armv7s armv7";
 			};
 			name = Debug;
 		};
@@ -1151,7 +1151,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7s armv7 arm64";
+				VALID_ARCHS = "arm64 armv7s armv7";
 			};
 			name = Release;
 		};
