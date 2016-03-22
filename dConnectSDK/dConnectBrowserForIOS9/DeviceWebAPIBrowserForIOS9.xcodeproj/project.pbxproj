@@ -1104,7 +1104,7 @@
 					"-lstdc++",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.deviceconnect.dConnectBrowserForIOS9.dConnectBrowserForIOS9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowserForIOS9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "armv7s armv7 arm64";
 			};
@@ -1145,7 +1145,7 @@
 					"-lstdc++",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.deviceconnect.dConnectBrowserForIOS9.dConnectBrowserForIOS9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowserForIOS9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "armv7s armv7 arm64";
 			};
@@ -1165,7 +1165,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.deviceconnect.dConnectBrowserForIOS9.db.BookmarkDBFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIForIOS9.db.BookmarkDBFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1187,7 +1187,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.deviceconnect.dConnectBrowserForIOS9.db.BookmarkDBFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIForIOS9.db.BookmarkDBFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1206,7 +1206,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.deviceconnect.dConnectBrowserForIOS9.dConnectBrowserForIOS9.bookmarkShare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowserForIOS9.bookmarkshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -1224,7 +1224,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.deviceconnect.dConnectBrowserForIOS9.dConnectBrowserForIOS9.bookmarkShare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowserForIOS9.bookmarkshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
