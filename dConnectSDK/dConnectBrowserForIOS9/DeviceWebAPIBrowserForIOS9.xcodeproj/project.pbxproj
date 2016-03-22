@@ -36,10 +36,6 @@
 		AB00F22B1C719B5B00689C70 /* HueSDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB00F22A1C719B5B00689C70 /* HueSDK_iOS.framework */; };
 		AB00F22E1C719B6500689C70 /* dConnectDeviceIRKit_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB00F22C1C719B6500689C70 /* dConnectDeviceIRKit_resources.bundle */; };
 		AB00F22F1C719B6500689C70 /* dConnectDeviceIRKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB00F22D1C719B6500689C70 /* dConnectDeviceIRKit.framework */; };
-		AB00F2321C719B6E00689C70 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB00F2301C719B6E00689C70 /* PebbleKit.framework */; };
-		AB00F2331C719B6E00689C70 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB00F2311C719B6E00689C70 /* PebbleVendor.framework */; };
-		AB00F2361C719B7600689C70 /* dConnectDevicePebble_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB00F2341C719B7600689C70 /* dConnectDevicePebble_resources.bundle */; };
-		AB00F2371C719B7600689C70 /* dConnectDevicePebble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB00F2351C719B7600689C70 /* dConnectDevicePebble.framework */; };
 		AB00F23A1C719B8100689C70 /* dConnectDeviceSonyCamera_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB00F2381C719B8100689C70 /* dConnectDeviceSonyCamera_resources.bundle */; };
 		AB00F23B1C719B8100689C70 /* dConnectDeviceSonyCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB00F2391C719B8100689C70 /* dConnectDeviceSonyCamera.framework */; };
 		AB00F2481C719B9C00689C70 /* dConnectDeviceTheta_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB00F2461C719B9C00689C70 /* dConnectDeviceTheta_resources.bundle */; };
@@ -187,10 +183,6 @@
 		AB00F22A1C719B5B00689C70 /* HueSDK_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HueSDK_iOS.framework; path = ../../dConnectDevicePlugin/dConnectDeviceHue/HueSDK_iOS.framework; sourceTree = "<group>"; };
 		AB00F22C1C719B6500689C70 /* dConnectDeviceIRKit_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceIRKit_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceIRKit/bin/dConnectDeviceIRKit_resources.bundle; sourceTree = "<group>"; };
 		AB00F22D1C719B6500689C70 /* dConnectDeviceIRKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dConnectDeviceIRKit.framework; path = ../../dConnectDevicePlugin/dConnectDeviceIRKit/bin/dConnectDeviceIRKit.framework; sourceTree = "<group>"; };
-		AB00F2301C719B6E00689C70 /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleKit.framework; path = ../../dConnectDevicePlugin/dConnectDevicePebble/PebbleKit.framework; sourceTree = "<group>"; };
-		AB00F2311C719B6E00689C70 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleVendor.framework; path = ../../dConnectDevicePlugin/dConnectDevicePebble/PebbleVendor.framework; sourceTree = "<group>"; };
-		AB00F2341C719B7600689C70 /* dConnectDevicePebble_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDevicePebble_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDevicePebble/bin/dConnectDevicePebble_resources.bundle; sourceTree = "<group>"; };
-		AB00F2351C719B7600689C70 /* dConnectDevicePebble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dConnectDevicePebble.framework; path = ../../dConnectDevicePlugin/dConnectDevicePebble/bin/dConnectDevicePebble.framework; sourceTree = "<group>"; };
 		AB00F2381C719B8100689C70 /* dConnectDeviceSonyCamera_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceSonyCamera_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceSonyCamera/bin/dConnectDeviceSonyCamera_resources.bundle; sourceTree = "<group>"; };
 		AB00F2391C719B8100689C70 /* dConnectDeviceSonyCamera.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dConnectDeviceSonyCamera.framework; path = ../../dConnectDevicePlugin/dConnectDeviceSonyCamera/bin/dConnectDeviceSonyCamera.framework; sourceTree = "<group>"; };
 		AB00F2461C719B9C00689C70 /* dConnectDeviceTheta_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceTheta_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceTheta/bin/dConnectDeviceTheta_resources.bundle; sourceTree = "<group>"; };
@@ -312,11 +304,9 @@
 				AB00F2091C719A6100689C70 /* MediaAccessibility.framework in Frameworks */,
 				AB00F2071C719A5700689C70 /* CoreMotion.framework in Frameworks */,
 				AB00F21F1C719B3900689C70 /* dConnectDeviceChromecast.framework in Frameworks */,
-				AB00F2371C719B7600689C70 /* dConnectDevicePebble.framework in Frameworks */,
 				AB00F22F1C719B6500689C70 /* dConnectDeviceIRKit.framework in Frameworks */,
 				AB1FAB0D1C7AC1E00013C434 /* dConnectDeviceAllJoyn.framework in Frameworks */,
 				AB94E85F1C755EB300DAE749 /* BookmarkDBFramework.framework in Frameworks */,
-				AB00F2331C719B6E00689C70 /* PebbleVendor.framework in Frameworks */,
 				AB00F2051C719A0300689C70 /* CoreFoundation.framework in Frameworks */,
 				AB00F2031C7199F500689C70 /* ImageIO.framework in Frameworks */,
 				AB00F2251C719B4B00689C70 /* dConnectDeviceHost.framework in Frameworks */,
@@ -327,7 +317,6 @@
 				AB00F2491C719B9C00689C70 /* dConnectDeviceTheta.framework in Frameworks */,
 				AB00F22B1C719B5B00689C70 /* HueSDK_iOS.framework in Frameworks */,
 				AB00F2291C719B5500689C70 /* dConnectDeviceHue.framework in Frameworks */,
-				AB00F2321C719B6E00689C70 /* PebbleKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,10 +400,6 @@
 				AB00F2471C719B9C00689C70 /* dConnectDeviceTheta.framework */,
 				AB00F2381C719B8100689C70 /* dConnectDeviceSonyCamera_resources.bundle */,
 				AB00F2391C719B8100689C70 /* dConnectDeviceSonyCamera.framework */,
-				AB00F2341C719B7600689C70 /* dConnectDevicePebble_resources.bundle */,
-				AB00F2351C719B7600689C70 /* dConnectDevicePebble.framework */,
-				AB00F2301C719B6E00689C70 /* PebbleKit.framework */,
-				AB00F2311C719B6E00689C70 /* PebbleVendor.framework */,
 				AB00F22C1C719B6500689C70 /* dConnectDeviceIRKit_resources.bundle */,
 				AB00F22D1C719B6500689C70 /* dConnectDeviceIRKit.framework */,
 				AB00F22A1C719B5B00689C70 /* HueSDK_iOS.framework */,
@@ -827,7 +812,6 @@
 				AB00F23A1C719B8100689C70 /* dConnectDeviceSonyCamera_resources.bundle in Resources */,
 				AB00F3281C71A93700689C70 /* Popup.storyboard in Resources */,
 				AB00F3271C71A93700689C70 /* Bookmark.storyboard in Resources */,
-				AB00F2361C719B7600689C70 /* dConnectDevicePebble_resources.bundle in Resources */,
 				AB00F2141C719AA800689C70 /* DConnectSDK_resources.bundle in Resources */,
 				AB00F2481C719B9C00689C70 /* dConnectDeviceTheta_resources.bundle in Resources */,
 				AB00F1ED1C71941800689C70 /* Main.storyboard in Resources */,
