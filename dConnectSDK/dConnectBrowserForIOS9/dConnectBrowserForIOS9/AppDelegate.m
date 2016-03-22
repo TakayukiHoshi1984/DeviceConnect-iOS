@@ -6,7 +6,6 @@
 //  Released under the MIT license
 //  http://opensource.org/licenses/mit-license.php
 //
-
 #import "AppDelegate.h"
 #import "GHDataManager.h"
 #import <DConnectSDK/DConnectSDK.h>

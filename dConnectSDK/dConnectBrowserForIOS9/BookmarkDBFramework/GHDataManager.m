@@ -279,7 +279,7 @@ static GHDataManager* mgr = nil;
 
 - (NSURL *)applicationDocumentsDirectory
 {
-    return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.deviceconnect.dConnectBrowserForIOS9"];
+    return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.gclue.DeviceWebAPIBrowserForIOS9"];
 //	return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 

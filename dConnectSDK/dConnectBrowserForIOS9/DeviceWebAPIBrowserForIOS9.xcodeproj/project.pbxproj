@@ -76,8 +76,8 @@
 		AB00F4AB1C71B16200689C70 /* RATreeView+TableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB00F4861C71B16200689C70 /* RATreeView+TableViewDelegate.m */; };
 		AB00F4AC1C71B16200689C70 /* RATreeView+UIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB00F4881C71B16200689C70 /* RATreeView+UIScrollView.m */; };
 		AB00F4AD1C71B16200689C70 /* RATreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB00F48A1C71B16200689C70 /* RATreeView.m */; };
-		AB1FAB0C1C7AC1E00013C434 /* dConnectDeviceAllJoyn_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB1FAB0A1C7AC1E00013C434 /* dConnectDeviceAllJoyn_resources.bundle */; };
-		AB1FAB0D1C7AC1E00013C434 /* dConnectDeviceAllJoyn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1FAB0B1C7AC1E00013C434 /* dConnectDeviceAllJoyn.framework */; };
+		AB0803E61CA12CEC00C41FD1 /* logoPortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0803E51CA12CEC00C41FD1 /* logoPortrait.png */; };
+		AB32C5BC1CA122EB00683E09 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB32C5BB1CA122EB00683E09 /* PebbleVendor.framework */; };
 		AB94E85F1C755EB300DAE749 /* BookmarkDBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */; };
 		AB94E8601C755EB300DAE749 /* BookmarkDBFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB94E86D1C75611700DAE749 /* db.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB94E8651C75611700DAE749 /* db.xcdatamodeld */; };
@@ -254,8 +254,8 @@
 		AB00F4881C71B16200689C70 /* RATreeView+UIScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RATreeView+UIScrollView.m"; sourceTree = "<group>"; };
 		AB00F4891C71B16200689C70 /* RATreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RATreeView.h; sourceTree = "<group>"; };
 		AB00F48A1C71B16200689C70 /* RATreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RATreeView.m; sourceTree = "<group>"; };
-		AB1FAB0A1C7AC1E00013C434 /* dConnectDeviceAllJoyn_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceAllJoyn_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceAllJoyn/bin/dConnectDeviceAllJoyn_resources.bundle; sourceTree = "<group>"; };
-		AB1FAB0B1C7AC1E00013C434 /* dConnectDeviceAllJoyn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dConnectDeviceAllJoyn.framework; path = ../../dConnectDevicePlugin/dConnectDeviceAllJoyn/bin/dConnectDeviceAllJoyn.framework; sourceTree = "<group>"; };
+		AB0803E51CA12CEC00C41FD1 /* logoPortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoPortrait.png; sourceTree = "<group>"; };
+		AB32C5BB1CA122EB00683E09 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleVendor.framework; path = ../../dConnectDevicePlugin/dConnectDevicePebble/PebbleVendor.framework; sourceTree = "<group>"; };
 		AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BookmarkDBFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB94E85C1C755EB300DAE749 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB94E8661C75611700DAE749 /* db 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "db 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -305,13 +305,13 @@
 				AB00F2071C719A5700689C70 /* CoreMotion.framework in Frameworks */,
 				AB00F21F1C719B3900689C70 /* dConnectDeviceChromecast.framework in Frameworks */,
 				AB00F22F1C719B6500689C70 /* dConnectDeviceIRKit.framework in Frameworks */,
-				AB1FAB0D1C7AC1E00013C434 /* dConnectDeviceAllJoyn.framework in Frameworks */,
 				AB94E85F1C755EB300DAE749 /* BookmarkDBFramework.framework in Frameworks */,
 				AB00F2051C719A0300689C70 /* CoreFoundation.framework in Frameworks */,
 				AB00F2031C7199F500689C70 /* ImageIO.framework in Frameworks */,
 				AB00F2251C719B4B00689C70 /* dConnectDeviceHost.framework in Frameworks */,
 				AB00F2011C7199EB00689C70 /* libiconv.tbd in Frameworks */,
 				AB00F1FF1C7199B800689C70 /* libstdc++.6.0.9.tbd in Frameworks */,
+				AB32C5BC1CA122EB00683E09 /* PebbleVendor.framework in Frameworks */,
 				AB00F2211C719B4000689C70 /* GoogleCast.framework in Frameworks */,
 				AB00F1FD1C7199AC00689C70 /* libiconv.2.4.0.tbd in Frameworks */,
 				AB00F2491C719B9C00689C70 /* dConnectDeviceTheta.framework in Frameworks */,
@@ -393,8 +393,7 @@
 		AB00F1F91C71961500689C70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AB1FAB0A1C7AC1E00013C434 /* dConnectDeviceAllJoyn_resources.bundle */,
-				AB1FAB0B1C7AC1E00013C434 /* dConnectDeviceAllJoyn.framework */,
+				AB32C5BB1CA122EB00683E09 /* PebbleVendor.framework */,
 				AB00F24A1C719F3100689C70 /* ExternalAccessory.framework */,
 				AB00F2461C719B9C00689C70 /* dConnectDeviceTheta_resources.bundle */,
 				AB00F2471C719B9C00689C70 /* dConnectDeviceTheta.framework */,
@@ -648,6 +647,7 @@
 		ABE71E291C76D3F40061973C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AB0803E51CA12CEC00C41FD1 /* logoPortrait.png */,
 				ABE71E2A1C76D3F40061973C /* bookmark@2x.png */,
 				ABE71E2B1C76D3F40061973C /* folder@2x.png */,
 				ABE71E2C1C76D3F40061973C /* star@2x.png */,
@@ -797,7 +797,6 @@
 				AB00F21E1C719B3900689C70 /* dConnectDeviceChromecast_resources.bundle in Resources */,
 				AB00F22E1C719B6500689C70 /* dConnectDeviceIRKit_resources.bundle in Resources */,
 				AB00F2EF1C71A29D00689C70 /* GHHeaderView.xib in Resources */,
-				AB1FAB0C1C7AC1E00013C434 /* dConnectDeviceAllJoyn_resources.bundle in Resources */,
 				AB00F49E1C71B16200689C70 /* LICENSE in Resources */,
 				AB00F2ED1C71A29D00689C70 /* GHFolderTitleCell.xib in Resources */,
 				ABCEE8AC1C893A0C00EB83F5 /* LaunchScreen.storyboard in Resources */,
@@ -811,6 +810,7 @@
 				AB00F2F31C71A29D00689C70 /* GHPageViewCell.xib in Resources */,
 				AB00F23A1C719B8100689C70 /* dConnectDeviceSonyCamera_resources.bundle in Resources */,
 				AB00F3281C71A93700689C70 /* Popup.storyboard in Resources */,
+				AB0803E61CA12CEC00C41FD1 /* logoPortrait.png in Resources */,
 				AB00F3271C71A93700689C70 /* Bookmark.storyboard in Resources */,
 				AB00F2141C719AA800689C70 /* DConnectSDK_resources.bundle in Resources */,
 				AB00F2481C719B9C00689C70 /* dConnectDeviceTheta_resources.bundle in Resources */,
@@ -1056,6 +1056,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = dConnectBrowserForIOS9/dConnectBrowserForIOS9.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1098,6 +1099,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = dConnectBrowserForIOS9/dConnectBrowserForIOS9.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
