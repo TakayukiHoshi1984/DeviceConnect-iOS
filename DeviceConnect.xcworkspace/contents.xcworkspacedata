@@ -2,10 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:dConnectSDK/dConnectBrowser/DeviceWebAPIBrowser.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/hoshit/project/Docomo/d-connect/github/dConnect/DeviceConnect-iOS/dConnectSDK/dConnectBrowserForIOS9/DeviceWebAPIBrowserForIOS9.xcodeproj">
+      location = "group:dConnectSDK/dConnectBrowserForIOS9/DeviceWebAPIBrowser.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:dConnectDevicePlugin/dConnectDeviceTheta/dConnectDeviceTheta.xcodeproj">

@@ -153,7 +153,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AB00F1DF1C71941800689C70 /* DeviceWebAPIBrowserForIOS9.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceWebAPIBrowserForIOS9.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB00F1DF1C71941800689C70 /* DeviceWebAPIBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceWebAPIBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB00F1E31C71941800689C70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB00F1E51C71941800689C70 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AB00F1E61C71941800689C70 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -360,7 +360,7 @@
 		AB00F1E01C71941800689C70 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB00F1DF1C71941800689C70 /* DeviceWebAPIBrowserForIOS9.app */,
+				AB00F1DF1C71941800689C70 /* DeviceWebAPIBrowser.app */,
 				AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */,
 				AB94E88D1C75704300DAE749 /* BookmarkShare.appex */,
 			);
@@ -687,9 +687,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		AB00F1DE1C71941800689C70 /* DeviceWebAPIBrowserForIOS9 */ = {
+		AB00F1DE1C71941800689C70 /* DeviceWebAPIBrowser */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AB00F1F61C71941800689C70 /* Build configuration list for PBXNativeTarget "DeviceWebAPIBrowserForIOS9" */;
+			buildConfigurationList = AB00F1F61C71941800689C70 /* Build configuration list for PBXNativeTarget "DeviceWebAPIBrowser" */;
 			buildPhases = (
 				AB00F1DB1C71941800689C70 /* Sources */,
 				AB00F1DC1C71941800689C70 /* Frameworks */,
@@ -703,9 +703,9 @@
 				AB94E85E1C755EB300DAE749 /* PBXTargetDependency */,
 				AB94E8971C75704400DAE749 /* PBXTargetDependency */,
 			);
-			name = DeviceWebAPIBrowserForIOS9;
+			name = DeviceWebAPIBrowser;
 			productName = dConnectBrowserForIOS9;
-			productReference = AB00F1DF1C71941800689C70 /* DeviceWebAPIBrowserForIOS9.app */;
+			productReference = AB00F1DF1C71941800689C70 /* DeviceWebAPIBrowser.app */;
 			productType = "com.apple.product-type.application";
 		};
 		AB94E8571C755EB200DAE749 /* BookmarkDBFramework */ = {
@@ -779,7 +779,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AB00F1DA1C71941800689C70 /* Build configuration list for PBXProject "DeviceWebAPIBrowserForIOS9" */;
+			buildConfigurationList = AB00F1DA1C71941800689C70 /* Build configuration list for PBXProject "DeviceWebAPIBrowser" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -792,7 +792,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AB00F1DE1C71941800689C70 /* DeviceWebAPIBrowserForIOS9 */,
+				AB00F1DE1C71941800689C70 /* DeviceWebAPIBrowser */,
 				AB94E8571C755EB200DAE749 /* BookmarkDBFramework */,
 				AB94E88C1C75704300DAE749 /* BookmarkShare */,
 			);
@@ -1248,7 +1248,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AB00F1DA1C71941800689C70 /* Build configuration list for PBXProject "DeviceWebAPIBrowserForIOS9" */ = {
+		AB00F1DA1C71941800689C70 /* Build configuration list for PBXProject "DeviceWebAPIBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AB00F1F41C71941800689C70 /* Debug */,
@@ -1257,7 +1257,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB00F1F61C71941800689C70 /* Build configuration list for PBXNativeTarget "DeviceWebAPIBrowserForIOS9" */ = {
+		AB00F1F61C71941800689C70 /* Build configuration list for PBXNativeTarget "DeviceWebAPIBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AB00F1F71C71941800689C70 /* Debug */,
