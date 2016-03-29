@@ -78,6 +78,9 @@
 		AB00F4AD1C71B16200689C70 /* RATreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB00F48A1C71B16200689C70 /* RATreeView.m */; };
 		AB0803E61CA12CEC00C41FD1 /* logoPortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0803E51CA12CEC00C41FD1 /* logoPortrait.png */; };
 		AB32C5BC1CA122EB00683E09 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB32C5BB1CA122EB00683E09 /* PebbleVendor.framework */; };
+		AB7BD0C61CAA4EF1009386AB /* dConnectDevicePebble_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB7BD0C41CAA4EF1009386AB /* dConnectDevicePebble_resources.bundle */; };
+		AB7BD0C71CAA4EF1009386AB /* dConnectDevicePebble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7BD0C51CAA4EF1009386AB /* dConnectDevicePebble.framework */; };
+		AB7BD0CA1CAA4EF9009386AB /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7BD0C81CAA4EF9009386AB /* PebbleKit.framework */; };
 		AB94E85F1C755EB300DAE749 /* BookmarkDBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */; };
 		AB94E8601C755EB300DAE749 /* BookmarkDBFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB94E86D1C75611700DAE749 /* db.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB94E8651C75611700DAE749 /* db.xcdatamodeld */; };
@@ -101,8 +104,6 @@
 		AB94E8A41C759BD700DAE749 /* GHURLManager.h in Headers */ = {isa = PBXBuildFile; fileRef = AB94E8A21C759BD600DAE749 /* GHURLManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB94E8A51C759BD700DAE749 /* GHURLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB94E8A31C759BD600DAE749 /* GHURLManager.m */; };
 		AB94E8A61C75A40F00DAE749 /* BookmarkDBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */; };
-		AB96EC9C1CA136F500AAFA5B /* dConnectDeviceAllJoyn_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB96EC9A1CA136F500AAFA5B /* dConnectDeviceAllJoyn_resources.bundle */; };
-		AB96EC9D1CA136F500AAFA5B /* dConnectDeviceAllJoyn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB96EC9B1CA136F500AAFA5B /* dConnectDeviceAllJoyn.framework */; };
 		ABCEE8AC1C893A0C00EB83F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABCEE8AB1C893A0C00EB83F5 /* LaunchScreen.storyboard */; };
 		ABE71E2D1C76D3F40061973C /* bookmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABE71E2A1C76D3F40061973C /* bookmark@2x.png */; };
 		ABE71E2E1C76D3F40061973C /* folder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABE71E2B1C76D3F40061973C /* folder@2x.png */; };
@@ -258,6 +259,9 @@
 		AB00F48A1C71B16200689C70 /* RATreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RATreeView.m; sourceTree = "<group>"; };
 		AB0803E51CA12CEC00C41FD1 /* logoPortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoPortrait.png; sourceTree = "<group>"; };
 		AB32C5BB1CA122EB00683E09 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleVendor.framework; path = ../../dConnectDevicePlugin/dConnectDevicePebble/PebbleVendor.framework; sourceTree = "<group>"; };
+		AB7BD0C41CAA4EF1009386AB /* dConnectDevicePebble_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDevicePebble_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDevicePebble/bin/dConnectDevicePebble_resources.bundle; sourceTree = "<group>"; };
+		AB7BD0C51CAA4EF1009386AB /* dConnectDevicePebble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dConnectDevicePebble.framework; path = ../../dConnectDevicePlugin/dConnectDevicePebble/bin/dConnectDevicePebble.framework; sourceTree = "<group>"; };
+		AB7BD0C81CAA4EF9009386AB /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleKit.framework; path = ../../dConnectDevicePlugin/dConnectDevicePebble/PebbleKit.framework; sourceTree = "<group>"; };
 		AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BookmarkDBFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB94E85C1C755EB300DAE749 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB94E8661C75611700DAE749 /* db 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "db 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -284,8 +288,6 @@
 		AB94E8A01C75999D00DAE749 /* AddBookmarkPreprocessor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AddBookmarkPreprocessor.js; sourceTree = "<group>"; };
 		AB94E8A21C759BD600DAE749 /* GHURLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHURLManager.h; path = BookmarkDBFramework/GHURLManager.h; sourceTree = SOURCE_ROOT; };
 		AB94E8A31C759BD600DAE749 /* GHURLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHURLManager.m; path = BookmarkDBFramework/GHURLManager.m; sourceTree = SOURCE_ROOT; };
-		AB96EC9A1CA136F500AAFA5B /* dConnectDeviceAllJoyn_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceAllJoyn_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceAllJoyn/bin/dConnectDeviceAllJoyn_resources.bundle; sourceTree = "<group>"; };
-		AB96EC9B1CA136F500AAFA5B /* dConnectDeviceAllJoyn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dConnectDeviceAllJoyn.framework; path = ../../dConnectDevicePlugin/dConnectDeviceAllJoyn/bin/dConnectDeviceAllJoyn.framework; sourceTree = "<group>"; };
 		ABCEE8AB1C893A0C00EB83F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABE71E2A1C76D3F40061973C /* bookmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark@2x.png"; sourceTree = "<group>"; };
 		ABE71E2B1C76D3F40061973C /* folder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder@2x.png"; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			files = (
 				AB00F2111C719A8F00689C70 /* UIKit.framework in Frameworks */,
 				AB00F20F1C719A8600689C70 /* CoreGraphics.framework in Frameworks */,
+				AB7BD0C71CAA4EF1009386AB /* dConnectDevicePebble.framework in Frameworks */,
 				AB00F20D1C719A7D00689C70 /* Foundation.framework in Frameworks */,
 				AB00F20B1C719A6A00689C70 /* CoreData.framework in Frameworks */,
 				AB00F2151C719AA800689C70 /* DConnectSDK.framework in Frameworks */,
@@ -313,13 +316,13 @@
 				AB00F2051C719A0300689C70 /* CoreFoundation.framework in Frameworks */,
 				AB00F2031C7199F500689C70 /* ImageIO.framework in Frameworks */,
 				AB00F2251C719B4B00689C70 /* dConnectDeviceHost.framework in Frameworks */,
-				AB96EC9D1CA136F500AAFA5B /* dConnectDeviceAllJoyn.framework in Frameworks */,
 				AB00F2011C7199EB00689C70 /* libiconv.tbd in Frameworks */,
 				AB00F1FF1C7199B800689C70 /* libstdc++.6.0.9.tbd in Frameworks */,
 				AB32C5BC1CA122EB00683E09 /* PebbleVendor.framework in Frameworks */,
 				AB00F2211C719B4000689C70 /* GoogleCast.framework in Frameworks */,
 				AB00F1FD1C7199AC00689C70 /* libiconv.2.4.0.tbd in Frameworks */,
 				AB00F2491C719B9C00689C70 /* dConnectDeviceTheta.framework in Frameworks */,
+				AB7BD0CA1CAA4EF9009386AB /* PebbleKit.framework in Frameworks */,
 				AB00F22B1C719B5B00689C70 /* HueSDK_iOS.framework in Frameworks */,
 				AB00F2291C719B5500689C70 /* dConnectDeviceHue.framework in Frameworks */,
 			);
@@ -398,8 +401,9 @@
 		AB00F1F91C71961500689C70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AB96EC9A1CA136F500AAFA5B /* dConnectDeviceAllJoyn_resources.bundle */,
-				AB96EC9B1CA136F500AAFA5B /* dConnectDeviceAllJoyn.framework */,
+				AB7BD0C81CAA4EF9009386AB /* PebbleKit.framework */,
+				AB7BD0C41CAA4EF1009386AB /* dConnectDevicePebble_resources.bundle */,
+				AB7BD0C51CAA4EF1009386AB /* dConnectDevicePebble.framework */,
 				AB32C5BB1CA122EB00683E09 /* PebbleVendor.framework */,
 				AB00F24A1C719F3100689C70 /* ExternalAccessory.framework */,
 				AB00F2461C719B9C00689C70 /* dConnectDeviceTheta_resources.bundle */,
@@ -804,7 +808,6 @@
 				AB00F21E1C719B3900689C70 /* dConnectDeviceChromecast_resources.bundle in Resources */,
 				AB00F22E1C719B6500689C70 /* dConnectDeviceIRKit_resources.bundle in Resources */,
 				AB00F2EF1C71A29D00689C70 /* GHHeaderView.xib in Resources */,
-				AB96EC9C1CA136F500AAFA5B /* dConnectDeviceAllJoyn_resources.bundle in Resources */,
 				AB00F49E1C71B16200689C70 /* LICENSE in Resources */,
 				AB00F2ED1C71A29D00689C70 /* GHFolderTitleCell.xib in Resources */,
 				ABCEE8AC1C893A0C00EB83F5 /* LaunchScreen.storyboard in Resources */,
@@ -815,6 +818,7 @@
 				AB00F2E31C71A29D00689C70 /* GHBookmarkTitleCell.xib in Resources */,
 				ABE71E2D1C76D3F40061973C /* bookmark@2x.png in Resources */,
 				AB00F2281C719B5500689C70 /* dConnectDeviceHue_resources.bundle in Resources */,
+				AB7BD0C61CAA4EF1009386AB /* dConnectDevicePebble_resources.bundle in Resources */,
 				AB00F2F31C71A29D00689C70 /* GHPageViewCell.xib in Resources */,
 				AB00F23A1C719B8100689C70 /* dConnectDeviceSonyCamera_resources.bundle in Resources */,
 				AB00F3281C71A93700689C70 /* Popup.storyboard in Resources */,
@@ -957,8 +961,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GClue (7D7Z93T4FG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GClue (7D7Z93T4FG)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -997,7 +1001,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1020,8 +1025,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GClue (7D7Z93T4FG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GClue (7D7Z93T4FG)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1054,6 +1059,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1067,6 +1073,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = dConnectBrowserForIOS9/dConnectBrowserForIOS9.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1097,9 +1104,11 @@
 					"-lstdc++",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowserForIOS9;
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7s armv7 arm64";
+				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1110,6 +1119,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = dConnectBrowserForIOS9/dConnectBrowserForIOS9.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1139,16 +1149,19 @@
 					"-lstdc++",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowserForIOS9;
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7s armv7 arm64";
+				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
 		AB94E8621C755EB300DAE749 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1159,8 +1172,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIForIOS9.db.BookmarkDBFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowser.db.BookmarkDBFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1170,7 +1184,8 @@
 		AB94E8631C755EB300DAE749 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1181,8 +1196,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIForIOS9.db.BookmarkDBFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowser.db.BookmarkDBFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1196,14 +1212,16 @@
 				CODE_SIGN_ENTITLEMENTS = BookmarkShare/BookmarkShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				INFOPLIST_FILE = BookmarkShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowserForIOS9.bookmarkshare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowser.BookmarkShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1214,14 +1232,16 @@
 				CODE_SIGN_ENTITLEMENTS = BookmarkShare/BookmarkShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				INFOPLIST_FILE = BookmarkShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowserForIOS9.bookmarkshare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowser.BookmarkShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
