@@ -894,7 +894,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/deps/CocoaPods/Pods/OpenSSL-Static/lib-ios",
 					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/about/lib",
-					"$(PROJECT_DIR)/deps/AllJoyn/darwin/$(CURRENT_ARCH)/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/lib",
 					"$(PROJECT_DIR)/deps/AllJoynIOS_libc++/$(CONFIGURATION)",
 				);
 				"LIBRARY_SEARCH_PATHS[arch=arm64]" = (
