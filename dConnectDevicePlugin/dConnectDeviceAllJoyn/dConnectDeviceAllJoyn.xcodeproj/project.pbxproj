@@ -810,8 +810,6 @@
 					"\"$(PROJECT_DIR)/Pods/OpenSSL-Static/lib-ios\"",
 					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/inc/alljoyn",
 					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/inc",
-					"$(PROJECT_DIR)/deps/AllJoyn/darwin/$(CURRENT_ARCH)/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/inc",
-					"$(PROJECT_DIR)/deps/AllJoyn/darwin/$(CURRENT_ARCH)/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/inc/alljoyn",
 					"$(PROJECT_DIR)/deps/AllJoynFramework",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -819,8 +817,23 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/deps/CocoaPods/Pods/OpenSSL-Static/lib-ios",
 					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/about/lib",
-					"$(PROJECT_DIR)/deps/AllJoyn/darwin/$(CURRENT_ARCH)/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/lib",
 					"$(PROJECT_DIR)/deps/AllJoynIOS_libc++/$(CONFIGURATION)",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=arm64]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm64/iphoneos/$(CONFIGURATION)/dist/cpp/lib",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=armv7]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/iphoneos/$(CONFIGURATION)/dist/cpp/lib",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=i386]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/deps/AllJoyn/darwin/x86/$(CONFIGURATION)/dist/cpp/lib",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/deps/AllJoyn/darwin/x86/$(CONFIGURATION)/dist/cpp/lib",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				SDKROOT = iphoneos;
@@ -874,8 +887,6 @@
 					"\"$(PROJECT_DIR)/Pods/OpenSSL-Static/lib-ios\"",
 					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/inc/alljoyn",
 					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/inc",
-					"$(PROJECT_DIR)/deps/AllJoyn/darwin/$(CURRENT_ARCH)/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/inc",
-					"$(PROJECT_DIR)/deps/AllJoyn/darwin/$(CURRENT_ARCH)/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/inc/alljoyn",
 					"$(PROJECT_DIR)/deps/AllJoynFramework",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -885,6 +896,22 @@
 					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/about/lib",
 					"$(PROJECT_DIR)/deps/AllJoyn/darwin/$(CURRENT_ARCH)/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/lib",
 					"$(PROJECT_DIR)/deps/AllJoynIOS_libc++/$(CONFIGURATION)",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=arm64]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm64/iphoneos/$(CONFIGURATION)/dist/cpp/lib",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=armv7]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/iphoneos/$(CONFIGURATION)/dist/cpp/lib",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=i386]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/deps/AllJoyn/darwin/x86/$(CONFIGURATION)/dist/cpp/lib",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/deps/AllJoyn/darwin/x86/$(CONFIGURATION)/dist/cpp/lib",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -903,21 +930,11 @@
 				CURRENT_PROJECT_VERSION = "";
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-				);
 				GCC_ENABLE_CPP_RTTI = NO;
 				INFOPLIST_FILE = "dConnectDeviceAllJoyn/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/deps/CocoaPods/Pods/OpenSSL-Static/lib-ios",
-					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/about/lib",
-					"$(PROJECT_DIR)/deps/AllJoyn/darwin/$(CURRENT_ARCH)/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/lib",
-				);
 				MACH_O_TYPE = staticlib;
 				OTHER_CFLAGS = (
 					"-DQCC_OS_GROUP_POSIX",
@@ -938,21 +955,11 @@
 				CURRENT_PROJECT_VERSION = "";
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-				);
 				GCC_ENABLE_CPP_RTTI = NO;
 				INFOPLIST_FILE = "dConnectDeviceAllJoyn/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/deps/CocoaPods/Pods/OpenSSL-Static/lib-ios",
-					"$(PROJECT_DIR)/deps/AllJoyn/darwin/arm/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/about/lib",
-					"$(PROJECT_DIR)/deps/AllJoyn/darwin/$(CURRENT_ARCH)/$(PLATFORM_NAME)/$(CONFIGURATION)/dist/cpp/lib",
-				);
 				MACH_O_TYPE = staticlib;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
