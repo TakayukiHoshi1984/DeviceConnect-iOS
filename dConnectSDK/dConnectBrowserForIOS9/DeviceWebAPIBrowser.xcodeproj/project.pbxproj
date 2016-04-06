@@ -105,6 +105,8 @@
 		AB94E8A51C759BD700DAE749 /* GHURLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB94E8A31C759BD600DAE749 /* GHURLManager.m */; };
 		AB94E8A61C75A40F00DAE749 /* BookmarkDBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */; };
 		ABCEE8AC1C893A0C00EB83F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABCEE8AB1C893A0C00EB83F5 /* LaunchScreen.storyboard */; };
+		ABCF60F61CB4DE4A0006804F /* dConnectDeviceAllJoyn_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ABCF60F41CB4DE4A0006804F /* dConnectDeviceAllJoyn_resources.bundle */; };
+		ABCF60F71CB4DE4A0006804F /* dConnectDeviceAllJoyn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCF60F51CB4DE4A0006804F /* dConnectDeviceAllJoyn.framework */; };
 		ABE71E2D1C76D3F40061973C /* bookmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABE71E2A1C76D3F40061973C /* bookmark@2x.png */; };
 		ABE71E2E1C76D3F40061973C /* folder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABE71E2B1C76D3F40061973C /* folder@2x.png */; };
 		ABE71E2F1C76D3F40061973C /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABE71E2C1C76D3F40061973C /* star@2x.png */; };
@@ -289,6 +291,8 @@
 		AB94E8A21C759BD600DAE749 /* GHURLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHURLManager.h; path = BookmarkDBFramework/GHURLManager.h; sourceTree = SOURCE_ROOT; };
 		AB94E8A31C759BD600DAE749 /* GHURLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHURLManager.m; path = BookmarkDBFramework/GHURLManager.m; sourceTree = SOURCE_ROOT; };
 		ABCEE8AB1C893A0C00EB83F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ABCF60F41CB4DE4A0006804F /* dConnectDeviceAllJoyn_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceAllJoyn_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceAllJoyn/bin/dConnectDeviceAllJoyn_resources.bundle; sourceTree = "<group>"; };
+		ABCF60F51CB4DE4A0006804F /* dConnectDeviceAllJoyn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dConnectDeviceAllJoyn.framework; path = ../../dConnectDevicePlugin/dConnectDeviceAllJoyn/bin/dConnectDeviceAllJoyn.framework; sourceTree = "<group>"; };
 		ABE71E2A1C76D3F40061973C /* bookmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark@2x.png"; sourceTree = "<group>"; };
 		ABE71E2B1C76D3F40061973C /* folder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder@2x.png"; sourceTree = "<group>"; };
 		ABE71E2C1C76D3F40061973C /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@2x.png"; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 				AB00F2071C719A5700689C70 /* CoreMotion.framework in Frameworks */,
 				AB00F21F1C719B3900689C70 /* dConnectDeviceChromecast.framework in Frameworks */,
 				AB00F22F1C719B6500689C70 /* dConnectDeviceIRKit.framework in Frameworks */,
+				ABCF60F71CB4DE4A0006804F /* dConnectDeviceAllJoyn.framework in Frameworks */,
 				AB94E85F1C755EB300DAE749 /* BookmarkDBFramework.framework in Frameworks */,
 				AB00F2051C719A0300689C70 /* CoreFoundation.framework in Frameworks */,
 				AB00F2031C7199F500689C70 /* ImageIO.framework in Frameworks */,
@@ -401,6 +406,8 @@
 		AB00F1F91C71961500689C70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ABCF60F41CB4DE4A0006804F /* dConnectDeviceAllJoyn_resources.bundle */,
+				ABCF60F51CB4DE4A0006804F /* dConnectDeviceAllJoyn.framework */,
 				AB7BD0C81CAA4EF9009386AB /* PebbleKit.framework */,
 				AB7BD0C41CAA4EF1009386AB /* dConnectDevicePebble_resources.bundle */,
 				AB7BD0C51CAA4EF1009386AB /* dConnectDevicePebble.framework */,
@@ -827,6 +834,7 @@
 				AB00F2141C719AA800689C70 /* DConnectSDK_resources.bundle in Resources */,
 				AB00F2481C719B9C00689C70 /* dConnectDeviceTheta_resources.bundle in Resources */,
 				AB00F1ED1C71941800689C70 /* Main.storyboard in Resources */,
+				ABCF60F61CB4DE4A0006804F /* dConnectDeviceAllJoyn_resources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
