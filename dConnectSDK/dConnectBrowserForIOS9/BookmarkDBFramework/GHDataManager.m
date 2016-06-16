@@ -535,24 +535,46 @@ static GHDataManager* mgr = nil;
         bookmark.priority = @(2);
         [self createPageEntity:bookmark context:nil];
 
-        GHPageModel *deviceWebAPIBookmark = [[GHPageModel alloc]init];
-        deviceWebAPIBookmark.title = @"DeviceWebAPIコンソーシアム";
-        deviceWebAPIBookmark.url = @"https://device-webapi.org/";
-        deviceWebAPIBookmark.type = TYPE_BOOKMARK;
-        deviceWebAPIBookmark.priority = @(3);
-        [self createPageEntity:deviceWebAPIBookmark context:nil];
-
-        GHPageModel *defaultBookmark = [[GHPageModel alloc]init];
-        defaultBookmark.title = @"Device Web API Manager";
-        defaultBookmark.url = @"https://www.gclue.io/dwa/";
-        defaultBookmark.type = TYPE_BOOKMARK;
-        defaultBookmark.priority = @(4);
-        [self createPageEntity:defaultBookmark context:nil];
     }else{
         [GHUtils clearCashes];
     }
+
+    if (![self isBookmarkExist: [NSPredicate predicateWithFormat:@"url = %@", defaultBookmarkURL]]){
+        [self addDefaultBookMark];
+    }
+
+    if (![self isBookmarkExist: [NSPredicate predicateWithFormat:@"url = %@", webApiManagerURL]]){
+        [self addWebApiManagerBookMark];
+    }
 }
 
+- (BOOL)isBookmarkExist:(NSPredicate*)predicate
+{
+    return ([[self getModelDataByPredicate: predicate
+                            withEntityName:@"Page"
+                                   context:nil] count] != 0);
+}
 
+NSString *defaultBookmarkURL = @"https://device-webapi.org/";
+- (void)addDefaultBookMark
+{
+    GHPageModel *defaultBookmark = [[GHPageModel alloc]init];
+    defaultBookmark.title = @"DeviceWebAPIコンソーシアム";
+    defaultBookmark.url = defaultBookmarkURL;
+    defaultBookmark.type = TYPE_BOOKMARK;
+    defaultBookmark.priority = @(3);
+    [self createPageEntity:defaultBookmark context:nil];
+}
+
+NSString *webApiManagerURL = @"https://www.gclue.io/dwa/";
+- (void)addWebApiManagerBookMark
+{
+    GHPageModel *defaultBookmark = [[GHPageModel alloc]init];
+    defaultBookmark.title = @"Device Web API Manager";
+    defaultBookmark.url = webApiManagerURL;
+    defaultBookmark.type = TYPE_BOOKMARK;
+    defaultBookmark.priority = @(4);
+    [self createPageEntity:defaultBookmark context:nil];
+}
 
 @end
