@@ -573,7 +573,7 @@ NSString *webApiManagerURL = @"https://www.gclue.io/dwa/";
     defaultBookmark.title = @"Device Web API Manager";
     defaultBookmark.url = webApiManagerURL;
     defaultBookmark.type = TYPE_BOOKMARK;
-    defaultBookmark.priority = @(4);
+    defaultBookmark.priority = @(DeviceWebAPIManager_priority);
     [self createPageEntity:defaultBookmark context:nil];
 }
 
