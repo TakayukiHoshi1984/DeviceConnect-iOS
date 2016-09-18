@@ -36,12 +36,18 @@
 
     }else if ([page.type isEqualToString:TYPE_BOOKMARK]){
         //ブックマーク
-        if (page.priority.integerValue == DeviceWebAPI_priority) {
-            self.imageView.image = [UIImage imageNamed:@"deviceWebAPI_icon"];
-        } else {
-            self.imageView.image = [UIImage imageNamed:@"bookmark"];
+        switch (page.priority.integerValue) {
+            case DeviceWebAPI_priority:
+                self.imageView.image = [UIImage imageNamed:@"deviceWebAPI_icon"];
+                break;
+            case DeviceWebAPIManager_priority:
+                self.imageView.image = [UIImage imageNamed:@"deviceWebAPIManager_icon"];
+                break;
+            default:
+                self.imageView.image = [UIImage imageNamed:@"bookmark"];
+                break;
         }
-
+        
         //編集中のアクセサリー
         self.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 

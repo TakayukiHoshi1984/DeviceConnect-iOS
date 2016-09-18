@@ -568,6 +568,10 @@ static GHDataManager* mgr = nil;
     if (![self isBookmarkExist: [NSPredicate predicateWithFormat:@"url = %@", defaultBookmarkURL]]){
         [self addNewBookMark];
     }
+    if (![self isBookmarkExist: [NSPredicate predicateWithFormat:@"url = %@", webApiManagerURL]]){
+        [self addWebApiManagerBookMark];
+    }
+
 }
 
 - (BOOL)isBookmarkExist:(NSPredicate*)predicate
@@ -587,5 +591,14 @@ NSString *defaultBookmarkURL = @"https://device-webapi.org/";
     defaultBookmark.priority = @(DeviceWebAPI_priority);
     [self createPageEntity:defaultBookmark context:nil];
 }
-
+NSString *webApiManagerURL = @"https://www.gclue.io/dwa/";
+- (void)addWebApiManagerBookMark
+{
+    GHPageModel *defaultBookmark = [[GHPageModel alloc]init];
+    defaultBookmark.title = @"Device Web API Manager";
+    defaultBookmark.url = webApiManagerURL;
+    defaultBookmark.type = TYPE_BOOKMARK;
+    defaultBookmark.priority = @(DeviceWebAPIManager_priority);
+    [self createPageEntity:defaultBookmark context:nil];
+}
 @end

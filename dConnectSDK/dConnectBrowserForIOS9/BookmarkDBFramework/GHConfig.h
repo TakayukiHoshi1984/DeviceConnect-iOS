@@ -46,4 +46,6 @@
 
 #define PRIORITY 100
 #define DeviceWebAPI_priority 3
+#define DeviceWebAPIManager_priority 4
+
 @end

@@ -115,6 +115,7 @@
 		AB3120041D7E916600B2D886 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3120031D7E916600B2D886 /* SystemConfiguration.framework */; };
 		AB3120061D7E927600B2D886 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3120051D7E927600B2D886 /* CoreText.framework */; };
 		AB7A81A81D799E7F00DF7B05 /* demo in Resources */ = {isa = PBXBuildFile; fileRef = AB7A81A71D799E7F00DF7B05 /* demo */; };
+		AB7D014F1D8E2D0000EDB5C0 /* logoPortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7D014E1D8E2D0000EDB5C0 /* logoPortrait.png */; };
 		AB94E85F1C755EB300DAE749 /* BookmarkDBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */; };
 		AB94E8601C755EB300DAE749 /* BookmarkDBFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB94E86D1C75611700DAE749 /* db.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB94E8651C75611700DAE749 /* db.xcdatamodeld */; };
@@ -365,6 +366,7 @@
 		AB3120031D7E916600B2D886 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AB3120051D7E927600B2D886 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		AB7A81A71D799E7F00DF7B05 /* demo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = demo; sourceTree = "<group>"; };
+		AB7D014E1D8E2D0000EDB5C0 /* logoPortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoPortrait.png; sourceTree = "<group>"; };
 		AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BookmarkDBFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB94E85C1C755EB300DAE749 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB94E8661C75611700DAE749 /* db 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "db 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -956,6 +958,7 @@
 		ABE71E291C76D3F40061973C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AB7D014E1D8E2D0000EDB5C0 /* logoPortrait.png */,
 				ABE71E2A1C76D3F40061973C /* bookmark@2x.png */,
 				ABE71E2B1C76D3F40061973C /* folder@2x.png */,
 				ABE71E2C1C76D3F40061973C /* star@2x.png */,
@@ -1135,6 +1138,7 @@
 				AB00F2141C719AA800689C70 /* DConnectSDK_resources.bundle in Resources */,
 				ABEB97C51D6AC994003BE6E7 /* help in Resources */,
 				8E0A4C2F1D1CC2D500827DA6 /* InitialGuide.storyboard in Resources */,
+				AB7D014F1D8E2D0000EDB5C0 /* logoPortrait.png in Resources */,
 				AB00F2481C719B9C00689C70 /* dConnectDeviceTheta_resources.bundle in Resources */,
 				AB00F1ED1C71941800689C70 /* Main.storyboard in Resources */,
 			);
