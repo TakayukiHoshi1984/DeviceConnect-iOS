@@ -10,6 +10,9 @@
 #import "DConnectWebSocket.h"
 #import "HTTPMessage.h"
 #import "DConnectMessage.h"
+#import "DConnectService.h"
+#import "DConnectWebSocketInfoManager.h"
+#import "LocalOAuth2Main.h"
 
 #define TIMEOUT_READ_FIRST_HEADER_LINE       30
 #define TIMEOUT_READ_SUBSEQUENT_HEADER_LINE  30
@@ -38,28 +41,36 @@
  */
 @property (nonatomic) NSMutableDictionary *websocketDic;
 
+/*! @brief WebSocket管理情報の配列.
+ */
+@property(nonatomic, strong) DConnectWebSocketInfoManager *webSocketInfoManager;
+
 @end
 
 
 
 @implementation DConnectWebSocket
 
-- (instancetype) init {
+- (instancetype) initWithObject: (NSObject *) object {
     self = [super init];
     if (self) {
+        self.object = object;
         self.websocketList = [NSMutableArray array];
         self.websocketDic = [NSMutableDictionary dictionary];
+        self.webSocketInfoManager = [DConnectWebSocketInfoManager new];
         self.host = @"localhost";
         self.port = 4035;
     }
     return self;
 }
 
-- (instancetype) initWithHost:(NSString *)host port:(int)port {
+- (instancetype) initWithHost:(NSString *)host port:(int)port object:(NSObject *) object {
     self = [super init];
     if (self) {
+        self.object = object;
         self.websocketList = [NSMutableArray array];
         self.websocketDic = [NSMutableDictionary dictionary];
+        self.webSocketInfoManager = [DConnectWebSocketInfoManager new];
         self.host = host;
         self.port = port;
     }
@@ -93,12 +104,11 @@
         [socket stop];
     }
     [self.websocketList removeAllObjects];
-    
     [self.websocketDic removeAllObjects];
 }
 
-- (void) sendEvent:(NSString *)event forSessionKey:(NSString *)sessionKey {
-    WebSocket *socket = [self.websocketDic objectForKey:sessionKey];
+- (void) sendEvent:(NSString *)event forReceiverId:(NSString *)receiverId {
+    WebSocket *socket = [self.websocketDic objectForKey:receiverId];
     if (socket) {
         [socket sendMessage:event];
     }
@@ -115,7 +125,7 @@
 
 #pragma mark - WebSocketDelegate Methods -
 
-- (void)webSocketDidOpen:(WebSocket *)webSocket {
+- (void)webSocketDidOpen:(WebSocket *)webSocket origin: (NSString *)origin {
     [self.websocketList addObject:webSocket];
 }
 
@@ -124,14 +134,32 @@
     if (jsonData) {
         // JSONをNSDictionaryに変換する
         NSError *error = nil;
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                            options:NSJSONReadingAllowFragments
-                                                              error:&error];
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                             options:NSJSONReadingAllowFragments
+                                                               error:&error];
         if (!error) {
-            NSString *sessionKey = dic[DConnectMessageSessionKey];
-            if (sessionKey) {
-                [self.websocketDic setObject:webSocket forKey:sessionKey];
+            HTTPMessage *httpRequest = [webSocket getRequest];
+            NSString *receiverId;
+            NSString *path = httpRequest.url.path;
+            if (path && [path localizedCaseInsensitiveCompare: @"/gotapi/websocket"] == NSOrderedSame) {
+                // NOP.
+            } else {
+                receiverId = json[DConnectMessageSessionKey];
+                
+                // NOTE: 既存のイベントセッションを破棄する.
+                WebSocket *otherSocket = [self.websocketDic valueForKey:receiverId];
+                if (otherSocket) {
+                    [otherSocket stop];
+                }
             }
+            
+            if (!receiverId) {
+                DCLogW(@"onWebSocketMessage: Failed to generate receiverId: path = %@, receiverId = %@", path, receiverId);
+                return;
+            }
+            
+            // イベント送信経路を確立
+            [self.websocketDic setObject:webSocket forKey:receiverId];
         }
     }
 }
@@ -185,7 +213,8 @@
             if ([WebSocket isWebSocketRequest:self.request]) {
                 WebSocket *websocket = [[WebSocket alloc] initWithRequest:self.request socket:socket];
                 websocket.delegate = self;
-                [websocket start];
+                NSString *origin = [self.request headerField:@"origin"];
+                [websocket start: origin];
             }
         }
     }

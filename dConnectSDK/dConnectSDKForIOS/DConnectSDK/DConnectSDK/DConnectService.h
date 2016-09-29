@@ -12,6 +12,12 @@
 #import <DConnectSDK/DConnectProfileProvider.h>
 #import <DConnectSDK/DConnectServiceInformationProfile.h>
 
+extern NSString * const DConnectServiceAnonymousOrigin;
+
+extern NSString * const DConnectServiceInnerType;
+extern NSString * const DConnectServiceInnerTypeHttp;
+
+
 @class DConnectService;
 
 @protocol OnStatusChangeListener <NSObject>
@@ -20,7 +26,7 @@
 
 @end
 
-@interface DConnectService : DConnectProfileProvider
+@interface DConnectService : DConnectProfileProvider<DConnectServiceInformationProfileDataSource>
 
 /*!
  @brief サービスID.
@@ -38,7 +44,7 @@
 @property(nonatomic, weak) id<OnStatusChangeListener> statusListener;
 
 
-- (instancetype) initWithServiceId: (NSString *)serviceId plugin: (id) plugin dataSource: (id<DConnectServiceInformationProfileDataSource>) dataSource;
+- (instancetype) initWithServiceId: (NSString *)serviceId plugin: (id) plugin;
 
 - (BOOL) didReceiveRequest: (DConnectRequestMessage *) request response: (DConnectResponseMessage *)response;
 
