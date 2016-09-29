@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78E76C701D9CD1350011B4BB /* logoPortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 78E76C6F1D9CD1350011B4BB /* logoPortrait.png */; };
 		8E05634C1D2628A4008EBA25 /* GHDeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E05634B1D2628A4008EBA25 /* GHDeviceUtil.m */; };
 		8E05634F1D263C05008EBA25 /* DeviceIconViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E05634E1D263C05008EBA25 /* DeviceIconViewCell.m */; };
 		8E0563521D263CFA008EBA25 /* DeviceIconViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0563511D263CFA008EBA25 /* DeviceIconViewModel.m */; };
@@ -201,6 +202,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		78E76C6F1D9CD1350011B4BB /* logoPortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoPortrait.png; sourceTree = "<group>"; };
 		8E05634A1D2628A4008EBA25 /* GHDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHDeviceUtil.h; sourceTree = "<group>"; };
 		8E05634B1D2628A4008EBA25 /* GHDeviceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHDeviceUtil.m; sourceTree = "<group>"; };
 		8E05634D1D263C05008EBA25 /* DeviceIconViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceIconViewCell.h; sourceTree = "<group>"; };
@@ -979,6 +981,7 @@
 		ABE71E291C76D3F40061973C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				78E76C6F1D9CD1350011B4BB /* logoPortrait.png */,
 				ABE71E2A1C76D3F40061973C /* bookmark@2x.png */,
 				ABE71E2B1C76D3F40061973C /* folder@2x.png */,
 				ABE71E2C1C76D3F40061973C /* star@2x.png */,
@@ -1136,6 +1139,7 @@
 				ABE71E2F1C76D3F40061973C /* star@2x.png in Resources */,
 				AB00F21E1C719B3900689C70 /* dConnectDeviceChromecast_resources.bundle in Resources */,
 				ABA304041D7FC8A700B1CEEB /* GoogleCastResources.bundle in Resources */,
+				78E76C701D9CD1350011B4BB /* logoPortrait.png in Resources */,
 				AB1521831D95253D00FE4210 /* dConnectDeviceAWSIoT_resources.bundle in Resources */,
 				AB00F22E1C719B6500689C70 /* dConnectDeviceIRKit_resources.bundle in Resources */,
 				AB1FAB0C1C7AC1E00013C434 /* dConnectDeviceAllJoyn_resources.bundle in Resources */,
@@ -1492,6 +1496,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowser;
 				PRODUCT_NAME = DeviceWebAPIBrowser;
 				SWIFT_VERSION = 2.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -1540,6 +1545,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gclue.DeviceWebAPIBrowser;
 				PRODUCT_NAME = DeviceWebAPIBrowser;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
