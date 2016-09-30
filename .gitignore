@@ -305,3 +305,6 @@ build.xml
 dConnectDevicePlugin/dConnectDeviceAWSIoT/bin
 dConnectDevicePlugin/dConnectDeviceAWSIoT/Pods
 dConnectDevicePlugin/dConnectDeviceLinking/Libs
+dConnectSDK/dConnectBrowserForIOS9/Pods
+Podfile.lock
+dConnectSDK/dConnectBrowserForIOS9/dConnectBrowserForIOS9.xcworkspace

@@ -1,0 +1,52 @@
+platform :ios, '9.0'
+$targetSource = "https://github.com/TakayukiHoshi1984/DeviceConnect-iOS"
+
+target 'dConnectBrowserForIOS9' do
+  # Uncomment this line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+  
+  # Pods for dConnectBrowserForIOS9
+  pod 'DeviceConnectSDK', podspec: "specs/DeviceConnectSDK.podspec"
+  pod 'DeviceConnectPluginSDK', podspec: "specs/DeviceConnectPluginSDK.podspec"
+  
+  # Chromecast
+  #pod 'google-cast-sdk', '2.10.4.1'
+  #pod 'DeviceConnectChromecastPlugin', podspec: "specs/DeviceConnectChromecastPlugin.podspec"
+  
+  # AllJoyn
+  #pod 'AllJoynCoreSDK', podspec: "specs/AllJoynCoreSDK.podspec"
+  #pod 'DeviceConnectAllJoynPlugin', podspec: "specs/DeviceConnectAllJoynPlugin.podspec"
+  
+  # Host
+  pod 'DeviceConnectHostPlugin', podspec: "specs/DeviceConnectHostPlugin.podspec"
+  
+  # Hue
+  #pod 'CocoaLumberjack', '~> 1.0'
+  pod 'DeviceConnectHuePlugin', podspec: "specs/DeviceConnectHuePlugin.podspec"
+  
+  # IRKit
+  pod 'DeviceConnectIRKitPlugin', podspec: "specs/DeviceConnectIRKitPlugin.podspec"
+  
+  # Linking
+  # dConnectBrowserForIOS9/libsにLinkingLibrary.frameworkを入れてください。
+  #pod 'DeviceConnectLinkingPlugin', podspec: "specs/DeviceConnectLinkingPlugin.podspec"
+  
+  # Pebble
+  pod 'DeviceConnectPebblePlugin', podspec: "specs/DeviceConnectPebblePlugin.podspec"
+  
+  # SonyCamera
+  pod 'DeviceConnectSonyCameraPlugin', podspec: "specs/DeviceConnectSonyCameraPlugin.podspec"
+  
+  # Sphero
+  pod 'DeviceConnectSpheroPlugin', podspec: "specs/DeviceConnectSpheroPlugin.podspec"
+  
+  # Theta
+  #pod 'DeviceConnectThetaPlugin', podspec: "specs/DeviceConnectThetaPlugin.podspec"
+
+end
+
+post_install do |installer|
+    installer.pods_project.build_configurations.each do |configuration|
+        installer.pods_project.build_settings(configuration.name)['ONLY_ACTIVE_ARCH'] = 'NO'
+    end
+end

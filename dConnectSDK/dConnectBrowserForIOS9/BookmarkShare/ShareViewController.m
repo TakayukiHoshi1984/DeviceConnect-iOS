@@ -88,11 +88,12 @@
     
     //DBへ保存処理
     [GHURLManager addBookMark:self.titleField.text url:self.urlField.text parent:self.directory];
-    
-    [self.extensionContext cancelRequestWithError:nil];
+	NSError *err;
+    [self.extensionContext cancelRequestWithError:err];
 }
 - (IBAction)cancel:(id)sender {
-    [self.extensionContext cancelRequestWithError:nil];
+	NSError *err;
+    [self.extensionContext cancelRequestWithError:err];
 }
 
 #pragma mark - private method
