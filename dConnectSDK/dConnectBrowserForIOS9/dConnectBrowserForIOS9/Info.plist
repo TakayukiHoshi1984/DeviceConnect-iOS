@@ -53,6 +53,10 @@
 	<string>写真を撮影することができます。</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2016年 NTT DOCOMO, INC. All rights reserved.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>常に位置情報を使用します。</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>アプリ使用時のみ位置情報を使用します。</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>電話をかけることができます。</string>
 	<key>NSPhotoLibraryUsageDescription</key>

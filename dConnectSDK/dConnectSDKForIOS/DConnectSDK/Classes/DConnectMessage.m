@@ -128,12 +128,20 @@ NSString *const DConnectMessageHeaderGotAPIOrigin = @"X-GotAPI-Origin";
     [self.array addObject:[NSNumber numberWithLong:num]];
 }
 
+- (void) addLongLong:(long long)num {
+    [self.array addObject:[NSNumber numberWithLongLong:num]];
+}
+
 - (void) addFloat:(float)num {
     [self.array addObject:[NSNumber numberWithFloat:num]];
 }
 
 - (void) addDouble:(double)num {
     [self.array addObject:[NSNumber numberWithDouble:num]];
+}
+
+- (void) addBool:(BOOL)num {
+    [self.array addObject:[NSNumber numberWithBool:num]];
 }
 
 - (void) addData:(NSData *)data {
@@ -172,6 +180,14 @@ NSString *const DConnectMessageHeaderGotAPIOrigin = @"X-GotAPI-Origin";
     return LONG_MIN;
 }
 
+- (long long) longLongAtIndex:(NSUInteger)index {
+    NSNumber *num = [self numberAtIndex:index];
+    if (num) {
+        return [num longLongValue];
+    }
+    return LONG_LONG_MIN;
+}
+
 - (float) floatAtIndex:(NSUInteger)index {
     NSNumber *num = [self numberAtIndex:index];
     if (num) {
@@ -186,6 +202,14 @@ NSString *const DConnectMessageHeaderGotAPIOrigin = @"X-GotAPI-Origin";
         return [num doubleValue];
     }
     return DBL_MIN;
+}
+
+- (BOOL) boolAtIndex:(NSUInteger)index {
+    NSNumber *num = [self numberAtIndex:index];
+    if (num) {
+        return [num boolValue];
+    }
+    return NO;
 }
 
 - (NSData *) dataAtIndex:(NSUInteger)index {
@@ -405,13 +429,20 @@ NSString *const DConnectMessageHeaderGotAPIOrigin = @"X-GotAPI-Origin";
             } else {
                 return nil;
             }
-        }
-        else {
+        } else {
             int val;
             if ([[NSScanner scannerWithString:obj] scanInt:&val]) {
                 return [NSNumber numberWithInt:val];
             } else {
-                return nil;
+                NSString *strValue = (NSString *) obj;
+                // true/falseの場合は、YES/NOに変換。それ以外はnil
+                if ([[strValue lowercaseString] isEqualToString:@"true"]) {
+                    return [NSNumber numberWithBool:YES];
+                } else if ([[strValue lowercaseString] isEqualToString:@"false"]) {
+                    return [NSNumber numberWithBool:NO];
+                } else {
+                    return nil;
+                }
             }
         }
     }

@@ -141,6 +141,8 @@ typedef NS_ENUM(NSUInteger, DConnectMessageErrorCodeType) {
     DConnectMessageErrorCodeIllegalDeviceState,       /*!< デバイスの状態異常エラー */
     DConnectMessageErrorCodeIllegalServerState,       /*!< サーバーの状態異常エラー */
     DConnectMessageErrorCodeInvalidOrigin,            /*!< 不正なオリジンからリクエストを受信した */
+    DConnectMessageErrorCodeInvalidURL,               /*!< 不正なリクエストURLを受信した */
+    DConnectMessageErrorCodeInvalidProfile,            /*!< 不正なProfileを受信した */
 };
 
 @class DConnectResponseMessage;
@@ -186,6 +188,12 @@ typedef void (^DConnectResponseBlocks)(DConnectResponseMessage *response);
 - (void)addLong:(long)num;
 
 /*!
+ @brief long longを最後尾に追加する。
+ @param num 追加する値
+ */
+- (void)addLongLong:(long long)num;
+
+/*!
  @brief floatを最後尾に追加する。
  @param[in] num 追加する値
  */
@@ -196,6 +204,12 @@ typedef void (^DConnectResponseBlocks)(DConnectResponseMessage *response);
  @param[in] num 追加する値
  */
 - (void)addDouble:(double)num;
+
+/*!
+ @brief BOOLを最後尾に追加する。
+ @param[in] num 追加する値
+ */
+- (void)addBool:(BOOL)num;
 
 /*!
  @brief NSDataを最後尾に追加する。
@@ -244,6 +258,14 @@ typedef void (^DConnectResponseBlocks)(DConnectResponseMessage *response);
 - (long)longAtIndex:(NSUInteger)index;
 
 /*!
+ @brief 指定されたインデックスの値をlong longとして取得する。
+ @param[in] index インデックス
+ @retval 指定されたインデックスの値
+ @retval LONG_LONG_MIN 指定されたインデックスがなかった場合
+ */
+- (long long)longLongAtIndex:(NSUInteger)index;
+
+/*!
  @brief 指定されたインデックスの値をfloatとして取得する。
  @param[in] index インデックス
  @retval 指定されたインデックスの値
@@ -258,6 +280,14 @@ typedef void (^DConnectResponseBlocks)(DConnectResponseMessage *response);
  @retval DBL_MIN 指定されたインデックスがなかった場合
  */
 - (double)doubleAtIndex:(NSUInteger)index;
+
+/*!
+ @brief 指定されたインデックスの値をBOOLとして取得する。
+ @param[in] index インデックス
+ @retval 指定されたインデックスの値
+ @retval NO キーが登録されていない場合
+ */
+- (BOOL) boolAtIndex:(NSUInteger)index;
 
 /*!
  @brief 指定されたインデックスの値をNSDataとして取得する。

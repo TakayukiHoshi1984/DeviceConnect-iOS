@@ -213,6 +213,15 @@ NSString *const DConnectAttributeNameRequestAccessToken = @"requestAccessToken";
     return managerName;
 }
 
+- (void)updateManagerName:(NSString*)name {
+    if (name) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:name forKey:KEY_MANAGER_NAME];
+        [defaults synchronize];
+    }
+}
+
+
 - (BOOL) start {
     // 開始フラグをチェック
     if (self.mStartFlag) {
@@ -221,9 +230,6 @@ NSString *const DConnectAttributeNameRequestAccessToken = @"requestAccessToken";
     self.mStartFlag = YES;
 
     _requestQueue = dispatch_queue_create("org.deviceconnect.manager.queue.request", DISPATCH_QUEUE_SERIAL);
-    
-    // デバイスプラグインの検索
-    [self.mDeviceManager searchDevicePlugin];
     
     _webServer = [DConnectServerManager new];
     _webServer.settings = self.settings;
@@ -240,7 +246,6 @@ NSString *const DConnectAttributeNameRequestAccessToken = @"requestAccessToken";
         return;
     }
     self.mStartFlag = NO;
-
     [_webServer stopServer];
 }
 
@@ -442,6 +447,9 @@ NSString *const DConnectAttributeNameRequestAccessToken = @"requestAccessToken";
         self.mEventSessionTable = [DConnectEventSessionTable new];
         self.mEventBroker = [[DConnectEventBroker alloc] initWithContext:self table:self.mEventSessionTable localOAuth:self.mLocalOAuth pluginManager:self.mDeviceManager delegate:self.delegate];
         
+        // デバイスプラグインの検索
+        [self.mDeviceManager searchDevicePlugin];
+
         // プロファイルの追加
         [self addProfile:[DConnectManagerServiceDiscoveryProfile new]];
         [self addProfile:[DConnectManagerSystemProfile new]];
