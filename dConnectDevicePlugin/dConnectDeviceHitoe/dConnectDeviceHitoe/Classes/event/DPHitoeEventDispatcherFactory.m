@@ -19,7 +19,7 @@
             return [self createIntervalEventDispatcherForDevicePlugin:devicePlugin periodTime:interval];
         }
     }
-    return [self createImmediateEventDispatcherForDevicePlugin:devicePlugin];
+    return [self createIntervalEventDispatcherForDevicePlugin:devicePlugin periodTime:50];
 }
 + (DPHitoeEventDispatcher*)createIntervalEventDispatcherForDevicePlugin:(DConnectDevicePlugin*)devicePlugin
                                                              periodTime:(int)periodTime {

@@ -7,7 +7,7 @@
 //  http://opensource.org/licenses/mit-license.php
 //
 
-#import "DPHItoeImmediateEventDispatcher.h"
+#import "DPHitoeImmediateEventDispatcher.h"
 
 @implementation DPHItoeImmediateEventDispatcher
 - (instancetype)initWithDevicePlugin:(DConnectDevicePlugin *)devicePlugin {
