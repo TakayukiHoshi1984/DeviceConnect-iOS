@@ -9,11 +9,6 @@
 
 #import <DConnectSDK/DConnectSDK.h>
 
-
-@class SonyCameraManager;
-@class SonyCameraService;
-
-
 /*!
  @brief SonyCameraデバイスプラグインのデリゲート。
  */
@@ -25,11 +20,6 @@
  @param[in] discover デバイスが発見された場合はYES、それ以外はNO
  */
 - (void) didReceiveDeviceList:(BOOL)discover;
-
-/*!
- @brief WiFiの状態が更新されたことを通知.
- */
-- (void) didReceiveUpdateDevice;
 
 @end
 
@@ -44,23 +34,22 @@
 @property (weak, nonatomic) id<SonyCameraDevicePluginDelegate> delegate;
 
 /*!
- @brief SonyCamera制御クラス.
+ @biref Sony Camera Remote APIに対応したデバイスを探索する。
+ 
+ 発見通知は、delegateに設定されたSonyCameraDevicePluginDelegateに通知される。
  */
-@property (strong, nonatomic) SonyCameraManager *sonyCameraManager;
+- (void) searchSonyCameraDevice;
 
 /*!
- @brief Sonyカメラに接続されているか確認を行う.
- 
- @retval YES Sonyカメラに接続されている
- @retval NO Sonyカメラに接続されていない
+ @brief デバイスプラグインを停止する。
  */
-- (BOOL) isConnectedSonyCamera;
+- (void) stop;
 
 /*!
- @brief 指定されたサービスを削除します.
- 
- @param[in] servie 削除するサービス
+ @brief デバイスプラグインが起動中かチェックする。
+ @retval YES 起動中
+ @retval NO 停止中
  */
-- (void) removeSonyCamera:(SonyCameraService *)service;
+- (BOOL) isStarted;
 
 @end

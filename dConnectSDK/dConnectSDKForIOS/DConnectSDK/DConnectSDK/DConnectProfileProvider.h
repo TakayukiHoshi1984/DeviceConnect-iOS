@@ -10,10 +10,6 @@
 #import <Foundation/Foundation.h>
 #import <DConnectSDK/DConnectProfile.h>
 
-/*!
- @class DConnectProfileProvider
- @brief Device Connect プロファイルプロバイダー。
- */
 @interface DConnectProfileProvider : NSObject
 
 /*!

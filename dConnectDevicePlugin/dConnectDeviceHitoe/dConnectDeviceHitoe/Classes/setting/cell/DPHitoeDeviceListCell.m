@@ -15,7 +15,6 @@
 @implementation DPHitoeDeviceListCell
 
 - (void)awakeFromNib {
-    [super awakeFromNib];
     void (^roundCorner)(UIView*) = ^void(UIView *v) {
         CALayer *layer = v.layer;
         layer.masksToBounds = YES;

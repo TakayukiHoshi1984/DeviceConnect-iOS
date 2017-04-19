@@ -14,6 +14,9 @@
 #import "SonyCameraViewController.h"
 #import "SonyCameraManager.h"
 
+#define DCBundle() \
+[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"DConnectSDK_resources" ofType:@"bundle"]]
+
 /*!
  @brief バージョン。
  */
@@ -36,7 +39,6 @@ NSString *const SonyDevicePluginVersion = @"2.0.0";
     if (self) {
         self.delegate = self;
         self.dataSource = self;
-
         __weak SonyCameraSystemProfile *weakSelf = self;
         
         // イベントマネージャを取得
@@ -47,7 +49,9 @@ NSString *const SonyDevicePluginVersion = @"2.0.0";
                                                     attributeName: DConnectSystemProfileAttrWakeUp];
         [self addPutPath: putSettingPageForRequestApiPath
                      api:^BOOL(DConnectRequestMessage *request, DConnectResponseMessage *response) {
-                         return [weakSelf didReceivePutWakeupRequest:request response:response];
+                         
+                         BOOL send = [weakSelf didReceivePutWakeupRequest:request response:response];
+                         return send;
                      }];
         
         // API登録(didReceiveDeleteEventsRequest相当)
@@ -55,29 +59,31 @@ NSString *const SonyDevicePluginVersion = @"2.0.0";
                                                attributeName: DConnectSystemProfileAttrEvents];
         [self addDeletePath: deleteEventsRequestApiPath
                         api:^BOOL(DConnectRequestMessage *request, DConnectResponseMessage *response) {
-                            return [weakSelf didReceiveDeleteEventsRequest:request response:response];
+                            
+                            NSString *origin = [request origin];
+                            
+                            if (origin == nil) {
+                                [response setErrorToInvalidRequestParameterWithMessage:@"origin is nil"];
+                            } else {
+                                DConnectEventManager *mgr = [DConnectEventManager sharedManagerForClass:[SonyCameraDevicePlugin class]];
+                                if ([mgr removeEventsForOrigin:origin]) {
+                                    [response setResult:DConnectMessageResultTypeOk];
+                                    
+                                    // 削除した時にイベントが残っていなければ、プレビューを止める
+                                    SonyCameraManager *manager = [SonyCameraManager sharedManager];
+                                    if (![self hasDataAvaiableEvent] && [[manager remoteApi] isStartedLiveView]) {
+                                        [[manager remoteApi] actStopLiveView];
+                                    }
+                                } else {
+                                    [response setErrorToUnknownWithMessage:@"Cannot delete events."];
+                                }
+                            }
+                            return YES;
                         }];
     }
     return self;
 }
 
-
-- (BOOL) didReceiveDeleteEventsRequest:(DConnectRequestMessage *)request response:(DConnectResponseMessage *)response
-{
-    NSString *origin = [request origin];
-    
-    if (origin == nil) {
-        [response setErrorToInvalidRequestParameterWithMessage:@"origin is nil"];
-    } else {
-        DConnectEventManager *mgr = [DConnectEventManager sharedManagerForClass:[SonyCameraDevicePlugin class]];
-        if ([mgr removeEventsForOrigin:origin]) {
-            [response setResult:DConnectMessageResultTypeOk];
-        } else {
-            [response setErrorToUnknownWithMessage:@"Cannot delete events."];
-        }
-    }
-    return YES;
-}
 
 #pragma mark - DConnectSystemProfileDataSource
 
@@ -95,16 +101,12 @@ NSString *const SonyDevicePluginVersion = @"2.0.0";
     DConnectServiceListViewController *serviceListViewController = (DConnectServiceListViewController *) top.viewControllers[0];
     serviceListViewController.delegate = self;
     return top;
-}
-
-#pragma mark - DConnectSystemProfileDelegate
-
-- (DConnectServiceProvider *)serviceProvider {
-    return ((DConnectDevicePlugin *)self.plugin).serviceProvider;
-}
-
-- (UIViewController *)settingViewController {
-    NSBundle *bundle = DPSonyCameraBundle();
+    
+/*
+    NSString *bundlePath = [[NSBundle mainBundle]
+                            pathForResource:@"dConnectDeviceSonyCamera_resources"
+                            ofType:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
     
     // iphoneとipadでストーリーボードを切り替える
     UIStoryboard *storyBoard;
@@ -114,9 +116,41 @@ NSString *const SonyDevicePluginVersion = @"2.0.0";
         storyBoard = [UIStoryboard storyboardWithName:@"SonyCameraDevicePlugin_iPad" bundle:bundle];
     }
     UINavigationController *viewController = [storyBoard instantiateInitialViewController];
+    SonyCameraManager *manager = [SonyCameraManager sharedManager];
+    for (int i = 0; i < viewController.viewControllers.count; i++) {
+        UIViewController *ctl = viewController.viewControllers[i];
+        NSString *className = NSStringFromClass([ctl class]);
+        if ([className isEqualToString:@"SonyCameraViewController"]) {
+            SonyCameraViewController *scvc = (SonyCameraViewController *) ctl;
+            scvc.deviceplugin = manager.plugin;
+        }
+    }
+    return viewController;
+*/
+}
+
+
+#pragma mark - DConnectSystemProfileDelegate
+
+- (DConnectServiceProvider *)serviceProvider {
+    return ((DConnectDevicePlugin *)self.plugin).serviceProvider;
+}
+
+- (UIViewController *)settingViewController {
+    NSString *bundlePath = [[NSBundle mainBundle]
+                            pathForResource:@"dConnectDeviceSonyCamera_resources"
+                            ofType:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
     
-    SonyCameraDevicePlugin *plugin = (SonyCameraDevicePlugin *) self.plugin;
-    SonyCameraManager *manager = plugin.sonyCameraManager;
+    // iphoneとipadでストーリーボードを切り替える
+    UIStoryboard *storyBoard;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        storyBoard = [UIStoryboard storyboardWithName:@"SonyCameraDevicePlugin_iPhone" bundle:bundle];
+    } else{
+        storyBoard = [UIStoryboard storyboardWithName:@"SonyCameraDevicePlugin_iPad" bundle:bundle];
+    }
+    UINavigationController *viewController = [storyBoard instantiateInitialViewController];
+    SonyCameraManager *manager = [SonyCameraManager sharedManager];
     for (int i = 0; i < viewController.viewControllers.count; i++) {
         UIViewController *ctl = viewController.viewControllers[i];
         NSString *className = NSStringFromClass([ctl class]);
@@ -128,9 +162,15 @@ NSString *const SonyDevicePluginVersion = @"2.0.0";
     return viewController;
 }
 
-- (void)didRemovedService:(DConnectService *)service
-{
-    [self.plugin removeSonyCamera:service];
+
+#pragma mark - Primate Methods.
+
+- (BOOL) hasDataAvaiableEvent {
+    DConnectEventManager *mgr = [DConnectEventManager sharedManagerForClass:[SonyCameraDevicePlugin class]];
+    NSArray *evts = [mgr eventListForServiceId:SERVICE_ID
+                                       profile:DConnectMediaStreamRecordingProfileName
+                                     attribute:DConnectMediaStreamRecordingProfileAttrOnDataAvailable];
+    return evts.count > 0;
 }
 
 @end

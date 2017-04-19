@@ -13,8 +13,6 @@
 
 @interface SonyCameraService : DConnectService<DConnectServiceInformationProfileDataSource>
 
-- (instancetype) initWithServiceId:(NSString *)serviceId
-                        deviceName:(NSString *)deviceName
-                            plugin:(id)plugin;
+- (instancetype) initWithServiceId: (NSString *) serviceId deviceName: (NSString *) deviceName plugin: (id) plugin liveViewDelegate: (id<SampleLiveviewDelegate>) liveViewDelegate remoteApiUtilDelegate:(id<SonyCameraRemoteApiUtilDelegate>) remoteApiUtilDelegate;
 
 @end

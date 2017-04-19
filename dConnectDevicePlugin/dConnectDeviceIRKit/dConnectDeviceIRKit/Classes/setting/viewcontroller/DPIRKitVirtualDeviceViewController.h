@@ -11,6 +11,5 @@
 
 @interface DPIRKitVirtualDeviceViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
-@property (strong, nonatomic) id provider;
-@property (strong, nonatomic) id detailName;
+@property (strong, nonatomic) id detailItem;
 @end

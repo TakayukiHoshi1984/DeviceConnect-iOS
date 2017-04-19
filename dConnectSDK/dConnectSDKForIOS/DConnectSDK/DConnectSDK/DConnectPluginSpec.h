@@ -10,12 +10,6 @@
 #import <Foundation/Foundation.h>
 #import "DConnectProfileSpec.h"
 
-/*!
- @class DConnectPluginSpec
- @brief プラグインのサポートする仕様を保持するクラス。
- 
- プラグインのサポートするプロファイルのリストを持つ。
- */
 @interface DConnectPluginSpec : NSObject
 
 /*!

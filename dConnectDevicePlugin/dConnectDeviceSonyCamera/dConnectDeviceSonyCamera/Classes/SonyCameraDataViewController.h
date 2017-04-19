@@ -19,7 +19,7 @@
 /*!
  @brief メインのView。
  */
-@property (strong, nonatomic) IBOutlet UIScrollView *mainView;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 /*!
  @brief ViewControllerのページ数。

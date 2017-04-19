@@ -13,6 +13,6 @@
 
 @interface SonyCameraMediaStreamRecordingProfile : DConnectMediaStreamRecordingProfile
 
-- (instancetype) init;
+- (instancetype) initWithLiveViewDelegate: (id<SampleLiveviewDelegate>) liveViewDelegate remoteApiUtilDelegate:(id<SonyCameraRemoteApiUtilDelegate>) remoteApiUtilDelegate;
 
 @end

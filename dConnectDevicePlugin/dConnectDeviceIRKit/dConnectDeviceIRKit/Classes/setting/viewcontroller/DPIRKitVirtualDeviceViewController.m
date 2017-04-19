@@ -6,7 +6,6 @@
 //  Released under the MIT license
 //  http://opensource.org/licenses/mit-license.php
 //
-#import <DConnectSDK/DConnectSDK.h>
 #import "DPIRKitVirtualDeviceViewController.h"
 #import "DPIRKitManager.h"
 #import "DPIRKitConst.h"
@@ -14,12 +13,10 @@
 #import "DPIRKitDBManager.h"
 #import "DPIRKitVirtualProfileViewController.h"
 
-
 @interface DPIRKitVirtualDeviceViewController () {
-    DConnectServiceProvider *_serviceProvider;
     NSBundle *bundle;
     NSMutableDictionary *_virtuals;
-    NSString *_irkitName;
+    DPIRKitDevice *_virtual;
     NSArray *_devices;
     BOOL _isRemoved;
 }
@@ -155,18 +152,14 @@
 }
 
 
-- (void)setDetailName:(id)detailName
+- (void)setDetailItem:(id)newDetailItem
 {
-    _irkitName = detailName;
+    _virtual = newDetailItem;
 }
 
-- (void)setProvider:(id)provider
-{
-    _serviceProvider = provider;
-}
 
-// 仮想デバイスのリストを更新する
-- (void)updateChanges:(NSNotification*)notification
+
+- (void)mergeChanges:(NSNotification*)notification
 {
     _devices = [[DPIRKitDBManager sharedInstance] queryVirtualDevice:nil];
     [_virtualDeviceList reloadData];
@@ -175,14 +168,13 @@
 
 - (IBAction)addVirtualDevice:(id)sender {
     if (!_isRemoved) {
-        // ダイアログでの操作を受け取るNotification
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 
         [nc addObserver:self
-               selector:@selector(updateChanges:)
+               selector:@selector(mergeChanges:)
                    name:DPIRKitVirtualDeviceCreateNotification
                  object:nil];
-        [DPIRKitCategorySelectDialog showWithServiceId:_irkitName];
+        [DPIRKitCategorySelectDialog showWithServiceId:_virtual.name];
     } else {
         //削除モード時はキャンセルボタンになる
         [self switchButton];
@@ -251,8 +243,6 @@
     BOOL isDelete = NO;
     for (NSIndexPath *c in cells) {
         DPIRKitVirtualDevice *device = _devices[c.row];
-        DConnectService *service = [_serviceProvider service:device.serviceId];
-        [_serviceProvider removeService:service];
         BOOL isDeleteVirtualDevice = [mgr deleteVirtualDevice:device.serviceId];
         BOOL isDeleteVirtualProfile = [mgr deleteRESTfulRequestForServiceId:device.serviceId];
         if (isDeleteVirtualDevice || isDeleteVirtualProfile) {

@@ -306,4 +306,4 @@ dConnectDevicePlugin/dConnectDeviceAWSIoT/bin
 dConnectDevicePlugin/dConnectDeviceAWSIoT/Pods
 dConnectDevicePlugin/dConnectDeviceLinking/Libs
 dConnectDevicePlugin/dConnectDeviceHue/HueSDK_iOS.framework
-!.gitkeep
+
