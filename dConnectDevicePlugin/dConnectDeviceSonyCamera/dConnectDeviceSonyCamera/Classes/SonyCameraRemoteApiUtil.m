@@ -56,12 +56,17 @@ NSString *const SonyCameraShootModePicture = @"still";
         
         // SonyCameraの監視を開始する.
         SampleCameraEventObserver *observer = [SampleCameraEventObserver getInstance];
-        [observer start:self];
+        [observer startWithDelegate:self];
     }
     return self;
 }
 
 #pragma mark - Public Methods -
+
+- (void) destroy
+{
+    [[SampleCameraEventObserver getInstance] stop];
+}
 
 - (void) actGetApiList
 {
@@ -308,8 +313,6 @@ NSString *const SonyCameraShootModePicture = @"still";
 #pragma mark - HttpAsynchronousRequestParserDelegate Methods -
 
 - (void) parseMessage:(NSData *)response apiName:(NSString *)apiName {
-//	NSString *responseText = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-	
 	NSError *error;
 	NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response
 														 options:NSJSONReadingMutableContainers
@@ -319,7 +322,7 @@ NSString *const SonyCameraShootModePicture = @"still";
 	NSInteger errorCode = -1;
     NSInteger apiId = -1;
 	if (error) {
-        NSLog(@"QX10DevicePlugin parseMessage error parsing JSON string");
+        return;
 	} else {
         apiId = (NSInteger) dict[@"id"];
 		resultArray = dict[@"result"];
@@ -329,7 +332,6 @@ NSString *const SonyCameraShootModePicture = @"still";
 			errorMessage = errorArray[1];
 		}
 	}
-	
     // レスポンス格納用のdictionaryにデータをつめる
 	if([apiName isEqualToString:API_getAvailableApiList]) {
         [self.responseDic setObject:dict forKey:API_getAvailableApiList];
@@ -355,8 +357,8 @@ NSString *const SonyCameraShootModePicture = @"still";
 
 #pragma mark - SampleEventObserverDelegate Methods -
 
-- (void) didApiListModified:(NSArray*) api_list {
-    self.apiList = api_list;
+- (void) didAvailableApiListChanged:(NSArray*) API_CAMERA_list {
+    self.apiList = API_CAMERA_list;
 }
 
 - (void) didCameraStatusChanged:(NSString*) status {
@@ -375,9 +377,9 @@ NSString *const SonyCameraShootModePicture = @"still";
     self.zoomPosition = zoomPosition / (double) 100;
 }
 
-- (void) didTakePicture:(NSString *)imageUri {
+- (void) didStorageInformationChanged:(NSString *)storagId {
     if (self.delegate) {
-        [self.delegate didReceivedImage:imageUri];
+        [self.delegate didReceivedImage:storagId];
     }
 }
 
