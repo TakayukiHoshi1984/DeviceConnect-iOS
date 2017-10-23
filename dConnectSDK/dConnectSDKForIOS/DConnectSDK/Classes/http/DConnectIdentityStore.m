@@ -37,29 +37,9 @@
         NSString *dirPath = NSTemporaryDirectory();
         NSString *p12Path = [dirPath stringByAppendingPathComponent:@"certificate.p12"];
         if ([self generatePKCS12:p12Path]) {
-            NSURL *path = [NSURL fileURLWithPath:p12Path];
-            NSLog(@"Certificate Path: %@", path);
-            NSData *data = [NSData dataWithContentsOfURL:path];
-            
-            NSString* password = @"password";
-            NSDictionary* options = @{
-                                      (id)kSecImportExportPassphrase : password
-                                      };
-            
-            CFArrayRef rawItems = NULL;
-            OSStatus status = SecPKCS12Import((__bridge CFDataRef)data,
-                                              (__bridge CFDictionaryRef)options,
-                                              &rawItems);
-            NSArray* items = (NSArray*)CFBridgingRelease(rawItems); // Transfer to ARC
-            
-            NSDictionary* firstItem = nil;
-            if ((status == errSecSuccess) && ([items count] > 0)) {
-                firstItem = items[0];
-                SecIdentityRef identity =
-                (SecIdentityRef)CFBridgingRetain(firstItem[(id)kSecImportItemIdentity]);
-                NSLog(@"SecIdentityRef: %@", identity);
-                [_certificates addObject:(__bridge id)identity];
-            }
+            SecIdentityRef identity = [self importPKCS12:p12Path];
+            NSLog(@"SecIdentityRef: %@", identity);
+            [_certificates addObject:(__bridge id) identity];
         } else {
             NSLog(@"Failed to generate p12 file.");
         }
@@ -157,6 +137,32 @@
     fclose(fp);
     PKCS12_free(p12);
     return success;
+}
+
+- (SecIdentityRef) importPKCS12:(NSString *)inPath
+{
+    NSURL *path = [NSURL fileURLWithPath:inPath];
+    NSLog(@"Certificate Path: %@", path);
+    NSData *data = [NSData dataWithContentsOfURL:path];
+    
+    NSString* password = @"password";
+    NSDictionary* options = @{
+                              (id)kSecImportExportPassphrase : password
+                              };
+    
+    CFArrayRef rawItems = NULL;
+    OSStatus status = SecPKCS12Import((__bridge CFDataRef)data,
+                                      (__bridge CFDictionaryRef)options,
+                                      &rawItems);
+    NSArray* items = (NSArray*)CFBridgingRelease(rawItems); // Transfer to ARC
+    
+    NSDictionary* firstItem = nil;
+    if ((status == errSecSuccess) && ([items count] > 0)) {
+        firstItem = items[0];
+        SecIdentityRef identity = (SecIdentityRef) CFBridgingRetain(firstItem[(id)kSecImportItemIdentity]);
+        return identity;
+    }
+    return nil;
 }
 
 @end
