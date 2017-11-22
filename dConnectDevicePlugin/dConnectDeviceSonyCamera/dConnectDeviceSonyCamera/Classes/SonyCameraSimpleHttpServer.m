@@ -236,7 +236,7 @@ static uint64_t getUptimeInMilliseconds()
     _listenSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:queue];
     [_listenSocket acceptOnPort:self.listenPort error:&error];
     if (error) {
-        DCLogInfo(@"Failed to start a server. error=%@", error);
+        DPSonyCameraLogInfo(@"Failed to start a server. error=%@", error);
         [self stop];
         return NO;
     }

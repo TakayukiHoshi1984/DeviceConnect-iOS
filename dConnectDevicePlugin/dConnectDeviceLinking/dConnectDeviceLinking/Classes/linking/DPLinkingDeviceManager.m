@@ -82,7 +82,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 
 - (void) startScan {
     if ([BLEConnecter sharedInstance].canDiscovery) {
-        DCLogInfo(@"startScan");
+        DPLinkingLogInfo(@"startScan");
         [[BLEConnecter sharedInstance] scanDevice];
     } else {
         DCLogWarn(@"Cannot start a scan.");
@@ -91,7 +91,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 
 - (void) stopScan {
     if ([[BLEConnecter sharedInstance] isCanDiscovery] && ![[DPLinkingBeaconManager sharedInstance] isStartBeaconScan]) {
-        DCLogInfo(@"stopScan");
+        DPLinkingLogInfo(@"stopScan");
         [[BLEConnecter sharedInstance] stopScan];
     } else {
         DCLogWarn(@"Cannot stop scan. Scan is not running.");
@@ -155,7 +155,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
         return;
     }
 
-    DCLogInfo(@"removeDPLinkingDevice %@", device.name);
+    DPLinkingLogInfo(@"removeDPLinkingDevice %@", device.name);
     if (device.online) {
         [self disconnectDPLinkingDevice:device];
     }
@@ -179,7 +179,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
     self.connectingDevice = device;
 
     if (device.peripheral) {
-        DCLogInfo(@"connectDPLinkingDevice: %@", device.peripheral);
+        DPLinkingLogInfo(@"connectDPLinkingDevice: %@", device.peripheral);
         
         _connectingCancelBlock = [DPLinkingUtil asyncAfterDelay:60.0 block:^{
             [weakSelf notifyFailToConnectDevice:device];
@@ -200,7 +200,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void) disconnectDPLinkingDevice:(DPLinkingDevice *)device {
-    DCLogInfo(@"disconnectDPLinkingDevice: %@", device);
+    DPLinkingLogInfo(@"disconnectDPLinkingDevice: %@", device);
     
     if (device.online) {
         // TODO: 何か処理が必要か検討
@@ -304,7 +304,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
         return;
     }
     
-    DCLogInfo(@"sensor start.");
+    DPLinkingLogInfo(@"sensor start.");
     
     BLERequestController *request = [BLERequestController sharedInstance];
     if ([device isSupportGryo ]) {
@@ -340,7 +340,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
         }
     }
     
-    DCLogInfo(@"sensor stop.");
+    DPLinkingLogInfo(@"sensor stop.");
 
     BLERequestController *request = [BLERequestController sharedInstance];
     if ([device isSupportGryo ]) {
@@ -439,7 +439,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
         return;
     }
     
-    DCLogInfo(@"battery sensor start. device=%@", device.name);
+    DPLinkingLogInfo(@"battery sensor start. device=%@", device.name);
     
     BLERequestController *request = [BLERequestController sharedInstance];
     [request setNotifySensorInfoMessage:device.peripheral
@@ -465,7 +465,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
         }
     }
     
-    DCLogInfo(@"battery sensor stop. device=%@", device.name);
+    DPLinkingLogInfo(@"battery sensor stop. device=%@", device.name);
 
     BLERequestController *request = [BLERequestController sharedInstance];
     [request setNotifySensorInfoMessage:device.peripheral
@@ -492,7 +492,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
         return;
     }
 
-    DCLogInfo(@"temperature sensor start. device=%@", device.name);
+    DPLinkingLogInfo(@"temperature sensor start. device=%@", device.name);
 
     BLERequestController *request = [BLERequestController sharedInstance];
     [request setNotifySensorInfoMessage:device.peripheral
@@ -518,7 +518,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
         }
     }
     
-    DCLogInfo(@"temperature sensor stop. device=%@", device.name);
+    DPLinkingLogInfo(@"temperature sensor stop. device=%@", device.name);
 
     BLERequestController *request = [BLERequestController sharedInstance];
     [request setNotifySensorInfoMessage:device.peripheral
@@ -545,7 +545,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
         return;
     }
 
-    DCLogInfo(@"humidity sensor start. device=%@", device.name);
+    DPLinkingLogInfo(@"humidity sensor start. device=%@", device.name);
 
     BLERequestController *request = [BLERequestController sharedInstance];
     [request setNotifySensorInfoMessage:device.peripheral
@@ -571,7 +571,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
         }
     }
     
-    DCLogInfo(@"humidity sensor stop. device=%@", device.name);
+    DPLinkingLogInfo(@"humidity sensor stop. device=%@", device.name);
 
     BLERequestController *request = [BLERequestController sharedInstance];
     [request setNotifySensorInfoMessage:device.peripheral
@@ -598,7 +598,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
         return;
     }
     
-    DCLogInfo(@"atmospheric pressure sensor start. device=%@", device.name);
+    DPLinkingLogInfo(@"atmospheric pressure sensor start. device=%@", device.name);
     
     BLERequestController *request = [BLERequestController sharedInstance];
     [request setNotifySensorInfoMessage:device.peripheral
@@ -624,7 +624,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
         }
     }
     
-    DCLogInfo(@"atmospheric pressure sensor stop. device=%@", device.name);
+    DPLinkingLogInfo(@"atmospheric pressure sensor stop. device=%@", device.name);
     
     BLERequestController *request = [BLERequestController sharedInstance];
     [request setNotifySensorInfoMessage:device.peripheral
@@ -646,7 +646,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 
 - (void) startScanWithTimeout:(NSTimeInterval)timeout {
     if ([BLEConnecter sharedInstance].canDiscovery) {
-        DCLogInfo(@"DPLinkingDeviceManager::startScanWithTimeout");
+        DPLinkingLogInfo(@"DPLinkingDeviceManager::startScanWithTimeout");
         [DPLinkingUtil asyncAfterDelay:timeout block:^{
             DCLogWarn(@"Timeout.");
             _initFlag = NO;
@@ -815,11 +815,11 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 - (void) failToConnect:(CBPeripheral *)peripheral {
     BLEDeviceSetting *setting = [[BLEConnecter sharedInstance] getDeviceByPeripheral:peripheral];
     
-    DCLogInfo(@"@@ failToConnect: [デバイス：%@ との接続に失敗しました。]", setting.name);
-    DCLogInfo(@"    setting.notifyDeviceInitial: %@", setting.notifyDeviceInitial ? @"YES" : @"NO");
-    DCLogInfo(@"    setting.initialDeviceSettingFinished: %@", setting.initialDeviceSettingFinished ? @"YES" : @"NO");
-    DCLogInfo(@"    setting.saved: %@", setting.saved ? @"YES" : @"NO");
-    DCLogInfo(@"    setting.connectionStatus: %@", setting.connectionStatus);
+    DPLinkingLogInfo(@"@@ failToConnect: [デバイス：%@ との接続に失敗しました。]", setting.name);
+    DPLinkingLogInfo(@"    setting.notifyDeviceInitial: %@", setting.notifyDeviceInitial ? @"YES" : @"NO");
+    DPLinkingLogInfo(@"    setting.initialDeviceSettingFinished: %@", setting.initialDeviceSettingFinished ? @"YES" : @"NO");
+    DPLinkingLogInfo(@"    setting.saved: %@", setting.saved ? @"YES" : @"NO");
+    DPLinkingLogInfo(@"    setting.connectionStatus: %@", setting.connectionStatus);
     
     if ([self isEqualDeviceUuid:peripheral]) {
         DPLinkingDevice *device = [self findDPLinkingDeviceByPeripheral:peripheral];
@@ -858,38 +858,38 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void)didConnectPeripheral:(CBPeripheral *)peripheral {
-    DCLogInfo(@"@@ didConnectPeripheral %@", peripheral);
+    DPLinkingLogInfo(@"@@ didConnectPeripheral %@", peripheral);
 }
 
 - (void) didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
-    DCLogInfo(@"@@ didFailToConnectPeripheral %@", peripheral.identifier.UUIDString);
+    DPLinkingLogInfo(@"@@ didFailToConnectPeripheral %@", peripheral.identifier.UUIDString);
     [self failToConnect:peripheral];
 }
 
 - (void)didConnectDevice:(BLEDeviceSetting *)setting {
-    DCLogInfo(@"@@ didConnectDevice: [デバイス：%@ と接続されました。]", setting.name);
-    DCLogInfo(@"    setting.notifyDeviceInitial: %@", setting.notifyDeviceInitial ? @"YES" : @"NO");
-    DCLogInfo(@"    setting.initialDeviceSettingFinished: %@", setting.initialDeviceSettingFinished ? @"YES" : @"NO");
-    DCLogInfo(@"    setting.saved: %@", setting.saved ? @"YES" : @"NO");
-    DCLogInfo(@"    setting.connectionStatus: %@", setting.connectionStatus);
+    DPLinkingLogInfo(@"@@ didConnectDevice: [デバイス：%@ と接続されました。]", setting.name);
+    DPLinkingLogInfo(@"    setting.notifyDeviceInitial: %@", setting.notifyDeviceInitial ? @"YES" : @"NO");
+    DPLinkingLogInfo(@"    setting.initialDeviceSettingFinished: %@", setting.initialDeviceSettingFinished ? @"YES" : @"NO");
+    DPLinkingLogInfo(@"    setting.saved: %@", setting.saved ? @"YES" : @"NO");
+    DPLinkingLogInfo(@"    setting.connectionStatus: %@", setting.connectionStatus);
 
     setting.inDistanceThreshold = YES;
 }
 
 - (void)didDeviceInitialFinished:(CBPeripheral *)peripheral {
-    DCLogInfo(@"@@ didDeviceInitialFinished %@", peripheral);
+    DPLinkingLogInfo(@"@@ didDeviceInitialFinished %@", peripheral);
     
     BLEDeviceSetting *setting = [[BLEConnecter sharedInstance] getDeviceByPeripheral:peripheral];
 
-    DCLogInfo(@"デバイスの初期化が完了しました");
-    DCLogInfo(@"    name : %@", setting.peripheral.name);
-    DCLogInfo(@"    device id : %d", setting.deviceId);
-    DCLogInfo(@"    device uid : %d", setting.deviceUid);
-    DCLogInfo(@"    device hasLED : %@", setting.hasLED ? @"YES" : @"NO");
-    DCLogInfo(@"    device hasGyroscope : %@", setting.hasGyroscope ? @"YES" : @"NO");
-    DCLogInfo(@"    device hasAccelerometer : %@", setting.hasAccelerometer ? @"YES" : @"NO");
-    DCLogInfo(@"    device hasOrientation : %@", setting.hasOrientation ? @"YES" : @"NO");
-    DCLogInfo(@"    device exSensorType: %@", setting.exSensorType);
+    DPLinkingLogInfo(@"デバイスの初期化が完了しました");
+    DPLinkingLogInfo(@"    name : %@", setting.peripheral.name);
+    DPLinkingLogInfo(@"    device id : %d", setting.deviceId);
+    DPLinkingLogInfo(@"    device uid : %d", setting.deviceUid);
+    DPLinkingLogInfo(@"    device hasLED : %@", setting.hasLED ? @"YES" : @"NO");
+    DPLinkingLogInfo(@"    device hasGyroscope : %@", setting.hasGyroscope ? @"YES" : @"NO");
+    DPLinkingLogInfo(@"    device hasAccelerometer : %@", setting.hasAccelerometer ? @"YES" : @"NO");
+    DPLinkingLogInfo(@"    device hasOrientation : %@", setting.hasOrientation ? @"YES" : @"NO");
+    DPLinkingLogInfo(@"    device exSensorType: %@", setting.exSensorType);
     
     DPLinkingDevice *device = [self findDPLinkingDeviceByPeripheral:setting.peripheral];
     if (device) {
@@ -909,7 +909,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void)didDisconnectPeripheral:(CBPeripheral *)peripheral {
-    DCLogInfo(@"@@ didDisconnectPeripheral: %@", peripheral);
+    DPLinkingLogInfo(@"@@ didDisconnectPeripheral: %@", peripheral);
 
     DPLinkingDevice *device = [self findDPLinkingDeviceByPeripheral:peripheral];
     if (device) {
@@ -918,7 +918,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void) didDisconnectDevice:(BLEDeviceSetting *)setting {
-    DCLogInfo(@"@@ didDisconnectDevice: %@", setting.peripheral);
+    DPLinkingLogInfo(@"@@ didDisconnectDevice: %@", setting.peripheral);
 
     DPLinkingDevice *device = [self findDPLinkingDeviceByPeripheral:setting.peripheral];
     if (device) {
@@ -928,13 +928,13 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void)didTimeOutPeripheral:(CBPeripheral*)peripheral {
-    DCLogInfo(@"@@ didTimeOutPeripheral %@", peripheral);
+    DPLinkingLogInfo(@"@@ didTimeOutPeripheral %@", peripheral);
     [self failToConnect:peripheral];
 }
 
 - (void)didFailToWrite:(CBPeripheral *)peripheral error:(NSError *)error {
-    DCLogInfo(@"@@ didFailToWrite: %@", peripheral);
-    DCLogInfo(@"%@", error);
+    DPLinkingLogInfo(@"@@ didFailToWrite: %@", peripheral);
+    DPLinkingLogInfo(@"%@", error);
 }
 
 
@@ -944,7 +944,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
                             RSSI:(NSNumber *)RSSI
                      inThreshold:(BOOL)isInRSSIThreshold
 {
-    DCLogInfo(@"@@@@@@@@@@ didDeviceChangeRSSIValue: %@ %d", RSSI, isInRSSIThreshold);
+    DPLinkingLogInfo(@"@@@@@@@@@@ didDeviceChangeRSSIValue: %@ %d", RSSI, isInRSSIThreshold);
     
     DPLinkingDevice *device = [self findDPLinkingDeviceByPeripheral:peripheral];
     if (device) {
@@ -971,13 +971,13 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void)isBelowTheThreshold:(CBPeripheral *)peripheral RSSI:(NSNumber *)RSSI {
-    DCLogInfo(@"%@は範囲外にいます : %@", peripheral.name, RSSI);
+    DPLinkingLogInfo(@"%@は範囲外にいます : %@", peripheral.name, RSSI);
 }
 
 #pragma mark - BLEConnecterDelegate ButtonId
 
 - (void)deviceButtonPushed:(CBPeripheral *)peripheral buttonID:(char)buttonID {
-    DCLogInfo(@"ボタン %d が操作されました。", buttonID);
+    DPLinkingLogInfo(@"ボタン %d が操作されました。", buttonID);
 
     DPLinkingDevice *device = [self findDPLinkingDeviceByPeripheral:peripheral];
     if (device) {
@@ -988,11 +988,11 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 #pragma mark - BLEConnecterDelegate Sensor
 
 - (void)gyroscopeDidUpDateDelegate:(CBPeripheral *)peripheral sensor:(BLESensorGyroscope *)sensor {
-    DCLogInfo(@"ジャイロセンサーのデータを取得しました。");
-    DCLogInfo(@"x : %f", sensor.xValue);
-    DCLogInfo(@"y : %f", sensor.yValue);
-    DCLogInfo(@"z : %f", sensor.zValue);
-    DCLogInfo(@"originalData : %@", sensor.originalData);
+    DPLinkingLogInfo(@"ジャイロセンサーのデータを取得しました。");
+    DPLinkingLogInfo(@"x : %f", sensor.xValue);
+    DPLinkingLogInfo(@"y : %f", sensor.yValue);
+    DPLinkingLogInfo(@"z : %f", sensor.zValue);
+    DPLinkingLogInfo(@"originalData : %@", sensor.originalData);
     
     DPLinkingDevice *device = [self findDPLinkingDeviceByPeripheral:peripheral];
     if (device) {
@@ -1007,23 +1007,23 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void)gyroscopeDidUpDateWithIntervalDelegate:(CBPeripheral *)peripheral sensor:(BLESensorGyroscope *)sensor {
-    DCLogInfo(@"定期受信-ジャイロセンサーのデータを取得しました。");
+    DPLinkingLogInfo(@"定期受信-ジャイロセンサーのデータを取得しました。");
 }
 
 - (void)gyroscopeDidUpDateDelegate:(CBPeripheral *)peripheral {
-    DCLogInfo(@"ジャイロセンサーの取得が終了しました。");
+    DPLinkingLogInfo(@"ジャイロセンサーの取得が終了しました。");
 }
 
 - (void)gyroscopeObservationEnded:(CBPeripheral *)peripheral {
-    DCLogInfo(@"gyroscopeObservationEnded");
+    DPLinkingLogInfo(@"gyroscopeObservationEnded");
 }
 
 - (void)accelerometerDidUpDateDelegate:(CBPeripheral *)peripheral sensor:(BLESensorAccelerometer *)sensor {
-    DCLogInfo(@"加速度センサーのデータを取得しました。");
-    DCLogInfo(@"x : %f", sensor.xValue);
-    DCLogInfo(@"y : %f", sensor.yValue);
-    DCLogInfo(@"z : %f", sensor.zValue);
-    DCLogInfo(@"originalData) : %@", sensor.originalData);
+    DPLinkingLogInfo(@"加速度センサーのデータを取得しました。");
+    DPLinkingLogInfo(@"x : %f", sensor.xValue);
+    DPLinkingLogInfo(@"y : %f", sensor.yValue);
+    DPLinkingLogInfo(@"z : %f", sensor.zValue);
+    DPLinkingLogInfo(@"originalData) : %@", sensor.originalData);
     
     DPLinkingDevice *device = [self findDPLinkingDeviceByPeripheral:peripheral];
     if (device) {
@@ -1038,23 +1038,23 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void)accelerometerDidUpDateWithIntervalDelegate:(CBPeripheral *)peripheral sensor:(BLESensorAccelerometer *)sensor {
-    DCLogInfo(@"定期受信-加速度センサーのデータを取得しました。");
+    DPLinkingLogInfo(@"定期受信-加速度センサーのデータを取得しました。");
 }
 
 - (void)accelerometerDidUpDateDelegate:(CBPeripheral *)peripheral {
-    DCLogInfo(@"加速度センサーの取得が終了しました。");
+    DPLinkingLogInfo(@"加速度センサーの取得が終了しました。");
 }
 
 - (void)accelerometerObservationEnded:(CBPeripheral *)peripheral {
-    DCLogInfo(@"accelerometerObservationEnded");
+    DPLinkingLogInfo(@"accelerometerObservationEnded");
 }
 
 - (void) orientationDidUpDateDelegate:(CBPeripheral *)peripheral sensor:(BLESensorOrientation *)sensor {
-    DCLogInfo(@"方位センサーのデータを取得しました。");
-    DCLogInfo(@"x : %f", sensor.xValue);
-    DCLogInfo(@"y : %f", sensor.yValue);
-    DCLogInfo(@"z : %f", sensor.zValue);
-    DCLogInfo(@"originalData : %@", sensor.originalData);
+    DPLinkingLogInfo(@"方位センサーのデータを取得しました。");
+    DPLinkingLogInfo(@"x : %f", sensor.xValue);
+    DPLinkingLogInfo(@"y : %f", sensor.yValue);
+    DPLinkingLogInfo(@"z : %f", sensor.zValue);
+    DPLinkingLogInfo(@"originalData : %@", sensor.originalData);
     
     DPLinkingDevice *device = [self findDPLinkingDeviceByPeripheral:peripheral];
     if (device) {
@@ -1069,11 +1069,11 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void) orientationDidUpDateWithIntervalDelegate:(CBPeripheral *)peripheral sensor:(BLESensorOrientation *)sensor {
-    DCLogInfo(@"定期受信-方位センサーのデータを取得しました。");
+    DPLinkingLogInfo(@"定期受信-方位センサーのデータを取得しました。");
 }
 
 - (void) orientationObservationEnded:(CBPeripheral *)peripheral {
-    DCLogInfo(@"方位センサーの取得が終了しました。");
+    DPLinkingLogInfo(@"方位センサーの取得が終了しました。");
 }
 
 #pragma mark - BLEConnecterDelegate Temperature

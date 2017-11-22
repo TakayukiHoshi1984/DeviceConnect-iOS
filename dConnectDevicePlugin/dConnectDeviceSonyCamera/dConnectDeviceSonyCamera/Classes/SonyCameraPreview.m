@@ -108,7 +108,7 @@
 
 - (void) didReceivedError
 {
-    DCLogInfo(@"Preview occurred an error.");
+    DPSonyCameraLogInfo(@"Preview occurred an error.");
 }
 
 @end

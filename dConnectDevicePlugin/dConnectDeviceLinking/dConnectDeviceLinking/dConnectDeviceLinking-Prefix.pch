@@ -21,11 +21,11 @@
 withExtension:@"bundle"]])
 
 #ifdef DEBUG
-#define DCLogInfo(fmt, ...) NSLog((@"%s:INFO: " fmt), class_getName([self class]), ##__VA_ARGS__)
-#define DCLogInfo2(tag, fmt, ...) NSLog((@"%@:INFO: " fmt), (tag), ##__VA_ARGS__)
+#define DPLinkingLogInfo(fmt, ...) NSLog((@"%s:INFO: " fmt), class_getName([self class]), ##__VA_ARGS__)
+#define DPLinkingLogInfo2(tag, fmt, ...) NSLog((@"%@:INFO: " fmt), (tag), ##__VA_ARGS__)
 #else
-#define DCLogInfo(...)
-#define DCLogInfo2(...)
+#define DPLinkingLogInfo(...)
+#define DPLinkingLogInfo2(...)
 #endif
 
 #ifdef DEBUG

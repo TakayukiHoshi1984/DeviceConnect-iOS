@@ -134,7 +134,7 @@ static DPLinkingBeaconManager* _sharedInstance = nil;
     }
     
     DPLinkingBeacon *beacon = [self.beacons objectAtIndex:index];
-    DCLogInfo(@"removeBeacon %@", beacon.displayName);
+    DPLinkingLogInfo(@"removeBeacon %@", beacon.displayName);
 
     [self.beacons removeObjectAtIndex:index];
     [self saveDPLinkingBeacon];
@@ -162,7 +162,7 @@ static DPLinkingBeaconManager* _sharedInstance = nil;
         return;
     }
 
-    DCLogInfo(@"startBeaconScanWithTimeout: %f", timeout);
+    DPLinkingLogInfo(@"startBeaconScanWithTimeout: %f", timeout);
 
     if (_isStartBeaconScanTimeoutFlag && _cancelBlock) {
         _cancelBlock();
@@ -171,7 +171,7 @@ static DPLinkingBeaconManager* _sharedInstance = nil;
     __weak typeof(self) weakSelf = self;
 
     _cancelBlock = [DPLinkingUtil asyncAfterDelay:timeout block:^{
-        DCLogInfo(@"startBeaconScanWithTimeout: timeout");
+        DPLinkingLogInfo(@"startBeaconScanWithTimeout: timeout");
         if (!_isStartBeaconScanFlag) {
             [weakSelf stopBeaconScanInternal];
         }
@@ -292,14 +292,14 @@ static DPLinkingBeaconManager* _sharedInstance = nil;
 #pragma mark - Private Method
 
 - (void) startBeaconScanInternal {
-    DCLogInfo(@"startBeaconScanInternal");
+    DPLinkingLogInfo(@"startBeaconScanInternal");
     dispatch_async(dispatch_get_main_queue(), ^{
         [[BLEConnecter sharedInstance] startPartialScanDevice];
     });
 }
 
 - (void) stopBeaconScanInternal {
-    DCLogInfo(@"stopBeaconScanInternal");
+    DPLinkingLogInfo(@"stopBeaconScanInternal");
     dispatch_async(dispatch_get_main_queue(), ^{
         [[BLEConnecter sharedInstance] stopPartialScanDevice];
     });
@@ -320,7 +320,7 @@ static DPLinkingBeaconManager* _sharedInstance = nil;
 }
 
 - (void) checkConnectionOfBeacon {
-    DCLogInfo(@"DPLinkingBeaconManager::checkConnectionOfBeacon");
+    DPLinkingLogInfo(@"DPLinkingBeaconManager::checkConnectionOfBeacon");
 
     __weak typeof(self) weakSelf = self;
     NSTimeInterval now = [NSDate date].timeIntervalSince1970;
@@ -547,7 +547,7 @@ static DPLinkingBeaconManager* _sharedInstance = nil;
 #pragma mark - BLEConnecterDelegate
 
 - (void) receivedAdvertisement:(CBPeripheral *)peripheral advertisement:(NSDictionary *)data {
-    DCLogInfo(@"%@", data);
+    DPLinkingLogInfo(@"%@", data);
 
     long extraId = [[data objectForKey:kIndividualNumber] longValue];
     long vendorId = [[data objectForKey:kHeaderIdentifier] longValue];
