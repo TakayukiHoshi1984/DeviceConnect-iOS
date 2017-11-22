@@ -8,6 +8,7 @@
 //
 
 #import "DPlinkingDevice.h"
+#import <DCMDevicePluginSDK/DCMDevicePluginSDK.h>
 
 static const NSInteger kButton = (1 << 3);
 
@@ -32,12 +33,15 @@ static NSString *const kConnectFlag = @"connectFlag";
         self.ledOffPatternId = [[coder decodeObjectForKey:kLedOffPatternId] intValue];
         self.vibrationOffPatternId = [[coder decodeObjectForKey:kVibrationOffPatternId] intValue];
         self.connectFlag = [[coder decodeObjectForKey:kConnectFlag] boolValue];
+        self.temperatureType = DCMTemperatureProfileEnumCelsius;
+        self.online = NO;
 
         DCLogInfo(@"LDPDevice");
         DCLogInfo(@"    name: %@", self.name);
         DCLogInfo(@"    id: %@", self.identifier);
         DCLogInfo(@"    led: %d", self.ledOffPatternId);
         DCLogInfo(@"    vibration: %d", self.vibrationOffPatternId);
+        DCLogInfo(@"    connectFlag: %@", self.connectFlag ? @"YES" : @"NO");
     }
     return self;
 }

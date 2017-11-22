@@ -48,6 +48,10 @@ extern NSString *const DConnectTouchProfileAttrOnTouchMove;
  @brief Attribute: ontouchcancel.
  */
 extern NSString *const DConnectTouchProfileAttrOnTouchCancel;
+/*!
+ @brief Parameter: state.
+ */
+extern NSString *const DConnectTouchProfileParamState;
 
 /*!
  @brief Parameter: touch.
@@ -74,12 +78,18 @@ extern NSString *const DConnectTouchProfileParamX;
  */
 extern NSString *const DConnectTouchProfileParamY;
 
+
+
 /*!
  @class DConnectTouchProfile
  @brief Touch Profile.
  
  Receive request to the Touch Profile API.
  The received request is reported to the delegate for each API.
+ 
+ @deprecated
+ 本クラスで定義していた定数はSwagger形式の定義ファイルで管理することになったので、このクラスは使用しないこととする。
+ プロファイルを実装する際は本クラスではなく、@link DConnectProfile @endlink クラスを継承すること。
  */
 @interface DConnectTouchProfile : DConnectProfile
 
@@ -119,5 +129,6 @@ extern NSString *const DConnectTouchProfileParamY;
  @param[in,out] message message for storing Y coordinate.
  */
 + (void) setY:(int)y target:(DConnectMessage *)message;
+
 
 @end

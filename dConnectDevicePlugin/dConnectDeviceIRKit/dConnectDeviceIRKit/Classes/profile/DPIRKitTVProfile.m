@@ -12,6 +12,7 @@
 #import "DPIRKitManager.h"
 #import "DPIRKitVirtualDevice.h"
 #import "DPIRKitRESTfulRequest.h"
+#import "DPIRKitDevicePlugin.h"
 
 
 @implementation DPIRKitTVProfile
@@ -32,7 +33,7 @@
                          NSString *serviceId = [request serviceId];
                          NSString *uri = [NSString stringWithFormat:@"/%@",[request profile]];
                          
-                         return [weakSelf sendTVIRRequestWithServiceId:serviceId
+                         return [weakSelf.plugin sendTVIRRequestWithServiceId:serviceId
                                                                 method:@"PUT"
                                                                    uri:uri
                                                               response:response];
@@ -47,7 +48,7 @@
                             NSString *serviceId = [request serviceId];
                             NSString *uri = [NSString stringWithFormat:@"/%@",[request profile]];
                             
-                            return [weakSelf sendTVIRRequestWithServiceId:serviceId
+                            return [weakSelf.plugin sendTVIRRequestWithServiceId:serviceId
                                                                    method:@"DELETE"
                                                                       uri:uri
                                                                  response:response];
@@ -85,7 +86,7 @@
                              
                          }
                          
-                         return [weakSelf sendTVIRRequestWithServiceId:serviceId
+                         return [weakSelf.plugin sendTVIRRequestWithServiceId:serviceId
                                                                 method:@"PUT"
                                                                    uri:uri
                                                               response:response];
@@ -107,7 +108,7 @@
                                           DCMTVProfileParamControl,
                                           control];
                          
-                         return [weakSelf sendTVIRRequestWithServiceId:serviceId
+                         return [weakSelf.plugin sendTVIRRequestWithServiceId:serviceId
                                                                 method:@"PUT"
                                                                    uri:uri
                                                               response:response];
@@ -116,7 +117,7 @@
         
         // API登録(didReceivePutTVBroadcastWaveRequest相当)
         NSString *putTVBroadcastWaveRequestApiPath = [self apiPath: nil
-                                                     attributeName: DCMTVProfileAttrVolume];
+                                                     attributeName: DCMTVProfileAttrBroadcastwave];
         [self addPutPath: putTVBroadcastWaveRequestApiPath
                      api:^BOOL(DConnectRequestMessage *request, DConnectResponseMessage *response) {
                          
@@ -128,7 +129,7 @@
                                           DCMTVProfileParamSelect,
                                           select];
                          
-                         return [weakSelf sendTVIRRequestWithServiceId:serviceId
+                         return [weakSelf.plugin sendTVIRRequestWithServiceId:serviceId
                                                                 method:@"PUT"
                                                                    uri:uri
                                                               response:response];
@@ -139,30 +140,5 @@
     
 }
 
-
-#pragma mark - private method
-
-- (BOOL)sendTVIRRequestWithServiceId:(NSString *)serviceId
-                                 method:(NSString *)method
-                                    uri:(NSString *)uri
-                               response:(DConnectResponseMessage *)response
-{
-    BOOL send = YES;
-    NSArray *requests = [[DPIRKitDBManager sharedInstance] queryRESTfulRequestByServiceId:serviceId
-                                                                                  profile:@"/tv"];
-    if (requests.count == 0) {
-        [response setErrorToNotSupportProfile];
-        return send;
-    }
-    for (DPIRKitRESTfulRequest *req in requests) {
-        if ([req.uri isEqualToString:uri] && [req.method isEqualToString:method] && req.ir) {
-            sleep(0.5);
-            send = [self.plugin sendIRWithServiceId:serviceId message:req.ir response:response];
-        } else {
-            [response setErrorToInvalidRequestParameterWithMessage:@"IR is not registered for that request"];
-        }
-    }
-    return send;
-}
 
 @end

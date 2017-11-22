@@ -13,15 +13,12 @@
 
 @end
 
-@implementation DPLinkingSystemProfile {
-    NSString *_version;
-}
+@implementation DPLinkingSystemProfile
 
-- (instancetype) initWithVersion:(NSString *)version
+- (instancetype) init
 {
     self = [super init];
     if (self) {
-        _version = version;
         self.dataSource = self;
         
         __weak typeof(self) weakSelf = self;
@@ -36,17 +33,13 @@
     return self;
 }
 
-+ (instancetype) systemProfileWithVersion:(NSString *)version
++ (instancetype) systemProfile
 {
-    return [[DPLinkingSystemProfile alloc] initWithVersion:version];
+    return [DPLinkingSystemProfile new];
 }
 
 #pragma mark - DConnectSystemProfileDataSource
 
-- (NSString *) versionOfSystemProfile:(DConnectSystemProfile *)profile
-{
-    return _version;
-}
 
 - (UIViewController *) profile:(DConnectSystemProfile *)sender
          settingPageForRequest:(DConnectRequestMessage *)request

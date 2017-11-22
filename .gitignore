@@ -308,3 +308,4 @@ dConnectDevicePlugin/dConnectDeviceLinking/Libs
 dConnectSDK/dConnectBrowserForIOS9/Pods
 Podfile.lock
 dConnectSDK/dConnectBrowserForIOS9/dConnectBrowserForIOS9.xcworkspace
+dConnectDevicePlugin/dConnectDeviceHue/HueSDK_iOS.framework

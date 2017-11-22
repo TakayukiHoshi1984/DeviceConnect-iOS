@@ -28,6 +28,10 @@ extern NSString *const DConnectKeyEventProfileAttrOnDown;
  @brief Attribute: up.
  */
 extern NSString *const DConnectKeyEventProfileAttrOnUp;
+/*!
+ @brief Attribute: keychange.
+ */
+extern NSString *const DConnectKeyEventProfileAttrOnKeyChange;
 
 /*!
  @brief Parameter: keyevent.
@@ -43,7 +47,10 @@ extern NSString *const DConnectKeyEventProfileParamId;
  @brief Parameter: config.
  */
 extern NSString *const DConnectKeyEventProfileParamConfig;
-
+/*!
+ @brief Parameter: state.
+ */
+extern NSString *const DConnectKeyEventProfileParamState;
 /*!
  @brief Parameter: Key Type(KEYTYPE_STD_KEY).
  */
@@ -63,6 +70,14 @@ extern int const DConnectKeyEventProfileKeyTypeDpadButton;
  @brief Parameter: Key Type(KEYTYPE_USER).
  */
 extern int const DConnectKeyEventProfileKeyTypeUser;
+/*!
+ @brief Parameter: Key State(down).
+ */
+extern NSString *const DConnectKeyEventProfileKeyStateDown;
+/*!
+ @brief Parameter: Key State(up).
+ */
+extern NSString *const DConnectKeyEventProfileKeyStateUp;
 
 
 /*!
@@ -71,6 +86,10 @@ extern int const DConnectKeyEventProfileKeyTypeUser;
  
  Receive request to the Key Event Profile API.
  The received request is reported to the delegate for each API.
+ 
+ @deprecated
+ 本クラスで定義していた定数はSwagger形式の定義ファイルで管理することになったので、このクラスは使用しないこととする。
+ プロファイルを実装する際は本クラスではなく、@link DConnectProfile @endlink クラスを継承すること。
  */
 @interface DConnectKeyEventProfile : DConnectProfile
 
@@ -96,5 +115,11 @@ extern int const DConnectKeyEventProfileKeyTypeUser;
  @param[in,out] message message for storing button configure.
  */
 + (void) setConfig:(NSString *)config target:(DConnectMessage *)message;
+/*!
+ @brief Set key event state to message.
+ @param[in] state button state.
+ @param[in,out] message message for storing button state.
+ */
++ (void) setState:(NSString *)state target:(DConnectMessage *)message;
 
 @end

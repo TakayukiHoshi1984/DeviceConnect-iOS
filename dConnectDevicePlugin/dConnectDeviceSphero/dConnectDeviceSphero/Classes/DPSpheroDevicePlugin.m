@@ -12,6 +12,9 @@
 #import "DPSpheroManager.h"
 #import <RobotKit/RobotKit.h>
 
+#define DPSpheroBundle() \
+[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"dConnectDeviceSphero_resources" ofType:@"bundle"]]
+
 @interface DPSpheroDevicePlugin()
 @end
 
@@ -38,30 +41,18 @@
         __weak typeof(self) _self = self;
         dispatch_async(dispatch_get_main_queue(), ^{
             NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-            UIApplication *application = [UIApplication sharedApplication];
-            
             [notificationCenter addObserver:_self selector:@selector(enterForeground)
-                       name:UIApplicationWillEnterForegroundNotification
-                     object:application];
-            
+                                       name:UIApplicationWillEnterForegroundNotification
+                                     object:nil];
             [notificationCenter addObserver:_self selector:@selector(enterBackground)
-                       name:UIApplicationDidEnterBackgroundNotification
-                     object:application];
-            [notificationCenter addObserver:_self selector:@selector(enterNoLongerAvailable)
-                                       name:RKRobotIsNoLongerAvailableNotification
-                                     object:application];
-
-            /* Regained connection noitification */
-            [notificationCenter addObserver:_self
-                                   selector:@selector(handleRobotOnline)
-                                       name:RKRobotDidGainControlNotification
+                                       name:UIApplicationDidEnterBackgroundNotification
                                      object:nil];
             
             // Takes ~20 seconds to recognize a ball going offline
             // Recognizes immediately when we close the connection to the ball
             [notificationCenter addObserver:_self
                                    selector:@selector(handleRobotOffline)
-                                       name:RKRobotIsNoLongerAvailableNotification
+                                       name:kRobotIsAvailableNotification
                                      object:nil];
         });
     }
@@ -75,9 +66,6 @@
 - (void)enterForeground {
     [[DPSpheroManager sharedManager] applicationWillEnterForeground];
 }
-- (void)enterNoLongerAvailable {
-    [[DPSpheroManager sharedManager] applicationDidEnterBackground];
-}
 
 - (void)handleRobotOnline {
     [[DPSpheroManager sharedManager] updateManageServices];
@@ -88,10 +76,14 @@
 
 - (NSString*)iconFilePath:(BOOL)isOnline
 {
-    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"dConnectDeviceSphero_resources" ofType:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+    NSBundle *bundle = DPSpheroBundle();
     NSString* filename = isOnline ? @"dconnect_icon" : @"dconnect_icon_off";
     return [bundle pathForResource:filename ofType:@"png"];
+}
+#pragma mark - DevicePlugin's bundle
+- (NSBundle*)pluginBundle
+{
+    return [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"dConnectDeviceSphero_resources" ofType:@"bundle"]];
 }
 
 - (void) dealloc {
@@ -101,8 +93,7 @@
     
     [notificationCenter removeObserver:self name:UIApplicationDidBecomeActiveNotification object:application];
     [notificationCenter removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:application];
-    [notificationCenter removeObserver:self name:RKRobotIsNoLongerAvailableNotification object:application];
-    [notificationCenter removeObserver:self name:RKRobotDidGainControlNotification object:application];
-    [notificationCenter removeObserver:self name:RKRobotIsNoLongerAvailableNotification object:application];
+    [notificationCenter removeObserver:self name:kRobotIsAvailableNotification object:application];
+    [notificationCenter removeObserver:self name:kRobotDidChangeStateNotification object:application];
 }
 @end

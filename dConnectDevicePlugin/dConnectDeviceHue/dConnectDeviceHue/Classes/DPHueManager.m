@@ -10,15 +10,19 @@
 #import "DPHueManager.h"
 #import "DPHueService.h"
 #import "DPHueReachability.h"
+#import "DPHueDeviceRepeatExecutor.h"
 
 @interface DPHueManager()
 
 @property (nonatomic, strong) DPHueReachability *reachability;
-
+@property (nonatomic, strong) PHBridgeSendErrorArrayCompletionHandler completionHandler;
 @end
 
 
-@implementation DPHueManager
+@implementation DPHueManager {
+    DPHueDeviceRepeatExecutor *_flashingExecutor;
+}
+
 //見つけたブリッジのリスト
 NSString *const DPHueBridgeListName = @"org.deviceconnect.ios.DPHue.ip";
 
@@ -50,7 +54,7 @@ NSString *const DPHueBridgeListName = @"org.deviceconnect.ios.DPHue.ip";
         phHueSDK = [[PHHueSDK alloc] init];
         [phHueSDK startUpSDK];
         [phHueSDK enableLogging:NO];
-        bridgeSearching = [[PHBridgeSearching alloc] initWithUpnpSearch:YES andPortalSearch:YES andIpAdressSearch:NO];
+        bridgeSearching = [[PHBridgeSearching alloc] initWithUpnpSearch:YES andPortalSearch:YES andIpAddressSearch:NO];
     }
     
     // Reachabilityの初期処理
@@ -76,13 +80,13 @@ NSString *const DPHueBridgeListName = @"org.deviceconnect.ios.DPHue.ip";
         if (completion) {
             completion(bridgesFound);
         }
-        [self updateManageServices: YES];
+        [self updateManageServices: NO];
     }];
 }
 
 //ブリッジへの認証依頼
 -(void)startAuthenticateBridgeWithIpAddress:(NSString*)ipAddress
-                                        macAddress:(NSString*)macAddress
+                                        bridgeId:(NSString*)bridgeId
                                           receiver:(id)receiver
                     localConnectionSuccessSelector:(SEL)localConnectionSuccessSelector
                                  noLocalConnection:(SEL)noLocalConnection
@@ -110,10 +114,12 @@ NSString *const DPHueBridgeListName = @"org.deviceconnect.ios.DPHue.ip";
         [notificationManager registerObject:registerReceiver withSelector:notAuthenticated forNotification:
          NO_LOCAL_AUTHENTICATION_NOTIFICATION];
     }
-    if ((ipAddress != nil) && (macAddress != nil)) {
-        [phHueSDK setBridgeToUseWithIpAddress:ipAddress macAddress:macAddress];
+    if ((ipAddress != nil) && (bridgeId != nil)) {
+        [phHueSDK setBridgeToUseWithId:bridgeId ipAddress:ipAddress];
     }
-    [self enableHeartbeat];
+//    [self enableHeartbeat];
+    [self performSelector:@selector(enableHeartbeat) withObject:nil afterDelay:0.5];
+
 }
 
 //Pushlinkの確認開始
@@ -362,19 +368,19 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
 //使用できるライトの検索
 -(void)searchLightWithCompletion:(PHBridgeSendErrorArrayCompletionHandler)completion {
     PHBridgeSendAPI *bridgeSendAPI = [[PHBridgeSendAPI alloc] init];
-    [bridgeSendAPI searchForNewLights:completion];
+    [bridgeSendAPI searchForNewLightsWithDelegate:self];
+    _completionHandler = completion;
 }
 
 
 //Serialを指定してライトを登録する
 -(void)registerLightForSerialNo:(NSArray*)serialNos
-                     completion:
-(PHBridgeSendErrorArrayCompletionHandler)completion
+                     completion:(PHBridgeSendErrorArrayCompletionHandler)completion
 {
     
     PHBridgeSendAPI *bridgeSendAPI = [[PHBridgeSendAPI alloc] init];
-    [bridgeSendAPI searchForNewLightsWithSerials:serialNos completionHandler:completion];
-    
+    [bridgeSendAPI searchForNewLightsWithSerials:serialNos delegate:self];
+    _completionHandler = completion;
 }
 
 
@@ -418,6 +424,24 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
         phHueSDK = nil;
     }
 }
+
+
+#pragma mark - PHSearchForNewDevicesDelegate delegate
+- (void)hueDeviceSearchStarted {
+}
+- (void)hueDeviceSearchFailed:(NSArray*)errors {
+    if (_completionHandler) {
+        _completionHandler(errors);
+        _completionHandler = nil;
+    }
+}
+- (void)hueDeviceSearchFinished {
+    if (_completionHandler) {
+        _completionHandler([NSArray array]);
+        _completionHandler = nil;
+    }
+}
+
 
 #pragma mark - private method
 
@@ -603,6 +627,7 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
                            completion:(void(^)())completion
 {
     PHBridgeSendAPI *bridgeSendAPI = [[PHBridgeSendAPI alloc] init];
+
     //メインスレッドで動作させる
     dispatch_sync(dispatch_get_main_queue(), ^{
         if (flashing && flashing.count > 0) {
@@ -611,31 +636,20 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
                                                errors:nil
                                            errorState:STATE_ERROR_UPDATE_FAIL_LIGHT_STATE];
 
-            for (int i = 0; i < flashing.count; i++) {
-                int delay = [flashing[i] intValue];
-                if (i % 2 == 0) {
-                    [bridgeSendAPI updateLightStateForId:lightId withLightState:lightState completionHandler:^(NSArray *errors) {
-                        
-                        
-                    }];
-                    sleep(delay / 1000);
-                } else {
-                    [bridgeSendAPI updateLightStateForId:lightId withLightState:offState completionHandler:^(NSArray *errors) {
-                        
-                        
-                    }];
-                    sleep(delay / 1000);
-                }
-            }
+            _flashingExecutor = [[DPHueDeviceRepeatExecutor alloc] initWithPattern:flashing on:^{
+                [bridgeSendAPI updateLightStateForId:lightId withLightState:lightState completionHandler:^(NSArray *errors) {
+                }];
+            } off:^{
+                [bridgeSendAPI updateLightStateForId:lightId withLightState:offState completionHandler:^(NSArray *errors) {
+                }];
+            }];
+
         } else {
             [bridgeSendAPI updateLightStateForId:lightId withLightState:lightState completionHandler:^(NSArray *errors) {
-                
                 [self setCompletionWithResponseCompletion:completion
                                                    errors:errors
                                                errorState:STATE_ERROR_UPDATE_FAIL_LIGHT_STATE];
-                
             }];
-
         }
     });
     
@@ -674,34 +688,31 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
     
     PHBridgeSendAPI *bridgeSendAPI = [[PHBridgeSendAPI alloc] init];
     PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-    //メインスレッドで動作させる
+
+    //　メインスレッドで動作させる
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     dispatch_time_t timeout = dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 500);
     PHLightState* onState = [self getLightStateIsOn:YES brightness:brightness color:color];
     [self changeLightStatusWithLightId:lightId
-                            lightState:onState flashing:flashing completion:^(NSArray *errors) {
-                                
+                            lightState:onState
+                              flashing:flashing
+                            completion:^(NSArray *errors) {
 //                                [self setCompletionWithResponseCompletion:completion
 //                                                                   errors:errors
 //                                                               errorState:STATE_ERROR_CHANGE_FAIL_LIGHT_NAME];
-                                                    dispatch_semaphore_signal(semaphore);
+                                dispatch_semaphore_signal(semaphore);
                             }];
     dispatch_semaphore_wait(semaphore, timeout);
 
     dispatch_sync(dispatch_get_main_queue(), ^{
-        
         for (PHLight *light in cache.lights.allValues) {
             if ([light.identifier isEqualToString:lightId]) {
-                
                 [light setName:name];
-                
                 [bridgeSendAPI updateLightWithLight:light completionHandler:^(NSArray *errors) {
-                    
                     [self setCompletionWithResponseCompletion:completion
                                          errors:errors
                                    errorState:STATE_ERROR_CHANGE_FAIL_LIGHT_NAME];
                 }];
-                
                 break;
             }
         }

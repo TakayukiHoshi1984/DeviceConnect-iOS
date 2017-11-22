@@ -9,7 +9,7 @@
 
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <DConnectSDK/DConnectFileManager.h>
-
+#import <ImageIO/ImageIO.h>
 #import "DPHostDevicePlugin.h"
 #import "DPHostService.h"
 #import "DPHostMediaStreamRecordingProfile.h"
@@ -405,7 +405,7 @@ typedef NS_ENUM(NSUInteger, OptionIndex) {
                      api:^BOOL(DConnectRequestMessage *request, DConnectResponseMessage *response) {
                          
                          NSString *target = [DConnectMediaStreamRecordingProfile targetFromRequest:request];
-                         NSLog(@"target :%@", target);
+
                          unsigned long long idx;
                          if (target || (target && target.length > 0)) {
                              if ([target isEqualToString:@"video"]) {
@@ -466,6 +466,9 @@ typedef NS_ENUM(NSUInteger, OptionIndex) {
                          }
                          
                          __block BOOL isSync = YES;
+                         if (recorder.videoConnection.supportsVideoOrientation) {
+                             recorder.videoConnection.videoOrientation = videoOrientationFromDeviceOrientation([UIDevice currentDevice].orientation);
+                         }
                          [recorder performWriting:
                           ^{
                               if (recorder.type != RecorderTypePhoto) {
@@ -479,10 +482,14 @@ typedef NS_ENUM(NSUInteger, OptionIndex) {
                                   [recorder.session startRunning];
                               }
                               
+                              // ライトが点いていたら消灯する。
+                              [weakSelf setLightOff];
+                              
                               // 写真を撮影する。
                               __block AVCaptureDevice *captureDevice = [AVCaptureDevice deviceWithUniqueID:recorder.videoDevice.uniqueId];
                               NSError *error;
                               [captureDevice lockForConfiguration:&error];
+                              
                               if (error) {
                                   NSLog(@"Failed to acquire a configuration lock for %@.", captureDevice.uniqueID);
                               } else {
@@ -538,6 +545,7 @@ typedef NS_ENUM(NSUInteger, OptionIndex) {
                                    NSData *jpegData;
                                    @try {
                                        jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+ 
                                    }
                                    @catch (NSException *exception) {
                                        NSString *message;
@@ -551,12 +559,17 @@ typedef NS_ENUM(NSUInteger, OptionIndex) {
                                        return;
                                    }
                                    
-                                   // 新たな画像アセットとしてカメラロールに保存
-                                   CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault,
-                                                                                               imageDataSampleBuffer,
-                                                                                               kCMAttachmentMode_ShouldPropagate);
-                                   [[weakSelf library] writeImageDataToSavedPhotosAlbum:jpegData metadata:(__bridge id)attachments
-                                                              completionBlock:
+                                   // EXIF情報を水平に統一する。ブラウザによってはEXIF情報により画像の向きが変わるため。
+                                   CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)jpegData, NULL);
+                                   NSDictionary *metadata = (__bridge NSDictionary*) CGImageSourceCopyPropertiesAtIndex(source, 0, NULL);
+                                   NSMutableDictionary *meta = [NSMutableDictionary dictionaryWithDictionary:metadata];
+                                   NSMutableDictionary *tiff = meta[(NSString*) kCGImagePropertyTIFFDictionary];
+                                   tiff[(NSString*) kCGImagePropertyTIFFOrientation] = @(kCGImagePropertyOrientationUp);
+                                   meta[(NSString*) kCGImagePropertyTIFFDictionary] = tiff;
+                                   meta[(NSString*) kCGImagePropertyOrientation] = @(kCGImagePropertyOrientationUp);
+                                   UIImage *jpeg = [[UIImage alloc] initWithData:jpegData];
+                                   UIImage *fixJpeg = [weakSelf fixOrientationWithImage:jpeg position:recorder.videoDevice.position];
+                                   [[weakSelf library] writeImageToSavedPhotosAlbum:fixJpeg.CGImage metadata:meta completionBlock:
                                     ^(NSURL *assetURL, NSError *error) {
                                         if (!assetURL || error) {
                                             [response setErrorToUnknownWithMessage:@"Failed to save a photo to camera roll."];
@@ -688,6 +701,9 @@ typedef NS_ENUM(NSUInteger, OptionIndex) {
                                    return;
                                }
                                
+                               // ライトが点いていたら消灯する。
+                               [weakSelf setLightOff];
+
                                recorder.videoOrientation = [recorder.videoConnection videoOrientation];
                                
                                AVCaptureDevice *captureDevice = [AVCaptureDevice deviceWithUniqueID:recorder.videoDevice.uniqueId];
@@ -728,6 +744,9 @@ typedef NS_ENUM(NSUInteger, OptionIndex) {
                                    [recorder.session startRunning];
                                }
                                isSync = NO;
+                               [weakSelf sendOnRecordingChangeEventWithStatus:DConnectMediaStreamRecordingProfileRecordingStateRecording
+                                                                         path:nil mimeType:recorder.mimeType
+                                                                 errorMessage:nil];
                            }];
                           
                           return isSync;
@@ -1538,6 +1557,7 @@ typedef NS_ENUM(NSUInteger, OptionIndex) {
         DConnectMessage *media = [DConnectMessage message];
         [DConnectMediaStreamRecordingProfile setStatus:status target:media];
         if (path) {
+            [DConnectMediaStreamRecordingProfile setUri:path target:media];
             [DConnectMediaStreamRecordingProfile setPath:path target:media];
         }
         if (mimeType) {
@@ -1658,6 +1678,115 @@ typedef NS_ENUM(NSUInteger, OptionIndex) {
     }
 }
 
+AVCaptureVideoOrientation videoOrientationFromDeviceOrientation(UIDeviceOrientation deviceOrientation)
+{
+    AVCaptureVideoOrientation orientation;
+    switch (deviceOrientation) {
+        case UIDeviceOrientationUnknown:
+            orientation = AVCaptureVideoOrientationPortrait;
+            break;
+        case UIDeviceOrientationPortrait:
+            orientation = AVCaptureVideoOrientationPortrait;
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            orientation = AVCaptureVideoOrientationPortraitUpsideDown;
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+            orientation = AVCaptureVideoOrientationLandscapeRight;
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            orientation = AVCaptureVideoOrientationLandscapeLeft;
+            break;
+        case UIDeviceOrientationFaceUp:
+            orientation = AVCaptureVideoOrientationPortrait;
+            break;
+        case UIDeviceOrientationFaceDown:
+            orientation = AVCaptureVideoOrientationPortrait;
+            break;
+    }
+    return orientation;
+}
+- (UIImage *)fixOrientationWithImage:(UIImage *)image position:(AVCaptureDevicePosition) position{
+    
+    if (image.imageOrientation == UIImageOrientationUp && position != AVCaptureDevicePositionFront) return image;
+
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    
+    switch (image.imageOrientation) {
+        case UIImageOrientationDown:
+        case UIImageOrientationDownMirrored:
+            transform = CGAffineTransformTranslate(transform, image.size.width, image.size.height);
+            transform = CGAffineTransformRotate(transform, M_PI);
+            break;
+            
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+            transform = CGAffineTransformTranslate(transform, image.size.width, 0);
+            transform = CGAffineTransformRotate(transform, M_PI_2);
+            break;
+            
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            transform = CGAffineTransformTranslate(transform, 0, image.size.height);
+            transform = CGAffineTransformRotate(transform, -M_PI_2);
+            break;
+        case UIImageOrientationUp:
+        case UIImageOrientationUpMirrored:
+            break;
+    }
+    
+    switch (position) {
+        case AVCaptureDevicePositionFront:
+            switch (image.imageOrientation) {
+                    
+                case UIImageOrientationLeft:
+                case UIImageOrientationLeftMirrored:
+                case UIImageOrientationRight:
+                case UIImageOrientationRightMirrored:
+                    transform = CGAffineTransformTranslate(transform, 0, image.size.width);
+                    transform = CGAffineTransformScale(transform, 1, -1);
+                    break;
+                case UIImageOrientationDown:
+                case UIImageOrientationDownMirrored:
+                case UIImageOrientationUp:
+                case UIImageOrientationUpMirrored:
+                default:
+                    transform = CGAffineTransformTranslate(transform, image.size.width, 0);
+                    transform = CGAffineTransformScale(transform, -1, 1);
+                    break;
+            }
+
+            break;
+        case AVCaptureDevicePositionUnspecified:
+        case AVCaptureDevicePositionBack:
+        default:
+            break;
+    }
+
+    CGContextRef ctx = CGBitmapContextCreate(NULL, image.size.width, image.size.height,
+                                             CGImageGetBitsPerComponent(image.CGImage), 0,
+                                             CGImageGetColorSpace(image.CGImage),
+                                             CGImageGetBitmapInfo(image.CGImage));
+    CGContextConcatCTM(ctx, transform);
+    switch (image.imageOrientation) {
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+
+            CGContextDrawImage(ctx, CGRectMake(0,0,image.size.height,image.size.width), image.CGImage);
+            break;
+            
+        default:
+            CGContextDrawImage(ctx, CGRectMake(0,0,image.size.width,image.size.height), image.CGImage);
+            break;
+    }
+    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
+    UIImage *img = [UIImage imageWithCGImage:cgimg];
+    CGContextRelease(ctx);
+    CGImageRelease(cgimg);
+    return img;
+}
 #pragma mark - AVCapture{Audio,Video}DataOutputSampleBufferDelegate
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput
@@ -1941,6 +2070,16 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     if ( UIDeviceOrientationIsPortrait(orientation) || UIDeviceOrientationIsLandscape(orientation) ) {
         _referenceOrientation = orientation;
     }
+}
+
+- (void)setLightOff
+{
+    AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    [captureDevice lockForConfiguration:NULL];
+    if (captureDevice.torchMode == AVCaptureTorchModeOn) {
+        captureDevice.torchMode = AVCaptureTorchModeOff;
+    }
+    [captureDevice unlockForConfiguration];
 }
 
 @end

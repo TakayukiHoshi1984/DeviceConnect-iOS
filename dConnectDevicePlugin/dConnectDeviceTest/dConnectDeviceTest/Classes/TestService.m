@@ -10,7 +10,7 @@
 #import "TestService.h"
 #import "TestLightProfile.h"
 #import "TestBatteryProfile.h"
-#import "TestConnectProfile.h"
+#import "TestConnectionProfile.h"
 #import "TestDeviceOrientationProfile.h"
 #import "TestFileDescriptorProfile.h"
 #import "TestFileProfile.h"
@@ -19,7 +19,7 @@
 #import "TestNotificationProfile.h"
 #import "TestPhoneProfile.h"
 #import "TestProximityProfile.h"
-#import "TestSettingsProfile.h"
+#import "TestSettingProfile.h"
 #import "TestVibrationProfile.h"
 #import "TestUniquePingProfile.h"
 #import "TestUniqueTimeoutProfile.h"
@@ -27,6 +27,7 @@
 #import "TestRemoteControllerProfile.h"
 #import "TestDriveControllerProfile.h"
 #import "TestOmnidirectionalImageProfile.h"
+#import "TestAllGetControlProfile.h"
 
 NSString *const TestNetworkServiceIdSpecialCharacters = @"!#$'()-~¥@[;+:*],._/=?&%^|`\"{}<>";
 NSString *const TestNetworkDeviceName = @"Test Success Device";
@@ -51,7 +52,7 @@ static NSString *const TestNetworkDeviceConfig = @"test config";
         // プロファイルを追加
         [self addProfile:[TestLightProfile new]];
         [self addProfile:[TestBatteryProfile new]];
-        [self addProfile:[TestConnectProfile new]];
+        [self addProfile:[TestConnectionProfile new]];
         [self addProfile:[TestDeviceOrientationProfile new]];
         [self addProfile:[TestFileDescriptorProfile new]];
         [self addProfile:[TestFileProfile new]];
@@ -60,7 +61,7 @@ static NSString *const TestNetworkDeviceConfig = @"test config";
         [self addProfile:[TestNotificationProfile new]];
         [self addProfile:[TestPhoneProfile new]];
         [self addProfile:[TestProximityProfile new]];
-        [self addProfile:[TestSettingsProfile new]];
+        [self addProfile:[TestSettingProfile new]];
         [self addProfile:[TestVibrationProfile new]];
         [self addProfile:[TestRemoteControllerProfile new]];
         [self addProfile:[TestDriveControllerProfile new]];
@@ -69,6 +70,7 @@ static NSString *const TestNetworkDeviceConfig = @"test config";
         [self addProfile:[TestUniquePingProfile new]];
         [self addProfile:[TestUniqueTimeoutProfile new]];
         [self addProfile:[TestUniqueEventProfile new]];
+        [self addProfile:[TestAllGetControlProfile new]];
     }
     return self;
     

@@ -9,21 +9,18 @@
 
 #import <DConnectSDK/DConnectFileManager.h>
 #import <DConnectSDK/DConnectEventManager.h>
-#import <DConnectSDK/DConnectMemoryCacheController.h>
 #import <DConnectSDK/DConnectServiceManager.h>
 
 #import "DPHostDevicePlugin.h"
 #import "DPHostSystemProfile.h"
 #import "DPHostService.h"
 
+#define DPHostBundle() \
+[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"dConnectDeviceHost_resources" ofType:@"bundle"]]
+
 @implementation DPHostDevicePlugin
 
 + (void) initialize {
-    // イベントマネージャの準備
-    Class clazz = [DPHostDevicePlugin class];
-    DConnectEventManager *eventMgr =
-    [DConnectEventManager sharedManagerForClass:clazz];
-    [eventMgr setController:[DConnectMemoryCacheController new]];
 }
 
 - (id) init {
@@ -50,10 +47,14 @@
 
 - (NSString*)iconFilePath:(BOOL)isOnline
 {
-    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"dConnectDeviceHost_resources" ofType:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+    NSBundle *bundle = DPHostBundle();
     NSString* filename = isOnline ? @"dconnect_icon" : @"dconnect_icon_off";
     return [bundle pathForResource:filename ofType:@"png"];
 }
 
+#pragma mark - DevicePlugin's bundle
+- (NSBundle*)pluginBundle
+{
+    return [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"dConnectDeviceHost_resources" ofType:@"bundle"]];
+}
 @end

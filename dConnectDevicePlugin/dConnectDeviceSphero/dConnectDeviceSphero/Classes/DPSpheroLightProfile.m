@@ -10,15 +10,19 @@
 #import "DPSpheroLightProfile.h"
 #import "DPSpheroDevicePlugin.h"
 #import "DPSpheroManager.h"
+#import "DPSpheroDeviceRepeatExecutor.h"
 
 //LEDは色を変えられる
-NSString *const SpheroLED = @"1";
-NSString *const SpheroLEDName = @"Sphero LED";
+static NSString *const SpheroLED = @"1";
+static NSString *const SpheroLEDName = @"Sphero LED";
 //Calibrationは色を変えられない
-NSString *const SpheroCalibration = @"2";
-NSString *const SpheroCalibrationName = @"Sphero CalibrationLED";
+static NSString *const SpheroCalibration = @"2";
+static NSString *const SpheroCalibrationName = @"Sphero CalibrationLED";
 
-@implementation DPSpheroLightProfile
+@implementation DPSpheroLightProfile {
+    DPSpheroDeviceRepeatExecutor *_flashingExecutor;
+}
+
 
 // 初期化
 - (id)init
@@ -47,13 +51,14 @@ NSString *const SpheroCalibrationName = @"Sphero CalibrationLED";
                          
                          [response setResult:DConnectMessageResultTypeOk];
                          
-                         //全体の色を変えるためのID
+                         // 全体の色を変えるためのID
                          [DConnectLightProfile setLightId:SpheroLED target:led];
                          [DConnectLightProfile setLightName:SpheroLEDName target:led];
                          [DConnectLightProfile setLightOn:[DPSpheroManager sharedManager].isLEDOn target:led];
                          [DConnectLightProfile setLightConfig:@"" target:led];
                          [lights addMessage:led];
-                         //CalibrationのライトをつけるためのID(ON/OFFのみ)
+
+                         // CalibrationのライトをつけるためのID(ON/OFFのみ)
                          [DConnectLightProfile setLightId:SpheroCalibration target:calibration];
                          [DConnectLightProfile setLightName:SpheroCalibrationName target:calibration];
                          [DConnectLightProfile setLightOn:[DPSpheroManager sharedManager].calibrationLightBright>0 target:calibration];
@@ -128,18 +133,23 @@ NSString *const SpheroCalibrationName = @"Sphero CalibrationLED";
                                 [response setErrorToEmptyServiceId];
                                 return YES;
                             }
+
+                            // lightIdが省略された場合には、SpherorLEBを使用する
+                            if (!lightId) {
+                                lightId = SpheroLED;
+                            }
                             
                             // 接続確認
                             CONNECT_CHECK();
                             
                             if ([lightId isEqualToString:SpheroCalibration]) {
                                 // キャリブレーションライト消灯。
-                                [DPSpheroManager sharedManager].calibrationLightBright = 0;
+                                [[DPSpheroManager sharedManager] setCalibrationLightBright:0 serviceId:serviceId];
                             } else if ([lightId isEqualToString:SpheroLED]) {
                                 // LED消灯
-                                [DPSpheroManager sharedManager].LEDLightColor = [UIColor blackColor];
+                                [[DPSpheroManager sharedManager] setLEDLightColor:[UIColor blackColor] serviceId:serviceId];
                             } else {
-                                // lightId確認
+                                // lightIdエラー
                                 [response setErrorToInvalidRequestParameterWithMessage:@"lightId is Invalid."];
                                 return YES;
                             }
@@ -176,6 +186,11 @@ NSString *const SpheroCalibrationName = @"Sphero CalibrationLED";
         return YES;
     }
     
+    // lightIdが省略された場合には、SpherorLEDを使用する
+    if (!lightId) {
+        lightId = SpheroLED;
+    }
+    
     // 接続確認
     CONNECT_CHECK();
     
@@ -185,6 +200,7 @@ NSString *const SpheroCalibrationName = @"Sphero CalibrationLED";
         [response setErrorToInvalidRequestParameterWithMessage:@"lightId is Invalid."];
         return YES;
     }
+
     NSString *brightnessString = [request stringForKey:DConnectLightProfileParamBrightness];
     if (brightnessString &&
         (![[DPSpheroManager sharedManager] existDecimalWithString:brightnessString]
@@ -195,12 +211,16 @@ NSString *const SpheroCalibrationName = @"Sphero CalibrationLED";
     
     if ([lightId isEqualToString:SpheroCalibration]) {
         // キャリブレーションライト点灯。 colorは変えられない。点灯、消灯のみ
-        if (flashing.count>0) {
+        if (flashing.count > 0) {
             // 点滅
-            [[DPSpheroManager sharedManager] flashLightWithBrightness:[brightness doubleValue] flashData:flashing];
+            _flashingExecutor = [[DPSpheroDeviceRepeatExecutor alloc] initWithPattern:flashing on:^{
+                [[DPSpheroManager sharedManager] setCalibrationLightBright:[brightness doubleValue] serviceId:serviceId];
+            } off:^{
+                [[DPSpheroManager sharedManager] setCalibrationLightBright:0 serviceId:serviceId];
+            }];
         } else {
             // 点灯
-            [DPSpheroManager sharedManager].calibrationLightBright = [brightness doubleValue];
+            [[DPSpheroManager sharedManager] setCalibrationLightBright:[brightness doubleValue] serviceId:serviceId];
         }
     } else if ([lightId isEqualToString:SpheroLED]) {
         // LED点灯
@@ -237,10 +257,15 @@ NSString *const SpheroCalibrationName = @"Sphero CalibrationLED";
         }
         if (flashing.count>0) {
             // 点滅
-            [[DPSpheroManager sharedManager] flashLightWithColor:ledColor flashData:flashing];
+            _flashingExecutor = [[DPSpheroDeviceRepeatExecutor alloc] initWithPattern:flashing on:^{
+                [[DPSpheroManager sharedManager] setLEDLightColor:ledColor serviceId:serviceId];
+            } off:^{
+                [[DPSpheroManager sharedManager] setLEDLightColor: [UIColor blackColor] serviceId:serviceId];
+            }];
+
         } else {
             // 点灯
-            [DPSpheroManager sharedManager].LEDLightColor = ledColor;
+            [[DPSpheroManager sharedManager] setLEDLightColor:ledColor serviceId:serviceId];
         }
     }
     [response setResult:DConnectMessageResultTypeOk];

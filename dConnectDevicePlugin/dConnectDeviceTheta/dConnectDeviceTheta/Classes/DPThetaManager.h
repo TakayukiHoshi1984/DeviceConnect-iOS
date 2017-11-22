@@ -23,6 +23,10 @@ return YES; \
 #define SELF_PLUGIN ((DPThetaDevicePlugin *)self.plugin)
 #define WEAKSELF_PLUGIN ((DPThetaDevicePlugin *)weakSelf.plugin)
 
+// Bundle取得用マクロ
+#define DPThetaBundle() \
+[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"dConnectDeviceTheta_resources" ofType:@"bundle"]]
+
 
 /*!
  @class DPThetaManager
@@ -68,7 +72,7 @@ typedef void (^DPThetaOnPhotoBlock)(NSString *path);
  @param[out] status 動画撮影中のステータス
  @param[out] message エラーメッセージがある場合
  */
-typedef void (^DPThetaOnStatusChangeCallback)(PtpIpObjectInfo *object, NSString *status, NSString *message);
+typedef void (^DPThetaOnStatusChangeCallback)(NSString *status, NSString *message);
 
 /*!
  @brief DPSpheroManagerの共有インスタンスを返す。
@@ -155,7 +159,7 @@ typedef void (^DPThetaOnStatusChangeCallback)(PtpIpObjectInfo *object, NSString 
  @param[in] callback イベントを送信する
  */
 - (void)addOnStatusEventCallbackWithID:(NSString*)serviceId
-                              callback:(void (^)(PtpIpObjectInfo *object, NSString *status, NSString *message))callback;
+                              callback:(void (^)(NSString *status, NSString *message))callback;
 
 /*!
  @brief OnPhotoのイベントを解除する。

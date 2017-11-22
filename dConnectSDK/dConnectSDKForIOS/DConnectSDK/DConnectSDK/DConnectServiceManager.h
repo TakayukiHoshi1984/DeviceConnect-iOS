@@ -12,9 +12,11 @@
 #import <DConnectSDK/DConnectServiceProvider.h>
 #import <DConnectSDK/DConnectPluginSpec.h>
 
+/*!
+ @class DConnectServiceManager
+ @brief 当該プラグインのDeviceConnectサービスを管理する。
+ */
 @interface DConnectServiceManager : DConnectServiceProvider<OnStatusChangeListener>
-
-@property(nonatomic, strong) DConnectPluginSpec *pluginSpec;
 
 
 /*!
@@ -31,21 +33,10 @@
  */
 + (DConnectServiceManager *)sharedForKey: (NSString *)key;
 
+/*!
+ @brief プラグインを対応づける。
+ @param[in] plugin DConnectDevicePluginのインスタンス。
+ */
 - (void) setPlugin: (id) plugin;
-
-#pragma mark - DConnectServiceProvider Implement.
-
-- (id) plugin;
-
-- (void) addService: (DConnectService *) service;
-
-- (void) removeService: (NSString *) serviceId;
-
-- (DConnectService *) service: (NSString *) serviceId;
-
-- (NSArray *) services;
-
-- (BOOL) hasService: (NSString *)serviceId;
-
 
 @end

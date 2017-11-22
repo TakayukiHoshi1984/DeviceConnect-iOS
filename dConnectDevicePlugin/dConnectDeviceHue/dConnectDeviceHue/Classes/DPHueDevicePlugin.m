@@ -14,6 +14,7 @@
 
 NSString *const DPHueBundleName = @"dConnectDeviceHue_resources";
 
+
 @interface DPHueDevicePlugin()
 
 @property (nonatomic, strong) NSMutableDictionary *hueBridgeListTemp;
@@ -79,5 +80,9 @@ NSString *const DPHueBundleName = @"dConnectDeviceHue_resources";
     NSString* filename = isOnline ? @"dconnect_icon" : @"dconnect_icon_off";
     return [bundle pathForResource:filename ofType:@"png"];
 }
-
+#pragma mark - DevicePlugin's bundle
+- (NSBundle*)pluginBundle
+{
+    return [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"dConnectDeviceHue_resources" ofType:@"bundle"]];
+}
 @end

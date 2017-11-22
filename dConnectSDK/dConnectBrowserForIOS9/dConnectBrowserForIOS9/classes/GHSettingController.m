@@ -53,7 +53,7 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
-- (void)updateSwitches
+- (void)updateViews
 {
     [self.tableView reloadData];
 }
@@ -65,7 +65,17 @@
     [super viewDidLoad];
     self.title = @"設定";
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    // デバイスプラグインの設定画面で、全体のナビゲーションバーの色を変えられた時のために、Browserデフォルトの色に戻す。
+    self.navigationController.navigationBar.barTintColor =[UIColor whiteColor];
+    self.navigationController.navigationBar.tintColor =  [UIColor colorWithRed:0.000 green:0.549 blue:0.890 alpha:1.000];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor]};
+    [UINavigationBar appearance].barTintColor = [UIColor whiteColor];
+    [UINavigationBar appearance].tintColor = [UIColor colorWithRed:0.000 green:0.549 blue:0.890 alpha:1.000];
+    [UITabBar appearance].translucent = NO;
+    [UITabBar appearance].barTintColor = [UIColor whiteColor];
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:0.000 green:0.549 blue:0.890 alpha:1.000]];
+}
 - (IBAction)close
 {
     [viewModel updateSwitchState];
@@ -127,6 +137,14 @@
         {
             GrayLabelCell *cell = (GrayLabelCell*)[tableView dequeueReusableCellWithIdentifier:@"GrayLabelCell"
                                                                                   forIndexPath:indexPath];
+            switch(type) {
+                case SettingCellTypeManagerUUID:
+                    [cell.titleLabel setFont:[UIFont systemFontOfSize:11.0]] ;
+
+                case SettingCellTypeManagerName:
+                    cell.titleLabel.textColor = [UIColor blackColor];
+                    break;
+            }
             cell.titleLabel.text = [viewModel cellTitle: indexPath];
             return cell;
         }
@@ -144,6 +162,7 @@
                 case SecurityCellTypeLocalOAuth:
                 case SecurityCellTypeOrigin:
                 case SecurityCellTypeExternIP:
+                case SecurityCellTypeAvailability:
                 {
                     SwitchableCell *cell = (SwitchableCell*)[tableView dequeueReusableCellWithIdentifier:@"SwitchableCell"
                                                                                             forIndexPath:indexPath];

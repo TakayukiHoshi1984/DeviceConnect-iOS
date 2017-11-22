@@ -69,24 +69,59 @@ extern NSString *const DConnectSystemProfileParamId;
 extern NSString *const DConnectSystemProfileParamName;
 
 /*!
+ @brief パラメータ: uuid。
+ */
+extern NSString *const DConnectSystemProfileParamUUID;
+
+/*!
  @brief パラメータ: version。
  */
 extern NSString *const DConnectSystemProfileParamVersion;
 
 @class DConnectSystemProfile;
 
+/*!
+ @protocol DConnectSystemProfileDelegate
+ @brief Systemプロファイルのデリゲート。
+ */
 @protocol DConnectSystemProfileDelegate <NSObject>
 
+/*!
+ @brief サービス管理機能のインスタンスを取得する。
+ @return DConnectServiceProviderのインスタンス。
+ */
 - (DConnectServiceProvider *) serviceProvider;
 
+/*!
+ @brief 設定画面のUI管理クラスのインスタンスを取得する。
+ @return UIViewControllerのインスタンス。
+ */
 - (UIViewController *) settingViewController;
 
 @optional
 
+/*!
+ @brief サービスが選択された時に呼び出される。
+ @param[in] service 選択されたサービス
+ */
 - (void) didSelectService: (DConnectService *) service;
 
+/*!
+ @brief サービスが削除された時に呼び出される。
+ @param[in] service 削除されたサービス
+ */
+- (void) didRemovedService:(DConnectService *) service;
+
+/*!
+ @brief サービス一覧画面が表示された時に呼び出される。
+ */
 - (void) serviceListViewControllerDidWillAppear;
 
+/*!
+ @brief 指定されたサービス一覧をフィルタリングし、画面中に表示するサービスの配列を返す。
+ @param[in] サービスの配列
+ @return 実際に画面上に表示するサービスの配列
+ */
 - (NSArray *) displayServiceFilter: (NSArray *) services;
 
 @end
@@ -100,15 +135,6 @@ extern NSString *const DConnectSystemProfileParamVersion;
 
 @protocol DConnectSystemProfileDataSource <NSObject>
 @required
-
-/*!
- @brief データソースにデバイスプラグインのバージョンを要求する。
- 
- @param[in] profile プロファイル
- 
- @retval NSString* バージョン
- */
-- (NSString *) versionOfSystemProfile:(DConnectSystemProfile *)profile;
 
 /*!
  @brief データソースにデバイスプラグインの設定画面用のUIViewControllerを要求する。
@@ -171,12 +197,20 @@ extern NSString *const DConnectSystemProfileParamVersion;
 
 /*!
  @brief メッセージにデバイスプラグイン名を格納する。
+ DeviceConnectManagerの名前も兼ねている。
  
- @param[in] name デバイスプラグイン名
+ @param[in] name デバイスプラグイン名、あるいはDevice Connect Manager名
  @param[in,out] message デバイスプラグイン名を格納するメッセージ
  */
 + (void) setName:(NSString *)name target:(DConnectMessage *)message;
 
+/*!
+ @brief メッセージにDeviceConnectManagerのUUIDを格納する。
+ 
+ @param[in] uuid DeviceConnectManagerのUUID
+ @param[in,out] message デバイスプラグイン名を格納するメッセージ
+ */
++ (void) setUUID:(NSString *)uuid target:(DConnectMessage *)message;
 #pragma mark - Getter
 
 /*!

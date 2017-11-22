@@ -2,18 +2,25 @@
 var main = (function(parent, global) {
     function init() {
         var mimeType = decodeURIComponent(util.getMimeType());
-        var uri = decodeURIComponent(util.getResourceUri());
-        console.log("uri:" + uri);
+        var uri = util.getResourceUri();
         if (mimeType.indexOf('image') != -1 && uri.indexOf('mp4') == -1) {
-            var elem = document.getElementById('image');
-            elem.src = util.getResourceUri();
-            elem.crossorigin = "anonymous";
+            var elem;
+            if (uri.indexOf(':4035/') != -1) {
+               elem = document.getElementById('image');
+               var disable = document.getElementById('preview');
+               disable.style.display = "none";
+            } else {
+               elem = document.getElementById('preview');
+               var disable = document.getElementById('image');
+               disable.style.display = "none";
+            }
+            elem.src = uri;
             elem.onload = function() {
                 console.log("onload: " + decodeURIComponent(util.getResourceUri()));
             }
         } else  if (mimeType.indexOf('image') != -1 && uri.indexOf('mp4') != -1) {
            var mediaId = uri.replace("http://localhost:4035/gotapi/files?uri=", "");
-           util.doMediaPlayerMediaPut(util.getServiceId(), util.getAccessTokenQuery(), mediaId,null);
+           util.doMediaPlayerMediaPut(util.getServiceId(), util.getAccessTokenQuery(), decodeURIComponent(mediaId),null);
         } else {
             sendRequest('GET', uri, null, function(status, responseText) {
                 var elem = document.getElementById('text');
@@ -27,7 +34,10 @@ var main = (function(parent, global) {
     }
     parent.init = init;
 
-
+    function back() {
+        location.href = "./checker.html?serviceId=" + util.getServiceId() + '&profile=' + util.getProfileQuery();
+    }
+    parent.back = back;
     function createXMLHttpRequest() {
         try {
             return new XMLHttpRequest();
@@ -50,7 +60,7 @@ var main = (function(parent, global) {
              switch (xhr.readyState) {
              case 1:
                  try {
-                     xhr.setRequestHeader("X-GotAPI-Origin".toLowerCase(), "http://ios_assets");
+                     xhr.setRequestHeader("X-GotAPI-Origin".toLowerCase(), "file://");
                  } catch (e) {
                      return;
                  }

@@ -63,6 +63,7 @@ static const char kAssocKey_Window;
 {
     self.webView = [[WKWebView alloc]init];
     self.webView.navigationDelegate = self;
+    self.webView.UIDelegate = self;
     self.webView.allowsBackForwardNavigationGestures = YES;
     self.webView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.webView];
@@ -126,6 +127,17 @@ static const char kAssocKey_Window;
                                                                   action:@selector(close:)];
     self.navigationItem.leftBarButtonItem = closeButton;
 }
+- (void)viewWillAppear:(BOOL)animated {
+    // デバイスプラグインの設定画面で、全体のナビゲーションバーの色を変えられた時のために、Browserデフォルトの色に戻す。
+    self.navigationController.navigationBar.barTintColor =[UIColor whiteColor];
+    self.navigationController.navigationBar.tintColor =  [UIColor colorWithRed:0.000 green:0.549 blue:0.890 alpha:1.000];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor]};
+    [UINavigationBar appearance].barTintColor = [UIColor whiteColor];
+    [UINavigationBar appearance].tintColor = [UIColor colorWithRed:0.000 green:0.549 blue:0.890 alpha:1.000];
+    [UITabBar appearance].translucent = NO;
+    [UITabBar appearance].barTintColor = [UIColor whiteColor];
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:0.000 green:0.549 blue:0.890 alpha:1.000]];
+}
 
 - (void)close:(UIBarButtonItem*)item
 {
@@ -158,6 +170,18 @@ static const char kAssocKey_Window;
 
 }
 
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action) {
+                                                          completionHandler();
+                                                      }]];
+    [self presentViewController:alertController animated:YES completion:^{}];
+}
 
 #pragma mark - Public method
 - (void)presentationDeviceView:(UIViewController*)viewController

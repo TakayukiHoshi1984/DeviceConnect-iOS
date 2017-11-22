@@ -9,6 +9,7 @@
 
 #import "DConnectManagerSystemProfile.h"
 #import "DConnectManager+Private.h"
+#import "DConnectManager.h"
 
 @implementation DConnectManagerSystemProfile
 
@@ -145,9 +146,9 @@
             [profileNames addString:[profile profileName]];
             if (profile.profileName && [profile.profileName localizedCaseInsensitiveCompare:@"system"] == NSOrderedSame) {
                 DConnectSystemProfile *sysProfile = (DConnectSystemProfile *) profile;
-                if (sysProfile.dataSource) {
-                    NSString *v = [sysProfile.dataSource versionOfSystemProfile:sysProfile];
-                    [message setString:v forKey:DConnectSystemProfileParamVersion];
+                if (sysProfile.dataSource) { //バージョンに変更がある場合は、各プラグインで変更する
+                    DConnectDevicePlugin *devicePlugin = [pluginMgr devicePluginForPluginId:className];
+                    [message setString:devicePlugin.pluginVersionName forKey:DConnectSystemProfileParamVersion];
                 }
             }
         }
@@ -156,6 +157,11 @@
     }
     
     [response setResult:DConnectMessageResultTypeOk];
+    
+    // Managerの名前とUUID
+    [DConnectSystemProfile setName:[[DConnectManager sharedManager] managerName] target:response];
+    [DConnectSystemProfile setUUID:[[DConnectManager sharedManager] managerUUID] target:response];
+    
     [DConnectSystemProfile setSupports:supports target:response];
     [DConnectSystemProfile setPlugins:plugins target:response];
     return YES;

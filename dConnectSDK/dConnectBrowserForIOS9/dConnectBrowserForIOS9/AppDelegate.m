@@ -32,13 +32,14 @@
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     BOOL sw = [def boolForKey:IS_FIRST_LAUNCH];
     if (!sw) {
-        [[DConnectManager sharedManager] startByHttpServer];
+        [[DConnectManager sharedManager] start];
         [def setObject:@(YES) forKey:IS_FIRST_LAUNCH];
         DConnectManager *mgr = [DConnectManager sharedManager];
         [def setBool:mgr.settings.useOriginBlocking forKey:IS_ORIGIN_BLOCKING];
         [def setBool:mgr.settings.useLocalOAuth forKey:IS_USE_LOCALOAUTH];
         [def setBool:mgr.settings.useOriginEnable forKey:IS_ORIGIN_ENABLE];
         [def setBool:mgr.settings.useExternalIP forKey:IS_EXTERNAL_IP];
+        [def setBool:mgr.settings.useManagerName forKey:IS_AVAILABILITY];
         [def synchronize];
     
     }
@@ -52,7 +53,7 @@
         [application registerUserNotificationSettings:mySettings];
     }
     DConnectManager *mgr = [DConnectManager sharedManager];
-    [mgr startByHttpServer];
+    [mgr start];
 
     return YES;
 }
@@ -72,12 +73,12 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     DConnectManager *mgr = [DConnectManager sharedManager];
-    [mgr stopByHttpServer];
+    [mgr stop];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     DConnectManager *mgr = [DConnectManager sharedManager];
-    [mgr startByHttpServer];
+    [mgr start];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

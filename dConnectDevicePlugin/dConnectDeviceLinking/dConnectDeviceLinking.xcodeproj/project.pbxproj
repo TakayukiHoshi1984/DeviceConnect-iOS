@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		AB77BC151DA63BF800959525 /* dconnect_icon_off.png in Resources */ = {isa = PBXBuildFile; fileRef = AB77BC131DA63BF800959525 /* dconnect_icon_off.png */; };
+		AB77BC161DA63BF800959525 /* dconnect_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AB77BC141DA63BF800959525 /* dconnect_icon.png */; };
 		BE145CA41D8E8A4D0005D926 /* DPLinkingDeviceTemperatureOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = BE145CA31D8E8A4D0005D926 /* DPLinkingDeviceTemperatureOnce.m */; };
 		BE145CA71D8E8B710005D926 /* DPLinkingDeviceHumidityOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = BE145CA61D8E8B710005D926 /* DPLinkingDeviceHumidityOnce.m */; };
 		BE145CAB1D8F92670005D926 /* DPLinkingDeviceAtmosphericPressureOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = BE145CAA1D8F92670005D926 /* DPLinkingDeviceAtmosphericPressureOnce.m */; };
@@ -82,11 +84,13 @@
 		BE58BE821D646ABB00354F08 /* DPLinkingBeaconProximityOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = BE58BE811D646ABB00354F08 /* DPLinkingBeaconProximityOnce.m */; };
 		BE58BE861D65489C00354F08 /* DPLinkingDeviceProximityOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = BE58BE851D65489C00354F08 /* DPLinkingDeviceProximityOnce.m */; };
 		BE58BE891D654C9300354F08 /* DPLinkingDeviceBatteryOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = BE58BE881D654C9300354F08 /* DPLinkingDeviceBatteryOnce.m */; };
+		BEA2E6841E691C8900A79204 /* DPLinkingDeviceButtonOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA2E6831E691C8900A79204 /* DPLinkingDeviceButtonOnce.m */; };
 		BEE64A491D700B8700CF287E /* DPLinkingBeaconKeyEventOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE64A481D700B8700CF287E /* DPLinkingBeaconKeyEventOnce.m */; };
 		BEE64A4C1D702C5300CF287E /* beacon_icon_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE2859C41D630B2800CB9F95 /* beacon_icon_white@2x.png */; };
 		BEE64A4F1D70344E00CF287E /* DPLinkingBeaconBatteryOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE64A4E1D70344E00CF287E /* DPLinkingBeaconBatteryOnce.m */; };
 		BEE64A521D7049D300CF287E /* DPLinkingBeaconUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE64A511D7049D300CF287E /* DPLinkingBeaconUtil.m */; };
 		BEF550A71D8FA6A100C8AE7B /* DPLinkingDeviceAtmosphericPressureProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF550A61D8FA6A100C8AE7B /* DPLinkingDeviceAtmosphericPressureProfile.m */; };
+		D63BB8C61DA206D300892E5E /* atmosphericpressure.json in Resources */ = {isa = PBXBuildFile; fileRef = D63BB8C51DA206D300892E5E /* atmosphericpressure.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -103,6 +107,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB77BC131DA63BF800959525 /* dconnect_icon_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dconnect_icon_off.png; sourceTree = "<group>"; };
+		AB77BC141DA63BF800959525 /* dconnect_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dconnect_icon.png; sourceTree = "<group>"; };
 		BE145CA21D8E8A4D0005D926 /* DPLinkingDeviceTemperatureOnce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPLinkingDeviceTemperatureOnce.h; sourceTree = "<group>"; };
 		BE145CA31D8E8A4D0005D926 /* DPLinkingDeviceTemperatureOnce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPLinkingDeviceTemperatureOnce.m; sourceTree = "<group>"; };
 		BE145CA51D8E8B710005D926 /* DPLinkingDeviceHumidityOnce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPLinkingDeviceHumidityOnce.h; sourceTree = "<group>"; };
@@ -226,6 +232,8 @@
 		BE58BE851D65489C00354F08 /* DPLinkingDeviceProximityOnce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPLinkingDeviceProximityOnce.m; sourceTree = "<group>"; };
 		BE58BE871D654C9300354F08 /* DPLinkingDeviceBatteryOnce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPLinkingDeviceBatteryOnce.h; sourceTree = "<group>"; };
 		BE58BE881D654C9300354F08 /* DPLinkingDeviceBatteryOnce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPLinkingDeviceBatteryOnce.m; sourceTree = "<group>"; };
+		BEA2E6821E691C8900A79204 /* DPLinkingDeviceButtonOnce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPLinkingDeviceButtonOnce.h; sourceTree = "<group>"; };
+		BEA2E6831E691C8900A79204 /* DPLinkingDeviceButtonOnce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPLinkingDeviceButtonOnce.m; sourceTree = "<group>"; };
 		BEE64A471D700B8700CF287E /* DPLinkingBeaconKeyEventOnce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPLinkingBeaconKeyEventOnce.h; sourceTree = "<group>"; };
 		BEE64A481D700B8700CF287E /* DPLinkingBeaconKeyEventOnce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPLinkingBeaconKeyEventOnce.m; sourceTree = "<group>"; };
 		BEE64A4D1D70344E00CF287E /* DPLinkingBeaconBatteryOnce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPLinkingBeaconBatteryOnce.h; sourceTree = "<group>"; };
@@ -234,6 +242,7 @@
 		BEE64A511D7049D300CF287E /* DPLinkingBeaconUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPLinkingBeaconUtil.m; sourceTree = "<group>"; };
 		BEF550A51D8FA6A100C8AE7B /* DPLinkingDeviceAtmosphericPressureProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPLinkingDeviceAtmosphericPressureProfile.h; sourceTree = "<group>"; };
 		BEF550A61D8FA6A100C8AE7B /* DPLinkingDeviceAtmosphericPressureProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPLinkingDeviceAtmosphericPressureProfile.m; sourceTree = "<group>"; };
+		D63BB8C51DA206D300892E5E /* atmosphericpressure.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = atmosphericpressure.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +426,8 @@
 				BE145CA61D8E8B710005D926 /* DPLinkingDeviceHumidityOnce.m */,
 				BE145CA91D8F92670005D926 /* DPLinkingDeviceAtmosphericPressureOnce.h */,
 				BE145CAA1D8F92670005D926 /* DPLinkingDeviceAtmosphericPressureOnce.m */,
+				BEA2E6821E691C8900A79204 /* DPLinkingDeviceButtonOnce.h */,
+				BEA2E6831E691C8900A79204 /* DPLinkingDeviceButtonOnce.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -484,6 +495,8 @@
 		BE2859C11D630B2800CB9F95 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AB77BC131DA63BF800959525 /* dconnect_icon_off.png */,
+				AB77BC141DA63BF800959525 /* dconnect_icon.png */,
 				BE2859C21D630B2800CB9F95 /* beacon_icon_blue.png */,
 				BE2859C31D630B2800CB9F95 /* beacon_icon_white.png */,
 				BE2859C41D630B2800CB9F95 /* beacon_icon_white@2x.png */,
@@ -512,6 +525,7 @@
 		BE285A331D6315FD00CB9F95 /* dConnectDeviceLinking_resources */ = {
 			isa = PBXGroup;
 			children = (
+				D63BB8C51DA206D300892E5E /* atmosphericpressure.json */,
 				BE285A341D6315FD00CB9F95 /* Info.plist */,
 			);
 			path = dConnectDeviceLinking_resources;
@@ -581,7 +595,7 @@
 		BE2859431D630AF700CB9F95 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "NTT DOCOMO, INC.";
 				TargetAttributes = {
 					BE28594A1D630AF700CB9F95 = {
@@ -619,7 +633,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB77BC151DA63BF800959525 /* dconnect_icon_off.png in Resources */,
 				BEE64A4C1D702C5300CF287E /* beacon_icon_white@2x.png in Resources */,
+				D63BB8C61DA206D300892E5E /* atmosphericpressure.json in Resources */,
+				AB77BC161DA63BF800959525 /* dconnect_icon.png in Resources */,
 				BE285A3B1D63160E00CB9F95 /* Linking.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -652,6 +669,7 @@
 				BE2859D91D630B2800CB9F95 /* DPLinkingSensorData.m in Sources */,
 				BE2859F21D630B2800CB9F95 /* DPLinkingPopoverViewController.m in Sources */,
 				BE2859EA1D630B2800CB9F95 /* DPLinkingAppInfoViewController.m in Sources */,
+				BEA2E6841E691C8900A79204 /* DPLinkingDeviceButtonOnce.m in Sources */,
 				BE2859DD1D630B2800CB9F95 /* DPLinkingDeviceLightProfile.m in Sources */,
 				BE2859D61D630B2800CB9F95 /* DPLinkingDevicePlugin.m in Sources */,
 				BEE64A521D7049D300CF287E /* DPLinkingBeaconUtil.m in Sources */,
@@ -729,13 +747,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -773,13 +799,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -866,7 +900,7 @@
 				INFOPLIST_FILE = dConnectDeviceLinking_resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.deviceconnect.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -884,7 +918,7 @@
 				INFOPLIST_FILE = dConnectDeviceLinking_resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.deviceconnect.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

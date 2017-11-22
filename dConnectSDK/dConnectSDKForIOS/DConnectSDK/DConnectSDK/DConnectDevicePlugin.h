@@ -16,6 +16,7 @@
 #import <DConnectSDK/DConnectRequestMessage.h>
 #import <DConnectSDK/DConnectResponseMessage.h>
 #import <DConnectSDK/DConnectServiceProvider.h>
+#import <DConnectSDK/DConnectEventCacheController.h>
 
 
 /*! 
@@ -78,7 +79,6 @@
  */
 @property (nonatomic) BOOL useLocalOAuth;
 
-
 /*!
  @brief 任意のオブジェクトを指定してServiceManagerを初期化する。
  オブジェクトはDConnectDevicePluginもしくはDConnectManagerのインスタンスでなければならない。
@@ -116,8 +116,14 @@
  */
 - (void)applicationWillEnterForeground;
 
+- (id<DConnectEventCacheController>) eventCacheController;
+
 - (NSArray *) serviceProfilesWithServiceId: (NSString *) serviceId;
 
 - (NSString*)iconFilePath:(BOOL)isOnline;
 
+/*!
+ @brief プラグインのInfo.plistを取得する。
+ */
+- (NSBundle*)pluginBundle;
 @end

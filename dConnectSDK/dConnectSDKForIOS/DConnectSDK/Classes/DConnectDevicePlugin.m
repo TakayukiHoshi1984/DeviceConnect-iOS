@@ -28,11 +28,6 @@
 @property(nonatomic, weak) id plugin_;
 
 /*!
- @brief PluginSpec。
- */
-@property(nonatomic, strong) DConnectPluginSpec *pluginSpec;
-
-/*!
  @brief プロファイルを格納するマップ.
  */
 @property (nonatomic) NSMutableDictionary *mProfileMap;
@@ -52,15 +47,23 @@
         self.useLocalOAuth = YES;
         self.mProfileMap = [NSMutableDictionary dictionary];
         self.pluginName = NSStringFromClass([self class]);
-        self.pluginVersionName = @"1.0.0";
+        NSString *version = [[[self pluginBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+        if (version) {
+            self.pluginVersionName = version;
+        } else {
+            self.pluginVersionName = @"1.0.0";
+        }
         self.pluginId = [md5Proc generateSignature: self.pluginName];
-        [self setPluginSpec: [[DConnectPluginSpec alloc] init]];
 
+        // DeviceConnectサービス管理クラスの初期化
         DConnectServiceManager *serviceManager = [DConnectServiceManager sharedForClass: [object class]];
         [serviceManager setPlugin: self];
-        [serviceManager setPluginSpec: [self pluginSpec]];
         [self setServiceProvider: serviceManager];
         
+        // イベント管理クラスの初期化
+        id<DConnectEventCacheController> ctrl = [self eventCacheController];
+        [[DConnectEventManager sharedManagerForClass:[self class]] setController:ctrl];
+
         // プロファイル追加
         [self addProfile:[[DConnectAuthorizationProfile alloc] initWithObject:self]];
         [self addProfile:[[DConnectServiceDiscoveryProfile alloc] initWithServiceProvider: self.serviceProvider]];
@@ -163,7 +166,7 @@
 }
 
 - (BOOL) sendEvent:(DConnectMessage *)event {
-    return [[DConnectManager sharedManager] sendEvent:event];
+    return [[DConnectManager sharedManager] sendEvent:event authorized:self.useLocalOAuth];
 }
 
 - (void)applicationDidEnterBackground {
@@ -183,13 +186,13 @@
 
     // プロファイルのJSONファイルを読み込み、内部生成したprofileSpecを新規登録する
     NSError *error = nil;
-    [[self pluginSpec] addProfileSpec: profileName error: &error];
+    [[DConnectPluginSpec shared] addProfileSpec: profileName bundle: nil error: &error];
     if (error) {
         DCLogE(@"addProfileSpec error ! %@", [error description]);
     }
     
     // プロファイルに仕様データを設定する
-    DConnectProfileSpec *profileSpec = [[self pluginSpec] findProfileSpec: profileName];
+    DConnectProfileSpec *profileSpec = [[DConnectPluginSpec shared] findProfileSpec: profileName];
     if (profileSpec) {
         [profile setProfileSpec: profileSpec];
     }
@@ -235,10 +238,19 @@
     return nil;
 }
 
+- (id<DConnectEventCacheController>) eventCacheController
+{
+    return [[DConnectMemoryCacheController alloc] init];
+}
+
 
 - (NSString*)iconFilePath:(BOOL)isOnline
 {
     return nil; //should be overrided
 }
 
+- (NSBundle*)pluginBundle
+{
+    return nil; //should be overrided
+}
 @end

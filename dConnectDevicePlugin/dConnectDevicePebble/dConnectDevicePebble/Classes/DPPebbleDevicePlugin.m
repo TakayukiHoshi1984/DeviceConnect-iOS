@@ -12,6 +12,8 @@
 #import "PebbleViewController.h"
 #import "DPPebbleManager.h"
 
+#define DCPebbleBundle() \
+[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"dConnectDevicePebble_resources" ofType:@"bundle"]]
 
 @interface DPPebbleDevicePlugin ()
 @end
@@ -29,7 +31,7 @@
 		// EventManagerの初期化
 		Class key = [self class];
 		[[DConnectEventManager sharedManagerForClass:key] setController:[DConnectMemoryCacheController new]];
-		
+
         // DPPebbleManagerへServiceProviderを渡す
         [[DPPebbleManager sharedManager] setServiceProvider: self.serviceProvider];
         [[DPPebbleManager sharedManager] setPlugin: self];
@@ -77,10 +79,14 @@
 
 - (NSString*)iconFilePath:(BOOL)isOnline
 {
-    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"dConnectDevicePebble_resources" ofType:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+    NSBundle *bundle = DCPebbleBundle();
     NSString* filename = isOnline ? @"dconnect_icon" : @"dconnect_icon_off";
     return [bundle pathForResource:filename ofType:@"png"];
+}
+#pragma mark - DevicePlugin's bundle
+- (NSBundle*)pluginBundle
+{
+    return [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"dConnectDevicePebble_resources" ofType:@"bundle"]];
 }
 
 @end

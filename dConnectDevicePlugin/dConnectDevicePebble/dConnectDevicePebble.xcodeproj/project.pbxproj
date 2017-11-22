@@ -40,7 +40,7 @@
 		4450063619BD4D5100C9FF54 /* DPPebbleBatteryProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450060D19BD4D5100C9FF54 /* DPPebbleBatteryProfile.m */; };
 		4450063819BD4D5100C9FF54 /* DPPebbleDeviceOrientationProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450060F19BD4D5100C9FF54 /* DPPebbleDeviceOrientationProfile.m */; };
 		4450064019BD4D5100C9FF54 /* DPPebbleNotificationProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450061719BD4D5100C9FF54 /* DPPebbleNotificationProfile.m */; };
-		4450064219BD4D5100C9FF54 /* DPPebbleSettingsProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450061919BD4D5100C9FF54 /* DPPebbleSettingsProfile.m */; };
+		4450064219BD4D5100C9FF54 /* DPPebbleSettingProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450061919BD4D5100C9FF54 /* DPPebbleSettingProfile.m */; };
 		4450064419BD4D5100C9FF54 /* DPPebbleSystemProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450061B19BD4D5100C9FF54 /* DPPebbleSystemProfile.m */; };
 		4450064619BD4D5100C9FF54 /* DPPebbleVibrationProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450061D19BD4D5100C9FF54 /* DPPebbleVibrationProfile.m */; };
 		4450064A19BD4D5100C9FF54 /* PebbleSettingView01Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450062319BD4D5100C9FF54 /* PebbleSettingView01Controller.m */; };
@@ -121,8 +121,8 @@
 		4450060F19BD4D5100C9FF54 /* DPPebbleDeviceOrientationProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPPebbleDeviceOrientationProfile.m; sourceTree = "<group>"; };
 		4450061619BD4D5100C9FF54 /* DPPebbleNotificationProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPPebbleNotificationProfile.h; sourceTree = "<group>"; };
 		4450061719BD4D5100C9FF54 /* DPPebbleNotificationProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPPebbleNotificationProfile.m; sourceTree = "<group>"; };
-		4450061819BD4D5100C9FF54 /* DPPebbleSettingsProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPPebbleSettingsProfile.h; sourceTree = "<group>"; };
-		4450061919BD4D5100C9FF54 /* DPPebbleSettingsProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPPebbleSettingsProfile.m; sourceTree = "<group>"; };
+		4450061819BD4D5100C9FF54 /* DPPebbleSettingProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPPebbleSettingProfile.h; sourceTree = "<group>"; };
+		4450061919BD4D5100C9FF54 /* DPPebbleSettingProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPPebbleSettingProfile.m; sourceTree = "<group>"; };
 		4450061A19BD4D5100C9FF54 /* DPPebbleSystemProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPPebbleSystemProfile.h; sourceTree = "<group>"; };
 		4450061B19BD4D5100C9FF54 /* DPPebbleSystemProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPPebbleSystemProfile.m; sourceTree = "<group>"; };
 		4450061C19BD4D5100C9FF54 /* DPPebbleVibrationProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPPebbleVibrationProfile.h; sourceTree = "<group>"; };
@@ -316,8 +316,8 @@
 				4450060F19BD4D5100C9FF54 /* DPPebbleDeviceOrientationProfile.m */,
 				4450061619BD4D5100C9FF54 /* DPPebbleNotificationProfile.h */,
 				4450061719BD4D5100C9FF54 /* DPPebbleNotificationProfile.m */,
-				4450061819BD4D5100C9FF54 /* DPPebbleSettingsProfile.h */,
-				4450061919BD4D5100C9FF54 /* DPPebbleSettingsProfile.m */,
+				4450061819BD4D5100C9FF54 /* DPPebbleSettingProfile.h */,
+				4450061919BD4D5100C9FF54 /* DPPebbleSettingProfile.m */,
 				4450061C19BD4D5100C9FF54 /* DPPebbleVibrationProfile.h */,
 				4450061D19BD4D5100C9FF54 /* DPPebbleVibrationProfile.m */,
 				4450061A19BD4D5100C9FF54 /* DPPebbleSystemProfile.h */,
@@ -425,7 +425,7 @@
 		44407BDD1998B78C00E9B751 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "NTT DOCOMO, INC.";
 				TargetAttributes = {
 					AB2821901A95D2FF007B3D6F = {
@@ -510,7 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4450063819BD4D5100C9FF54 /* DPPebbleDeviceOrientationProfile.m in Sources */,
-				4450064219BD4D5100C9FF54 /* DPPebbleSettingsProfile.m in Sources */,
+				4450064219BD4D5100C9FF54 /* DPPebbleSettingProfile.m in Sources */,
 				4450064419BD4D5100C9FF54 /* DPPebbleSystemProfile.m in Sources */,
 				AB33D7771A7605540073A1BA /* DPPebbleDevicePlugin.m in Sources */,
 				4450065A19BD4D5100C9FF54 /* PebbleViewController.m in Sources */,
@@ -584,17 +584,29 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -607,7 +619,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -622,24 +634,35 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -701,6 +724,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.deviceconnect.deviceplugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -726,6 +750,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.deviceconnect.deviceplugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -21,16 +21,10 @@
         self.pluginName = @"Theta (Device Connect Device Plug-in)";
         [[DPThetaManager sharedManager] setServiceProvider: self.serviceProvider];
         [[DPThetaManager sharedManager] setPlugin:self];
-        [[DPThetaManager sharedManager] init];
         
         self.fileMgr = [DConnectFileManager fileManagerForPlugin:self];
         [self addProfile:[DPThetaSystemProfile new]];
-        
-        // イベントマネージャの準備
-        Class key = [self class];
-        [[DConnectEventManager sharedManagerForClass:key]
-         setController:[DConnectDBCacheController
-                        controllerWithClass:key]];
+    
     }
     
     return self;
@@ -38,10 +32,14 @@
 
 - (NSString*)iconFilePath:(BOOL)isOnline
 {
-    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"dConnectDeviceTheta_resources" ofType:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+    NSBundle *bundle = DPThetaBundle();
     NSString* filename = isOnline ? @"dconnect_icon" : @"dconnect_icon_off";
     return [bundle pathForResource:filename ofType:@"png"];
+}
+#pragma mark - DevicePlugin's bundle
+- (NSBundle*)pluginBundle
+{
+    return [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"dConnectDeviceTheta_resources" ofType:@"bundle"]];
 }
 
 @end

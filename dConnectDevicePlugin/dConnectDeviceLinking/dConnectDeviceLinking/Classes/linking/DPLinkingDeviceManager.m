@@ -90,7 +90,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void) stopScan {
-    if ([[BLEConnecter sharedInstance] isScanning] && ![[DPLinkingBeaconManager sharedInstance] isStartBeaconScan]) {
+    if ([[BLEConnecter sharedInstance] isCanDiscovery] && ![[DPLinkingBeaconManager sharedInstance] isStartBeaconScan]) {
         DCLogInfo(@"stopScan");
         [[BLEConnecter sharedInstance] stopScan];
     } else {
@@ -99,7 +99,11 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (BOOL) isStartScan {
-    return [[BLEConnecter sharedInstance] isScanning];
+    return [[BLEConnecter sharedInstance] isCanDiscovery];
+}
+
+- (void) restart {
+    [self startScanWithTimeout:20];
 }
 
 - (DPLinkingDevice *) findDPLinkingDeviceByPeripheral:(CBPeripheral *)peripheral {
@@ -204,6 +208,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
     
     [[BLEConnecter sharedInstance] disconnectByDeviceUUID:device.peripheral.identifier.UUIDString];
     device.connectFlag = NO;
+    device.peripheral = nil;
     [self saveDPLinkingDevice];
 }
 
@@ -212,11 +217,13 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
     if (on) {
         [request startDemoSelectSettingInformationWithLED:device.setting.settingInformationDataLED
                                                 vibration:nil
+                                              notifySound:nil
                                                peripheral:device.peripheral
                                                disconnect:NO];
     } else {
         [request stopDemoSelectSettingInformationWithLED:nil
                                                vibration:nil
+                                             notifySound:nil
                                               peripheral:device.peripheral
                                               disconnect:NO];
     }
@@ -227,11 +234,13 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
     if (on) {
         [request startDemoSelectSettingInformationWithLED:nil
                                                 vibration:device.setting.settingInformationDataVibration
+                                              notifySound:nil
                                                peripheral:device.peripheral
                                                disconnect:NO];
     } else {
         [request stopDemoSelectSettingInformationWithLED:nil
                                                vibration:nil
+                                             notifySound:nil
                                               peripheral:device.peripheral
                                               disconnect:NO];
     }
@@ -240,6 +249,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 - (void) setDefaultLED:(DPLinkingDevice *)device {
     [[BLERequestController sharedInstance] setSelectSettingInformationWithLED:device.setting.settingInformationDataLED
                                                                     vibration:nil
+                                                                  notifySound:nil
                                                                    peripheral:device.peripheral
                                                                    disconnect:NO];
 }
@@ -247,6 +257,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 - (void) setDefaultVibration:(DPLinkingDevice *)device {
     [[BLERequestController sharedInstance] setSelectSettingInformationWithLED:nil
                                                                     vibration:device.setting.settingInformationDataVibration
+                                                                  notifySound:nil
                                                                    peripheral:device.peripheral
                                                                    disconnect:NO];
 }
@@ -255,21 +266,22 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
     // TODO: 設定が反映されない。
     NSString *appName = @"Linking Plugin";
     NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
-
+    BLEDeviceNotificationSetting * dnSetting = [BLEDeviceNotificationSetting new];
+    dnSetting.title = title;
+    dnSetting.text = message;
+    dnSetting.appName = appName;
+    dnSetting.appNameLocal = appName;
+    dnSetting.package = bundleId;
+    dnSetting.notifyId = 0;
+    dnSetting.notifyCategoryId = 0;
+    dnSetting.ledSetting = YES;
+    dnSetting.vibrationSetting = YES;
+    dnSetting.led = nil;
+    dnSetting.vibration = nil;
+    dnSetting.deviceId = device.setting.deviceId;
+    dnSetting.deviceUId = nil;
     BLERequestController *request = [BLERequestController sharedInstance];
-    [request sendGeneralInformation:title
-                               text:message
-                            appName:appName
-                       appNameLocal:appName
-                            package:bundleId
-                           notifyId:0
-                   notifyCategoryId:0
-                         ledSetting:YES
-                   vibrationSetting:YES
-                                led:nil
-                          vibration:nil
-                           deviceId:device.setting.deviceId
-                          deviceUId:nil
+    [request sendGeneralInformation:dnSetting
                          peripheral:device.peripheral
                          disconnect:NO];
 }
@@ -634,6 +646,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 
 - (void) startScanWithTimeout:(NSTimeInterval)timeout {
     if ([BLEConnecter sharedInstance].canDiscovery) {
+        DCLogInfo(@"DPLinkingDeviceManager::startScanWithTimeout");
         [DPLinkingUtil asyncAfterDelay:timeout block:^{
             DCLogWarn(@"Timeout.");
             _initFlag = NO;
@@ -800,12 +813,18 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void) failToConnect:(CBPeripheral *)peripheral {
-    DCLogInfo(@"AAAAA failToConnect: %@", peripheral);
+    BLEDeviceSetting *setting = [[BLEConnecter sharedInstance] getDeviceByPeripheral:peripheral];
+    
+    DCLogInfo(@"@@ failToConnect: [デバイス：%@ との接続に失敗しました。]", setting.name);
+    DCLogInfo(@"    setting.notifyDeviceInitial: %@", setting.notifyDeviceInitial ? @"YES" : @"NO");
+    DCLogInfo(@"    setting.initialDeviceSettingFinished: %@", setting.initialDeviceSettingFinished ? @"YES" : @"NO");
+    DCLogInfo(@"    setting.saved: %@", setting.saved ? @"YES" : @"NO");
+    DCLogInfo(@"    setting.connectionStatus: %@", setting.connectionStatus);
     
     if ([self isEqualDeviceUuid:peripheral]) {
         DPLinkingDevice *device = [self findDPLinkingDeviceByPeripheral:peripheral];
         if (device) {
-            device.setting = [[BLEConnecter sharedInstance] getDeviceByPeripheral:peripheral];
+            device.setting = setting;
             device.online = NO;
             
             [self notifyFailToConnectDevice:device];
@@ -821,17 +840,15 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
     if (device) {
         device.peripheral = peripheral;
 
-        if (_initFlag) {
-            if (device.connectFlag) {
-                [self connectDPLinkingDevice:device];
+        if ([self isEqualDeviceUuid:peripheral]) {
+            if (_scanTimerCancelBlock) {
+                _scanTimerCancelBlock();
+                _scanTimerCancelBlock = nil;
             }
-        } else {
-            if ([self isEqualDeviceUuid:peripheral]) {
-                if (_scanTimerCancelBlock) {
-                    _scanTimerCancelBlock();
-                    _scanTimerCancelBlock = nil;
-                }
-                [self stopScan];
+            [self stopScan];
+            [self connectDPLinkingDevice:device];
+        } else if (_initFlag) {
+            if (device.connectFlag && !device.online) {
                 [self connectDPLinkingDevice:device];
             }
         }
@@ -850,8 +867,13 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void)didConnectDevice:(BLEDeviceSetting *)setting {
-    DCLogInfo(@"@@ didConnectDevice [デバイス：%@ と接続されました。]: %@", setting.name, setting.initialDeviceSettingFinished ? @"true" : @"false");
-    setting.isInDistanceThreshold = YES;
+    DCLogInfo(@"@@ didConnectDevice: [デバイス：%@ と接続されました。]", setting.name);
+    DCLogInfo(@"    setting.notifyDeviceInitial: %@", setting.notifyDeviceInitial ? @"YES" : @"NO");
+    DCLogInfo(@"    setting.initialDeviceSettingFinished: %@", setting.initialDeviceSettingFinished ? @"YES" : @"NO");
+    DCLogInfo(@"    setting.saved: %@", setting.saved ? @"YES" : @"NO");
+    DCLogInfo(@"    setting.connectionStatus: %@", setting.connectionStatus);
+
+    setting.inDistanceThreshold = YES;
 }
 
 - (void)didDeviceInitialFinished:(CBPeripheral *)peripheral {
@@ -859,7 +881,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
     
     BLEDeviceSetting *setting = [[BLEConnecter sharedInstance] getDeviceByPeripheral:peripheral];
 
-    DCLogInfo(@"デバイスを発見しました。");
+    DCLogInfo(@"デバイスの初期化が完了しました");
     DCLogInfo(@"    name : %@", setting.peripheral.name);
     DCLogInfo(@"    device id : %d", setting.deviceId);
     DCLogInfo(@"    device uid : %d", setting.deviceUid);
@@ -887,7 +909,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void)didDisconnectPeripheral:(CBPeripheral *)peripheral {
-    DCLogInfo(@"@@ didDisconnectPeripheral");
+    DCLogInfo(@"@@ didDisconnectPeripheral: %@", peripheral);
 
     DPLinkingDevice *device = [self findDPLinkingDeviceByPeripheral:peripheral];
     if (device) {
@@ -896,7 +918,7 @@ static DPLinkingDeviceManager* _sharedInstance = nil;
 }
 
 - (void) didDisconnectDevice:(BLEDeviceSetting *)setting {
-    DCLogInfo(@"@@ didDisconnectDevice");
+    DCLogInfo(@"@@ didDisconnectDevice: %@", setting.peripheral);
 
     DPLinkingDevice *device = [self findDPLinkingDeviceByPeripheral:setting.peripheral];
     if (device) {
