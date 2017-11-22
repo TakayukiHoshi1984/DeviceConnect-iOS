@@ -46,7 +46,10 @@ target 'dConnectBrowserForIOS9' do
 end
 
 post_install do |installer|
-    installer.pods_project.build_configurations.each do |configuration|
-        installer.pods_project.build_settings(configuration.name)['ONLY_ACTIVE_ARCH'] = 'NO'
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', 'DD_LEGACY_MACROS=1']
+      config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
     end
+  end
 end

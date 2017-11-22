@@ -41,9 +41,18 @@ Pod::Spec.new do |s|
     s.prefix_header_file = base_path + "/DConnectSDK/DConnectSDK-Prefix.pch"
     s.header_dir = "DConnectSDK"
     s.public_header_files = base_path + "/DConnectSDK/DConnectSDK/*.h"
-    s.source_files = base_path + "/DConnectSDK/DConnectSDK/*.h", base_path + "/DConnectSDK/{Classes,Dependencies}/**/*.{h,m,c}"
+	# Dependenciesフォルダ以下のソースのうち、Podに無い GCIPUtilとmultipart-parser-cだけを source_filesに入れる
+	s.source_files = base_path + "/DConnectSDK/DConnectSDK/*.h",
+					 base_path + "/DConnectSDK/Classes/**/*.{h,m,c}",
+					 base_path + "/DConnectSDK/Dependencies/GCIPUtil*.{h,m,c}",
+					 base_path + "/DConnectSDK/Dependencies/multipart-parser-c/*.{h,m,c}"
     s.resource_bundles = {"DConnectSDK_resources" => [base_path + "/DConnectSDK/Resources/**/*.{#{common_resource_exts}}"]}
     
     s.library = "sqlite3"
     
+    # 以下のモジュールはPodの依存として宣言
+	s.dependency 'CocoaAsyncSocket', '~> 7.6.1'
+	s.dependency 'CocoaHTTPServer', '~> 2.3'
+	s.dependency 'CocoaLumberjack', '~> 3.3.0'
+	s.dependency 'RoutingHTTPServer', '~> 1.0.0'
 end
