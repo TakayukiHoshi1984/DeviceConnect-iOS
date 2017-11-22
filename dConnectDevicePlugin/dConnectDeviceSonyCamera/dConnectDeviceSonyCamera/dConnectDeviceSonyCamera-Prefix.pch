@@ -12,15 +12,16 @@
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
+    #import <objc/runtime.h>
 #endif
 
 
 #ifdef DEBUG
-#define DPSonyCameraLogInfo(fmt, ...) NSLog((@"%s:INFO: " fmt), class_getName([self class]), ##__VA_ARGS__)
-#define DPSonyCameraLogInfo2(tag, fmt, ...) NSLog((@"%@:INFO: " fmt), (tag), ##__VA_ARGS__)
+#define DCLogInfo(fmt, ...) NSLog((@"%s:INFO: " fmt), class_getName([self class]), ##__VA_ARGS__)
+#define DCLogInfo2(tag, fmt, ...) NSLog((@"%@:INFO: " fmt), (tag), ##__VA_ARGS__)
 #else
-#define DPSonyCameraLogInfo(...)
-#define DPSonyCameraLogInfo2(...)
+#define DCLogInfo(...)
+#define DCLogInfo2(...)
 #endif
 
 #ifdef DEBUG

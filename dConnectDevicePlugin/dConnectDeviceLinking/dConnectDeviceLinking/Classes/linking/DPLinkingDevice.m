@@ -36,12 +36,12 @@ static NSString *const kConnectFlag = @"connectFlag";
         self.temperatureType = DCMTemperatureProfileEnumCelsius;
         self.online = NO;
 
-        DPLinkingLogInfo(@"LDPDevice");
-        DPLinkingLogInfo(@"    name: %@", self.name);
-        DPLinkingLogInfo(@"    id: %@", self.identifier);
-        DPLinkingLogInfo(@"    led: %d", self.ledOffPatternId);
-        DPLinkingLogInfo(@"    vibration: %d", self.vibrationOffPatternId);
-        DPLinkingLogInfo(@"    connectFlag: %@", self.connectFlag ? @"YES" : @"NO");
+        DCLogInfo(@"LDPDevice");
+        DCLogInfo(@"    name: %@", self.name);
+        DCLogInfo(@"    id: %@", self.identifier);
+        DCLogInfo(@"    led: %d", self.ledOffPatternId);
+        DCLogInfo(@"    vibration: %d", self.vibrationOffPatternId);
+        DCLogInfo(@"    connectFlag: %@", self.connectFlag ? @"YES" : @"NO");
     }
     return self;
 }

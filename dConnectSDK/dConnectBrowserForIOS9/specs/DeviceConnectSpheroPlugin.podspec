@@ -54,5 +54,5 @@ Pod::Spec.new do |s|
     s.dependency "DeviceConnectSDK"
     s.dependency "DeviceConnectPluginSDK"
     s.vendored_frameworks = base_path + "/RobotKit.framework", base_path + "/RobotUIKit.framework"
-    
+    s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/../libs' }
 end

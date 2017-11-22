@@ -44,5 +44,5 @@ Pod::Spec.new do |s|
     
     s.dependency "DeviceConnectSDK"
     s.vendored_frameworks = base_path + "/HueSDK_iOS.framework"
-    
+    s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/../libs' }
 end
