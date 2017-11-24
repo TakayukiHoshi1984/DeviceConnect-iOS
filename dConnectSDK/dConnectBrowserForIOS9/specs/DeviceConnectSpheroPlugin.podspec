@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "9.0"
     
     s.source       = {
-        :git => $targetSource, :branch => "modify_project"
+        :git => $targetSource
     }
     
     s.pod_target_xcconfig = {
@@ -45,7 +45,7 @@ Pod::Spec.new do |s|
     s.prefix_header_file = base_path + "/dConnectDeviceSphero/dConnectDeviceSphero-Prefix.pch"
     s.public_header_files = base_path + "/dConnectDeviceSphero/Headers/*.h"
     s.source_files = base_path + "/dConnectDeviceSphero/Headers/*.h", base_path + "/dConnectDeviceSphero/Classes/**/*.{h,m}"
-    s.resource_bundles = {"dConnectDeviceSphero_resources" => [base_path + "/dConnectDeviceSphero/Resources/**/*.{#{common_resource_exts}}", base_path + "/RobotoUIKit.bundle"]}
+    s.resource_bundles = {"dConnectDeviceSphero_resources" => [base_path + "/dConnectDeviceSphero/Resources/**/*.{#{common_resource_exts}}"]}
     
     # libstdc++.dylibだけでOKなはずなのだが、stdc++.6.dylibやstdc++.6.0.9.dylib
     # などでないとGNU C++関連のシンボル解決に失敗するので、その対処。
@@ -53,6 +53,5 @@ Pod::Spec.new do |s|
     s.frameworks = "ExternalAccessory", "CoreMotion"
     s.dependency "DeviceConnectSDK"
     s.dependency "DeviceConnectPluginSDK"
-    s.vendored_frameworks = base_path + "/RobotKit.framework", base_path + "/RobotUIKit.framework"
     s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/../libs' }
 end

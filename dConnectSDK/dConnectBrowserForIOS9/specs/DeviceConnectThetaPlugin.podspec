@@ -1,4 +1,4 @@
-# TODO: plistの変数展開はどうすれば良いだろうか。
+
 Pod::Spec.new do |s|
     
     s.name         = "DeviceConnectThetaPlugin"
@@ -28,26 +28,27 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "9.0"
     
     s.source       = {
-        :git => $targetSource
+        :git => $targetSource, :branch => "modify_project" # TODO:masterにマージするときに戻す
     }
     
+
     # エンドターゲット（アプリとか）のDebugビルドの際、対応するアーキテクチャが含まれていない
-    # という旨で提供するライブラリがビルドされない問題への対処。
+    # という旨で提供するライブラリがビルドされない問題sへの対処。
     s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'NO' }
     
     common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
     base_path = "dConnectDevicePlugin/dConnectDeviceTheta"
-    
-    # RICOH THETA SDK for iOS v0.3.0のZipへのパスを指定してもらう。
-    s.prepare_command = <<-CMD
-    cd #{base_path}
-    ruby require_theta_sdk.rb
-    CMD
-    
+
+    s.libraries   = 'iconv'
     s.public_header_files = base_path + "/dConnectDeviceTheta/Headers/*.h"
-    s.source_files = base_path + "/dConnectDeviceTheta/Headers/*.h", base_path + "/dConnectDeviceTheta/Classes/**/*.{h,m}"
+    s.source_files = base_path + "/dConnectDeviceTheta/Headers/*.h",
+    				 base_path + "/dConnectDeviceTheta/Classes/**/*.{h,m}",
+    				 base_path + "/dConnectDeviceTheta/Classes/lib/**/*.{h,mm,m}",
+    				 base_path + "/dConnectDeviceTheta/Classes/lib/**/**/*.{h,mm,cpp}"
+
+
     s.resource_bundles = {"dConnectDeviceTheta_resources" => [base_path + "/dConnectDeviceTheta/Resources/**/*.{#{common_resource_exts}}"]}
     
     s.dependency "DeviceConnectSDK"
-    
+
 end

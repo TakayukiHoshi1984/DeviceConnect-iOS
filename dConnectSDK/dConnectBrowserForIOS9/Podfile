@@ -1,5 +1,7 @@
 platform :ios, '9.0'
+require 'fileutils'
 $targetSource = "https://github.com/TakayukiHoshi1984/DeviceConnect-iOS"
+
 
 target 'dConnectBrowserForIOS9' do
   # Uncomment this line if you're using Swift or would like to use dynamic frameworks
@@ -10,39 +12,62 @@ target 'dConnectBrowserForIOS9' do
   pod 'DeviceConnectPluginSDK', podspec: "specs/DeviceConnectPluginSDK.podspec"
   
   # Chromecast
-  #pod 'google-cast-sdk', '2.10.4.1'
-  #pod 'DeviceConnectChromecastPlugin', podspec: "specs/DeviceConnectChromecastPlugin.podspec"
+  pod 'google-cast-sdk', '2.10.4.1'
+  pod 'DeviceConnectChromecastPlugin', podspec: "specs/DeviceConnectChromecastPlugin.podspec"
   
   # AllJoyn
-  #pod 'AllJoynCoreSDK', podspec: "specs/AllJoynCoreSDK.podspec"
-  #pod 'DeviceConnectAllJoynPlugin', podspec: "specs/DeviceConnectAllJoynPlugin.podspec"
+  # pod 'OpenSSL-Static', '1.0.2.c1'
+  # pod 'AllJoynCoreSDK', podspec: "specs/AllJoynCoreSDK.podspec"
+  # pod 'DeviceConnectAllJoynPlugin', podspec: "specs/DeviceConnectAllJoynPlugin.podspec"
   
   # Host
   pod 'DeviceConnectHostPlugin', podspec: "specs/DeviceConnectHostPlugin.podspec"
   
   # Hue
-  #pod 'CocoaLumberjack', '~> 1.0'
+  # dConnectBrowserForIOS9でHue_iOS.frameworkを追加してください
   pod 'DeviceConnectHuePlugin', podspec: "specs/DeviceConnectHuePlugin.podspec"
   
   # IRKit
   pod 'DeviceConnectIRKitPlugin', podspec: "specs/DeviceConnectIRKitPlugin.podspec"
   
   # Linking
-  # dConnectBrowserForIOS9/libsにLinkingLibrary.frameworkを入れてください。
-  #pod 'DeviceConnectLinkingPlugin', podspec: "specs/DeviceConnectLinkingPlugin.podspec"
+  # dConnectBrowserForIOS9でLinkingLibrary.frameworkを追加してください
+  pod 'DeviceConnectLinkingPlugin', podspec: "specs/DeviceConnectLinkingPlugin.podspec"
   
   # Pebble
-  pod 'DeviceConnectPebblePlugin', podspec: "specs/DeviceConnectPebblePlugin.podspec"
+  #pod 'DeviceConnectPebblePlugin', podspec: "specs/DeviceConnectPebblePlugin.podspec"
   
   # SonyCamera
   pod 'DeviceConnectSonyCameraPlugin', podspec: "specs/DeviceConnectSonyCameraPlugin.podspec"
   
   # Sphero
+  # dConnectBrowserForIOS9でRobotKit.frameworkを追加してください
   pod 'DeviceConnectSpheroPlugin', podspec: "specs/DeviceConnectSpheroPlugin.podspec"
   
   # Theta
-  #pod 'DeviceConnectThetaPlugin', podspec: "specs/DeviceConnectThetaPlugin.podspec"
+  pod 'DeviceConnectThetaPlugin', podspec: "specs/DeviceConnectThetaPlugin.podspec"
 
+  # AWSIot
+  #pod 'DeviceConnectAWSIoTPlugin', podspec: "specs/DeviceConnectAWSIoTPlugin.podspec"
+
+end
+
+# 読み込むThetaデバイスプラグインの中にThetaSDKを含める
+# podファイルのディレクトリに/libsを作り、その中にTheta SDKを入れておく
+libs_path = "Pods/DeviceConnectThetaPlugin/dConnectDevicePlugin/dConnectDeviceTheta/dConnectDeviceTheta/Classes/lib"
+
+# ディレクトリが存在しない場合は作成
+if !Dir::exist?(libs_path) then
+	FileUtils.mkdir_p(libs_path)
+end
+if !Dir::exist?(libs_path + "/lib-r-exif") then
+	FileUtils.cp_r('libs/lib-r-exif', libs_path)
+end
+if !Dir::exist?(libs_path + "/lib-ricoh-theta") then
+	FileUtils.cp_r('libs/lib-ricoh-theta', libs_path)
+end
+if !Dir::exist?(libs_path + "/lib-ricoh-theta_serializer") then
+	FileUtils.cp_r('libs/lib-ricoh-theta_serializer', libs_path)
 end
 
 post_install do |installer|

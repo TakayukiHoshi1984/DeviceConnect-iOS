@@ -44,10 +44,10 @@ Pod::Spec.new do |s|
     s.prepare_command = <<-CMD
     mkdir #{header_root}
     cp -R \
-    #{zip_root}/alljoyn_objc/AllJoynFramework/AllJoynFramework/*.h \
-    #{lib_base_path}/arm/iphoneos/release/dist/about/inc/* \
-    #{lib_base_path}/arm/iphoneos/release/dist/cpp/inc/* \
-    #{header_root}
+    {zip_root}/alljoyn_objc/AllJoynFramework/AllJoynFramework/*.h \
+    {lib_base_path}/arm/iphoneos/release/dist/about/inc/* \
+    {lib_base_path}/arm/iphoneos/release/dist/cpp/inc/* \
+    {header_root}
     CMD
     
     s.preserve_paths = zip_root + "/README.md", zip_root + "/README.txt", zip_root + "/ReleaseNotes.txt", zip_root + "/manifest.txt"

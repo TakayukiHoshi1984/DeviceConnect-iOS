@@ -1,13 +1,12 @@
 # TODO: plistの変数展開はどうすれば良いだろうか。
 Pod::Spec.new do |s|
     
-    s.name         = "DeviceConnectSonyCameraPlugin"
-    s.version      = "2.0.0"
-    s.summary      = "Device Connect Plugin for Sony Camera"
+    s.name         = "DeviceConnectAWSIoTPlugin"
+    s.version      = "2.1.0"
+    s.summary      = "Device Connect Plugin for AWSIoT"
     
     s.description  = <<-DESC
-    A Device Connect plugin for Sony Camera Remote API.
-    
+    A Device Connect plugin for AWSIoT.
     Device Connect is an IoT solution for interconnecting various modern devices.
     Also available in Android: https://github.com/DeviceConnect/DeviceConnect-Android .
     DESC
@@ -25,7 +24,7 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "9.0"
     
     s.source       = {
-        :git => $targetSource, :branch => "modify_project" # TODO:masterにマージするときに戻す
+        :git => $targetSource
     }
     
     # エンドターゲット（アプリとか）のDebugビルドの際、対応するアーキテクチャが含まれていない
@@ -33,14 +32,13 @@ Pod::Spec.new do |s|
     s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'NO' }
     
     common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
-    base_path = "dConnectDevicePlugin/dConnectDeviceSonyCamera"
+    base_path = "dConnectDevicePlugin/dConnectDeviceAWSIoT"
     
-    # エンドターゲット（アプリとか）のプリコンパイルドヘッダー汚染の恐れあり。
-    s.prefix_header_file = base_path + "/dConnectDeviceSonyCamera/dConnectDeviceSonyCamera-Prefix.pch"
-    s.public_header_files = base_path + "/dConnectDeviceSonyCamera/Headers/*.h"
-    s.source_files = base_path + "/dConnectDeviceSonyCamera/Headers/*.h", base_path + "/dConnectDeviceSonyCamera/Classes/**/*.{h,m}"
-    s.resource_bundles = {"dConnectDeviceSonyCamera_resources" => [base_path + "/dConnectDeviceSonyCamera/Resources/**/*.{#{common_resource_exts}}"]}
+    s.private_header_files = base_path + "/dConnectDeviceAWSIoT/Classes/**/*.h"
+    s.source_files = base_path + "/dConnectDeviceAWSIoT/Classes/**/*.{h,m}"
+    s.resource_bundles = {"dConnectDeviceAWSIoT_resources" => [base_path + "/dConnectDeviceAWSIoT/Resources/**/*.{#{common_resource_exts}}"]}
     
     s.dependency "DeviceConnectSDK"
+    s.dependency "AWSIoT"
     
 end

@@ -45,6 +45,7 @@ Pod::Spec.new do |s|
     s.libraries = "z"
     s.frameworks = "ExternalAccessory", "CoreMotion", "CoreBluetooth", "CFNetwork", "MessageUI"
     s.dependency "DeviceConnectSDK"
+    s.dependency 'CocoaLumberjack', '~> 3.3.0'
     s.vendored_frameworks = base_path + "/PebbleKit.framework", base_path + "/PebbleVendor.framework"
     
 end

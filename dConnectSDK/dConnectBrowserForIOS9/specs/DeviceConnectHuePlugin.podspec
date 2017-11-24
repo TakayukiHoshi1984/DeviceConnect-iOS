@@ -43,6 +43,5 @@ Pod::Spec.new do |s|
     s.resource_bundles = {"dConnectDeviceHue_resources" => [base_path + "/dConnectDeviceHue/Resources/**/*.{#{common_resource_exts}}"]}
     
     s.dependency "DeviceConnectSDK"
-    s.vendored_frameworks = base_path + "/HueSDK_iOS.framework"
     s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/../libs' }
 end

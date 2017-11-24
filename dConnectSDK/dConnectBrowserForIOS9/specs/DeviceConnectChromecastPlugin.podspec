@@ -1,4 +1,4 @@
-# TODO: plistの変数展開はどうすれば良いだろうか。
+# TODO: ApplicationIDの追加
 Pod::Spec.new do |s|
     
     s.name         = "DeviceConnectChromecastPlugin"
@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
     s.prefix_header_file = base_path + "/dConnectDeviceChromecast/dConnectDeviceChromecast-Prefix.pch"
     s.private_header_files = base_path + "/dConnectDeviceChromecast/Classes/**/*.h"
     s.source_files = base_path + "/dConnectDeviceChromecast/Classes/**/*.{h,m}"
-    s.resource_bundles = {"dConnectDeviceChromecast_resources" => [base_path + "/dConnectDeviceChromecast/Resources/**/*.{#{common_resource_exts}}"]}
+    s.resource_bundles = {"dConnectDeviceChromecast_resources" => [base_path + "/dConnectDeviceChromecast/**/**/*.{#{common_resource_exts}}"]}
     
     s.dependency "DeviceConnectSDK"
     s.vendored_frameworks = base_path + "/GoogleCastSDK-2.6.0-Release/GoogleCast.framework"

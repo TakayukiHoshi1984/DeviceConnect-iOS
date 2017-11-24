@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
     s.public_header_files = base_path + "/dConnectDeviceLinking/Headers/*.h"
     s.source_files = base_path + "/dConnectDeviceLinking/Headers/*.h", base_path + "/dConnectDeviceLinking/Classes/**/*.{h,m}"
     s.resource_bundles = {"dConnectDeviceLinking_resources" => [base_path + "/dConnectDeviceLinking/Resources/**/*.{#{common_resource_exts}}"]}
-    s.vendored_frameworks = 'LinkingLibrary.framework'
+
     s.dependency "DeviceConnectSDK"
     
     s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/../libs' }
