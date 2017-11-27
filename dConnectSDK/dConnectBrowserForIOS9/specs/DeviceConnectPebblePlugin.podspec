@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "9.0"
     
     s.source       = {
-        :git => $targetSource
+        :git => $targetSource, :branch => "modify_project"
     }
     
     # エンドターゲット（アプリとか）のDebugビルドの際、対応するアーキテクチャが含まれていない

@@ -67,7 +67,7 @@ static NSString * const kDPPebbleRegexCSV = @"^([^,]*,)+";
 		uuid_t myAppUUIDbytes;
 		NSUUID *myAppUUID = [[NSUUID alloc] initWithUUIDString:DPPebbleUUID];
 		[myAppUUID getUUIDBytes:myAppUUIDbytes];
-		[[PBPebbleCentral defaultCentral] setAppUUID:[NSData dataWithBytes:myAppUUIDbytes length:16]];
+		[[PBPebbleCentral defaultCentral] setAppUUID:myAppUUID];
 
 	}
 	return self;
