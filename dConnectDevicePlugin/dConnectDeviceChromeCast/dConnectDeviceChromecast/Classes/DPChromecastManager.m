@@ -68,7 +68,9 @@ static const NSTimeInterval DPSemaphoreTimeout = 20.0;
 {
 	self = [super init];
 	if (self) {
-        [CastDeviceController sharedInstance].applicationID = kReceiverAppID;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [CastDeviceController sharedInstance].applicationID = kReceiverAppID;
+        });
         _deviceScanner = [GCKDeviceScanner new];
         [_deviceScanner addListener:self];
 		_dataDict = [NSMutableDictionary dictionary];
