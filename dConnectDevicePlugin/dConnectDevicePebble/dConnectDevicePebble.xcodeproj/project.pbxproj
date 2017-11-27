@@ -52,13 +52,13 @@
 		4450065619BD4D5100C9FF54 /* PebbleDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450062F19BD4D5100C9FF54 /* PebbleDataViewController.m */; };
 		4450065819BD4D5100C9FF54 /* PebbleModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450063119BD4D5100C9FF54 /* PebbleModelController.m */; };
 		4450065A19BD4D5100C9FF54 /* PebbleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450063319BD4D5100C9FF54 /* PebbleViewController.m */; };
-		44A1FEF119CBE37800A70BB4 /* DConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A1FEF019CBE37800A70BB4 /* DConnectSDK.framework */; };
 		44A4A9F219C1986C0050A0AA /* img01.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A4A9ED19C1986C0050A0AA /* img01.png */; };
 		44A4A9F319C1986C0050A0AA /* img02.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A4A9EE19C1986C0050A0AA /* img02.png */; };
 		44A4A9F419C1986C0050A0AA /* img03.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A4A9EF19C1986C0050A0AA /* img03.png */; };
 		44A4A9F519C1986C0050A0AA /* img04.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A4A9F019C1986C0050A0AA /* img04.png */; };
 		44A4A9F619C1986C0050A0AA /* img05.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A4A9F119C1986C0050A0AA /* img05.png */; };
 		44A4A9F819C198930050A0AA /* Download_on_the_App_Store_Badge_US-UK_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A4A9F719C198930050A0AA /* Download_on_the_App_Store_Badge_US-UK_135x40.png */; };
+		488293E58887F78635971D94 /* libPods-dConnectDevicePebble.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 694877F67D24BFFF34B9E746 /* libPods-dConnectDevicePebble.a */; };
 		783D47B019FA2CBB001C6CD9 /* DPPebbleProfileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 783D47AF19FA2CBB001C6CD9 /* DPPebbleProfileUtil.m */; };
 		8EB854381D422A580035C0DC /* dconnect_icon_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB854361D422A580035C0DC /* dconnect_icon_off.png */; };
 		8EB854391D422A580035C0DC /* dconnect_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB854371D422A580035C0DC /* dconnect_icon.png */; };
@@ -67,7 +67,6 @@
 		AB33D7781A7605540073A1BA /* DPPebbleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D7741A7605540073A1BA /* DPPebbleImage.m */; };
 		AB33D7791A7605540073A1BA /* DPPebbleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33D7761A7605540073A1BA /* DPPebbleManager.m */; };
 		AB5A29B31D88F05300354AF6 /* dConnectDevicePebble.pbw in Resources */ = {isa = PBXBuildFile; fileRef = AB5A29B21D88F02E00354AF6 /* dConnectDevicePebble.pbw */; };
-		ABCE5F5819AB38C00040EE10 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCE5F5719AB38C00040EE10 /* PebbleKit.framework */; };
 		BE066B5919A8532700CBED07 /* dConnectDevicePebble_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE066B5819A8532700CBED07 /* dConnectDevicePebble_iPhone.storyboard */; };
 		BE066B5B19A8537A00CBED07 /* dConnectDevicePebble_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE066B5A19A8537A00CBED07 /* dConnectDevicePebble_iPad.storyboard */; };
 		D6C8604B1D3B4BFF00232EEF /* DPPebbleService.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C8604A1D3B4BFF00232EEF /* DPPebbleService.m */; };
@@ -104,6 +103,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		08DE59E5618CCEEC1AC3C304 /* Pods-dConnectDevicePebble.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dConnectDevicePebble.release.xcconfig"; path = "Pods/Target Support Files/Pods-dConnectDevicePebble/Pods-dConnectDevicePebble.release.xcconfig"; sourceTree = "<group>"; };
 		44407BE51998B78C00E9B751 /* libdConnectDevicePebble.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdConnectDevicePebble.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		44407BE81998B78C00E9B751 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		44407C001998B78C00E9B751 /* dConnectDevicePebbleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "dConnectDevicePebbleTests-Info.plist"; sourceTree = "<group>"; };
@@ -145,13 +145,13 @@
 		4450063119BD4D5100C9FF54 /* PebbleModelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PebbleModelController.m; sourceTree = "<group>"; };
 		4450063219BD4D5100C9FF54 /* PebbleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PebbleViewController.h; sourceTree = "<group>"; };
 		4450063319BD4D5100C9FF54 /* PebbleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PebbleViewController.m; sourceTree = "<group>"; };
-		44A1FEF019CBE37800A70BB4 /* DConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DConnectSDK.framework; path = ../../dConnectSDK/dConnectSDKForIOS/bin/DConnectSDK.framework; sourceTree = "<group>"; };
 		44A4A9ED19C1986C0050A0AA /* img01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img01.png; sourceTree = "<group>"; };
 		44A4A9EE19C1986C0050A0AA /* img02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img02.png; sourceTree = "<group>"; };
 		44A4A9EF19C1986C0050A0AA /* img03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img03.png; sourceTree = "<group>"; };
 		44A4A9F019C1986C0050A0AA /* img04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img04.png; sourceTree = "<group>"; };
 		44A4A9F119C1986C0050A0AA /* img05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img05.png; sourceTree = "<group>"; };
 		44A4A9F719C198930050A0AA /* Download_on_the_App_Store_Badge_US-UK_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Download_on_the_App_Store_Badge_US-UK_135x40.png"; sourceTree = "<group>"; };
+		694877F67D24BFFF34B9E746 /* libPods-dConnectDevicePebble.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dConnectDevicePebble.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		783D47AE19FA2CBB001C6CD9 /* DPPebbleProfileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPPebbleProfileUtil.h; sourceTree = "<group>"; };
 		783D47AF19FA2CBB001C6CD9 /* DPPebbleProfileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPPebbleProfileUtil.m; sourceTree = "<group>"; };
 		8EB854361D422A580035C0DC /* dconnect_icon_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dconnect_icon_off.png; path = images/dconnect_icon_off.png; sourceTree = "<group>"; };
@@ -165,11 +165,11 @@
 		AB33D7751A7605540073A1BA /* DPPebbleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPPebbleManager.h; sourceTree = "<group>"; };
 		AB33D7761A7605540073A1BA /* DPPebbleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPPebbleManager.m; sourceTree = "<group>"; };
 		AB5A29B21D88F02E00354AF6 /* dConnectDevicePebble.pbw */ = {isa = PBXFileReference; lastKnownFileType = file; path = dConnectDevicePebble.pbw; sourceTree = "<group>"; };
-		ABCE5F5719AB38C00040EE10 /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleKit.framework; sourceTree = "<group>"; };
 		BE066B5819A8532700CBED07 /* dConnectDevicePebble_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = dConnectDevicePebble_iPhone.storyboard; sourceTree = "<group>"; };
 		BE066B5A19A8537A00CBED07 /* dConnectDevicePebble_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = dConnectDevicePebble_iPad.storyboard; sourceTree = "<group>"; };
 		D6C860491D3B4BFF00232EEF /* DPPebbleService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPPebbleService.h; sourceTree = "<group>"; };
 		D6C8604A1D3B4BFF00232EEF /* DPPebbleService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPPebbleService.m; sourceTree = "<group>"; };
+		DBB262097D8AF66DD9EA9915 /* Pods-dConnectDevicePebble.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dConnectDevicePebble.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dConnectDevicePebble/Pods-dConnectDevicePebble.debug.xcconfig"; sourceTree = "<group>"; };
 		EFD5B7451AAC919800C15A3A /* DPPebbleKeyEventProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DPPebbleKeyEventProfile.h; sourceTree = "<group>"; };
 		EFD5B7461AAC91C000C15A3A /* DPPebbleKeyEventProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPPebbleKeyEventProfile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,8 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44407BE91998B78C00E9B751 /* Foundation.framework in Frameworks */,
-				ABCE5F5819AB38C00040EE10 /* PebbleKit.framework in Frameworks */,
-				44A1FEF119CBE37800A70BB4 /* DConnectSDK.framework in Frameworks */,
+				488293E58887F78635971D94 /* libPods-dConnectDevicePebble.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +203,7 @@
 				44407C2D1998BE4E00E9B751 /* dConnectDevicePebble_resources */,
 				44407BE71998B78C00E9B751 /* Frameworks */,
 				44407BE61998B78C00E9B751 /* Products */,
+				BD288111AE5EFF02FF422AA3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,10 +219,9 @@
 		44407BE71998B78C00E9B751 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				44A1FEF019CBE37800A70BB4 /* DConnectSDK.framework */,
-				ABCE5F5719AB38C00040EE10 /* PebbleKit.framework */,
 				44407BE81998B78C00E9B751 /* Foundation.framework */,
 				44407C2B1998BE4E00E9B751 /* CoreFoundation.framework */,
+				694877F67D24BFFF34B9E746 /* libPods-dConnectDevicePebble.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -382,6 +381,15 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		BD288111AE5EFF02FF422AA3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DBB262097D8AF66DD9EA9915 /* Pods-dConnectDevicePebble.debug.xcconfig */,
+				08DE59E5618CCEEC1AC3C304 /* Pods-dConnectDevicePebble.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -389,9 +397,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44407C081998B78C00E9B751 /* Build configuration list for PBXNativeTarget "dConnectDevicePebble" */;
 			buildPhases = (
+				95DA8B22DB48E856C1FA52A0 /* [CP] Check Pods Manifest.lock */,
 				44407BE11998B78C00E9B751 /* Sources */,
 				44407BE21998B78C00E9B751 /* Frameworks */,
 				44407BE31998B78C00E9B751 /* CopyFiles */,
+				3651F9C8FCB3682028599909 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -476,6 +486,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3651F9C8FCB3682028599909 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDevicePebble/Pods-dConnectDevicePebble-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSDK/DConnectSDK_resources.bundle,
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDevicePebble/Pods-dConnectDevicePebble-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		44407C3D1998C61A00E9B751 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,7 +515,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.0\nCONFIGURATION=\"Release\"\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nSTATICLIB_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-universal\"\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\n# A target to build a static library *must* have the name ${PROJECT_NAME}.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build\n# A target to build a bundle *must* have the name ${PROJECT_NAME}_resources. This target is optional.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\n\n# create directories.\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\n#mkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${STATICLIB_BUILD_PATH}\n# create symlinks\ncd ${FRAMEWORK_DIR}\nln -s ../Versions/${FRAMEWORK_VERSION} Versions/Current\nln -s Versions/Current/Headers Headers\n#ln -s Versions/Current/Resources Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_NAME}\ncd ${SRCROOT}\n\n# create the universal library, and strip internal symbols from it\nlipo ${SRCROOT}/build/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\n#strip -x \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\ncp \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\" \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\ncp -r ${SRCROOT}/${PROJECT_NAME}/Headers/ ${FRAMEWORK_DIR}/Headers/\n\n# copy binary to bin folder\ncd ${SRCROOT}\n\ncd bin\nls | grep -v -E '.gitignore$' | xargs rm -rf\ncd ..\ncp -R ${FRAMEWORK_DIR} bin\ncp -r build/${CONFIGURATION}-resources/${PROJECT_NAME}_resources.bundle bin";
+			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.0\nCONFIGURATION=\"Release\"\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nSTATICLIB_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-universal\"\nCONFIG_PATH=\"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDevicePebble/Pods-dConnectDevicePebble.debug.xcconfig\"\n\necho ${PROJECT_NAME}\necho ${SRCROOT}\necho ${FRAMEWORK_BUILD_PATH}\necho ${CONFIG_PATH}\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\n# A target to build a static library *must* have the name ${PROJECT_NAME}.\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -sdk iphonesimulator -scheme ${PROJECT_NAME}  -configuration ${CONFIGURATION} -derivedDataPath build clean build\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -sdk iphoneos -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} -derivedDataPath build clean build\n\n# A target to build a bundle *must* have the name ${PROJECT_NAME}_resources. This target is optional.\n#xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\n\n# create directories.\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\n#mkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${STATICLIB_BUILD_PATH}\n# create symlinks\ncd ${FRAMEWORK_DIR}\nln -s ../Versions/${FRAMEWORK_VERSION} Versions/Current\nln -s Versions/Current/Headers Headers\n#ln -s Versions/Current/Resources Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_NAME}\ncd ${SRCROOT}\n\n# create the universal library, and strip internal symbols from it\nlipo ${SRCROOT}/build/Build/Products/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/Build/Products/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\n#strip -x \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\ncp \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\" \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\n#cp -r ${SRCROOT}/${PROJECT_NAME}/Headers/ ${FRAMEWORK_DIR}/Headers/\n\n# copy binary to bin folder\ncd ${SRCROOT}\n\nmkdir -p bin\ncd bin\nls | grep -v -E '.gitignore$' | xargs rm -rf\ncd ..\ncp -R ${FRAMEWORK_DIR} bin\ncp -r build/${CONFIGURATION}-iphoneos/${PROJECT_NAME}_resources.bundle bin";
+		};
+		95DA8B22DB48E856C1FA52A0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dConnectDevicePebble-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		AB2821941A95D304007B3D6F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -671,13 +717,10 @@
 		};
 		44407C091998B78C00E9B751 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBB262097D8AF66DD9EA9915 /* Pods-dConnectDevicePebble.debug.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/dConnectDevicePebble.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDevicePebble/dConnectDevicePebble-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
@@ -688,13 +731,10 @@
 		};
 		44407C0A1998B78C00E9B751 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08DE59E5618CCEEC1AC3C304 /* Pods-dConnectDevicePebble.release.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/dConnectDevicePebble.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDevicePebble/dConnectDevicePebble-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
@@ -707,7 +747,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)-resources";
+				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -736,7 +776,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)-resources";
+				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

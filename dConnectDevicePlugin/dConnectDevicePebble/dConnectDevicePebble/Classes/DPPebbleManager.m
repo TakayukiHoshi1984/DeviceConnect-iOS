@@ -8,7 +8,7 @@
 //
 
 #import "DPPebbleManager.h"
-#import <PebbleKit/PebbleKit.h>
+#import <PebbleKit-Static/PebbleKit.h>
 #import "pebble_device_plugin_defines.h"
 #import <DConnectSDK/DConnectService.h>
 #import "DPPebbleService.h"
