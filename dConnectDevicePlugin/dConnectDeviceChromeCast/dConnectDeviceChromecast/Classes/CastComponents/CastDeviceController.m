@@ -107,12 +107,14 @@ NSString * const kCastViewController = @"castViewController";
 - (instancetype)init {
   self = [super init];
   if (self) {
-    // Initialize UI controls for navigation bar.
-    [self initControls];
-    // Load the storyboard for the Cast component UI.
-    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"dConnectDeviceChromecast_resources" ofType:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
-    self.storyboard = [UIStoryboard storyboardWithName:@"CastComponents" bundle:bundle];
+      dispatch_async(dispatch_get_main_queue(), ^{
+          // Initialize UI controls for navigation bar.
+          [self initControls];
+          // Load the storyboard for the Cast component UI.
+          NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"dConnectDeviceChromecast_resources" ofType:@"bundle"];
+          NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+          self.storyboard = [UIStoryboard storyboardWithName:@"CastComponents" bundle:bundle];
+      });
   }
   return self;
 }

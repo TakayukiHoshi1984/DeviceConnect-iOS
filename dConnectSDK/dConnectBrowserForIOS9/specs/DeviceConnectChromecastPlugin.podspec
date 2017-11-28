@@ -25,23 +25,28 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "9.0"
     
     s.source       = {
-        :git => $targetSource
+        :git => $targetSource, :branch => 'modify_project'
     }
     
     # エンドターゲット（アプリとか）のDebugビルドの際、対応するアーキテクチャが含まれていない
     # という旨で提供するライブラリがビルドされない問題への対処。
     s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'NO' }
     
-    common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
+    common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png,xcassets"
     base_path = "dConnectDevicePlugin/dConnectDeviceChromeCast"
-    
+    s.prepare_command = <<-CMD
+    echo $(PODS_ROOT)
+    CMD
     # エンドターゲット（アプリとか）のプリコンパイルドヘッダー汚染の恐れあり。
     s.prefix_header_file = base_path + "/dConnectDeviceChromecast/dConnectDeviceChromecast-Prefix.pch"
     s.private_header_files = base_path + "/dConnectDeviceChromecast/Classes/**/*.h"
     s.source_files = base_path + "/dConnectDeviceChromecast/Classes/**/*.{h,m}"
-    s.resource_bundles = {"dConnectDeviceChromecast_resources" => [base_path + "/dConnectDeviceChromecast/**/**/*.{#{common_resource_exts}}"]}
-    
+    s.resource_bundles = {
+    		"dConnectDeviceChromecast_resources" => [
+    			base_path + "/dConnectDeviceChromecast/**/**/*.{#{common_resource_exts}}"
+    		]
+    }
+    s.dependency "google-cast-sdk"
     s.dependency "DeviceConnectSDK"
-    s.vendored_frameworks = base_path + "/GoogleCastSDK-2.6.0-Release/GoogleCast.framework"
     
 end

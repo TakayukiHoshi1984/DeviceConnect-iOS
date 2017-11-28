@@ -59,7 +59,7 @@ static const int kCastIconButtonAnimationDuration = 2;
 - (instancetype)initWithFrame:(CGRect)frame{
   self = [super initWithFrame:frame];
   if (self) {
-      NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"dConnectDeviceChromecast_resources" ofType:@"bundle"];
+      NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"CastFrameworkAssets" ofType:@"bundle"];
       NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
 
     self.castOff = [[UIImage imageNamed:@"cast_off" inBundle:bundle compatibleWithTraitCollection:nil]
