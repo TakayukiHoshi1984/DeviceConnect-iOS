@@ -34,6 +34,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		273EDA9F04E6107C980B992C /* Pods_dConnectDevicePebble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54CB9ABE593611C943D2822D /* Pods_dConnectDevicePebble.framework */; };
 		44407BE91998B78C00E9B751 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44407BE81998B78C00E9B751 /* Foundation.framework */; };
 		44407C2C1998BE4E00E9B751 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44407C2B1998BE4E00E9B751 /* CoreFoundation.framework */; };
 		44407C321998BE4E00E9B751 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44407C301998BE4E00E9B751 /* InfoPlist.strings */; };
@@ -58,7 +59,6 @@
 		44A4A9F519C1986C0050A0AA /* img04.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A4A9F019C1986C0050A0AA /* img04.png */; };
 		44A4A9F619C1986C0050A0AA /* img05.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A4A9F119C1986C0050A0AA /* img05.png */; };
 		44A4A9F819C198930050A0AA /* Download_on_the_App_Store_Badge_US-UK_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A4A9F719C198930050A0AA /* Download_on_the_App_Store_Badge_US-UK_135x40.png */; };
-		488293E58887F78635971D94 /* libPods-dConnectDevicePebble.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 694877F67D24BFFF34B9E746 /* libPods-dConnectDevicePebble.a */; };
 		783D47B019FA2CBB001C6CD9 /* DPPebbleProfileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 783D47AF19FA2CBB001C6CD9 /* DPPebbleProfileUtil.m */; };
 		8EB854381D422A580035C0DC /* dconnect_icon_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB854361D422A580035C0DC /* dconnect_icon_off.png */; };
 		8EB854391D422A580035C0DC /* dconnect_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB854371D422A580035C0DC /* dconnect_icon.png */; };
@@ -151,7 +151,7 @@
 		44A4A9F019C1986C0050A0AA /* img04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img04.png; sourceTree = "<group>"; };
 		44A4A9F119C1986C0050A0AA /* img05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img05.png; sourceTree = "<group>"; };
 		44A4A9F719C198930050A0AA /* Download_on_the_App_Store_Badge_US-UK_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Download_on_the_App_Store_Badge_US-UK_135x40.png"; sourceTree = "<group>"; };
-		694877F67D24BFFF34B9E746 /* libPods-dConnectDevicePebble.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dConnectDevicePebble.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		54CB9ABE593611C943D2822D /* Pods_dConnectDevicePebble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dConnectDevicePebble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		783D47AE19FA2CBB001C6CD9 /* DPPebbleProfileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPPebbleProfileUtil.h; sourceTree = "<group>"; };
 		783D47AF19FA2CBB001C6CD9 /* DPPebbleProfileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPPebbleProfileUtil.m; sourceTree = "<group>"; };
 		8EB854361D422A580035C0DC /* dconnect_icon_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dconnect_icon_off.png; path = images/dconnect_icon_off.png; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44407BE91998B78C00E9B751 /* Foundation.framework in Frameworks */,
-				488293E58887F78635971D94 /* libPods-dConnectDevicePebble.a in Frameworks */,
+				273EDA9F04E6107C980B992C /* Pods_dConnectDevicePebble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +221,7 @@
 			children = (
 				44407BE81998B78C00E9B751 /* Foundation.framework */,
 				44407C2B1998BE4E00E9B751 /* CoreFoundation.framework */,
-				694877F67D24BFFF34B9E746 /* libPods-dConnectDevicePebble.a */,
+				54CB9ABE593611C943D2822D /* Pods_dConnectDevicePebble.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -764,6 +764,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.deviceconnect.deviceplugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -790,6 +791,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.deviceconnect.deviceplugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

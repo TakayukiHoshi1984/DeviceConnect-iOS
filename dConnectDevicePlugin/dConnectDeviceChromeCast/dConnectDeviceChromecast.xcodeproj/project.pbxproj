@@ -1005,7 +1005,6 @@
 				DSTROOT = /tmp/dConnectChromecast.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/deps/CocoaPods/Pods/google-cast-sdk/GoogleCastSDK-2.10.4-Release",
 				);
@@ -1024,7 +1023,6 @@
 				DSTROOT = /tmp/dConnectChromecast.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/deps/CocoaPods/Pods/google-cast-sdk/GoogleCastSDK-2.10.4-Release",
 				);

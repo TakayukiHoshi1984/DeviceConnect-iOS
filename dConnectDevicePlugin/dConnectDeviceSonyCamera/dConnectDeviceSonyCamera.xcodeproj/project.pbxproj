@@ -82,6 +82,7 @@
 		D662E9A51D4A16B300919C69 /* SonyCameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D662E9A41D4A16B300919C69 /* SonyCameraManager.m */; };
 		D6C860481D3B436400232EEF /* SonyCameraService.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C860471D3B436400232EEF /* SonyCameraService.m */; };
 		D6D172741D62E7CD00444337 /* SonyCameraReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D172731D62E7CD00444337 /* SonyCameraReachability.m */; };
+		E30A5D97E36907BB97709FBA /* libPods-dConnectDeviceSonyCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E58436CD0B98A84A880BA55 /* libPods-dConnectDeviceSonyCamera.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E58436CD0B98A84A880BA55 /* libPods-dConnectDeviceSonyCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dConnectDeviceSonyCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		885E0E5CD8DE4559CCD269EB /* Pods-dConnectDeviceSonyCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dConnectDeviceSonyCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-dConnectDeviceSonyCamera/Pods-dConnectDeviceSonyCamera.release.xcconfig"; sourceTree = "<group>"; };
 		8EB8544E1D42406F0035C0DC /* dconnect_icon_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dconnect_icon_off.png; sourceTree = "<group>"; };
 		8EB8544F1D42406F0035C0DC /* dconnect_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dconnect_icon.png; sourceTree = "<group>"; };
 		AB65A0031ED43DA900E68B86 /* RemoteApiList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteApiList.h; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 		AB65A00D1ED43DA900E68B86 /* SampleRemoteApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleRemoteApi.m; sourceTree = "<group>"; };
 		ABB1838F19F626930059E7F8 /* SonyCameraCameraProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SonyCameraCameraProfile.h; sourceTree = "<group>"; };
 		ABB1839019F626B30059E7F8 /* SonyCameraDevicePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SonyCameraDevicePlugin.h; sourceTree = "<group>"; };
+		B544BEE782B581E5ED1B0F3E /* Pods-dConnectDeviceSonyCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dConnectDeviceSonyCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dConnectDeviceSonyCamera/Pods-dConnectDeviceSonyCamera.debug.xcconfig"; sourceTree = "<group>"; };
 		BE24CF02197F7BC3007BBC69 /* SampleLiveviewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleLiveviewManager.h; sourceTree = "<group>"; };
 		BE24CF03197F7BC3007BBC69 /* SampleLiveviewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleLiveviewManager.m; sourceTree = "<group>"; };
 		BE4B295819809B8900338159 /* sonycamera_img01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sonycamera_img01@2x.png"; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 				BEAFFE4519C94FFA00A98079 /* DConnectSDK.framework in Frameworks */,
 				C2540C8B195ACD8500AE012C /* UIKit.framework in Frameworks */,
 				C2540BB2195A7FA000AE012C /* Foundation.framework in Frameworks */,
+				E30A5D97E36907BB97709FBA /* libPods-dConnectDeviceSonyCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +233,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52B149ACA195953A0A031B1F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B544BEE782B581E5ED1B0F3E /* Pods-dConnectDeviceSonyCamera.debug.xcconfig */,
+				885E0E5CD8DE4559CCD269EB /* Pods-dConnectDeviceSonyCamera.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BE4B295719809B8900338159 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +277,7 @@
 				C2540C7B195ACC0800AE012C /* dConnectDeviceSonyCamera_resources */,
 				C2540BB0195A7FA000AE012C /* Frameworks */,
 				C2540BAF195A7FA000AE012C /* Products */,
+				52B149ACA195953A0A031B1F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -284,6 +299,7 @@
 				C2540BB1195A7FA000AE012C /* Foundation.framework */,
 				C2540BBF195A7FA000AE012C /* XCTest.framework */,
 				C2540C79195ACC0800AE012C /* CoreFoundation.framework */,
+				4E58436CD0B98A84A880BA55 /* libPods-dConnectDeviceSonyCamera.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -463,9 +479,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2540BD1195A7FA100AE012C /* Build configuration list for PBXNativeTarget "dConnectDeviceSonyCamera" */;
 			buildPhases = (
+				4B8BC6DC5C1F7BB7F7690B3E /* [CP] Check Pods Manifest.lock */,
 				C2540BAA195A7FA000AE012C /* Sources */,
 				C2540BAB195A7FA000AE012C /* Frameworks */,
 				C2540BAC195A7FA000AE012C /* CopyFiles */,
+				F5C7F00735599505C1719AEF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -579,6 +597,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4B8BC6DC5C1F7BB7F7690B3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dConnectDeviceSonyCamera-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AB28218F1A95D28F007B3D6F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -604,7 +640,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.0\nCONFIGURATION=\"Release\"\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nSTATICLIB_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-universal\"\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\n# A target to build a static library *must* have the name ${PROJECT_NAME}.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build\n# A target to build a bundle *must* have the name ${PROJECT_NAME}_resources. This target is optional.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\n\n# create directories.\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\n#mkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${STATICLIB_BUILD_PATH}\n# create symlinks\ncd ${FRAMEWORK_DIR}\nln -s ../Versions/${FRAMEWORK_VERSION} Versions/Current\nln -s Versions/Current/Headers Headers\n#ln -s Versions/Current/Resources Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_NAME}\ncd ${SRCROOT}\n\n# create the universal library, and strip internal symbols from it\nlipo ${SRCROOT}/build/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\n#strip -x \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\ncp \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\" \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\ncp -r ${SRCROOT}/${PROJECT_NAME}/Headers/ ${FRAMEWORK_DIR}/Headers/\n\n# copy binary to bin folder\ncd ${SRCROOT}\n\ncd bin\nls | grep -v -E '.gitignore$' | xargs rm -rf\ncd ..\ncp -R ${FRAMEWORK_DIR} bin\ncp -r build/${CONFIGURATION}-resources/${PROJECT_NAME}_resources.bundle bin";
+			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.0\nCONFIGURATION=\"Release\"\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nSTATICLIB_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-universal\"\nCONFIG_PATH=\"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceSonyCamera/Pods-dConnectDeviceSonyCamera.debug.xcconfig\"\n\necho ${PROJECT_NAME}\necho ${SRCROOT}\necho ${FRAMEWORK_BUILD_PATH}\necho ${CONFIG_PATH}\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\n# A target to build a static library *must* have the name ${PROJECT_NAME}.\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -sdk iphonesimulator -scheme ${PROJECT_NAME}  -configuration ${CONFIGURATION} -derivedDataPath build clean build\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -sdk iphoneos -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} -derivedDataPath build clean build\n\n# A target to build a bundle *must* have the name ${PROJECT_NAME}_resources. This target is optional.\n#xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\n\n# create directories.\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\n#mkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${STATICLIB_BUILD_PATH}\n# create symlinks\ncd ${FRAMEWORK_DIR}\nln -s ../Versions/${FRAMEWORK_VERSION} Versions/Current\nln -s Versions/Current/Headers Headers\n#ln -s Versions/Current/Resources Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_NAME}\ncd ${SRCROOT}\n\n# create the universal library, and strip internal symbols from it\nlipo ${SRCROOT}/build/Build/Products/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/Build/Products/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\n#strip -x \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\ncp \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\" \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\n#cp -r ${SRCROOT}/${PROJECT_NAME}/Headers/ ${FRAMEWORK_DIR}/Headers/\n\n# copy binary to bin folder\ncd ${SRCROOT}\n\nmkdir -p bin\ncd bin\nls | grep -v -E '.gitignore$' | xargs rm -rf\ncd ..\ncp -R ${FRAMEWORK_DIR} bin\ncp -r build/${CONFIGURATION}-iphoneos/${PROJECT_NAME}_resources.bundle bin";
+		};
+		F5C7F00735599505C1719AEF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceSonyCamera/Pods-dConnectDeviceSonyCamera-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSDK/DConnectSDK_resources.bundle,
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceSonyCamera/Pods-dConnectDeviceSonyCamera-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -799,12 +853,10 @@
 		};
 		C2540BD2195A7FA100AE012C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B544BEE782B581E5ED1B0F3E /* Pods-dConnectDeviceSonyCamera.debug.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/dConnectDeviceSonyCamera.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDeviceSonyCamera/dConnectDeviceSonyCamera-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/DConnectSDK/Dependencies/CocoaAsyncSocket";
@@ -817,12 +869,10 @@
 		};
 		C2540BD3195A7FA100AE012C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 885E0E5CD8DE4559CCD269EB /* Pods-dConnectDeviceSonyCamera.release.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/dConnectDeviceSonyCamera.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDeviceSonyCamera/dConnectDeviceSonyCamera-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/DConnectSDK/Dependencies/CocoaAsyncSocket";
@@ -890,7 +940,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)-resources";
+				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDeviceSonyCamera_resources/dConnectDeviceSonyCamera_resources-Prefix.pch";
@@ -912,7 +962,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)-resources";
+				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

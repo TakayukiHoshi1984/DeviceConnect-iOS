@@ -27,14 +27,19 @@ Pod::Spec.new do |s|
     s.source       = {
         :git => $targetSource
     }
-    
+
     # エンドターゲット（アプリとか）のDebugビルドの際、対応するアーキテクチャが含まれていない
     # という旨で提供するライブラリがビルドされない問題への対処。
     s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'NO' }
     
     common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
     base_path = "dConnectDevicePlugin/dConnectDeviceIRKit"
-    
+    application_key = $irkitApplicationKey
+    s.prepare_command = <<-CMD
+    	cd dConnectDevicePlugin/dConnectDeviceIRKit/dConnectDeviceIRKit/Resources/
+		sed -i -e "s/\\[YOUR APPLICATION KEY\\]/#{application_key}/g" dConnectDeviceIRKit-Info.plist
+		rm dConnectDeviceIRKit-Info.plist-e
+    CMD
     # エンドターゲット（アプリとか）のプリコンパイルドヘッダー汚染の恐れあり。
     s.prefix_header_file = base_path + "/dConnectDeviceIRKit/dConnectDeviceIRKit-Prefix.pch"
     s.public_header_files = base_path + "/dConnectDeviceIRKit/Headers/*.h"

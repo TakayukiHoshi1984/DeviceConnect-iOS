@@ -68,7 +68,6 @@
 		AB056FA11B6B1A2800E1482F /* DCMDevicePluginSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB056FA01B6B1A2800E1482F /* DCMDevicePluginSDK.framework */; };
 		AB056FA71B6B51DE00E1482F /* DPIRKitLightProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = AB056FA61B6B51DE00E1482F /* DPIRKitLightProfile.m */; };
 		AB056FAA1B6B5D0200E1482F /* DPIRKitTVProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = AB056FA91B6B5D0200E1482F /* DPIRKitTVProfile.m */; };
-		AB4A50A01F96EECA0074912E /* dConnectDeviceIRKit-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30A0A33219A5932700822B73 /* dConnectDeviceIRKit-Info.plist */; };
 		AB4B68FC19B4671D009939C9 /* irkit01.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4B68F419B4671D009939C9 /* irkit01.png */; };
 		AB4B68FD19B4671D009939C9 /* irkit02.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4B68F519B4671D009939C9 /* irkit02.png */; };
 		AB4B68FE19B4671D009939C9 /* irkit03.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4B68F619B4671D009939C9 /* irkit03.png */; };
@@ -104,6 +103,7 @@
 		ABC2DB151B685AD90034C08F /* DPIRKitDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2DB141B685AD90034C08F /* DPIRKitDBManager.m */; };
 		ABC2DB181B6898E20034C08F /* DPIRKitVirtualDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2DB171B6898E20034C08F /* DPIRKitVirtualDevice.m */; };
 		ABC2DB1B1B689BBE0034C08F /* DPIRKitRESTfulRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2DB1A1B689BBE0034C08F /* DPIRKitRESTfulRequest.m */; };
+		D03965607C79FCB001EB5362 /* libPods-dConnectDeviceIRKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8B9946AD15100310AF8EBB /* libPods-dConnectDeviceIRKit.a */; };
 		D63BB8C31DA2068000892E5E /* remotecontroller.json in Resources */ = {isa = PBXBuildFile; fileRef = D63BB8C11DA2068000892E5E /* remotecontroller.json */; };
 		D63BB8C41DA2068000892E5E /* tv.json in Resources */ = {isa = PBXBuildFile; fileRef = D63BB8C21DA2068000892E5E /* tv.json */; };
 		D673DA7C1D3BBD330021F1BF /* DPIRKitService.m in Sources */ = {isa = PBXBuildFile; fileRef = D673DA7B1D3BBD330021F1BF /* DPIRKitService.m */; };
@@ -182,6 +182,7 @@
 		30A1EBD619A8C5EB00E6CCE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard_iPhone.storyboard; sourceTree = "<group>"; };
 		30A1EBDD19A8D16600E6CCE9 /* DPIRKitWiFiFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPIRKitWiFiFormViewController.h; sourceTree = "<group>"; };
 		30A1EBDE19A8D16600E6CCE9 /* DPIRKitWiFiFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPIRKitWiFiFormViewController.m; sourceTree = "<group>"; };
+		3F31CD8E7FCE2CBB232C2A0B /* Pods-dConnectDeviceIRKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dConnectDeviceIRKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-dConnectDeviceIRKit/Pods-dConnectDeviceIRKit.release.xcconfig"; sourceTree = "<group>"; };
 		6682B8D619CA81E40039DCAA /* irkit09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = irkit09.png; sourceTree = "<group>"; };
 		6682B8D919CAB8850039DCAA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Storyboard_iPhone.strings; sourceTree = "<group>"; };
 		6682B8DB19CAB88A0039DCAA /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Storyboard_iPhone.strings; sourceTree = "<group>"; };
@@ -199,6 +200,7 @@
 		AB056FA61B6B51DE00E1482F /* DPIRKitLightProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPIRKitLightProfile.m; sourceTree = "<group>"; };
 		AB056FA81B6B5D0200E1482F /* DPIRKitTVProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPIRKitTVProfile.h; sourceTree = "<group>"; };
 		AB056FA91B6B5D0200E1482F /* DPIRKitTVProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPIRKitTVProfile.m; sourceTree = "<group>"; };
+		AB41A0974FDDBB710C765C22 /* Pods-dConnectDeviceIRKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dConnectDeviceIRKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dConnectDeviceIRKit/Pods-dConnectDeviceIRKit.debug.xcconfig"; sourceTree = "<group>"; };
 		AB4B68F419B4671D009939C9 /* irkit01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = irkit01.png; sourceTree = "<group>"; };
 		AB4B68F519B4671D009939C9 /* irkit02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = irkit02.png; sourceTree = "<group>"; };
 		AB4B68F619B4671D009939C9 /* irkit03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = irkit03.png; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		D673DA7B1D3BBD330021F1BF /* DPIRKitService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPIRKitService.m; sourceTree = "<group>"; };
 		D6D172781D63F95A00444337 /* DPIRKitSystemProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPIRKitSystemProfile.h; sourceTree = "<group>"; };
 		D6D172791D63F95A00444337 /* DPIRKitSystemProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPIRKitSystemProfile.m; sourceTree = "<group>"; };
+		FB8B9946AD15100310AF8EBB /* libPods-dConnectDeviceIRKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dConnectDeviceIRKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +254,7 @@
 				30A0A2D019A302FB00822B73 /* CoreTelephony.framework in Frameworks */,
 				30A0A2A319A300C100822B73 /* Foundation.framework in Frameworks */,
 				AB056FA11B6B1A2800E1482F /* DCMDevicePluginSDK.framework in Frameworks */,
+				D03965607C79FCB001EB5362 /* libPods-dConnectDeviceIRKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +333,7 @@
 				30A0A33A19A5952D00822B73 /* dConnectDeviceIRKit_resources */,
 				30A0A2A119A300C100822B73 /* Frameworks */,
 				30A0A2A019A300C100822B73 /* Products */,
+				5EB4EABFC8C6F8C9781E8F44 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -354,6 +359,7 @@
 				30A0A2B019A300C200822B73 /* XCTest.framework */,
 				30A0A2B319A300C200822B73 /* UIKit.framework */,
 				30A0A33819A5952D00822B73 /* CoreFoundation.framework */,
+				FB8B9946AD15100310AF8EBB /* libPods-dConnectDeviceIRKit.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -500,6 +506,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5EB4EABFC8C6F8C9781E8F44 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AB41A0974FDDBB710C765C22 /* Pods-dConnectDeviceIRKit.debug.xcconfig */,
+				3F31CD8E7FCE2CBB232C2A0B /* Pods-dConnectDeviceIRKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		ABC2DAF81B6634790034C08F /* alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,9 +548,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30A0A2C219A300C200822B73 /* Build configuration list for PBXNativeTarget "dConnectDeviceIRKit" */;
 			buildPhases = (
+				C322BD2E2144914FB79A17B5 /* [CP] Check Pods Manifest.lock */,
 				30A0A29B19A300C100822B73 /* Sources */,
 				30A0A29C19A300C100822B73 /* Frameworks */,
 				30A0A29D19A300C100822B73 /* CopyFiles */,
+				EE4D14344F1D0E51ED2EF2D2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -588,7 +605,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DPIRKit;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "NTT DOCOMO, INC.";
 				TargetAttributes = {
 					AB2821951A95D358007B3D6F = {
@@ -643,7 +660,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB4A50A01F96EECA0074912E /* dConnectDeviceIRKit-Info.plist in Resources */,
 				8EB8544D1D42403E0035C0DC /* dconnect_icon.png in Resources */,
 				AB8658021B82FF4900A0F896 /* light.png in Resources */,
 				AB8658031B82FF4900A0F896 /* tv.png in Resources */,
@@ -683,7 +699,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.0\nCONFIGURATION=\"Release\"\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nSTATICLIB_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-universal\"\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\n# A target to build a static library *must* have the name ${PROJECT_NAME}.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build\n# A target to build a bundle *must* have the name ${PROJECT_NAME}_resources. This target is optional.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\n\n# create directories.\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\n#mkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${STATICLIB_BUILD_PATH}\n# create symlinks\ncd ${FRAMEWORK_DIR}\nln -s ../Versions/${FRAMEWORK_VERSION} Versions/Current\nln -s Versions/Current/Headers Headers\n#ln -s Versions/Current/Resources Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_NAME}\ncd ${SRCROOT}\n\n# create the universal library, and strip internal symbols from it\nlipo ${SRCROOT}/build/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\n#strip -x \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\ncp \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\" \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\ncp -r ${SRCROOT}/${PROJECT_NAME}/Headers/ ${FRAMEWORK_DIR}/Headers/\n\n# copy binary to bin folder\ncd ${SRCROOT}\n\ncd bin\nls | grep -v -E '.gitignore$' | xargs rm -rf\ncd ..\ncp -R ${FRAMEWORK_DIR} bin\ncp -r build/${CONFIGURATION}-resources/${PROJECT_NAME}_resources.bundle bin";
+			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.0\nCONFIGURATION=\"Release\"\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nSTATICLIB_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-universal\"\nCONFIG_PATH=\"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceIRKit/Pods-dConnectDeviceIRKit.debug.xcconfig\"\n\necho ${PROJECT_NAME}\necho ${SRCROOT}\necho ${FRAMEWORK_BUILD_PATH}\necho ${CONFIG_PATH}\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\n# A target to build a static library *must* have the name ${PROJECT_NAME}.\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -sdk iphonesimulator -scheme ${PROJECT_NAME}  -configuration ${CONFIGURATION} -derivedDataPath build clean build\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -sdk iphoneos -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} -derivedDataPath build clean build\n\n# A target to build a bundle *must* have the name ${PROJECT_NAME}_resources. This target is optional.\n#xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\n\n# create directories.\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\n#mkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${STATICLIB_BUILD_PATH}\n# create symlinks\ncd ${FRAMEWORK_DIR}\nln -s ../Versions/${FRAMEWORK_VERSION} Versions/Current\nln -s Versions/Current/Headers Headers\n#ln -s Versions/Current/Resources Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_NAME}\ncd ${SRCROOT}\n\n# create the universal library, and strip internal symbols from it\nlipo ${SRCROOT}/build/Build/Products/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/Build/Products/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\n#strip -x \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\ncp \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\" \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\n#cp -r ${SRCROOT}/${PROJECT_NAME}/Headers/ ${FRAMEWORK_DIR}/Headers/\n\n# copy binary to bin folder\ncd ${SRCROOT}\n\nmkdir -p bin\ncd bin\nls | grep -v -E '.gitignore$' | xargs rm -rf\ncd ..\ncp -R ${FRAMEWORK_DIR} bin\ncp -r build/${CONFIGURATION}-iphoneos/${PROJECT_NAME}_resources.bundle bin";
 		};
 		AB2821991A95D35C007B3D6F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -697,6 +713,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "XCTOOL=/usr/local\nexport PATH=$XCTOOL/bin:$PATH\nOCLINT_HOME=${HOME}/bin/oclint-0.8.1\nexport PATH=$OCLINT_HOME/bin:$PATH\n\ncd ${SRCROOT}\nxctool -project ${PROJECT}.xcodeproj -scheme ${PROJECT} -reporter json-compilation-database:compile_commands.json clean\nxctool -project ${PROJECT}.xcodeproj -scheme ${PROJECT} -reporter json-compilation-database:compile_commands.json build\n\noclint-json-compilation-database oclint_args oclint_args \"-disable-rule=UnusedMethodParameter -disable-rule=InvertedLogic -disable-rule=DoubleNegative -disable-rule=MultipleUnaryOperator -disable-rule=MustOverrideHashWithIsEqual -disable-rule=BitwiseOperatorInConditional -disable-rule=IvarAssignmentOutsideAccessorsOrInit -disable-rule=SwitchStatementsDon\\'TNeedDefaultWhenFullyCovered -rc LONG_LINE=120 -rc MAXIMUM_IF_LENGTH=50 -rc NCSS_METHOD=50 -rc LONG_METHOD=500 -rc LONG_CLASS=2000 -rc NCSS_METHOD=100 -rc LONG_VARIABLE_NAME=100 -rc CYCLOMATIC_COMPLEXITY=100 -rc NPATH_COMPLEXITY=5000 -rc NESTED_BLOCK_DEPTH=10 -rc TOO_MANY_METHODS=100\" | sed 's/\\(.*\\.\\m\\{1,2\\}:[0-9]*:[0-9]*:\\)/\\1 warning:/'";
+		};
+		C322BD2E2144914FB79A17B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dConnectDeviceIRKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE4D14344F1D0E51ED2EF2D2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceIRKit/Pods-dConnectDeviceIRKit-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSDK/DConnectSDK_resources.bundle,
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceIRKit/Pods-dConnectDeviceIRKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -898,13 +950,10 @@
 		};
 		30A0A2C319A300C200822B73 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB41A0974FDDBB710C765C22 /* Pods-dConnectDeviceIRKit.debug.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/dConnectDeviceIRKit.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-					"$(PROJECT_DIR)/../DCMDevicePluginSDK/bin",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDeviceIRKit/dConnectDeviceIRKit-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
@@ -915,13 +964,10 @@
 		};
 		30A0A2C419A300C200822B73 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F31CD8E7FCE2CBB232C2A0B /* Pods-dConnectDeviceIRKit.release.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/dConnectDeviceIRKit.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-					"$(PROJECT_DIR)/../DCMDevicePluginSDK/bin",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDeviceIRKit/dConnectDeviceIRKit-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
@@ -986,7 +1032,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)-resources";
+				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDeviceIRKit_resources/dConnectDeviceIRKit_resources-Prefix.pch";
@@ -1007,7 +1053,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)-resources";
+				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

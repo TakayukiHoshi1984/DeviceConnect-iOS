@@ -34,8 +34,11 @@ Pod::Spec.new do |s|
     
     common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png,xcassets"
     base_path = "dConnectDevicePlugin/dConnectDeviceChromeCast"
+    application_id = $chromeCastApplicationId
     s.prepare_command = <<-CMD
-    echo $(PODS_ROOT)
+    	cd dConnectDevicePlugin/dConnectDeviceChromeCast/dConnectDeviceChromecast/Classes
+		sed -i -e "s/Your Application Id/#{application_id}/g" DPChromecastManager.m
+		rm DPChromecastManager.m-e
     CMD
     # エンドターゲット（アプリとか）のプリコンパイルドヘッダー汚染の恐れあり。
     s.prefix_header_file = base_path + "/dConnectDeviceChromecast/dConnectDeviceChromecast-Prefix.pch"
