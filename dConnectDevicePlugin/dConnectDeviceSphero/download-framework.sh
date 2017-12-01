@@ -8,7 +8,7 @@ SPHERO_OVAL_FRAMEWORK="/OvalCompiler.framework"
 SPHERO_ROBOTKIT_FRAMEWORK="/RobotKit.framework"
 SPHERO_ROBOTUIKIT_FRAMEWORK="/RobotUIKit.framework"
 SPHERO_ROBOTUIKIT_BUNDLE="/RobotUIKit.bundle"
-SPHERO_SDK=$D"/dConnectDeviceSphero"$SPHERO_ROBOTKIT_FRAMEWORK
+SPHERO_SDK=$D"/"$SPHERO_ROBOTKIT_FRAMEWORK
 
 # GitHubからのダウンロード設定
 SPHERO_CORE_URL="https://github.com/orbotix/Sphero-iOS-SDK/archive/master.zip"
@@ -16,7 +16,7 @@ SPHERO_MASTER="Sphero-iOS-SDK-master"
 SPHERO_ZIP_FILE=$SPHERO_MASTER".zip"
 
 # Spheroのダウンロード確認
-if [ -e $SPHERO_SDK ]; then
+if [ -d $SPHERO_SDK ]; then
     echo "Sphero sdk is exist."
 else
     # Sphero sdkが存在しない場合には終了
