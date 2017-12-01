@@ -7,14 +7,14 @@ D=$(cd $(dirname $0);pwd)
 THETA_R_EXIF="lib-r-exif"
 THETA_RICOH_THETA="lib-ricoh-theta"
 THETA_RICOH_THETA_SERIALIZER="lib-ricoh-theta_serializer"
-THETA_SDK=$D"/dConnectDeviceTheta/Classes/lib"
+THETA_SDK=$D"/Classes/lib"
 
 # GitHubからのダウンロード設定 TODO:Signature
 THETA_CORE_URL="https://developers.theta360.com/downloads?filename=RICOH_THETA_SDK_for_iOS.0.3.0.zip"
 THETA_MASTER="RICOH_THETA_SDK_for_iOS.0.3.0"
 THETA_ZIP_FILE=$THETA_MASTER".zip"
 # THETAのダウンロード確認
-if [ -e $THETA_SDK ]; then
+if [ -d $THETA_SDK ]; then
     echo "THETA sdk is exist."
 else
     # THETA sdkが存在しない場合には終了
