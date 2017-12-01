@@ -27,14 +27,17 @@ Pod::Spec.new do |s|
     s.source       = {
         :git => $targetSource
     }
-    
     # エンドターゲット（アプリとか）のDebugビルドの際、対応するアーキテクチャが含まれていない
     # という旨で提供するライブラリがビルドされない問題への対処。
     s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'NO' }
     
-    common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
+    common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png,json"
     base_path = "dConnectSDK/dConnectSDKForIOS"
-    
+    s.prepare_command = <<-CMD
+		cd dConnectSDK/dConnectSDKForIOS/
+		sh download-spec.sh
+    CMD
+
     s.preserve_path = base_path + "/NOTICE.TXT"
     
     # エンドターゲット（アプリとか）のプリコンパイルドヘッダー汚染の恐れあり。
@@ -46,7 +49,8 @@ Pod::Spec.new do |s|
 					 base_path + "/DConnectSDK/Classes/**/*.{h,m,c}",
 					 base_path + "/DConnectSDK/Dependencies/GCIPUtil*.{h,m,c}",
 					 base_path + "/DConnectSDK/Dependencies/multipart-parser-c/*.{h,m,c}"
-    s.resource_bundles = {"DConnectSDK_resources" => [base_path + "/DConnectSDK/Resources/**/*.{#{common_resource_exts}}"]}
+    s.resource_bundles = {"DConnectSDK_resources" => [base_path + "/DConnectSDK/Resources/**/*.{#{common_resource_exts}}",
+    						base_path + "/DConnectSDK_resources/api/*.json"]}
     
     s.library = "sqlite3"
     
@@ -55,4 +59,5 @@ Pod::Spec.new do |s|
 	s.dependency 'CocoaHTTPServer', '~> 2.3'
 	s.dependency 'CocoaLumberjack', '~> 3.3.0'
 	s.dependency 'RoutingHTTPServer', '~> 1.0.0'
-end
+
+ end

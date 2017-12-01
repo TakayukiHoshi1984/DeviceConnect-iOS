@@ -35,7 +35,10 @@ Pod::Spec.new do |s|
     
     common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
     base_path = "dConnectDevicePlugin/dConnectDeviceHue"
-    
+    s.prepare_command = <<-CMD
+		cd dConnectDevicePlugin/dConnectDeviceHue/
+		sh ./download-framework.sh
+    CMD
     # エンドターゲット（アプリとか）のプリコンパイルドヘッダー汚染の恐れあり。
     s.prefix_header_file = base_path + "/dConnectDeviceHue/dConnectDeviceHue-Prefix.pch"
     s.public_header_files = base_path + "/dConnectDeviceHue/Headers/*.h"
@@ -43,5 +46,5 @@ Pod::Spec.new do |s|
     s.resource_bundles = {"dConnectDeviceHue_resources" => [base_path + "/dConnectDeviceHue/Resources/**/*.{#{common_resource_exts}}"]}
     
     s.dependency "DeviceConnectSDK"
-    s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/../libs' }
+	s.vendored_frameworks = base_path + "/HueSDK_iOS.framework"
 end
