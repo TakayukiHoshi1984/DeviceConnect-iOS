@@ -32,6 +32,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		69694B3D5B136D7012251F66 /* libPods-dConnectDeviceTheta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74649BB5904BBFB680C3536A /* libPods-dConnectDeviceTheta.a */; };
 		8EB8545C1D4244FC0035C0DC /* dconnect_icon_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB8545A1D4244FC0035C0DC /* dconnect_icon_off.png */; };
 		8EB8545D1D4244FC0035C0DC /* dconnect_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB8545B1D4244FC0035C0DC /* dconnect_icon.png */; };
 		AB055EA31B8AAB1D0078128B /* DPOmnidirectionalImageProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = AB055EA21B8AAB1D0078128B /* DPOmnidirectionalImageProfile.m */; };
@@ -118,6 +119,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B6A424ECD29294D7B555418 /* Pods-dConnectDeviceTheta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dConnectDeviceTheta.release.xcconfig"; path = "Pods/Target Support Files/Pods-dConnectDeviceTheta/Pods-dConnectDeviceTheta.release.xcconfig"; sourceTree = "<group>"; };
+		28E0202161D0D674E6531240 /* Pods-dConnectDeviceTheta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dConnectDeviceTheta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dConnectDeviceTheta/Pods-dConnectDeviceTheta.debug.xcconfig"; sourceTree = "<group>"; };
+		74649BB5904BBFB680C3536A /* libPods-dConnectDeviceTheta.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dConnectDeviceTheta.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EB8545A1D4244FC0035C0DC /* dconnect_icon_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dconnect_icon_off.png; sourceTree = "<group>"; };
 		8EB8545B1D4244FC0035C0DC /* dconnect_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dconnect_icon.png; sourceTree = "<group>"; };
 		AB055EA21B8AAB1D0078128B /* DPOmnidirectionalImageProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPOmnidirectionalImageProfile.m; sourceTree = "<group>"; };
@@ -264,6 +268,7 @@
 				AB585CBF1B7C1B4800253141 /* OpenGLES.framework in Frameworks */,
 				AB50D0411B40DA1C00EB9F94 /* ImageIO.framework in Frameworks */,
 				AB50D0E41B40E70E00EB9F94 /* DConnectSDK.framework in Frameworks */,
+				69694B3D5B136D7012251F66 /* libPods-dConnectDeviceTheta.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +282,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A130C75CC7E00911A91F3E40 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				28E0202161D0D674E6531240 /* Pods-dConnectDeviceTheta.debug.xcconfig */,
+				0B6A424ECD29294D7B555418 /* Pods-dConnectDeviceTheta.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AB055EA11B8AAB100078128B /* Extention */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +307,7 @@
 				AB50D0021B40CDCF00EB9F94 /* dConnectDeviceThetaTests */,
 				AB50D0CB1B40DF6E00EB9F94 /* dConnectDeviceTheta_resources */,
 				AB50CFF41B40CDCF00EB9F94 /* Products */,
+				A130C75CC7E00911A91F3E40 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -496,6 +511,7 @@
 				AB50D0E21B40E70E00EB9F94 /* DConnectSDK.framework */,
 				AB50D0401B40DA1C00EB9F94 /* ImageIO.framework */,
 				AB50D03E1B40DA0D00EB9F94 /* libiconv.dylib */,
+				74649BB5904BBFB680C3536A /* libPods-dConnectDeviceTheta.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -600,9 +616,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB50D0071B40CDCF00EB9F94 /* Build configuration list for PBXNativeTarget "dConnectDeviceTheta" */;
 			buildPhases = (
+				2B6AC566FB225EED8A674B31 /* [CP] Check Pods Manifest.lock */,
 				AB50CFEF1B40CDCF00EB9F94 /* Sources */,
 				AB50CFF01B40CDCF00EB9F94 /* Frameworks */,
 				AB50CFF11B40CDCF00EB9F94 /* CopyFiles */,
+				30E52646B4CE0FF1DFC1BD8A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -700,6 +718,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2B6AC566FB225EED8A674B31 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dConnectDeviceTheta-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		30E52646B4CE0FF1DFC1BD8A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceTheta/Pods-dConnectDeviceTheta-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSDK/DConnectSDK_resources.bundle,
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceTheta/Pods-dConnectDeviceTheta-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AB50D0D51B40E0CB00EB9F94 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -711,7 +765,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.0\nCONFIGURATION=\"Release\"\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nSTATICLIB_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-universal\"\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\n# A target to build a static library *must* have the name ${PROJECT_NAME}.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build\n# A target to build a bundle *must* have the name ${PROJECT_NAME}_resources. This target is optional.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\n\n# create directories.\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\n#mkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${STATICLIB_BUILD_PATH}\n# create symlinks\ncd ${FRAMEWORK_DIR}\nln -s ../Versions/${FRAMEWORK_VERSION} Versions/Current\nln -s Versions/Current/Headers Headers\n#ln -s Versions/Current/Resources Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_NAME}\ncd ${SRCROOT}\n\n# create the universal library, and strip internal symbols from it\nlipo ${SRCROOT}/build/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\n#strip -x \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\ncp \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\" \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\ncp -r ${SRCROOT}/${PROJECT_NAME}/Headers/ ${FRAMEWORK_DIR}/Headers/\n\n# copy binary to bin folder\ncd ${SRCROOT}\n#rm -rf bin\n#mkdir bin\ncd bin\nls | grep -v -E '.gitignore$' | xargs rm -rf\ncd ..\ncp -R ${FRAMEWORK_DIR} bin\ncp -r build/${CONFIGURATION}-resources/${PROJECT_NAME}_resources.bundle bin";
+			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.0\nCONFIGURATION=\"Release\"\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nSTATICLIB_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-universal\"\nCONFIG_PATH=\"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceTheta/Pods-dConnectDeviceTheta.debug.xcconfig\"\n\necho ${PROJECT_NAME}\necho ${SRCROOT}\necho ${FRAMEWORK_BUILD_PATH}\necho ${CONFIG_PATH}\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\n# A target to build a static library *must* have the name ${PROJECT_NAME}.\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -sdk iphonesimulator -scheme ${PROJECT_NAME}  -configuration ${CONFIGURATION} -derivedDataPath build clean build\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -sdk iphoneos -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} -derivedDataPath build clean build\n\n# A target to build a bundle *must* have the name ${PROJECT_NAME}_resources. This target is optional.\n#xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\n\n# create directories.\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\n#mkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${STATICLIB_BUILD_PATH}\n# create symlinks\ncd ${FRAMEWORK_DIR}\nln -s ../Versions/${FRAMEWORK_VERSION} Versions/Current\nln -s Versions/Current/Headers Headers\n#ln -s Versions/Current/Resources Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_NAME}\ncd ${SRCROOT}\n\n# create the universal library, and strip internal symbols from it\nlipo ${SRCROOT}/build/Build/Products/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/Build/Products/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\n#strip -x \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\ncp \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\" \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\n#cp -r ${SRCROOT}/${PROJECT_NAME}/Headers/ ${FRAMEWORK_DIR}/Headers/\n\n# copy binary to bin folder\ncd ${SRCROOT}\n\nmkdir -p bin\ncd bin\nls | grep -v -E '.gitignore$' | xargs rm -rf\ncd ..\ncp -R ${FRAMEWORK_DIR} bin\ncp -r build/${CONFIGURATION}-iphoneos/${PROJECT_NAME}_resources.bundle bin";
 		};
 		ABDC9AB21B53B625002AF9DD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -899,13 +953,11 @@
 		};
 		AB50D0081B40CDCF00EB9F94 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28E0202161D0D674E6531240 /* Pods-dConnectDeviceTheta.debug.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -923,13 +975,11 @@
 		};
 		AB50D0091B40CDCF00EB9F94 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B6A424ECD29294D7B555418 /* Pods-dConnectDeviceTheta.release.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -948,7 +998,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = NO;
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-resources";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -969,7 +1019,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = NO;
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-resources";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				INFOPLIST_FILE = dConnectDeviceTheta_resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;

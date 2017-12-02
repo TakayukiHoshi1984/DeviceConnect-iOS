@@ -38,6 +38,10 @@ Pod::Spec.new do |s|
     
     common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
     base_path = "dConnectDevicePlugin/dConnectDeviceTheta"
+    s.prepare_command = <<-CMD
+		cd dConnectDevicePlugin/dConnectDeviceTheta/
+		sh ./download-lib.sh
+    CMD
 
     s.libraries   = 'iconv'
     s.public_header_files = base_path + "/dConnectDeviceTheta/Headers/*.h"

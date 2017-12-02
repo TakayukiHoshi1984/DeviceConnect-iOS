@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		99803A35EE592E3EE72A2070 /* libPods-dConnectDeviceLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A350631F31971479A6A9B7AB /* libPods-dConnectDeviceLinking.a */; };
 		AB77BC151DA63BF800959525 /* dconnect_icon_off.png in Resources */ = {isa = PBXBuildFile; fileRef = AB77BC131DA63BF800959525 /* dconnect_icon_off.png */; };
 		AB77BC161DA63BF800959525 /* dconnect_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AB77BC141DA63BF800959525 /* dconnect_icon.png */; };
 		BE145CA41D8E8A4D0005D926 /* DPLinkingDeviceTemperatureOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = BE145CA31D8E8A4D0005D926 /* DPLinkingDeviceTemperatureOnce.m */; };
@@ -107,6 +108,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1CAB127BF9A24CDC03D559B2 /* Pods-dConnectDeviceLinking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dConnectDeviceLinking.release.xcconfig"; path = "Pods/Target Support Files/Pods-dConnectDeviceLinking/Pods-dConnectDeviceLinking.release.xcconfig"; sourceTree = "<group>"; };
+		A350631F31971479A6A9B7AB /* libPods-dConnectDeviceLinking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dConnectDeviceLinking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB77BC131DA63BF800959525 /* dconnect_icon_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dconnect_icon_off.png; sourceTree = "<group>"; };
 		AB77BC141DA63BF800959525 /* dconnect_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dconnect_icon.png; sourceTree = "<group>"; };
 		BE145CA21D8E8A4D0005D926 /* DPLinkingDeviceTemperatureOnce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPLinkingDeviceTemperatureOnce.h; sourceTree = "<group>"; };
@@ -243,6 +246,7 @@
 		BEF550A51D8FA6A100C8AE7B /* DPLinkingDeviceAtmosphericPressureProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPLinkingDeviceAtmosphericPressureProfile.h; sourceTree = "<group>"; };
 		BEF550A61D8FA6A100C8AE7B /* DPLinkingDeviceAtmosphericPressureProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPLinkingDeviceAtmosphericPressureProfile.m; sourceTree = "<group>"; };
 		D63BB8C51DA206D300892E5E /* atmosphericpressure.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = atmosphericpressure.json; sourceTree = "<group>"; };
+		E11DBA0B4BC0B568B97B2B81 /* Pods-dConnectDeviceLinking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dConnectDeviceLinking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dConnectDeviceLinking/Pods-dConnectDeviceLinking.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +257,7 @@
 				BE2859FB1D630B6C00CB9F95 /* LinkingLibrary.framework in Frameworks */,
 				BE2859F91D630B6200CB9F95 /* DCMDevicePluginSDK.framework in Frameworks */,
 				BE2859F71D630B5900CB9F95 /* DConnectSDK.framework in Frameworks */,
+				99803A35EE592E3EE72A2070 /* libPods-dConnectDeviceLinking.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +278,7 @@
 				BE28594D1D630AF700CB9F95 /* dConnectDeviceLinking */,
 				BE285A331D6315FD00CB9F95 /* dConnectDeviceLinking_resources */,
 				BE28594C1D630AF700CB9F95 /* Products */,
+				C20635CAC24F20FFD5EB4054 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -511,6 +517,7 @@
 				BE2859FA1D630B6C00CB9F95 /* LinkingLibrary.framework */,
 				BE2859F81D630B6100CB9F95 /* DCMDevicePluginSDK.framework */,
 				BE2859F61D630B5900CB9F95 /* DConnectSDK.framework */,
+				A350631F31971479A6A9B7AB /* libPods-dConnectDeviceLinking.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -552,6 +559,15 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		C20635CAC24F20FFD5EB4054 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E11DBA0B4BC0B568B97B2B81 /* Pods-dConnectDeviceLinking.debug.xcconfig */,
+				1CAB127BF9A24CDC03D559B2 /* Pods-dConnectDeviceLinking.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -559,9 +575,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE2859541D630AF800CB9F95 /* Build configuration list for PBXNativeTarget "dConnectDeviceLinking" */;
 			buildPhases = (
+				18945AFEE424129C029A45D3 /* [CP] Check Pods Manifest.lock */,
 				BE2859471D630AF700CB9F95 /* Sources */,
 				BE2859481D630AF700CB9F95 /* Frameworks */,
 				BE2859491D630AF700CB9F95 /* CopyFiles */,
+				BFF505219BB53AB40659923C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -644,6 +662,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		18945AFEE424129C029A45D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dConnectDeviceLinking-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BE285A031D630BF300CB9F95 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -656,7 +692,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.0\nCONFIGURATION=\"Release\"\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nSTATICLIB_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-universal\"\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\n# A target to build a static library *must* have the name ${PROJECT_NAME}.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build\n# A target to build a bundle *must* have the name ${PROJECT_NAME}_resources. This target is optional.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\n\n# create directories.\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\n#mkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${STATICLIB_BUILD_PATH}\n# create symlinks\ncd ${FRAMEWORK_DIR}\nln -s ../Versions/${FRAMEWORK_VERSION} Versions/Current\nln -s Versions/Current/Headers Headers\n#ln -s Versions/Current/Resources Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_NAME}\ncd ${SRCROOT}\n\n# create the universal library, and strip internal symbols from it\nlipo ${SRCROOT}/build/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\n#strip -x \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\ncp \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\" \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\ncp -r ${SRCROOT}/${PROJECT_NAME}/Headers/ ${FRAMEWORK_DIR}/Headers/\n\n# copy binary to bin folder\ncd ${SRCROOT}\n#rm -rf bin\n#mkdir bin\ncd bin\nls | grep -v -E '.gitignore$' | xargs rm -rf\ncd ..\ncp -R ${FRAMEWORK_DIR} bin\ncp -r build/${CONFIGURATION}-resources/${PROJECT_NAME}_resources.bundle bin";
+			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.0\nCONFIGURATION=\"Release\"\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nSTATICLIB_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-universal\"\nCONFIG_PATH=\"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceLinking/Pods-dConnectDeviceLinking.debug.xcconfig\"\n\necho ${PROJECT_NAME}\necho ${SRCROOT}\necho ${FRAMEWORK_BUILD_PATH}\necho ${CONFIG_PATH}\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\n# A target to build a static library *must* have the name ${PROJECT_NAME}.\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -sdk iphonesimulator -scheme ${PROJECT_NAME}  -configuration ${CONFIGURATION} -derivedDataPath build clean build\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -sdk iphoneos -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} -derivedDataPath build clean build\n\n# A target to build a bundle *must* have the name ${PROJECT_NAME}_resources. This target is optional.\n#xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\n\n# create directories.\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\n#mkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${STATICLIB_BUILD_PATH}\n# create symlinks\ncd ${FRAMEWORK_DIR}\nln -s ../Versions/${FRAMEWORK_VERSION} Versions/Current\nln -s Versions/Current/Headers Headers\n#ln -s Versions/Current/Resources Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_NAME}\ncd ${SRCROOT}\n\n# create the universal library, and strip internal symbols from it\nlipo ${SRCROOT}/build/Build/Products/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/Build/Products/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\n#strip -x \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\ncp \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\" \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\n#cp -r ${SRCROOT}/${PROJECT_NAME}/Headers/ ${FRAMEWORK_DIR}/Headers/\n\n# copy binary to bin folder\ncd ${SRCROOT}\n\nmkdir -p bin\ncd bin\nls | grep -v -E '.gitignore$' | xargs rm -rf\ncd ..\ncp -R ${FRAMEWORK_DIR} bin\ncp -r build/${CONFIGURATION}-iphoneos/${PROJECT_NAME}_resources.bundle bin";
+		};
+		BFF505219BB53AB40659923C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceLinking/Pods-dConnectDeviceLinking-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSDK/DConnectSDK_resources.bundle,
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceLinking/Pods-dConnectDeviceLinking-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -839,13 +893,12 @@
 		};
 		BE2859551D630AF800CB9F95 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E11DBA0B4BC0B568B97B2B81 /* Pods-dConnectDeviceLinking.debug.xcconfig */;
 			buildSettings = {
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Libs/Release",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-					"$(PROJECT_DIR)/../../dConnectDevicePlugin/DCMDevicePluginSDK/bin",
 				);
 				GCC_PREFIX_HEADER = "dConnectDeviceLinking/dConnectDeviceLinking-Prefix.pch";
 				HEADER_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include;
@@ -859,13 +912,12 @@
 		};
 		BE2859561D630AF800CB9F95 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CAB127BF9A24CDC03D559B2 /* Pods-dConnectDeviceLinking.release.xcconfig */;
 			buildSettings = {
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Libs/Release",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
-					"$(PROJECT_DIR)/../../dConnectDevicePlugin/DCMDevicePluginSDK/bin",
 				);
 				GCC_PREFIX_HEADER = "dConnectDeviceLinking/dConnectDeviceLinking-Prefix.pch";
 				HEADER_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include;
@@ -896,7 +948,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-resources";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				INFOPLIST_FILE = dConnectDeviceLinking_resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -913,7 +965,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-resources";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = YES;
 				INFOPLIST_FILE = dConnectDeviceLinking_resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";

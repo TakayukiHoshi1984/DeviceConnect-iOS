@@ -32,6 +32,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		62216F0A01936B922AA4D23D /* libPods-dConnectDeviceHue.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 674149A2B4D181EA1FC72137 /* libPods-dConnectDeviceHue.a */; };
 		64278B5C19B896D500AC54E5 /* HueSetting_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64278B5919B896D500AC54E5 /* HueSetting_iPad.storyboard */; };
 		64278B5E19B896D500AC54E5 /* HueSetting_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64278B5B19B896D500AC54E5 /* HueSetting_iPhone.storyboard */; };
 		64278B6119B8ABAB00AC54E5 /* DPHueSettingViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 64278B6019B8ABAB00AC54E5 /* DPHueSettingViewController1.m */; };
@@ -98,6 +99,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		46F4DA044EB1BA1B9484FC63 /* Pods-dConnectDeviceHue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dConnectDeviceHue.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dConnectDeviceHue/Pods-dConnectDeviceHue.debug.xcconfig"; sourceTree = "<group>"; };
 		64278B5919B896D500AC54E5 /* HueSetting_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HueSetting_iPad.storyboard; sourceTree = "<group>"; };
 		64278B5B19B896D500AC54E5 /* HueSetting_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HueSetting_iPhone.storyboard; sourceTree = "<group>"; };
 		64278B5F19B8ABAB00AC54E5 /* DPHueSettingViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPHueSettingViewController1.h; sourceTree = "<group>"; };
@@ -118,6 +120,8 @@
 		64A6938919BBEBBC0084D904 /* DPHueItemBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPHueItemBridge.m; sourceTree = "<group>"; };
 		64BAEB531998D6A000BCDBDA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		64BB087C19C335EE00C66903 /* HueSDK_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HueSDK_iOS.framework; path = "deps/PhilipsHueSDK-iOS-OSX/HueSDK_iOS.framework"; sourceTree = "<group>"; };
+		674149A2B4D181EA1FC72137 /* libPods-dConnectDeviceHue.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dConnectDeviceHue.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68A5F83E2BDBDC0194CA8211 /* Pods-dConnectDeviceHue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dConnectDeviceHue.release.xcconfig"; path = "Pods/Target Support Files/Pods-dConnectDeviceHue/Pods-dConnectDeviceHue.release.xcconfig"; sourceTree = "<group>"; };
 		8EB854421D423FDD0035C0DC /* dconnect_icon_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dconnect_icon_off.png; sourceTree = "<group>"; };
 		8EB854431D423FDD0035C0DC /* dconnect_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dconnect_icon.png; sourceTree = "<group>"; };
 		AB08A0E719920C860024C996 /* hue001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue001.png; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 				AB1815C5196A3651000BE265 /* Foundation.framework in Frameworks */,
 				64BB087D19C335EE00C66903 /* HueSDK_iOS.framework in Frameworks */,
 				645C472B19CEC24E004D9459 /* DConnectSDK.framework in Frameworks */,
+				62216F0A01936B922AA4D23D /* libPods-dConnectDeviceHue.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +203,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32F2E9913D1602090819EAD2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				46F4DA044EB1BA1B9484FC63 /* Pods-dConnectDeviceHue.debug.xcconfig */,
+				68A5F83E2BDBDC0194CA8211 /* Pods-dConnectDeviceHue.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		64A3E56619B93DD700B83DAF /* SettingPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +250,7 @@
 				AB181678196A6916000BE265 /* dConnectDeviceHue_resources */,
 				AB1815C3196A3651000BE265 /* Frameworks */,
 				AB1815C2196A3651000BE265 /* Products */,
+				32F2E9913D1602090819EAD2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -258,6 +273,7 @@
 				AB1815C4196A3651000BE265 /* Foundation.framework */,
 				AB1815D2196A3651000BE265 /* XCTest.framework */,
 				AB181676196A6916000BE265 /* CoreFoundation.framework */,
+				674149A2B4D181EA1FC72137 /* libPods-dConnectDeviceHue.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -401,9 +417,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB1815E4196A3651000BE265 /* Build configuration list for PBXNativeTarget "dConnectDeviceHue" */;
 			buildPhases = (
+				E3105C4B7DB4211E700A3F1C /* [CP] Check Pods Manifest.lock */,
 				AB1815BD196A3651000BE265 /* Sources */,
 				AB1815BE196A3651000BE265 /* Frameworks */,
 				AB1815BF196A3651000BE265 /* CopyFiles */,
+				8CFDA7F93954A9D1B470CCB8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -518,6 +536,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8CFDA7F93954A9D1B470CCB8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceHue/Pods-dConnectDeviceHue-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSDK/DConnectSDK_resources.bundle,
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceHue/Pods-dConnectDeviceHue-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AB181695196A696D000BE265 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -529,7 +565,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.0\nCONFIGURATION=\"Release\"\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nSTATICLIB_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-universal\"\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\n# A target to build a static library *must* have the name ${PROJECT_NAME}.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build\n# A target to build a bundle *must* have the name ${PROJECT_NAME}_resources. This target is optional.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\n\n# create directories.\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\n#mkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${STATICLIB_BUILD_PATH}\n# create symlinks\ncd ${FRAMEWORK_DIR}\nln -s ../Versions/${FRAMEWORK_VERSION} Versions/Current\nln -s Versions/Current/Headers Headers\n#ln -s Versions/Current/Resources Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_NAME}\ncd ${SRCROOT}\n\n# create the universal library, and strip internal symbols from it\nlipo ${SRCROOT}/build/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\n#strip -x \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\ncp \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\" \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\ncp -r ${SRCROOT}/${PROJECT_NAME}/Headers/ ${FRAMEWORK_DIR}/Headers/\n\n# copy binary to bin folder\ncd ${SRCROOT}\n\ncd bin\nls | grep -v -E '.gitignore$' | xargs rm -rf\ncd ..\ncp -R ${FRAMEWORK_DIR} bin\ncp -r build/${CONFIGURATION}-resources/${PROJECT_NAME}_resources.bundle bin";
+			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.0\nCONFIGURATION=\"Release\"\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nSTATICLIB_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-universal\"\nCONFIG_PATH=\"${SRCROOT}/Pods/Target Support Files/Pods-dConnectDeviceHue/Pods-dConnectDeviceHue.debug.xcconfig\"\n\necho ${PROJECT_NAME}\necho ${SRCROOT}\necho ${FRAMEWORK_BUILD_PATH}\necho ${CONFIG_PATH}\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\n# A target to build a static library *must* have the name ${PROJECT_NAME}.\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -sdk iphonesimulator -scheme ${PROJECT_NAME}  -configuration ${CONFIGURATION} -derivedDataPath build clean build\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -sdk iphoneos -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} -derivedDataPath build clean build\n\n# A target to build a bundle *must* have the name ${PROJECT_NAME}_resources. This target is optional.\n#xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME}_resources -configuration ${CONFIGURATION} clean build || true\n\n# create directories.\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\n#mkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${STATICLIB_BUILD_PATH}\n# create symlinks\ncd ${FRAMEWORK_DIR}\nln -s ../Versions/${FRAMEWORK_VERSION} Versions/Current\nln -s Versions/Current/Headers Headers\n#ln -s Versions/Current/Resources Resources\nln -s Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_NAME}\ncd ${SRCROOT}\n\n# create the universal library, and strip internal symbols from it\nlipo ${SRCROOT}/build/Build/Products/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/Build/Products/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\n#strip -x \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\"\ncp \"${STATICLIB_BUILD_PATH}/lib${FRAMEWORK_NAME}.a\" \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\n#cp -r ${SRCROOT}/${PROJECT_NAME}/Headers/ ${FRAMEWORK_DIR}/Headers/\n\n# copy binary to bin folder\ncd ${SRCROOT}\n\nmkdir -p bin\ncd bin\nls | grep -v -E '.gitignore$' | xargs rm -rf\ncd ..\ncp -R ${FRAMEWORK_DIR} bin\ncp -r build/${CONFIGURATION}-iphoneos/${PROJECT_NAME}_resources.bundle bin";
 		};
 		AB28219E1A96CC4E007B3D6F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -543,6 +579,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "XCTOOL=/usr/local\nexport PATH=$XCTOOL/bin:$PATH\nOCLINT_HOME=${HOME}/bin/oclint-0.8.1\nexport PATH=$OCLINT_HOME/bin:$PATH\n\ncd ${SRCROOT}\nxctool -project ${PROJECT}.xcodeproj -scheme ${PROJECT} -reporter json-compilation-database:compile_commands.json clean\nxctool -project ${PROJECT}.xcodeproj -scheme ${PROJECT} -reporter json-compilation-database:compile_commands.json build\n\noclint-json-compilation-database oclint_args oclint_args \"-disable-rule=UnusedMethodParameter -disable-rule=InvertedLogic -disable-rule=DoubleNegative -disable-rule=MultipleUnaryOperator -disable-rule=MustOverrideHashWithIsEqual -disable-rule=BitwiseOperatorInConditional -disable-rule=IvarAssignmentOutsideAccessorsOrInit -disable-rule=SwitchStatementsDon\\'TNeedDefaultWhenFullyCovered -rc LONG_LINE=120 -rc MAXIMUM_IF_LENGTH=50 -rc NCSS_METHOD=50 -rc LONG_METHOD=500 -rc LONG_CLASS=2000 -rc NCSS_METHOD=100 -rc LONG_VARIABLE_NAME=100 -rc CYCLOMATIC_COMPLEXITY=100 -rc NPATH_COMPLEXITY=5000 -rc NESTED_BLOCK_DEPTH=10 -rc TOO_MANY_METHODS=100\" | sed 's/\\(.*\\.\\m\\{1,2\\}:[0-9]*:[0-9]*:\\)/\\1 warning:/'";
+		};
+		E3105C4B7DB4211E700A3F1C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dConnectDeviceHue-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -728,13 +782,13 @@
 		};
 		AB1815E5196A3651000BE265 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46F4DA044EB1BA1B9484FC63 /* Pods-dConnectDeviceHue.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DSTROOT = /tmp/dConnectDeviceHue.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDeviceHue/dConnectDeviceHue-Prefix.pch";
@@ -748,13 +802,13 @@
 		};
 		AB1815E6196A3651000BE265 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68A5F83E2BDBDC0194CA8211 /* Pods-dConnectDeviceHue.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DSTROOT = /tmp/dConnectDeviceHue.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../../dConnectSDK/dConnectSDKForIOS/bin",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDeviceHue/dConnectDeviceHue-Prefix.pch";
@@ -817,7 +871,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = NO;
-				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)-resources";
+				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dConnectDeviceHue_resources/dConnectDeviceHue_resources-Prefix.pch";
@@ -842,7 +896,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = NO;
-				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)-resources";
+				CONFIGURATION_BUILD_DIR = "build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

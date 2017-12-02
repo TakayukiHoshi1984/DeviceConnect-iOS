@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "9.0"
     
     s.source       = {
-        :git => $targetSource
+        :git => $targetSource, :branch => "modify_project" # TODO:masterにマージするときに戻す
     }
     
     # エンドターゲット（アプリとか）のDebugビルドの際、対応するアーキテクチャが含まれていない
@@ -34,7 +34,11 @@ Pod::Spec.new do |s|
     
     common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
     base_path = "dConnectDevicePlugin/dConnectDeviceLinking"
-    
+    s.prepare_command = <<-CMD
+		cd dConnectDevicePlugin/dConnectDeviceLinking/
+		sh ./download-framework.sh
+    CMD
+
     # エンドターゲット（アプリとか）のプリコンパイルドヘッダー汚染の恐れあり。
     s.prefix_header_file = base_path + "/dConnectDeviceLinking/dConnectDeviceLinking-Prefix.pch"
     s.public_header_files = base_path + "/dConnectDeviceLinking/Headers/*.h"

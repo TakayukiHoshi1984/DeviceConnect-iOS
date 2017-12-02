@@ -1,0 +1,12 @@
+# source 'https://github.com/DeviceConnect/DeviceConnect-PodSpecs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+$targetSource = "https://github.com/TakayukiHoshi1984/DeviceConnect-iOS"
+platform :ios, '9.0'
+target 'dConnectDeviceLinking' do
+  pod 'DeviceConnectPluginSDK', podspec: "../../dConnectSDK/dConnectBrowserForIOS9/specs/DeviceConnectPluginSDK.podspec"
+  pod 'DeviceConnectSDK', podspec: "../../dConnectSDK/dConnectBrowserForIOS9/specs/DeviceConnectSDK.podspec"
+end
+pre_install do |installer_representation|
+  system "sh ./download-framework.sh"
+  p "Download framework"
+end

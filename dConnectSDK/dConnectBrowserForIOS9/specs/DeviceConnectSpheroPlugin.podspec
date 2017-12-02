@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "9.0"
     
     s.source       = {
-        :git => $targetSource
+        :git => $targetSource, :branch => "modify_project" # TODO:masterにマージするときに戻す
     }
     
     s.pod_target_xcconfig = {
@@ -39,8 +39,11 @@ Pod::Spec.new do |s|
     }
     
     common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
-            base_path = "dConnectDevicePlugin/dConnectDeviceSphero"
-    
+    base_path = "dConnectDevicePlugin/dConnectDeviceSphero"
+    s.prepare_command = <<-CMD
+		cd dConnectDevicePlugin/dConnectDeviceSphero/
+		sh ./download-framework.sh
+    CMD
     # エンドターゲット（アプリとか）のプリコンパイルドヘッダー汚染の恐れあり。
     s.prefix_header_file = base_path + "/dConnectDeviceSphero/dConnectDeviceSphero-Prefix.pch"
     s.public_header_files = base_path + "/dConnectDeviceSphero/Headers/*.h"
