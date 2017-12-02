@@ -5,7 +5,7 @@ D=$(cd $(dirname $0);pwd)
 
 # HueのSDKへのパス
 HUE_FRAMEWORK="HueSDK_iOS.framework"
-HUE_SDK=$D"/"$HUE_FRAMEWORK
+HUE_SDK=$D"/dConnectDeviceHue/"$HUE_FRAMEWORK
 
 # GitHubからのダウンロード設定
 HUE_CORE_URL="https://github.com/PhilipsHue/PhilipsHueSDK-iOS-OSX/archive/master.zip"
@@ -13,7 +13,7 @@ HUE_MASTER="PhilipsHueSDK-iOS-OSX-master"
 HUE_ZIP_FILE=$HUE_MASTER".zip"
 
 # Hueのダウンロード確認
-if [ -d $HUE_SDK ]; then
+if [ -e $HUE_SDK ]; then
     echo "hue sdk is exist."
 else
     # hue sdkが存在しない場合には終了

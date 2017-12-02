@@ -1,4 +1,5 @@
 platform :ios, '9.0'
+require 'fileutils'
 $targetSource = "https://github.com/TakayukiHoshi1984/DeviceConnect-iOS"
 $chromeCastApplicationId = "[YOUR APPLICATION ID]"
 $irkitApplicationKey = "[YOUR APPLICATION KEY]"
@@ -32,7 +33,7 @@ target 'dConnectBrowserForIOS9' do
   
   # Linking
   # dConnectBrowserForIOS9でLinkingLibrary.frameworkを追加してください
-  pod 'DeviceConnectLinkingPlugin', podspec: "specs/DeviceConnectLinkingPlugin.podspec"
+  #pod 'DeviceConnectLinkingPlugin', podspec: "specs/DeviceConnectLinkingPlugin.podspec"
   
   # Pebble
   pod 'PebbleKit-Static'
@@ -42,14 +43,33 @@ target 'dConnectBrowserForIOS9' do
   pod 'DeviceConnectSonyCameraPlugin', podspec: "specs/DeviceConnectSonyCameraPlugin.podspec"
   
   # Sphero
-  pod 'DeviceConnectSpheroPlugin', podspec: "specs/DeviceConnectSpheroPlugin.podspec"
+  # dConnectBrowserForIOS9でRobotKit.frameworkを追加してください
+  # pod 'DeviceConnectSpheroPlugin', podspec: "specs/DeviceConnectSpheroPlugin.podspec"
   
   # Theta
-  pod 'DeviceConnectThetaPlugin', podspec: "specs/DeviceConnectThetaPlugin.podspec"
+  # pod 'DeviceConnectThetaPlugin', podspec: "specs/DeviceConnectThetaPlugin.podspec"
 
   # AWSIot
   #pod 'DeviceConnectAWSIoTPlugin', podspec: "specs/DeviceConnectAWSIoTPlugin.podspec"
 
+end
+
+# 読み込むThetaデバイスプラグインの中にThetaSDKを含める
+# podファイルのディレクトリに/libsを作り、その中にTheta SDKを入れておく
+libs_path = "Pods/DeviceConnectThetaPlugin/dConnectDevicePlugin/dConnectDeviceTheta/dConnectDeviceTheta/Classes/lib"
+
+# ディレクトリが存在しない場合は作成
+if !Dir::exist?(libs_path) then
+	FileUtils.mkdir_p(libs_path)
+end
+if !Dir::exist?(libs_path + "/lib-r-exif") then
+	FileUtils.cp_r('libs/lib-r-exif', libs_path)
+end
+if !Dir::exist?(libs_path + "/lib-ricoh-theta") then
+	FileUtils.cp_r('libs/lib-ricoh-theta', libs_path)
+end
+if !Dir::exist?(libs_path + "/lib-ricoh-theta_serializer") then
+	FileUtils.cp_r('libs/lib-ricoh-theta_serializer', libs_path)
 end
 
 post_install do |installer|
