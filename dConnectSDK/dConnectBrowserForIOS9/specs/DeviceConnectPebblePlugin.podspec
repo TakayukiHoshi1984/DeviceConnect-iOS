@@ -40,7 +40,8 @@ Pod::Spec.new do |s|
     s.prefix_header_file = base_path + "/dConnectDevicePebble/dConnectDevicePebble-Prefix.pch"
     s.private_header_files = base_path + "/dConnectDevicePebble/Classes/**/*.h"
     s.source_files = base_path + "/dConnectDevicePebble/Headers/*.h", base_path + "/dConnectDevicePebble/Classes/**/*.{h,m}"
-    s.resource_bundles = {"dConnectDevicePebble_resources" => [base_path + "/dConnectDevicePebble_resources/**/*.{#{common_resource_exts},pbw}"]}
+    s.resource_bundles = {"dConnectDevicePebble_resources" => [base_path + "/dConnectDevicePebble_resources/**/*.{#{common_resource_exts},pbw}",
+    					base_path + "/dConnectDevicePebble_resources/*.{#{common_resource_exts}}"]}
 
     s.libraries = "z"
     s.frameworks = "ExternalAccessory", "CoreMotion", "CoreBluetooth", "CFNetwork", "MessageUI"

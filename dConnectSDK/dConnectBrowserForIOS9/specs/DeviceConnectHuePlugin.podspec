@@ -43,7 +43,8 @@ Pod::Spec.new do |s|
     s.prefix_header_file = base_path + "/dConnectDeviceHue/dConnectDeviceHue-Prefix.pch"
     s.public_header_files = base_path + "/dConnectDeviceHue/Headers/*.h"
     s.source_files = base_path + "/dConnectDeviceHue/Headers/*.h", base_path + "/dConnectDeviceHue/Classes/**/*.{h,m}"
-    s.resource_bundles = {"dConnectDeviceHue_resources" => [base_path + "/dConnectDeviceHue/Resources/**/*.{#{common_resource_exts}}"]}
+    s.resource_bundles = {"dConnectDeviceHue_resources" => [base_path + "/dConnectDeviceHue/Resources/**/*.{#{common_resource_exts}}",
+    					base_path + "/dConnectDeviceHue_resources/*.{#{common_resource_exts}}"]}
     
     s.dependency "DeviceConnectSDK"
 	s.vendored_frameworks = base_path + "/HueSDK_iOS.framework"

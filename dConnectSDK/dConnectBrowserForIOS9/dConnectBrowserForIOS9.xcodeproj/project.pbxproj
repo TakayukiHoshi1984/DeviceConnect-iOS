@@ -748,14 +748,6 @@
 			path = RATreeView;
 			sourceTree = "<group>";
 		};
-		AB73D5EA1F7CED7A00B77A10 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				AB1521851D95256400FE4210 /* LinkingLibrary.framework */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		AB94E8591C755EB300DAE749 /* BookmarkDBFramework */ = {
 			isa = PBXGroup;
 			children = (
@@ -1024,13 +1016,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dConnectBrowserForIOS9-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4F4E3CA7778A26467CB9F005 /* [CP] Embed Pods Frameworks */ = {
@@ -1054,9 +1049,21 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-dConnectBrowserForIOS9/Pods-dConnectBrowserForIOS9-resources.sh",
+				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectChromecastPlugin/dConnectDeviceChromecast_resources.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectHostPlugin/dConnectDeviceHost_resources.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectHuePlugin/dConnectDeviceHue_resources.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectIRKitPlugin/dConnectDeviceIRKit_resources.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectPebblePlugin/dConnectDevicePebble_resources.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSDK/DConnectSDK_resources.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSonyCameraPlugin/dConnectDeviceSonyCamera_resources.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectThetaPlugin/dConnectDeviceTheta_resources.bundle",
+				"${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-2.10.4-Release/GoogleCast.framework/GoogleCastResources.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/google-cast-sdk/CastFrameworkAssets.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

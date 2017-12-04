@@ -51,7 +51,8 @@ Pod::Spec.new do |s|
     				 base_path + "/dConnectDeviceTheta/Classes/lib/**/**/*.{h,mm,cpp}"
 
 
-    s.resource_bundles = {"dConnectDeviceTheta_resources" => [base_path + "/dConnectDeviceTheta/Resources/**/*.{#{common_resource_exts}}"]}
+    s.resource_bundles = {"dConnectDeviceTheta_resources" => [base_path + "/dConnectDeviceTheta/Resources/**/*.{#{common_resource_exts}}",
+    					base_path + "/dConnectDeviceTheta_resources/*.{#{common_resource_exts}}"]}
     
     s.dependency "DeviceConnectSDK"
 

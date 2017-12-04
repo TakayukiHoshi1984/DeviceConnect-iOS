@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
     # という旨で提供するライブラリがビルドされない問題への対処。
     s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'NO' }
     
-    common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
+    common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png,json"
     base_path = "dConnectDevicePlugin/dConnectDeviceLinking"
     s.prepare_command = <<-CMD
 		cd dConnectDevicePlugin/dConnectDeviceLinking/
@@ -43,10 +43,11 @@ Pod::Spec.new do |s|
     s.prefix_header_file = base_path + "/dConnectDeviceLinking/dConnectDeviceLinking-Prefix.pch"
     s.public_header_files = base_path + "/dConnectDeviceLinking/Headers/*.h"
     s.source_files = base_path + "/dConnectDeviceLinking/Headers/*.h", base_path + "/dConnectDeviceLinking/Classes/**/*.{h,m}"
-    s.resource_bundles = {"dConnectDeviceLinking_resources" => [base_path + "/dConnectDeviceLinking/Resources/**/*.{#{common_resource_exts}}"]}
+    s.resource_bundles = {"dConnectDeviceLinking_resources" => [base_path + "/dConnectDeviceLinking/Resources/**/*.{#{common_resource_exts}}",
+    					base_path + "/dConnectDeviceLinking_resources/*.{#{common_resource_exts}}"]}
 
     s.dependency "DeviceConnectSDK"
     
-    s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/../libs' }
+	s.vendored_frameworks = base_path + "/Libs/Release/LinkingLibrary.framework"
     
 end

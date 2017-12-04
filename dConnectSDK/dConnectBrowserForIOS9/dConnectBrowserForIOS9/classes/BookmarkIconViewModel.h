@@ -8,6 +8,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GHData.h"
 #import "Page.h"
 
 @interface BookmarkIconViewModel : NSObject

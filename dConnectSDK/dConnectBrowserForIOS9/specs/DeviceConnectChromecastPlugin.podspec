@@ -46,7 +46,8 @@ Pod::Spec.new do |s|
     s.source_files = base_path + "/dConnectDeviceChromecast/Classes/**/*.{h,m}"
     s.resource_bundles = {
     		"dConnectDeviceChromecast_resources" => [
-    			base_path + "/dConnectDeviceChromecast/**/**/*.{#{common_resource_exts}}"
+    			base_path + "/dConnectDeviceChromecast/**/**/*.{#{common_resource_exts}}",
+    			base_path + "/dConnectDeviceChromeCast_resources/*.png}"
     		]
     }
     s.dependency "google-cast-sdk"

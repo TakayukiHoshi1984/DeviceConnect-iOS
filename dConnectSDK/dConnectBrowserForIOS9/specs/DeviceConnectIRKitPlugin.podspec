@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
     # という旨で提供するライブラリがビルドされない問題への対処。
     s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'NO' }
     
-    common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
+    common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png,json"
     base_path = "dConnectDevicePlugin/dConnectDeviceIRKit"
     application_key = $irkitApplicationKey
     s.prepare_command = <<-CMD
@@ -44,7 +44,8 @@ Pod::Spec.new do |s|
     s.prefix_header_file = base_path + "/dConnectDeviceIRKit/dConnectDeviceIRKit-Prefix.pch"
     s.public_header_files = base_path + "/dConnectDeviceIRKit/Headers/*.h"
     s.source_files = base_path + "/dConnectDeviceIRKit/Headers/*.h", base_path + "/dConnectDeviceIRKit/Classes/**/*.{h,m}"
-    s.resource_bundles = {"dConnectDeviceIRKit_resources" => [base_path + "/dConnectDeviceIRKit/Resources/**/*.{#{common_resource_exts}}"]}
+    s.resource_bundles = {"dConnectDeviceIRKit_resources" => [base_path + "/dConnectDeviceIRKit/Resources/**/*.{#{common_resource_exts}}",
+    					base_path + "/dConnectDeviceIRKit_resources/*.{#{common_resource_exts}}"]}
     
     s.dependency "DeviceConnectSDK"
     s.dependency "DeviceConnectPluginSDK"

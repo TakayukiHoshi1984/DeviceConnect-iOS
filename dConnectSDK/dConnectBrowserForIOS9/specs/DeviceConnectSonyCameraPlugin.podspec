@@ -39,7 +39,8 @@ Pod::Spec.new do |s|
     s.prefix_header_file = base_path + "/dConnectDeviceSonyCamera/dConnectDeviceSonyCamera-Prefix.pch"
     s.public_header_files = base_path + "/dConnectDeviceSonyCamera/Headers/*.h"
     s.source_files = base_path + "/dConnectDeviceSonyCamera/Headers/*.h", base_path + "/dConnectDeviceSonyCamera/Classes/**/*.{h,m}"
-    s.resource_bundles = {"dConnectDeviceSonyCamera_resources" => [base_path + "/dConnectDeviceSonyCamera/Resources/**/*.{#{common_resource_exts}}"]}
+    s.resource_bundles = {"dConnectDeviceSonyCamera_resources" => [base_path + "/dConnectDeviceSonyCamera_resources/**/*.{#{common_resource_exts}}",
+    					base_path + "/dConnectDeviceSonyCamera_resources/*.{#{common_resource_exts}}"]}
     
     s.dependency "DeviceConnectSDK"
     
