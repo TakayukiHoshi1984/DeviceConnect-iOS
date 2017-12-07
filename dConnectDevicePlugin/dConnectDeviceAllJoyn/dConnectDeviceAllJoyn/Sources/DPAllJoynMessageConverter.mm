@@ -9,7 +9,7 @@
 
 #import "DPAllJoynMessageConverter.h"
 
-#import <AllJoynFramework_iOS.h>
+#import "AllJoynFramework_iOS.h"
 
 
 @implementation DPAllJoynMessageConverter

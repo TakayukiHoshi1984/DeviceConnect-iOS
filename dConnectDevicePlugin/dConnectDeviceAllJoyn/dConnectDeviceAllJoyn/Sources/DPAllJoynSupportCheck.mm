@@ -9,7 +9,7 @@
 
 #import "DPAllJoynSupportCheck.h"
 
-#import <AllJoynFramework_iOS.h>
+#import "AllJoynFramework_iOS.h"
 #import "DPAllJoynConst.h"
 #import "DPAllJoynServiceEntity.h"
 #import "NSArray+Query.h"

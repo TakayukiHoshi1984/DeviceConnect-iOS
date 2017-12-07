@@ -48,6 +48,5 @@ Pod::Spec.new do |s|
     s.resource_bundles = {"dConnectDeviceAllJoyn_resources" => [base_path + "/dConnectDeviceAllJoyn/Resources/**/*.{#{common_resource_exts},jpg}"]}
     
     s.dependency "DeviceConnectSDK"
-    s.dependency "AllJoynCoreSDK"
     
 end

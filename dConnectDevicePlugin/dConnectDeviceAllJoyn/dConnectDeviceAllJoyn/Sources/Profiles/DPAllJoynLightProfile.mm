@@ -9,7 +9,7 @@
 
 #import "DPAllJoynLightProfile.h"
 
-#import <AllJoynFramework_iOS.h>
+#import "AllJoynFramework_iOS.h"
 #import "DPAllJoynColorUtility.h"
 #import "AJNLSFControllerService.h"
 #import "AJNLSFLamp.h"

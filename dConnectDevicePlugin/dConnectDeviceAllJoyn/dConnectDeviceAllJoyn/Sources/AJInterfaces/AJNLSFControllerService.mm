@@ -2247,13 +2247,15 @@ QStatus LSFControllerServiceObjectImpl::SendLampGroupsDeleted(MsgArg* lampGroups
         //
         // create an interface description, or if that fails, get the interface as it was already created
         //
-        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.ControllerService"];
+        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.ControllerService"
+                                                       enableSecurity:NO];
 
     
         // add the properties to the interface description
         //
     
-        status = [interfaceDescription addPropertyWithName:@"Version" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Version" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Version (ControllerServiceVersion)" userInfo:nil];
@@ -2293,13 +2295,15 @@ QStatus LSFControllerServiceObjectImpl::SendLampGroupsDeleted(MsgArg* lampGroups
         //
         // create an interface description, or if that fails, get the interface as it was already created
         //
-        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.ControllerService.Lamp"];
+        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.ControllerService.Lamp"
+                                                       enableSecurity:NO];
 
     
         // add the properties to the interface description
         //
     
-        status = [interfaceDescription addPropertyWithName:@"Version" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Version" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Version (LampVersion)" userInfo:nil];
@@ -2465,13 +2469,15 @@ QStatus LSFControllerServiceObjectImpl::SendLampGroupsDeleted(MsgArg* lampGroups
         //
         // create an interface description, or if that fails, get the interface as it was already created
         //
-        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.ControllerService.LampGroup"];
+        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.ControllerService.LampGroup"
+                                                       enableSecurity:NO];
 
     
         // add the properties to the interface description
         //
     
-        status = [interfaceDescription addPropertyWithName:@"LampGroupVersion" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"LampGroupVersion" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  LampGroupVersion" userInfo:nil];

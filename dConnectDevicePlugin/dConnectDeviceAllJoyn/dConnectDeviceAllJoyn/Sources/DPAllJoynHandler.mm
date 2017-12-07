@@ -9,7 +9,7 @@
 
 #import "DPAllJoynHandler.h"
 
-#import <AllJoynFramework_iOS.h>
+#import "AllJoynFramework_iOS.h"
 #import "AJNLSFControllerService.h"
 #import "AJNLSFLamp.h"
 #import "DPAllJoynConst.h"
@@ -80,7 +80,7 @@ static size_t const DPAllJoynJoinRetryMax = 5;
 
 - (void)initAllJoynContextWithBlock:(void(^)(BOOL result))block
 {
-    DPLinkingLogInfo(@"init");
+    DCLogInfo(@"init");
     if (!block) {
         DCLogError(@"%s: block can not be nil.", __PRETTY_FUNCTION__);
         return;
@@ -148,7 +148,7 @@ static size_t const DPAllJoynJoinRetryMax = 5;
 
 - (void)destroyAllJoynContextWithBlock:(void(^)(BOOL result))block
 {
-    DPLinkingLogInfo(@"destroy");
+    DCLogInfo(@"destroy");
     if (!block) {
         DCLogError(@"%s: block can not be nil.", __PRETTY_FUNCTION__);
         return;
@@ -165,7 +165,7 @@ static size_t const DPAllJoynJoinRetryMax = 5;
         }
         
         if (_bus) {
-            [_bus disconnectWithArguments:@"null"];
+            [_bus disconnect];
             [_bus stop];
             _bus = nil;
         }
@@ -176,7 +176,7 @@ static size_t const DPAllJoynJoinRetryMax = 5;
 
 - (void)discoverServices:(void(^)(BOOL result))block
 {
-    DPLinkingLogInfo(@"discover");
+    DCLogInfo(@"discover");
     if (!block) {
         DCLogError(@"%s: block can not be nil.", __PRETTY_FUNCTION__);
         return;
@@ -192,7 +192,7 @@ static size_t const DPAllJoynJoinRetryMax = 5;
         if (!firstTime) {
             for (NSArray *ifaceSet in DPAllJoynSupportedInterfaceSets) {
                 for (NSString *iface in ifaceSet) {
-                    [_bus cancelWhoImplements:iface];
+                    [_bus cancelWhoImplementsInterface:iface];
                 }
             }
             //            [_bus cancelWhoImplements:@"*"];
@@ -216,7 +216,7 @@ static size_t const DPAllJoynJoinRetryMax = 5;
                           port:(AJNSessionPort)port
                          block:(void(^)(NSNumber *sessionId))block
 {
-    DPLinkingLogInfo(@"joinSession");
+    DCLogInfo(@"joinSession");
     if (!block) {
         DCLogError(@"%s: block can not be nil.", __PRETTY_FUNCTION__);
         return;
@@ -250,7 +250,7 @@ static size_t const DPAllJoynJoinRetryMax = 5;
 - (void)leaveSessionWithSessionId:(AJNSessionId)sessionId
                             block:(void(^)(BOOL result))block
 {
-    DPLinkingLogInfo(@"leaveSession: %u", sessionId);
+    DCLogInfo(@"leaveSession: %u", sessionId);
     if (!block) {
         DCLogError(@"%s: block can not be nil.", __PRETTY_FUNCTION__);
         return;
@@ -303,7 +303,7 @@ static size_t const DPAllJoynJoinRetryMax = 5;
 - (void)pingWithBusName:(NSString *)busName
                   block:(void(^)(BOOL result)) block
 {
-    DPLinkingLogInfo(@"Ping the service with bus name \"%@\"", busName);
+    DCLogInfo(@"Ping the service with bus name \"%@\"", busName);
     if (!block) {
         DCLogError(@"%s: block can not be nil.", __PRETTY_FUNCTION__);
         return;
@@ -349,7 +349,7 @@ static size_t const DPAllJoynJoinRetryMax = 5;
 
 - (void)pingTimerMethod:(NSTimer *)timer
 {
-    DPLinkingLogInfo(@"Sending pings to discovered services...");
+    DCLogInfo(@"Sending pings to discovered services...");
     
     for (DPAllJoynServiceEntity *serviceEntity in
          [_discoveredServices cloneDictionary].allValues) {
@@ -357,13 +357,13 @@ static size_t const DPAllJoynJoinRetryMax = 5;
                         block:^(BOOL result)
          {
              if (result) {
-                 DPLinkingLogInfo(@"Ping succeeded: %@", serviceEntity.serviceName);
+                 DCLogInfo(@"Ping succeeded: %@", serviceEntity.serviceName);
                  serviceEntity.lastAlive = [NSDate date];
              }
              else {
                  if (-serviceEntity.lastAlive.timeIntervalSinceNow * 1000
                      > DPAllJoynAliveTimeout) {
-                     DPLinkingLogInfo(@"Ping failed: %@."
+                     DCLogInfo(@"Ping failed: %@."
                                " Removing it from discovered services...",
                                serviceEntity.serviceName);
                      [_discoveredServices removeObjectForKey:serviceEntity.appId];
@@ -462,7 +462,7 @@ static size_t const DPAllJoynJoinRetryMax = 5;
           withObjectDescription:(AJNMessageArgument *)objectDescriptionArg
                withAboutDataArg:(AJNMessageArgument *)aboutDataArg
 {
-    DPLinkingLogInfo(@"busName:%@ version:%u port:%u\nobjectDescriptionArg:%@\naboutDataArg:%@",
+    DCLogInfo(@"busName:%@ version:%u port:%u\nobjectDescriptionArg:%@\naboutDataArg:%@",
               busName, version, port, objectDescriptionArg, aboutDataArg);
     
     DPAllJoynServiceEntity *service =
@@ -471,10 +471,10 @@ static size_t const DPAllJoynJoinRetryMax = 5;
                                           aboutData:aboutDataArg
                               busObjectDescriptions:objectDescriptionArg];
     
-    DPLinkingLogInfo(@"Service found: %@", service.serviceName);
+    DCLogInfo(@"Service found: %@", service.serviceName);
     
     if (![DPAllJoynSupportCheck isSupported:objectDescriptionArg]) {
-        DPLinkingLogInfo(@"Required I/Fs are missing. Ignoring \"%@\" ...",
+        DCLogInfo(@"Required I/Fs are missing. Ignoring \"%@\" ...",
                   service.serviceName);
         return;
     }
@@ -497,13 +497,13 @@ static size_t const DPAllJoynJoinRetryMax = 5;
 
 - (void)listenerDidRegisterWithBus:(AJNBusAttachment*)busAttachment
 {
-    DPLinkingLogInfo(@"busAttachment:%@", busAttachment);
+    DCLogInfo(@"busAttachment:%@", busAttachment);
 }
 
 
 - (void)listenerDidUnregisterWithBus:(AJNBusAttachment*)busAttachment
 {
-    DPLinkingLogInfo(@"busAttachment:%@", busAttachment);
+    DCLogInfo(@"busAttachment:%@", busAttachment);
 }
 
 
@@ -511,7 +511,7 @@ static size_t const DPAllJoynJoinRetryMax = 5;
             withTransportMask:(AJNTransportMask)transport
                    namePrefix:(NSString*)namePrefix
 {
-    DPLinkingLogInfo(@"name:%@ transport:%u namePrefix:%@",
+    DCLogInfo(@"name:%@ transport:%u namePrefix:%@",
               name, transport, namePrefix);
 }
 
@@ -520,7 +520,7 @@ static size_t const DPAllJoynJoinRetryMax = 5;
             withTransportMask:(AJNTransportMask)transport
                    namePrefix:(NSString*)namePrefix
 {
-    DPLinkingLogInfo(@"name:%@ transport:%u namePrefix:%@",
+    DCLogInfo(@"name:%@ transport:%u namePrefix:%@",
               name, transport, namePrefix);
 }
 
@@ -529,20 +529,20 @@ static size_t const DPAllJoynJoinRetryMax = 5;
                       to:(NSString*)newOwner
                     from:(NSString*)previousOwner
 {
-    DPLinkingLogInfo(@"name:%@ newOwner:%@ previousOwner:%@",
+    DCLogInfo(@"name:%@ newOwner:%@ previousOwner:%@",
               name, newOwner, previousOwner);
 }
 
 
 - (void)busWillStop
 {
-    DPLinkingLogInfo();
+    DCLogInfo();
 }
 
 
 - (void)busDidDisconnect
 {
-    DPLinkingLogInfo();
+    DCLogInfo();
 }
 
 
@@ -553,21 +553,21 @@ static size_t const DPAllJoynJoinRetryMax = 5;
 - (void)sessionWasLost:(AJNSessionId)sessionId
              forReason:(AJNSessionLostReason)reason
 {
-    DPLinkingLogInfo(@"sessionId:%u forReason:%u", sessionId, reason);
+    DCLogInfo(@"sessionId:%u forReason:%u", sessionId, reason);
 }
 
 
 - (void)didAddMemberNamed:(NSString*)memberName
                 toSession:(AJNSessionId)sessionId
 {
-    DPLinkingLogInfo(@"memberName:%@ sessionId:%u", memberName, sessionId);
+    DCLogInfo(@"memberName:%@ sessionId:%u", memberName, sessionId);
 }
 
 
 - (void)didRemoveMemberNamed:(NSString*)memberName
                  fromSession:(AJNSessionId)sessionId
 {
-    DPLinkingLogInfo(@"memberName:%@ fromSession:%u", memberName, sessionId);
+    DCLogInfo(@"memberName:%@ fromSession:%u", memberName, sessionId);
 }
 
 @end

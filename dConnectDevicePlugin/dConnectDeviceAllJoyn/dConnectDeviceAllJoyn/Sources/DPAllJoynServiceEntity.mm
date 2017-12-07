@@ -9,7 +9,7 @@
 
 #import "DPAllJoynServiceEntity.h"
 
-#import <AllJoynFramework_iOS.h>
+#import "AllJoynFramework_iOS.h"
 
 
 static NSString *const DPAllJoynAboutDataException =

@@ -17,7 +17,6 @@ target 'dConnectBrowserForIOS9' do
   pod 'DeviceConnectChromecastPlugin', podspec: "specs/DeviceConnectChromecastPlugin.podspec"
   
   # AllJoyn
-  # pod 'OpenSSL-Static', '1.0.2.c1'
   # pod 'AllJoynCoreSDK', podspec: "specs/AllJoynCoreSDK.podspec"
   # pod 'DeviceConnectAllJoynPlugin', podspec: "specs/DeviceConnectAllJoynPlugin.podspec"
   

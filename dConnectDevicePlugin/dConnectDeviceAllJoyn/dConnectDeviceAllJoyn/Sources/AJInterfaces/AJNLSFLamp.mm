@@ -695,25 +695,29 @@ QStatus LSFLampObjectImpl::SendLampStateChanged(const char * LampID, const char*
         //
         // create an interface description, or if that fails, get the interface as it was already created
         //
-        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.LampService"];
+        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.LampService"
+                                                       enableSecurity:NO];
 
     
         // add the properties to the interface description
         //
     
-        status = [interfaceDescription addPropertyWithName:@"Version" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Version" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Version (LampServiceInterfaceVersion)" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"LampServiceVersion" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"LampServiceVersion" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  LampServiceVersion" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"LampFaults" signature:@"au"];
+        status = [interfaceDescription addPropertyWithName:@"LampFaults" signature:@"au"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  LampFaults" userInfo:nil];
@@ -738,25 +742,29 @@ QStatus LSFLampObjectImpl::SendLampStateChanged(const char * LampID, const char*
         //
         // create an interface description, or if that fails, get the interface as it was already created
         //
-        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.LampParameters"];
+        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.LampParameters"
+                                                       enableSecurity:NO];
 
     
         // add the properties to the interface description
         //
     
-        status = [interfaceDescription addPropertyWithName:@"Version" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Version" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Version (LampParametersVersion)" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"Energy_Usage_Milliwatts" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Energy_Usage_Milliwatts" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Energy_Usage_Milliwatts" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"Brightness_Lumens" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Brightness_Lumens" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Brightness_Lumens" userInfo:nil];
@@ -772,127 +780,148 @@ QStatus LSFLampObjectImpl::SendLampStateChanged(const char * LampID, const char*
         //
         // create an interface description, or if that fails, get the interface as it was already created
         //
-        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.LampDetails"];
+        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.LampDetails"
+                                                       enableSecurity:NO];
 
     
         // add the properties to the interface description
         //
     
-        status = [interfaceDescription addPropertyWithName:@"Version" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Version" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Version (LampDetailsVersion)" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"Make" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Make" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Make" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"Model" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Model" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Model" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"Type" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Type" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Type" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"LampType" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"LampType" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  LampType" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"LampBaseType" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"LampBaseType" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  LampBaseType" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"LampBeamAngle" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"LampBeamAngle" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  LampBeamAngle" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"Dimmable" signature:@"b"];
+        status = [interfaceDescription addPropertyWithName:@"Dimmable" signature:@"b"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Dimmable" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"Color" signature:@"b"];
+        status = [interfaceDescription addPropertyWithName:@"Color" signature:@"b"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Color" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"VariableColorTemp" signature:@"b"];
+        status = [interfaceDescription addPropertyWithName:@"VariableColorTemp" signature:@"b"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  VariableColorTemp" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"HasEffects" signature:@"b"];
+        status = [interfaceDescription addPropertyWithName:@"HasEffects" signature:@"b"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  HasEffects" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"MinVoltage" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"MinVoltage" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  MinVoltage" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"MaxVoltage" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"MaxVoltage" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  MaxVoltage" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"Wattage" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Wattage" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Wattage" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"IncandescentEquivalent" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"IncandescentEquivalent" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  IncandescentEquivalent" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"MaxLumens" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"MaxLumens" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  MaxLumens" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"MinTemperature" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"MinTemperature" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  MinTemperature" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"MaxTemperature" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"MaxTemperature" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  MaxTemperature" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"ColorRenderingIndex" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"ColorRenderingIndex" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  ColorRenderingIndex" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"LampID" signature:@"s"];
+        status = [interfaceDescription addPropertyWithName:@"LampID" signature:@"s"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  LampID" userInfo:nil];
@@ -908,43 +937,50 @@ QStatus LSFLampObjectImpl::SendLampStateChanged(const char * LampID, const char*
         //
         // create an interface description, or if that fails, get the interface as it was already created
         //
-        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.LampState"];
+        interfaceDescription = [busAttachment createInterfaceWithName:@"org.allseen.LSF.LampState"
+                                                       enableSecurity:NO];
 
     
         // add the properties to the interface description
         //
     
-        status = [interfaceDescription addPropertyWithName:@"Version" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Version" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Version (LampStateVersion)" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"OnOff" signature:@"b"];
+        status = [interfaceDescription addPropertyWithName:@"OnOff" signature:@"b"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  OnOff" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"Hue" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Hue" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Hue" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"Saturation" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Saturation" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Saturation" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"ColorTemp" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"ColorTemp" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  ColorTemp" userInfo:nil];
         }
     
-        status = [interfaceDescription addPropertyWithName:@"Brightness" signature:@"u"];
+        status = [interfaceDescription addPropertyWithName:@"Brightness" signature:@"u"
+                                         accessPermissions:kAJNInterfacePropertyAccessReadWriteFlag];
         
         if (status != ER_OK && status != ER_BUS_MEMBER_ALREADY_EXISTS) {
             @throw [NSException exceptionWithName:@"BusObjectInitFailed" reason:@"Unable to add property to interface:  Brightness" userInfo:nil];

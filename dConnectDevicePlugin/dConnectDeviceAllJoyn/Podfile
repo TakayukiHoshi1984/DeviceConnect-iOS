@@ -1,0 +1,9 @@
+# source 'https://github.com/DeviceConnect/DeviceConnect-PodSpecs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+$targetSource = "https://github.com/TakayukiHoshi1984/DeviceConnect-iOS"
+platform :ios, '9.0'
+target 'dConnectDeviceAllJoyn' do
+  pod 'AllJoyn', podspec: "../../dConnectSDK/dConnectBrowserForIOS9/specs/AllJoyn.podspec"
+  pod 'DeviceConnectSDK', podspec: "../../dConnectSDK/dConnectBrowserForIOS9/specs/DeviceConnectSDK.podspec"
+  pod 'DeviceConnectPluginSDK', podspec: "../../dConnectSDK/dConnectBrowserForIOS9/specs/DeviceConnectPluginSDK.podspec"
+end
