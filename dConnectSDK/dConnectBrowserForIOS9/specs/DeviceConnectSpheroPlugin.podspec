@@ -41,14 +41,15 @@ Pod::Spec.new do |s|
     base_path = "dConnectDevicePlugin/dConnectDeviceSphero"
     s.prepare_command = <<-CMD
 		cd dConnectDevicePlugin/dConnectDeviceSphero/
-		sh ./download-framework.sh
+ 		sh ./download-framework.sh
     CMD
     # エンドターゲット（アプリとか）のプリコンパイルドヘッダー汚染の恐れあり。
     s.prefix_header_file = base_path + "/dConnectDeviceSphero/dConnectDeviceSphero-Prefix.pch"
     s.public_header_files = base_path + "/dConnectDeviceSphero/Headers/*.h"
     s.source_files = base_path + "/dConnectDeviceSphero/Headers/*.h", base_path + "/dConnectDeviceSphero/Classes/**/*.{h,m}"
     s.resource_bundles = {"dConnectDeviceSphero_resources" => [base_path + "/dConnectDeviceSphero/Resources/**/*.{#{common_resource_exts}}",
-    					base_path + "/dConnectDeviceSphero_resources/*.{#{common_resource_exts}}"]}
+    					base_path + "/dConnectDeviceSphero_resources/*.{#{common_resource_exts}}",
+    					base_path + "/*.framework"]}
     
     # libstdc++.dylibだけでOKなはずなのだが、stdc++.6.dylibやstdc++.6.0.9.dylib
     # などでないとGNU C++関連のシンボル解決に失敗するので、その対処。
@@ -57,6 +58,10 @@ Pod::Spec.new do |s|
     s.dependency "DeviceConnectSDK"
     s.dependency "DeviceConnectPluginSDK"
 
-	s.vendored_frameworks = base_path + "/*.framework"
+	s.vendored_frameworks = base_path + "/RobotKit.framework",
+							base_path + "/RobotUIKit.framework"
+    s.xcconfig = {
+    	'FRAMEWORK_SEARCH_PATHS' => '${PODS_ROOT}/DeviceConnectSpheroPlugin/dConnectDevicePlugin/dConnectDeviceSphero'
+    }
 
 end

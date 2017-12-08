@@ -1,7 +1,7 @@
 platform :ios, '9.0'
 $targetSource = "https://github.com/TakayukiHoshi1984/DeviceConnect-iOS"
-$chromeCastApplicationId = "1F0ABF07";#"[YOUR APPLICATION ID]"
-$irkitApplicationKey = "D3FEA7C4CD824FDDB1C0D730D33EF03E";# "[YOUR APPLICATION KEY]"
+$chromeCastApplicationId = "[YOUR APPLICATION ID]"
+$irkitApplicationKey = "[YOUR APPLICATION KEY]"
 
 
 target 'dConnectBrowserForIOS9' do

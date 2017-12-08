@@ -61,10 +61,6 @@
 		AB73D6BF1F7CFDE600B77A10 /* SpheroSettingWakeup_2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB73D6A31F7CFCA600B77A10 /* SpheroSettingWakeup_2.png */; };
 		AB91707219617E940084DB70 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE8C5C5195800E70083D672 /* CoreFoundation.framework */; };
 		AB91707819617E940084DB70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB91707619617E940084DB70 /* InfoPlist.strings */; };
-		ABCCE69C1FDA4B7B00151682 /* RobotCommandKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCCE6981FDA4B7A00151682 /* RobotCommandKit.framework */; };
-		ABCCE69D1FDA4B7B00151682 /* RobotKitLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCCE6991FDA4B7A00151682 /* RobotKitLE.framework */; };
-		ABCCE69E1FDA4B7B00151682 /* RobotLanguageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCCE69A1FDA4B7A00151682 /* RobotLanguageKit.framework */; };
-		ABCCE69F1FDA4B7B00151682 /* RobotKitClassic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCCE69B1FDA4B7B00151682 /* RobotKitClassic.framework */; };
 		ABE8C56A1957FE860083D672 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE8C5691957FE860083D672 /* Foundation.framework */; };
 		ABE8C5791957FE870083D672 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE8C5691957FE860083D672 /* Foundation.framework */; };
 		ABE8C57E1957FE870083D672 /* libdConnectDeviceSphero.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE8C5661957FE860083D672 /* libdConnectDeviceSphero.a */; };
@@ -158,10 +154,6 @@
 		AB91707519617E940084DB70 /* dConnectDeviceSphero_resources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "dConnectDeviceSphero_resources-Info.plist"; sourceTree = "<group>"; };
 		AB91707719617E940084DB70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB91707919617E940084DB70 /* dConnectDeviceSphero_resources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dConnectDeviceSphero_resources-Prefix.pch"; sourceTree = "<group>"; };
-		ABCCE6981FDA4B7A00151682 /* RobotCommandKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RobotCommandKit.framework; sourceTree = "<group>"; };
-		ABCCE6991FDA4B7A00151682 /* RobotKitLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RobotKitLE.framework; sourceTree = "<group>"; };
-		ABCCE69A1FDA4B7A00151682 /* RobotLanguageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RobotLanguageKit.framework; sourceTree = "<group>"; };
-		ABCCE69B1FDA4B7B00151682 /* RobotKitClassic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RobotKitClassic.framework; sourceTree = "<group>"; };
 		ABE8C5661957FE860083D672 /* libdConnectDeviceSphero.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdConnectDeviceSphero.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE8C5691957FE860083D672 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ABE8C5761957FE870083D672 /* dConnectDeviceSpheroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dConnectDeviceSpheroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,18 +177,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABCCE69C1FDA4B7B00151682 /* RobotCommandKit.framework in Frameworks */,
 				AB73D6B51F7CFD1D00B77A10 /* DCMDevicePluginSDK.framework in Frameworks */,
-				ABCCE69D1FDA4B7B00151682 /* RobotKitLE.framework in Frameworks */,
 				AB73D6B31F7CFD1100B77A10 /* DConnectSDK.framework in Frameworks */,
-				ABCCE69E1FDA4B7B00151682 /* RobotLanguageKit.framework in Frameworks */,
 				ABE8C646195903220083D672 /* UIKit.framework in Frameworks */,
 				ABE8C62419581F710083D672 /* CoreFoundation.framework in Frameworks */,
 				ABE8C62819581F710083D672 /* CoreMotion.framework in Frameworks */,
 				ABE8C62919581F710083D672 /* ExternalAccessory.framework in Frameworks */,
 				ABE8C62A19581F710083D672 /* GameKit.framework in Frameworks */,
 				ABE8C56A1957FE860083D672 /* Foundation.framework in Frameworks */,
-				ABCCE69F1FDA4B7B00151682 /* RobotKitClassic.framework in Frameworks */,
 				F754F47548BBE686EE1353DD /* libPods-dConnectDeviceSphero.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,10 +322,6 @@
 		ABE8C5681957FE860083D672 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ABCCE6981FDA4B7A00151682 /* RobotCommandKit.framework */,
-				ABCCE69B1FDA4B7B00151682 /* RobotKitClassic.framework */,
-				ABCCE6991FDA4B7A00151682 /* RobotKitLE.framework */,
-				ABCCE69A1FDA4B7A00151682 /* RobotLanguageKit.framework */,
 				AB73D6C11F7CFE4200B77A10 /* RobotUIKit.bundle */,
 				AB73D6C21F7CFE4200B77A10 /* RobotUIKit.framework */,
 				AB73D6B41F7CFD1D00B77A10 /* DCMDevicePluginSDK.framework */,

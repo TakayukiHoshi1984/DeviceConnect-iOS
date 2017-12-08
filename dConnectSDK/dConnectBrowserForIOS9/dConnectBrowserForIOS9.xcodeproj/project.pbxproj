@@ -1331,9 +1331,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/DeviceConnectHuePlugin/dConnectDevicePlugin/dConnectDeviceHue\"",
-					"\"${PODS_ROOT}/DeviceConnectLinkingPlugin/dConnectDevicePlugin/dConnectDeviceLinking/Libs/Release\"",
-					"\"${PODS_ROOT}/PebbleKit-Static\"",
 					"\"${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-2.10.4-Release\"",
+					"\"${PODS_ROOT}/PebbleKit-Static\"",
+					"\"${PODS_ROOT}/DeviceConnectLinkingPlugin/dConnectDevicePlugin/dConnectDeviceLinking/Libs/Release\"",
 					"\"${PODS_ROOT}/DeviceConnectSpheroPlugin/dConnectDevicePlugin/dConnectDeviceSphero\"",
 				);
 				GCC_PREFIX_HEADER = "dConnectBrowserForIOS9/dConnectBrowserForIOS9-Prefix.pch";
@@ -1374,9 +1374,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/DeviceConnectHuePlugin/dConnectDevicePlugin/dConnectDeviceHue\"",
-					"\"${PODS_ROOT}/DeviceConnectLinkingPlugin/dConnectDevicePlugin/dConnectDeviceLinking/Libs/Release\"",
-					"\"${PODS_ROOT}/PebbleKit-Static\"",
 					"\"${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-2.10.4-Release\"",
+					"\"${PODS_ROOT}/PebbleKit-Static\"",
+					"\"${PODS_ROOT}/DeviceConnectLinkingPlugin/dConnectDevicePlugin/dConnectDeviceLinking/Libs/Release\"",
 					"\"${PODS_ROOT}/DeviceConnectSpheroPlugin/dConnectDevicePlugin/dConnectDeviceSphero\"",
 				);
 				GCC_PREFIX_HEADER = "dConnectBrowserForIOS9/dConnectBrowserForIOS9-Prefix.pch";

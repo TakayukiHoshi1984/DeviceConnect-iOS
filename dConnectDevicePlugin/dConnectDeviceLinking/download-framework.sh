@@ -20,7 +20,7 @@ else
     echo "Linking sdk is not exist."
     echo ""
     echo "LinkingSDKダウンロードページより、ダウンロード。"
-    echo "https://github.com/PhilipsLinking/PhilipsLinkingSDK-iOS-OSX/"
+    echo "https://linkingiot.com/"
 
     cd $D
 
