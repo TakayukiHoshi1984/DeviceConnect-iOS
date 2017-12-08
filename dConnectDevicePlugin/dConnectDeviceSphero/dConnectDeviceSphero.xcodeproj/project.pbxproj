@@ -50,7 +50,6 @@
 		AB73D6B11F7CFCCF00B77A10 /* DPSpheroUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = AB73D68C1F7CFCA600B77A10 /* DPSpheroUtil.m */; };
 		AB73D6B31F7CFD1100B77A10 /* DConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB73D6B21F7CFD1100B77A10 /* DConnectSDK.framework */; };
 		AB73D6B51F7CFD1D00B77A10 /* DCMDevicePluginSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB73D6B41F7CFD1D00B77A10 /* DCMDevicePluginSDK.framework */; };
-		AB73D6B61F7CFD2900B77A10 /* RobotKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB39FEBD1B4E19C000A8139E /* RobotKit.framework */; };
 		AB73D6B71F7CFDE600B77A10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB73D6921F7CFCA600B77A10 /* Localizable.strings */; };
 		AB73D6B81F7CFDE600B77A10 /* SpheroDevicePlugin_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB73D6941F7CFCA600B77A10 /* SpheroDevicePlugin_iPad.storyboard */; };
 		AB73D6B91F7CFDE600B77A10 /* SpheroDevicePlugin_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB73D6961F7CFCA600B77A10 /* SpheroDevicePlugin_iPhone.storyboard */; };
@@ -60,8 +59,6 @@
 		AB73D6BD1F7CFDE600B77A10 /* SpheroBluetoothSetting.png in Resources */ = {isa = PBXBuildFile; fileRef = AB73D6A11F7CFCA600B77A10 /* SpheroBluetoothSetting.png */; };
 		AB73D6BE1F7CFDE600B77A10 /* SpheroSettingConnected_2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB73D6A21F7CFCA600B77A10 /* SpheroSettingConnected_2.png */; };
 		AB73D6BF1F7CFDE600B77A10 /* SpheroSettingWakeup_2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB73D6A31F7CFCA600B77A10 /* SpheroSettingWakeup_2.png */; };
-		AB73D6C31F7CFE4200B77A10 /* OvalCompiler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB73D6C01F7CFE4200B77A10 /* OvalCompiler.framework */; };
-		AB73D6C51F7CFE4200B77A10 /* RobotUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB73D6C21F7CFE4200B77A10 /* RobotUIKit.framework */; };
 		AB91707219617E940084DB70 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE8C5C5195800E70083D672 /* CoreFoundation.framework */; };
 		AB91707819617E940084DB70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB91707619617E940084DB70 /* InfoPlist.strings */; };
 		ABE8C56A1957FE860083D672 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE8C5691957FE860083D672 /* Foundation.framework */; };
@@ -181,9 +178,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB73D6C31F7CFE4200B77A10 /* OvalCompiler.framework in Frameworks */,
-				AB73D6C51F7CFE4200B77A10 /* RobotUIKit.framework in Frameworks */,
-				AB73D6B61F7CFD2900B77A10 /* RobotKit.framework in Frameworks */,
 				AB73D6B51F7CFD1D00B77A10 /* DCMDevicePluginSDK.framework in Frameworks */,
 				AB73D6B31F7CFD1100B77A10 /* DConnectSDK.framework in Frameworks */,
 				ABE8C646195903220083D672 /* UIKit.framework in Frameworks */,

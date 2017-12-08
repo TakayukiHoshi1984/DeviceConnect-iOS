@@ -4,7 +4,6 @@
 D=$(cd $(dirname $0);pwd)
 
 # SpheroのSDKへのパス
-SPHERO_OVAL_FRAMEWORK="/OvalCompiler.framework"
 SPHERO_ROBOTKIT_FRAMEWORK="/RobotKit.framework"
 SPHERO_ROBOTUIKIT_FRAMEWORK="/RobotUIKit.framework"
 SPHERO_ROBOTUIKIT_BUNDLE="/RobotUIKit.bundle"
@@ -34,7 +33,6 @@ else
     fi
 
     unzip $SPHERO_ZIP_FILE
-    mv $D"/"$SPHERO_MASTER"/frameworks/"$SPHERO_OVAL_FRAMEWORK $D
     mv $D"/"$SPHERO_MASTER"/frameworks/"$SPHERO_ROBOTKIT_FRAMEWORK $D
     mv $D"/"$SPHERO_MASTER"/frameworks/"$SPHERO_ROBOTUIKIT_FRAMEWORK $D
     mv $D"/"$SPHERO_MASTER"/frameworks/"$SPHERO_ROBOTUIKIT_BUNDLE $D

@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "9.0"
     
     s.source       = {
-        :git => $targetSource
+        :git => $targetSource, :branch => "modify_project" # TODO:masterにマージするときに戻す
     }
     
     s.pod_target_xcconfig = {
@@ -33,7 +33,9 @@ Pod::Spec.new do |s|
         # という旨で提供するライブラリがビルドされない問題への対処。
         'ONLY_ACTIVE_ARCH' => 'NO',
         'GCC_ENABLE_CPP_RTTI' => 'NO',
-        'GCC_PREPROCESSOR_DEFINITIONS' => "NS_BLOCK_ASSERTIONS=1 QCC_OS_GROUP_POSIX=1 QCC_OS_DARWIN=1"
+        'GCC_PREPROCESSOR_DEFINITIONS' => "NS_BLOCK_ASSERTIONS=1 QCC_OS_GROUP_POSIX=1 QCC_OS_DARWIN=1",
+        'HEADER_SEARCH_PATHS' => '${PODS_ROOT}/AllJoyn/build/iOS/AllJoynFramework/include/',
+        'LIBRARY_SEARCH_PATHS' => '$(PROJECT_DIR)/AllJoyn/build/iOS/AllJoynFramework/Release'
     }
     
     common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
@@ -43,10 +45,11 @@ Pod::Spec.new do |s|
     
     # エンドターゲット（アプリとか）のプリコンパイルドヘッダー汚染の恐れあり。
     s.prefix_header_file = base_path + "/dConnectDeviceAllJoyn/Supporting Files/dConnectDeviceAllJoyn-Prefix.pch"
-    s.private_header_files = base_path + "/dConnectDeviceAllJoyn/Sources/**/*.h", base_path + "/deps/AllJoynFramework/AllJoynFramework_iOS.h"
-    s.source_files = base_path + "/dConnectDeviceAllJoyn/Sources/**/*.{h,m,mm}", base_path + "/deps/AllJoynFramework/AllJoynFramework_iOS.h"
+    s.private_header_files = base_path + "/dConnectDeviceAllJoyn/Sources/**/*.h"
+	s.source_files = base_path + "/dConnectDeviceAllJoyn/Sources/**/*.{h,m,mm}"
     s.resource_bundles = {"dConnectDeviceAllJoyn_resources" => [base_path + "/dConnectDeviceAllJoyn/Resources/**/*.{#{common_resource_exts},jpg}"]}
-    
+
+    s.dependency "AllJoyn"
     s.dependency "DeviceConnectSDK"
     
 end

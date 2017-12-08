@@ -37,7 +37,6 @@ Pod::Spec.new do |s|
         'ONLY_ACTIVE_ARCH' => 'NO',
         'ENABLE_BITCODE' => 'NO'
     }
-    
     common_resource_exts = "plist,lproj,storyboard,strings,xcdatamodeld,png"
     base_path = "dConnectDevicePlugin/dConnectDeviceSphero"
     s.prepare_command = <<-CMD
@@ -59,4 +58,10 @@ Pod::Spec.new do |s|
     s.dependency "DeviceConnectPluginSDK"
 
 	s.vendored_frameworks = base_path + "/*.framework"
+    s.xcconfig = {
+    	'FRAMEWORK_SEARCH_PATHS' => '${PODS_ROOT}/DeviceConnectSpheroPlugin/dConnectDevicePlugin/dConnectDeviceSphero',
+    								'${PODS_ROOT}/DeviceConnectSpheroPlugin/dConnectDevicePlugin/dConnectDeviceSphero/Frameworks'
+    	
+    }
+
 end

@@ -1034,9 +1034,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-dConnectBrowserForIOS9/Pods-dConnectBrowserForIOS9-frameworks.sh",
+				"${PODS_ROOT}/DeviceConnectLinkingPlugin/dConnectDevicePlugin/dConnectDeviceLinking/Libs/Release/LinkingLibrary.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LinkingLibrary.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1050,14 +1053,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-dConnectBrowserForIOS9/Pods-dConnectBrowserForIOS9-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectChromecastPlugin/dConnectDeviceChromecast_resources.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectHostPlugin/dConnectDeviceHost_resources.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectHuePlugin/dConnectDeviceHue_resources.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectIRKitPlugin/dConnectDeviceIRKit_resources.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectPebblePlugin/dConnectDevicePebble_resources.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSDK/DConnectSDK_resources.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSonyCameraPlugin/dConnectDeviceSonyCamera_resources.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectThetaPlugin/dConnectDeviceTheta_resources.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectAllJoynPlugin/dConnectDeviceAllJoyn_resources.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectChromecastPlugin/dConnectDeviceChromecast_resources.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectHostPlugin/dConnectDeviceHost_resources.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectHuePlugin/dConnectDeviceHue_resources.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectIRKitPlugin/dConnectDeviceIRKit_resources.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectLinkingPlugin/dConnectDeviceLinking_resources.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectPebblePlugin/dConnectDevicePebble_resources.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSDK/DConnectSDK_resources.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSonyCameraPlugin/dConnectDeviceSonyCamera_resources.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectSpheroPlugin/dConnectDeviceSphero_resources.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/DeviceConnectThetaPlugin/dConnectDeviceTheta_resources.bundle,
 				"${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-2.10.4-Release/GoogleCast.framework/GoogleCastResources.bundle",
 				"$PODS_CONFIGURATION_BUILD_DIR/google-cast-sdk/CastFrameworkAssets.bundle",
 			);
@@ -1236,10 +1242,7 @@
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/libs",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1296,10 +1299,7 @@
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/libs",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1328,6 +1328,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/DeviceConnectHuePlugin/dConnectDevicePlugin/dConnectDeviceHue\"",
+					"\"${PODS_ROOT}/DeviceConnectLinkingPlugin/dConnectDevicePlugin/dConnectDeviceLinking/Libs/Release\"",
+					"\"${PODS_ROOT}/DeviceConnectSpheroPlugin/dConnectDevicePlugin/dConnectDeviceSphero\"",
+					"\"${PODS_ROOT}/PebbleKit-Static\"",
+					"\"${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-2.10.4-Release\"",
+				);
 				GCC_PREFIX_HEADER = "dConnectBrowserForIOS9/dConnectBrowserForIOS9-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/include/libxml2",
@@ -1363,6 +1371,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/DeviceConnectHuePlugin/dConnectDevicePlugin/dConnectDeviceHue\"",
+					"\"${PODS_ROOT}/DeviceConnectLinkingPlugin/dConnectDevicePlugin/dConnectDeviceLinking/Libs/Release\"",
+					"\"${PODS_ROOT}/DeviceConnectSpheroPlugin/dConnectDevicePlugin/dConnectDeviceSphero\"",
+					"\"${PODS_ROOT}/PebbleKit-Static\"",
+					"\"${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-2.10.4-Release\"",
+				);
 				GCC_PREFIX_HEADER = "dConnectBrowserForIOS9/dConnectBrowserForIOS9-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/include/libxml2",

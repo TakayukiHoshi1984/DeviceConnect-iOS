@@ -40,14 +40,13 @@ Pod::Spec.new do |s|
 		sed -i -e "s/Your Application Id/#{application_id}/g" DPChromecastManager.m
 		rm DPChromecastManager.m-e
     CMD
-    # エンドターゲット（アプリとか）のプリコンパイルドヘッダー汚染の恐れあり。
     s.prefix_header_file = base_path + "/dConnectDeviceChromecast/dConnectDeviceChromecast-Prefix.pch"
     s.private_header_files = base_path + "/dConnectDeviceChromecast/Classes/**/*.h"
     s.source_files = base_path + "/dConnectDeviceChromecast/Classes/**/*.{h,m}"
     s.resource_bundles = {
     		"dConnectDeviceChromecast_resources" => [
     			base_path + "/dConnectDeviceChromecast/**/**/*.{#{common_resource_exts}}",
-    			base_path + "/dConnectDeviceChromeCast_resources/*.png}"
+    			base_path + "/dConnectDeviceChromeCast_resources/*.{#{common_resource_exts}}"
     		]
     }
     s.dependency "google-cast-sdk"

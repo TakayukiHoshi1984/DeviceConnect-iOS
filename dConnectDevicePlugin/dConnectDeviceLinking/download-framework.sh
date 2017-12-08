@@ -34,7 +34,7 @@ else
     unzip $LINKING_MASTER"/"$LINKING_RELEASE_ZIP_FILE
 
     mv $D"/Release/Release/"$LINKING_FRAMEWORK $D"/Libs/Release"
-#     rm -rf $D"/"$LINKING_MASTER
-#     rm -rf $D"/Release"
-#     rm -rf $D"/"$LINKING_ZIP_FILE
+    rm -rf $D"/"$LINKING_MASTER
+    rm -rf $D"/Release"
+    rm -rf $D"/"$LINKING_ZIP_FILE
 fi
