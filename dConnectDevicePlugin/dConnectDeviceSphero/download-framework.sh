@@ -33,6 +33,10 @@ else
     fi
 
     unzip $SPHERO_ZIP_FILE
+    mv $D"/"$SPHERO_MASTER"/frameworks/"$SPHERO_ROBOTKIT_FRAMEWORK"/Frameworks/RobotCommandKit.framework" $D
+    mv $D"/"$SPHERO_MASTER"/frameworks/"$SPHERO_ROBOTKIT_FRAMEWORK"/Frameworks/RobotKitClassic.framework" $D
+    mv $D"/"$SPHERO_MASTER"/frameworks/"$SPHERO_ROBOTKIT_FRAMEWORK"/Frameworks/RobotKitLE.framework" $D
+    mv $D"/"$SPHERO_MASTER"/frameworks/"$SPHERO_ROBOTKIT_FRAMEWORK"/Frameworks/RobotLanguageKit.framework" $D
     mv $D"/"$SPHERO_MASTER"/frameworks/"$SPHERO_ROBOTKIT_FRAMEWORK $D
     mv $D"/"$SPHERO_MASTER"/frameworks/"$SPHERO_ROBOTUIKIT_FRAMEWORK $D
     mv $D"/"$SPHERO_MASTER"/frameworks/"$SPHERO_ROBOTUIKIT_BUNDLE $D

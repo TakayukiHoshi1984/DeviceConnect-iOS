@@ -58,10 +58,5 @@ Pod::Spec.new do |s|
     s.dependency "DeviceConnectPluginSDK"
 
 	s.vendored_frameworks = base_path + "/*.framework"
-    s.xcconfig = {
-    	'FRAMEWORK_SEARCH_PATHS' => '${PODS_ROOT}/DeviceConnectSpheroPlugin/dConnectDevicePlugin/dConnectDeviceSphero',
-    								'${PODS_ROOT}/DeviceConnectSpheroPlugin/dConnectDevicePlugin/dConnectDeviceSphero/Frameworks'
-    	
-    }
 
 end
