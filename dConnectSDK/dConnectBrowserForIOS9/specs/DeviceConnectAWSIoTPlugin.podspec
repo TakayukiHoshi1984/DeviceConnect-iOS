@@ -35,7 +35,10 @@ Pod::Spec.new do |s|
     base_path = "dConnectDevicePlugin/dConnectDeviceAWSIoT"
     
     s.private_header_files = base_path + "/dConnectDeviceAWSIoT/Classes/**/*.h"
-    s.source_files = base_path + "/dConnectDeviceAWSIoT/Classes/**/*.{h,m}"
+    s.exclude_files = base_path + "/dConnectDeviceAWSIoT/Classes/DConnectDevicePluginManager.h",
+    				base_path + "/dConnectDeviceAWSIoT/Classes/DConnectManagerServiceDiscoveryProfile.h"
+    s.source_files = base_path + "/dConnectDeviceAWSIoT/Classes/**/*.{h,m,cpp}",
+    				base_path + "/dConnectDeviceAWSIoT/Classes/**/**/*.{h,m,mm}"
     s.resource_bundles = {"dConnectDeviceAWSIoT_resources" => [base_path + "/dConnectDeviceAWSIoT/Resources/**/*.{#{common_resource_exts}}"]}
     
     s.dependency "DeviceConnectSDK"

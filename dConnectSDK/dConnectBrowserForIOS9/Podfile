@@ -46,7 +46,7 @@ target 'dConnectBrowserForIOS9' do
   pod 'DeviceConnectThetaPlugin', podspec: "specs/DeviceConnectThetaPlugin.podspec"
 
   # AWSIot
-  #pod 'DeviceConnectAWSIoTPlugin', podspec: "specs/DeviceConnectAWSIoTPlugin.podspec"
+  pod 'DeviceConnectAWSIoTPlugin', podspec: "specs/DeviceConnectAWSIoTPlugin.podspec"
 
 end
 
