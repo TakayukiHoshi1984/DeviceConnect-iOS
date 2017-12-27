@@ -60,8 +60,11 @@ static NSString *const DPHostFileProfileParamNewPath = @"newPath";
                              [response setErrorToUnknownWithMessage:@"Directory can not be specified."];
                              return YES;
                          }
-                         
-                         [DConnectFileProfile setURI:[[NSURL fileURLWithPath:dstPath] absoluteString] target:response];
+                         if (![dstPath hasPrefix:@"file://"]) {
+                             dstPath = [NSString stringWithFormat:@"file://%@", dstPath];
+                         }
+                         NSURL *url = [NSURL URLWithString:[dstPath stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
+                         [DConnectFileProfile setURI:url.absoluteString target:response];
                          NSString *mimeType = [DConnectFileManager searchMimeTypeForExtension:[dstPath pathExtension]];
                          if (!mimeType) {
                              mimeType = [DConnectFileManager mimeTypeForArbitraryData];
@@ -586,11 +589,7 @@ static NSString *const DPHostFileProfileParamNewPath = @"newPath";
         
         NSDate *modifiedDate;
         [url getResourceValue:&modifiedDate forKey:NSURLAttributeModificationDateKey error:nil];
-        NSDateFormatter *rfc3339DateFormatter = [[NSDateFormatter alloc] init];
-        [rfc3339DateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
-        [rfc3339DateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ssZZZ"];
-        [rfc3339DateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-        [DConnectFileProfile setUpdateDate:[rfc3339DateFormatter stringFromDate:modifiedDate] tareget:file];
+        [DConnectFileProfile setUpdateDate:[DConnectRFC3339DateUtils stringWithDate:modifiedDate] tareget:file];
         
         NSNumber *fileSize;
         [url getResourceValue:&fileSize forKey:NSURLFileSizeKey error:nil];
@@ -603,7 +602,7 @@ static NSString *const DPHostFileProfileParamNewPath = @"newPath";
             DConnectMessage *upDir = [DConnectMessage message];
             [DConnectFileProfile setPath:[self removeLastDirectoryNameWithRoot:listPath] target:upDir];
             [DConnectFileProfile setFileName:@".." target:upDir];
-            [DConnectFileProfile setUpdateDate:[rfc3339DateFormatter stringFromDate:modifiedDate] tareget:upDir];
+            [DConnectFileProfile setUpdateDate:[DConnectRFC3339DateUtils stringWithDate:modifiedDate] tareget:upDir];
             [DConnectFileProfile setMIMEType:@"dir/folder" target:upDir];
             [DConnectFileProfile setFileType:1 target:upDir];
             [DConnectFileProfile setFileSize:0 target:upDir];

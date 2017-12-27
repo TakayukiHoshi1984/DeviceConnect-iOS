@@ -239,6 +239,6 @@ typedef NS_ENUM(NSUInteger, DConnectFileProfileFileType) {
  @param[in] request リクエストパラメータ
  @return 強制削除フラグ。無い場合はfalseを返す。
  */
-+ (BOOL) forceFromRequest:(DConnectMessage *)request;
+//+ (BOOL) forceFromRequest:(DConnectMessage *)request;
 
 @end

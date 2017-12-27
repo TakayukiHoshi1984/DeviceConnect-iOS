@@ -58,7 +58,7 @@ static const NSTimeInterval DPSemaphoreTimeout = 20.0;
 	static id sharedInstance;
 	static dispatch_once_t onceSpheroToken;
 	dispatch_once(&onceSpheroToken, ^{
-		sharedInstance = [[self alloc] init];
+		sharedInstance = [self new];
 	});
 	return sharedInstance;
 }

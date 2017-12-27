@@ -247,10 +247,7 @@ static const long long MaximumAgeMilliSec = 0;
     [DConnectGeolocationProfile setCoordinates:coordinates target:position];
     [DConnectGeolocationProfile setTimeStamp:([location.timestamp timeIntervalSince1970] * 1000) target:position];
     NSDate *timeDate = location.timestamp;
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyyMMddHHmmss.SSSZZZ";
-    dateFormatter.timeZone = [NSTimeZone defaultTimeZone];
-    NSString *timeStr = [dateFormatter stringFromDate:timeDate];
+    NSString *timeStr = [DConnectRFC3339DateUtils stringWithDate:timeDate];
     [DConnectGeolocationProfile setTimeStampString:timeStr target:position];
  
     return position;
@@ -359,8 +356,23 @@ static const long long MaximumAgeMilliSec = 0;
                 break;
         }
         if (message) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
+            UIAlertController * alert = [UIAlertController
+                                         alertControllerWithTitle:@""
+                                         message:message
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            
+            
+            
+            UIAlertAction* okButton = [UIAlertAction
+                                        actionWithTitle:@"OK"
+                                        style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * action) {
+                                            //Handle your yes please button action here
+                                        }];
+            
+            [alert addAction:okButton];
+            UIViewController *top = [DPHostUtils topViewController];
+            [top presentViewController:alert animated:YES completion:nil];
         }
     }
 }
