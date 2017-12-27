@@ -112,9 +112,6 @@
 		AB00F4AB1C71B16200689C70 /* RATreeView+TableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB00F4861C71B16200689C70 /* RATreeView+TableViewDelegate.m */; };
 		AB00F4AC1C71B16200689C70 /* RATreeView+UIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB00F4881C71B16200689C70 /* RATreeView+UIScrollView.m */; };
 		AB00F4AD1C71B16200689C70 /* RATreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB00F48A1C71B16200689C70 /* RATreeView.m */; };
-		AB1521861D95256400FE4210 /* LinkingLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1521851D95256400FE4210 /* LinkingLibrary.framework */; };
-		AB1521831D95253D00FE4210 /* dConnectDeviceAWSIoT_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB1521811D95253D00FE4210 /* dConnectDeviceAWSIoT_resources.bundle */; };
-		AB1521841D95253D00FE4210 /* dConnectDeviceAWSIoT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1521821D95253D00FE4210 /* dConnectDeviceAWSIoT.framework */; };
 		AB1FAB0C1C7AC1E00013C434 /* dConnectDeviceAllJoyn_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB1FAB0A1C7AC1E00013C434 /* dConnectDeviceAllJoyn_resources.bundle */; };
 		AB1FAB0D1C7AC1E00013C434 /* dConnectDeviceAllJoyn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1FAB0B1C7AC1E00013C434 /* dConnectDeviceAllJoyn.framework */; };
 		AB3120041D7E916600B2D886 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3120031D7E916600B2D886 /* SystemConfiguration.framework */; };
