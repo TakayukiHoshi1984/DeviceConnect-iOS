@@ -65,6 +65,9 @@
 		6B4EEF611AAFF06700A92E0D /* DConnectOriginDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EEF601AAFF06700A92E0D /* DConnectOriginDao.m */; };
 		6B4EEF631AB06E2B00A92E0D /* DConnectOriginParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EEF621AB06E2B00A92E0D /* DConnectOriginParser.m */; };
 		6B4EEF6A1AB0823B00A92E0D /* DConnectWhitelistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EEF691AB0823B00A92E0D /* DConnectWhitelistViewController.m */; };
+		6B5E55501F96072900A5B272 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B5E554F1F96072900A5B272 /* Security.framework */; };
+		6B5E55991F98886400A5B272 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B5E55981F98886400A5B272 /* openssl.framework */; };
+		6B5E559E1F98B40C00A5B272 /* DConnectIdentityStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5E559D1F98B40C00A5B272 /* DConnectIdentityStore.m */; };
 		6B7A29B81E711E060071160E /* airconditioner.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B7A29931E711E060071160E /* airconditioner.json */; };
 		6B7A29B91E711E060071160E /* authorization.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B7A29941E711E060071160E /* authorization.json */; };
 		6B7A29BA1E711E060071160E /* battery.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B7A29951E711E060071160E /* battery.json */; };
@@ -367,6 +370,10 @@
 		6B4EEF621AB06E2B00A92E0D /* DConnectOriginParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DConnectOriginParser.m; path = policy/DConnectOriginParser.m; sourceTree = "<group>"; };
 		6B4EEF681AB081B100A92E0D /* DConnectWhitelistViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DConnectWhitelistViewController.h; path = policy/DConnectWhitelistViewController.h; sourceTree = "<group>"; };
 		6B4EEF691AB0823B00A92E0D /* DConnectWhitelistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DConnectWhitelistViewController.m; path = policy/DConnectWhitelistViewController.m; sourceTree = "<group>"; };
+		6B5E554F1F96072900A5B272 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		6B5E55981F98886400A5B272 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = openssl.framework; path = DConnectSDK/Libraries/openssl.framework; sourceTree = "<group>"; };
+		6B5E559C1F98B40C00A5B272 /* DConnectIdentityStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DConnectIdentityStore.h; sourceTree = "<group>"; };
+		6B5E559D1F98B40C00A5B272 /* DConnectIdentityStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DConnectIdentityStore.m; sourceTree = "<group>"; };
 		6B7A29931E711E060071160E /* airconditioner.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = airconditioner.json; path = api/airconditioner.json; sourceTree = "<group>"; };
 		6B7A29941E711E060071160E /* authorization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = authorization.json; path = api/authorization.json; sourceTree = "<group>"; };
 		6B7A29951E711E060071160E /* battery.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = battery.json; path = api/battery.json; sourceTree = "<group>"; };
@@ -2128,6 +2135,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB9F67081FB94988003A8EA0 /* Photos.framework in Frameworks */,
+				6B5E55991F98886400A5B272 /* openssl.framework in Frameworks */,
+				6B5E55501F96072900A5B272 /* Security.framework in Frameworks */,
 				C29D32EC191B202A001015CC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3965,6 +3974,8 @@
 				BE71FD931DA3B25B00B5E209 /* DConnectWebSocket.m */,
 				BE71FD941DA3B25B00B5E209 /* NSURLRequest+BodyAndBodyStreamInOne.h */,
 				BE71FD951DA3B25B00B5E209 /* NSURLRequest+BodyAndBodyStreamInOne.m */,
+				6B5E559C1F98B40C00A5B272 /* DConnectIdentityStore.h */,
+				6B5E559D1F98B40C00A5B272 /* DConnectIdentityStore.m */,
 			);
 			path = http;
 			sourceTree = "<group>";
@@ -4121,6 +4132,8 @@
 			isa = PBXGroup;
 			children = (
 				AB9F67071FB94988003A8EA0 /* Photos.framework */,
+				6B5E55981F98886400A5B272 /* openssl.framework */,
+				6B5E554F1F96072900A5B272 /* Security.framework */,
 				BE21B72D197E108900BAF018 /* DConnectSDK.build */,
 				BE24744B197914940035E83B /* DConnectSDK.framework */,
 				300564B0196FB68600A4E708 /* libsqlite3.0.dylib */,
@@ -4795,6 +4808,7 @@
 				BE71FE121DA3B25B00B5E209 /* DConnectServiceInformationProfile.m in Sources */,
 				30424D1E1974C3B30084371F /* DConnectEventSessionDao.m in Sources */,
 				D62622D5199232BC004F01E6 /* LocalOAuthClientManager.m in Sources */,
+				6B5E559E1F98B40C00A5B272 /* DConnectIdentityStore.m in Sources */,
 				D6FD02151999EC7A000DB674 /* CipherSignatureProcMD.m in Sources */,
 				30424D0E1974BE700084371F /* DConnectAttributeDao.m in Sources */,
 				C29D33B4191CC45A001015CC /* DConnectUtil.m in Sources */,
@@ -5045,7 +5059,7 @@
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "";
 				DSTROOT = /tmp/DConnectSDK.dst;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/DConnectSDK/Libraries";
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -5068,7 +5082,7 @@
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "";
 				DSTROOT = /tmp/DConnectSDK.dst;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/DConnectSDK/Libraries";
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
