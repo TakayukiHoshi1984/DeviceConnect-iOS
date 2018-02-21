@@ -88,7 +88,7 @@
     
     //X509_set_version(x509, 2); // 2 -> x509v3
     X509_gmtime_adj(X509_get_notBefore(x509), 0);
-    X509_gmtime_adj(X509_get_notAfter(x509), 31536000L);
+    X509_gmtime_adj(X509_get_notAfter(x509), 315360000L); // 10 years
     
     X509_set_pubkey(x509, pkey);
     X509_NAME *name;
@@ -96,17 +96,13 @@
     X509_NAME_add_entry_by_txt(name, "C",  MBSTRING_ASC,
                                (unsigned char *)"JP", -1, -1, 0);
     X509_NAME_add_entry_by_txt(name, "ST",  MBSTRING_ASC,
-                               (unsigned char *)"Tokyo", -1, -1, 0);
+                               (unsigned char *)"N/A", -1, -1, 0);
     X509_NAME_add_entry_by_txt(name, "L",  MBSTRING_ASC,
-                               (unsigned char *)"Nippori", -1, -1, 0);
+                               (unsigned char *)"N/A", -1, -1, 0);
     X509_NAME_add_entry_by_txt(name, "O",  MBSTRING_ASC,
-                               (unsigned char *)"MyCompany, Inc.", -1, -1, 0);
-    X509_NAME_add_entry_by_txt(name, "OU",  MBSTRING_ASC,
-                               (unsigned char *)"R&D", -1, -1, 0);
+                               (unsigned char *)"N/A", -1, -1, 0);
     X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC,
                                (unsigned char *)"localhost", -1, -1, 0);
-    X509_NAME_add_entry_by_txt(name, "emailAddress", MBSTRING_ASC,
-                               (unsigned char *)"example@example.com", -1, -1, 0);
     X509_set_issuer_name(x509, name);
     X509_sign(x509, pkey, EVP_sha1());
     
@@ -116,8 +112,8 @@
         return 0;
     }
     SSLeay_add_all_algorithms();
-    PKCS12 *p12 = PKCS12_create("password",
-                                "PKCS12 for Device Connect",
+    PKCS12 *p12 = PKCS12_create("0000",
+                                "Device Connect System for iOS",
                                 pkey,
                                 x509,
                                 NULL,
@@ -145,7 +141,7 @@
     NSLog(@"Certificate Path: %@", path);
     NSData *data = [NSData dataWithContentsOfURL:path];
     
-    NSString* password = @"password";
+    NSString* password = @"0000";
     NSDictionary* options = @{
                               (id)kSecImportExportPassphrase : password
                               };
