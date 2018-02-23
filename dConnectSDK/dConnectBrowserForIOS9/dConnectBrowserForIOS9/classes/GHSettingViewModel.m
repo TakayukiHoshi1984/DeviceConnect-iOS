@@ -12,6 +12,7 @@
 #import <ifaddrs.h>
 #import <arpa/inet.h>
 #import "GHSettingController.h"
+#import "LocalBundleServer.h"
 
 @implementation GHSettingViewModel
 
@@ -159,6 +160,8 @@
             [DConnectManager sharedManager].settings.useSSL = isOn;
             [[DConnectManager sharedManager] stop];
             [[DConnectManager sharedManager] start];
+            
+            [[LocalBundleServer sharedServer] restart];
             break;
         default:
             break;

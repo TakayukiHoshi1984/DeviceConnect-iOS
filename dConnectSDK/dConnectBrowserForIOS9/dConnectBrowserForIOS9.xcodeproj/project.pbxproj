@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6BED11F1203FB31C00E7CB66 /* LocalBundleServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BED11F0203FB31C00E7CB66 /* LocalBundleServer.m */; };
 		8E05634C1D2628A4008EBA25 /* GHDeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E05634B1D2628A4008EBA25 /* GHDeviceUtil.m */; };
 		8E05634F1D263C05008EBA25 /* DeviceIconViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E05634E1D263C05008EBA25 /* DeviceIconViewCell.m */; };
 		8E0563521D263CFA008EBA25 /* DeviceIconViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0563511D263CFA008EBA25 /* DeviceIconViewModel.m */; };
@@ -205,6 +206,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6BED11F0203FB31C00E7CB66 /* LocalBundleServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalBundleServer.m; sourceTree = "<group>"; };
+		6BED11F4203FB3A900E7CB66 /* LocalBundleServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalBundleServer.h; sourceTree = "<group>"; };
 		8E05634A1D2628A4008EBA25 /* GHDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHDeviceUtil.h; sourceTree = "<group>"; };
 		8E05634B1D2628A4008EBA25 /* GHDeviceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHDeviceUtil.m; sourceTree = "<group>"; };
 		8E05634D1D263C05008EBA25 /* DeviceIconViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceIconViewCell.h; sourceTree = "<group>"; };
@@ -493,6 +496,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6BED11F3203FB35800E7CB66 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				6BED11F4203FB3A900E7CB66 /* LocalBundleServer.h */,
+				6BED11F0203FB31C00E7CB66 /* LocalBundleServer.m */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
 		8E0563561D2683B7008EBA25 /* device */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,6 +784,7 @@
 				AB00F3201C71A73D00689C70 /* views */,
 				AB00F31C1C71A65D00689C70 /* controller */,
 				AB00F31B1C71A51800689C70 /* models */,
+				6BED11F3203FB35800E7CB66 /* util */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -1246,6 +1259,7 @@
 				AB00F4AD1C71B16200689C70 /* RATreeView.m in Sources */,
 				8E0A4C3A1D1CC92D00827DA6 /* InitialGuideViewModel.m in Sources */,
 				AB00F1EA1C71941800689C70 /* ViewController.m in Sources */,
+				6BED11F1203FB31C00E7CB66 /* LocalBundleServer.m in Sources */,
 				8ED7B1B21D1BB0270053FDBD /* GrayLabelCell.m in Sources */,
 				AB00F4A71C71B16200689C70 /* RATreeNodeInfo.m in Sources */,
 				AB00F2E11C71A29D00689C70 /* GHBookmarkCell.m in Sources */,

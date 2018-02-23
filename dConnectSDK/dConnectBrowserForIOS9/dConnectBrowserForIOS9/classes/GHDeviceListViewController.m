@@ -15,6 +15,7 @@
 #import "GHDeviceUtil.h"
 #import "GHDevicePluginViewModel.h"
 #import "GHDevicePluginDetailViewModel.h"
+#import "LocalBundleServer.h"
 #import <DConnectSDK/DConnectSystemProfile.h>
 #import <DConnectSDK/DConnectService.h>
 
@@ -118,8 +119,8 @@
         }
     }
     if (isOnline) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"demo"];
-        WebViewController* webView = [[WebViewController alloc] initWithURL: [NSString stringWithFormat:@"file://%@?serviceId=%@", path, serviceId]];
+        NSString *url = [NSString stringWithFormat:@"%@/demo/index.html?serviceId=%@", [LocalBundleServer sharedServer].url, serviceId];
+        WebViewController* webView = [[WebViewController alloc] initWithURL:url];
         UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:webView];
         [webView presentationDeviceView:nav];
     } else {

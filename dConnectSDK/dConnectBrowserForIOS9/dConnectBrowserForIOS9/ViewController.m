@@ -13,6 +13,7 @@
 #import <DConnectSDK/DConnectSDK.h>
 #import <SafariServices/SafariServices.h>
 #import "AppDelegate.h"
+#import "LocalBundleServer.h"
 #import "BookmarkIconViewCell.h"
 #import "TopCollectionHeaderView.h"
 #import "InitialGuideViewController.h"
@@ -90,9 +91,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-
     [super viewWillAppear:animated];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -109,7 +108,6 @@
     if ([viewModel isNeedOpenInitialGuide]) {
         [self openInitialGuide];
     }
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -228,12 +226,11 @@
 
 - (IBAction)openHelpView
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"help"];
-    WebViewController* webView = [[WebViewController alloc] initWithURL: [NSString stringWithFormat:@"file://%@", path]];
+    NSString *url = [NSString stringWithFormat:@"%@/help/index.html", [LocalBundleServer sharedServer].url];
+    WebViewController* webView = [[WebViewController alloc] initWithURL:url];
     UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:webView];
     [webView presentationDeviceView:nav];
 }
-
 
 - (void)openDeviceDetail:(DConnectMessage*)message
 {
@@ -252,8 +249,10 @@
         }
     }
     if (isOnline) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"demo"];
-        WebViewController* webView = [[WebViewController alloc] initWithURL: [NSString stringWithFormat:@"file://%@?serviceId=%@", path, serviceId]];
+        NSString *url = [NSString stringWithFormat:@"%@/demo/index.html?serviceId=%@", [LocalBundleServer sharedServer].url, serviceId];
+        
+        WebViewController* webView = [[WebViewController alloc] initWithURL:url];
+        
         UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:webView];
         [webView presentationDeviceView:nav];
     } else {

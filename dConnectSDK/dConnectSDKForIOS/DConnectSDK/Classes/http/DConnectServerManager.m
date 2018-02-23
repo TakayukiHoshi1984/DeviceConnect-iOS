@@ -69,7 +69,11 @@ typedef NS_ENUM(NSInteger, RequestExceptionType) {
         [self handleHttpRequest:request response:response];
     }];
     [_httpServer handleMethod:@"OPTIONS" withPath:@"/*" block:^(RouteRequest *request, RouteResponse *response) {
-        [self handleHttpRequest:request response:response];
+        [response setStatusCode:200];
+        [response setHeader:@"Content-Type" value:@"text/plain"];
+        [response setHeader:@"Access-Control-Allow-Methods" value:@"POST, GET, PUT, DELETE"];
+        [self setHeaderInResponse:response withRequest:request];
+        [response respondWithString:@""];
     }];
     
     NSError *error;
@@ -597,7 +601,7 @@ typedef NS_ENUM(NSInteger, RequestExceptionType) {
 - (void) setHeaderInResponse:(RouteResponse *)response withRequest:(RouteRequest *)request
 {
     NSString *requestHeaders = [request header:@"Access-Control-Request-Headers"];
-    NSMutableString *allowHeaders = @"XMLHttpRequest".mutableCopy;
+    NSMutableString *allowHeaders = @"XMLHttpRequest, X-GotAPI-Origin".mutableCopy;
     if (requestHeaders) {
         [allowHeaders appendString:[NSString stringWithFormat:@", %@", requestHeaders]];
     }

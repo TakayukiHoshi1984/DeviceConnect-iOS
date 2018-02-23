@@ -9,11 +9,8 @@
 
 #import "AppDelegate.h"
 #import "GHDataManager.h"
+#import "LocalBundleServer.h"
 #import <DConnectSDK/DConnectSDK.h>
-
-@interface AppDelegate ()
-
-@end
 
 @implementation AppDelegate
 
@@ -53,8 +50,8 @@
                                                                                    categories:nil];
         [application registerUserNotificationSettings:mySettings];
     }
-    DConnectManager *mgr = [DConnectManager sharedManager];
-    [mgr start];
+    [[DConnectManager sharedManager] start];
+    [[LocalBundleServer sharedServer] start];
 
     return YES;
 }
@@ -73,13 +70,13 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    DConnectManager *mgr = [DConnectManager sharedManager];
-    [mgr stop];
+    [[DConnectManager sharedManager] stop];
+    [[LocalBundleServer sharedServer] stop];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    DConnectManager *mgr = [DConnectManager sharedManager];
-    [mgr start];
+    [[DConnectManager sharedManager] start];
+    [[LocalBundleServer sharedServer] start];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -87,7 +84,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [[GHDataManager shareManager]save];
+    [[GHDataManager shareManager] save];
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options

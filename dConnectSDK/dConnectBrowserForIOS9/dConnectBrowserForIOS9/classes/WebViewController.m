@@ -84,7 +84,6 @@ static const char kAssocKey_Window;
                                                             multiplier:1.0
                                                               constant:0]
                                 ]];
-
 }
 
 - (void)loadRequest:(NSString*)urlString
@@ -116,30 +115,35 @@ static const char kAssocKey_Window;
     self.title = webView.title;
 }
 
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler
+{
+    NSLog(@"didReceiveAuthenticationChallenge: challenge.protectionSpace.serverTrust = %@", challenge.protectionSpace.serverTrust);
+    SecTrustRef secTrustRef = challenge.protectionSpace.serverTrust;
+    
+    [[DConnectIdentityStore shared] setupTrust:secTrustRef];
+    NSURLCredential* credential = [NSURLCredential credentialForTrust:secTrustRef];
+    completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+}
+
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     NSURLRequest *request = navigationAction.request;
-    NSURL *url = request.URL;
     NSURLComponents *components = [NSURLComponents componentsWithURL:request.URL resolvingAgainstBaseURL:NO];
-    if ([url.scheme isEqualToString:@"file"]) {
-        // SSL通信フラグの存在確認
-        NSArray<NSURLQueryItem *> *items = components.queryItems;
-        for (NSURLQueryItem *item in items) {
-            // すでに設定されている場合はここで終了. (コールバックの無限ループ回避)
-            if ([item.name isEqualToString:@"ssl"]) {
-                decisionHandler(WKNavigationActionPolicyAllow);
-                return;
-            }
+    // SSL通信フラグの存在確認
+    NSArray<NSURLQueryItem *> *items = components.queryItems;
+    for (NSURLQueryItem *item in items) {
+        // すでに設定されている場合はここで終了. (コールバックの無限ループ回避)
+        if ([item.name isEqualToString:@"ssl"]) {
+            decisionHandler(WKNavigationActionPolicyAllow);
+            return;
         }
-        
-        // SSL通信フラグをHTMLアプリ側へ共有.
-        BOOL useSSL = [DConnectManager sharedManager].settings.useSSL;
-        NSURL *newURL = [[self components:components appendSSL:useSSL] URL];
-        [webView loadRequest:[NSURLRequest requestWithURL:newURL]];
-        decisionHandler(WKNavigationActionPolicyCancel);
-    } else {
-        decisionHandler(WKNavigationActionPolicyAllow);
     }
+    
+    // SSL通信フラグをHTMLアプリ側へ共有.
+    BOOL useSSL = [DConnectManager sharedManager].settings.useSSL;
+    NSURL *newURL = [[self components:components appendSSL:useSSL] URL];
+    [webView loadRequest:[NSURLRequest requestWithURL:newURL]];
+    decisionHandler(WKNavigationActionPolicyCancel);
 }
 
 - (NSURLComponents *)components:(NSURLComponents *)components appendSSL:(BOOL)useSSL
