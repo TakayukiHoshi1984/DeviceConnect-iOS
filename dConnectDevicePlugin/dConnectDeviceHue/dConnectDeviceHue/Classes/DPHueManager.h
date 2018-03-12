@@ -333,4 +333,11 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
  @param[in] onlineForSet YES:オンラインに切り替える NO:オフラインに切り替える
  */
 - (void)updateManageServices : (BOOL) onlineForSet;
+
+/*!
+ @brief Hueプラグインの管理しているサービス名を修正する
+ @param[in] serviceId 変更するサービスのID
+ @param[in] name 変更する名前
+ */
+- (void)changeServiceNameForServiceId:(NSString*)serviceId name:(NSString*)name;
 @end

@@ -198,6 +198,9 @@
                                                                                 flashing:flashing
                                                                               completion:^{
                                                                                   [weakSelf setErrRespose:response];
+                                                                                  if (response.result == DConnectMessageResultTypeOk && arr.count == 3) {
+                                                                                      [[DPHueManager sharedManager] changeServiceNameForServiceId:serviceId name:name];
+                                                                                  }
                                                                                   [[DConnectManager sharedManager] sendResponse:response];
                                                                               }];
                      }];

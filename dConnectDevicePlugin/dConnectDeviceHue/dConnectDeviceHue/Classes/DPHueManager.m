@@ -921,6 +921,14 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
     }
 }
 
+- (void)changeServiceNameForServiceId:(NSString*)serviceId name:(NSString*)name
+{
+    for (DConnectService *service in [self.mServiceProvider services]) {
+        if ([service.serviceId isEqualToString:serviceId]) {
+            service.name = name;
+        }
+    }
+}
 
 
 @end
