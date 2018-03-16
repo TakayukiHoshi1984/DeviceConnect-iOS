@@ -904,6 +904,9 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
                     NSString *serviceId = [NSString stringWithFormat:@"%@_%@_%@",bridgesFound[key],key,light.identifier];
                     DConnectService *service = [self.mServiceProvider service: serviceId];
                     if (service) {
+                        if (![service.name isEqualToString:light.name]) {
+                            service.name = light.name;
+                        }
                         [service setOnline: YES];
                     } else {
                         service = [[DPHueLightService alloc] initWithBridgeKey:key

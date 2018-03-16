@@ -78,20 +78,22 @@ NSString *const DPHueBundleName = @"dConnectDeviceHue_resources";
     __weak typeof(self) _self = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [[DPHueManager sharedManager] initHue];
-    [[DPHueManager sharedManager] searchBridgeWithCompletion:^(NSDictionary *bridgesFound) {
-        for (id key in [bridgesFound keyEnumerator]) {
-            NSString *ipAddress = bridgesFound[key];
-            NSString *macAddress = key;
-            dispatch_async(dispatch_get_main_queue(), ^{
+        [[DPHueManager sharedManager] searchBridgeWithCompletion:^(NSDictionary *bridgesFound) {
+            for (id key in [bridgesFound keyEnumerator]) {
+                NSString *ipAddress = bridgesFound[key];
+                NSString *macAddress = key;
+                dispatch_async(dispatch_get_main_queue(), ^{
 
-            [[DPHueManager sharedManager] startAuthenticateBridgeWithIpAddress:ipAddress
-                                                 bridgeId:macAddress
-                                                 receiver:_self localConnectionSuccessSelector:@selector(doAuthSuccess)
-                                        noLocalConnection:nil
-                                         notAuthenticated:nil];
-            });
-        }
-    }];
+                [[DPHueManager sharedManager] startAuthenticateBridgeWithIpAddress:ipAddress
+                                                     bridgeId:macAddress
+                                                     receiver:_self
+                                                    localConnectionSuccessSelector:@selector(doAuthSuccess)
+                                            noLocalConnection:@selector(doError)
+                                             notAuthenticated:@selector(doError)];
+                    
+                });
+            }
+        }];
     });
 }
 
@@ -103,6 +105,15 @@ NSString *const DPHueBundleName = @"dConnectDeviceHue_resources";
     NSDictionary *lights = [[DPHueManager sharedManager] getLightStatus];
     
     [[DPHueManager sharedManager] updateManageServices:(lights.count > 0)];
+}
+
+- (void)doError
+{
+    [[DPHueManager sharedManager] disableHeartbeat];
+    [[DPHueManager sharedManager] deallocPHNotificationManagerWithReceiver:self];
+    [[DPHueManager sharedManager] deallocHueSDK];
+    
+    [[DPHueManager sharedManager] updateManageServices:NO];
 }
 
 - (NSString*)iconFilePath:(BOOL)isOnline

@@ -201,6 +201,7 @@ shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)strin
                                                 stringByAppendingFormat:DPHueLocalizedString(_bundle, @"HueSearchHitLight"),
                                                 [[DPHueManager sharedManager] getLightStatus].allValues.count - lightCount];
                     [self showAleart:successMessage];
+                    [[DPHueManager sharedManager] updateManageServices:YES];
                 } else {
                     [self showAleart:DPHueLocalizedString(_bundle, @"HueSearchLightOld")];
                 }
