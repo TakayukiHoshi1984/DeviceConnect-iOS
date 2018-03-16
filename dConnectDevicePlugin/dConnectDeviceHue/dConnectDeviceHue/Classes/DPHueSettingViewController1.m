@@ -178,8 +178,14 @@
                                     forIndexPath:indexPath];
     // セルを設定する
     DPHueItemBridge *item = self.bridgeItems[indexPath.row];
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@\n ( %@ )",item.bridgeId ,item.ipAddress];
+    NSString *mac = [NSString stringWithFormat:@"%@:%@:%@:%@:%@:%@",
+                     [item.bridgeId substringWithRange:NSMakeRange(0, 2)],
+                     [item.bridgeId substringWithRange:NSMakeRange(2, 2)],
+                     [item.bridgeId substringWithRange:NSMakeRange(4, 2)],
+                     [item.bridgeId substringWithRange:NSMakeRange(10, 2)],
+                     [item.bridgeId substringWithRange:NSMakeRange(12, 2)],
+                     [item.bridgeId substringWithRange:NSMakeRange(14, 2)]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@\n ( %@ )", mac,item.ipAddress];
     return cell;
 }
 

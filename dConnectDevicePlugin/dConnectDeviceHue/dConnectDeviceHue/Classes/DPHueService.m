@@ -19,7 +19,15 @@
     NSString *serviceId = [NSString stringWithFormat:@"%@_%@", bridgeValue, bridgeKey];
     self = [super initWithServiceId: serviceId plugin: plugin];
     if (self) {
-        NSString *name = [NSString stringWithFormat:@"Hue %@", bridgeKey];
+        NSString *mac = [NSString stringWithFormat:@"%@:%@:%@:%@:%@:%@",
+                         [bridgeKey substringWithRange:NSMakeRange(0, 2)],
+                         [bridgeKey substringWithRange:NSMakeRange(2, 2)],
+                         [bridgeKey substringWithRange:NSMakeRange(4, 2)],
+                         [bridgeKey substringWithRange:NSMakeRange(10, 2)],
+                         [bridgeKey substringWithRange:NSMakeRange(12, 2)],
+                         [bridgeKey substringWithRange:NSMakeRange(14, 2)]];
+        
+        NSString *name = [NSString stringWithFormat:@"Hue (%@)", mac];
         [self setName: name];
         [self setNetworkType: DConnectServiceDiscoveryProfileNetworkTypeWiFi];
         [self setOnline: YES];
