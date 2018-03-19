@@ -41,6 +41,8 @@ typedef NS_ENUM (NSInteger, SecurityCellType) {
     SecurityCellTypeLocalOAuth,
     SecurityCellTypeOrigin,
     SecurityCellTypeExternIP,
+    SecurityCellTypeSSL,
+    SecurityCellTypeRootCertInstall,
 };
 
 @property (nonatomic, strong) NSArray* datasource;
@@ -52,5 +54,7 @@ typedef NS_ENUM (NSInteger, SecurityCellType) {
 - (void)updateSwitch:(SecurityCellType)type switchState:(BOOL)isOn;
 - (void)didSelectedRow:(NSIndexPath *)indexPath;
 - (BOOL)switchState:(SecurityCellType)type;
+
+-(void)restartManager;
 
 @end

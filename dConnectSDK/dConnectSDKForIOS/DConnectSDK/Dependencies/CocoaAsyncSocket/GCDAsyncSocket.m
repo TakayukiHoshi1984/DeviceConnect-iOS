@@ -37,6 +37,7 @@
 
 #ifndef GCDAsyncSocketLoggingEnabled
 #define GCDAsyncSocketLoggingEnabled 0
+#define THIS_METHOD NSStringFromSelector(_cmd)
 #endif
 
 #if GCDAsyncSocketLoggingEnabled
@@ -3088,6 +3089,7 @@ enum GCDAsyncSocketConfig
 
 - (void)closeWithError:(NSError *)error
 {
+    NSLog(@"closeWithError: error = %@", error);
 	LogTrace();
 	NSAssert(dispatch_get_specific(IsOnSocketQueueOrTargetQueueKey), @"Must be dispatched on socketQueue");
 	
@@ -7121,7 +7123,7 @@ static OSStatus SSLWriteFunction(SSLConnectionRef connection, const void *data, 
 	
 	#pragma clang diagnostic push
 	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-	value = [tlsSettings objectForKey:(__bridge NSString *)kCFStreamSSLLevel];
+	//value = [tlsSettings objectForKey:(__bridge NSString *)kCFStreamSSLLevel];
 	#pragma clang diagnostic pop
 	if (value)
 	{
