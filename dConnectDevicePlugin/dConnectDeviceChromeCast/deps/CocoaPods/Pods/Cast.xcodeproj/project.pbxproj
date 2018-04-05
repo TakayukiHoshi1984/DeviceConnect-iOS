@@ -152,11 +152,12 @@
 			inputPaths = (
 				"${SRCROOT}/Target Support Files/Pods-Cast/Pods-Cast-resources.sh",
 				"${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-2.10.4-Release/GoogleCast.framework/GoogleCastResources.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/google-cast-sdk/CastFrameworkAssets.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/google-cast-sdk/CastFrameworkAssets.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleCastResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CastFrameworkAssets.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
