@@ -63,7 +63,6 @@
 		AB00F2251C719B4B00689C70 /* dConnectDeviceHost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB00F2231C719B4B00689C70 /* dConnectDeviceHost.framework */; };
 		AB00F2281C719B5500689C70 /* dConnectDeviceHue_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB00F2261C719B5500689C70 /* dConnectDeviceHue_resources.bundle */; };
 		AB00F2291C719B5500689C70 /* dConnectDeviceHue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB00F2271C719B5500689C70 /* dConnectDeviceHue.framework */; };
-		AB00F22B1C719B5B00689C70 /* HueSDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB00F22A1C719B5B00689C70 /* HueSDK_iOS.framework */; };
 		AB00F22E1C719B6500689C70 /* dConnectDeviceIRKit_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB00F22C1C719B6500689C70 /* dConnectDeviceIRKit_resources.bundle */; };
 		AB00F22F1C719B6500689C70 /* dConnectDeviceIRKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB00F22D1C719B6500689C70 /* dConnectDeviceIRKit.framework */; };
 		AB00F2321C719B6E00689C70 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB00F2301C719B6E00689C70 /* PebbleKit.framework */; };
@@ -122,6 +121,8 @@
 		AB7A81A81D799E7F00DF7B05 /* demo in Resources */ = {isa = PBXBuildFile; fileRef = AB7A81A71D799E7F00DF7B05 /* demo */; };
 		AB868FF51D90F89900959C7F /* dConnectDeviceLinking_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB868FF31D90F89900959C7F /* dConnectDeviceLinking_resources.bundle */; };
 		AB868FF61D90F89900959C7F /* dConnectDeviceLinking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB868FF41D90F89900959C7F /* dConnectDeviceLinking.framework */; };
+		AB8CC29F209062840077F879 /* HueSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CC29D209062200077F879 /* HueSDK.framework */; };
+		AB8CC2A0209062840077F879 /* HueSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CC29D209062200077F879 /* HueSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB94E85F1C755EB300DAE749 /* BookmarkDBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */; };
 		AB94E8601C755EB300DAE749 /* BookmarkDBFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB94E86D1C75611700DAE749 /* db.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB94E8651C75611700DAE749 /* db.xcdatamodeld */; };
@@ -183,6 +184,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AB8CC2A0209062840077F879 /* HueSDK.framework in Embed Frameworks */,
 				AB94E8601C755EB300DAE749 /* BookmarkDBFramework.framework in Embed Frameworks */,
 				ABFA0D571D92150600B49BFE /* LinkingLibrary.framework in Embed Frameworks */,
 			);
@@ -385,6 +387,7 @@
 		AB7A81A71D799E7F00DF7B05 /* demo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = demo; sourceTree = "<group>"; };
 		AB868FF31D90F89900959C7F /* dConnectDeviceLinking_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = dConnectDeviceLinking_resources.bundle; path = ../../dConnectDevicePlugin/dConnectDeviceLinking/bin/dConnectDeviceLinking_resources.bundle; sourceTree = "<group>"; };
 		AB868FF41D90F89900959C7F /* dConnectDeviceLinking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dConnectDeviceLinking.framework; path = ../../dConnectDevicePlugin/dConnectDeviceLinking/bin/dConnectDeviceLinking.framework; sourceTree = "<group>"; };
+		AB8CC29D209062200077F879 /* HueSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HueSDK.framework; path = ../../dConnectDevicePlugin/dConnectDeviceHue/HueSDK.framework; sourceTree = "<group>"; };
 		AB94E8581C755EB200DAE749 /* BookmarkDBFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BookmarkDBFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB94E85C1C755EB300DAE749 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB94E8661C75611700DAE749 /* db 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "db 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -438,6 +441,7 @@
 				ABFA0D561D92150600B49BFE /* LinkingLibrary.framework in Frameworks */,
 				AB00F2111C719A8F00689C70 /* UIKit.framework in Frameworks */,
 				AB00F2091C719A6100689C70 /* MediaAccessibility.framework in Frameworks */,
+				AB8CC29F209062840077F879 /* HueSDK.framework in Frameworks */,
 				AB3120061D7E927600B2D886 /* CoreText.framework in Frameworks */,
 				AB3120041D7E916600B2D886 /* SystemConfiguration.framework in Frameworks */,
 				8E3772471D24D5B3003D3124 /* libxml2.tbd in Frameworks */,
@@ -464,7 +468,6 @@
 				AB00F1FF1C7199B800689C70 /* libstdc++.6.0.9.tbd in Frameworks */,
 				AB00F1FD1C7199AC00689C70 /* libiconv.2.4.0.tbd in Frameworks */,
 				AB00F2491C719B9C00689C70 /* dConnectDeviceTheta.framework in Frameworks */,
-				AB00F22B1C719B5B00689C70 /* HueSDK_iOS.framework in Frameworks */,
 				AB1FAB131C7AC1EE0013C434 /* RobotUIKit.framework in Frameworks */,
 				AB00F2291C719B5500689C70 /* dConnectDeviceHue.framework in Frameworks */,
 				AB00F2321C719B6E00689C70 /* PebbleKit.framework in Frameworks */,
@@ -706,6 +709,7 @@
 		AB00F1F91C71961500689C70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB8CC29D209062200077F879 /* HueSDK.framework */,
 				AB1521811D95253D00FE4210 /* dConnectDeviceAWSIoT_resources.bundle */,
 				AB1521821D95253D00FE4210 /* dConnectDeviceAWSIoT.framework */,
 				AB868FF31D90F89900959C7F /* dConnectDeviceLinking_resources.bundle */,
@@ -1101,7 +1105,7 @@
 		AB00F1D71C71941800689C70 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "GClue,Inc";
 				TargetAttributes = {
 					AB00F1DE1C71941800689C70 = {
@@ -1352,12 +1356,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1427,12 +1433,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

@@ -43,7 +43,6 @@
 		64A3E56419B93AE400B83DAF /* DPHueSettingViewControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A3E56319B93AE400B83DAF /* DPHueSettingViewControllerBase.m */; };
 		64A6938A19BBEBBC0084D904 /* DPHueItemBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A6938919BBEBBC0084D904 /* DPHueItemBridge.m */; };
 		64BAEB541998D6A000BCDBDA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BAEB531998D6A000BCDBDA /* UIKit.framework */; };
-		64BB087D19C335EE00C66903 /* HueSDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BB087C19C335EE00C66903 /* HueSDK_iOS.framework */; };
 		8EB854441D423FDD0035C0DC /* dconnect_icon_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB854421D423FDD0035C0DC /* dconnect_icon_off.png */; };
 		8EB854451D423FDD0035C0DC /* dconnect_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB854431D423FDD0035C0DC /* dconnect_icon.png */; };
 		AB00F287204AB53E00D9BF8A /* DPHueLightService.m in Sources */ = {isa = PBXBuildFile; fileRef = AB00F286204AB53E00D9BF8A /* DPHueLightService.m */; };
@@ -69,6 +68,7 @@
 		AB3A3FCC1B145B5000C40A88 /* hue_small_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AB3A3FCA1B142C8200C40A88 /* hue_small_icon.png */; };
 		AB4E025319EE4C9900F385D0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB4E025519EE4C9900F385D0 /* Localizable.strings */; };
 		AB85126B19E77C760038AD54 /* DPHueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB85126A19E77C760038AD54 /* DPHueManager.m */; };
+		AB8CC29C208F28160077F879 /* HueSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CC29B208F28160077F879 /* HueSDK.framework */; };
 		ABCA82911DDB0786000B1C81 /* DPHueDeviceRepeatExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCA828C1DDB0786000B1C81 /* DPHueDeviceRepeatExecutor.m */; };
 		ABCA82921DDB0786000B1C81 /* DPHueTimeoutSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCA828E1DDB0786000B1C81 /* DPHueTimeoutSchedule.m */; };
 		ABCA82931DDB0786000B1C81 /* DPHueUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCA82901DDB0786000B1C81 /* DPHueUtil.m */; };
@@ -118,7 +118,6 @@
 		64A6938819BBEBBC0084D904 /* DPHueItemBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPHueItemBridge.h; sourceTree = "<group>"; };
 		64A6938919BBEBBC0084D904 /* DPHueItemBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPHueItemBridge.m; sourceTree = "<group>"; };
 		64BAEB531998D6A000BCDBDA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		64BB087C19C335EE00C66903 /* HueSDK_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HueSDK_iOS.framework; path = "deps/PhilipsHueSDK-iOS-OSX/HueSDK_iOS.framework"; sourceTree = "<group>"; };
 		8EB854421D423FDD0035C0DC /* dconnect_icon_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dconnect_icon_off.png; sourceTree = "<group>"; };
 		8EB854431D423FDD0035C0DC /* dconnect_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dconnect_icon.png; sourceTree = "<group>"; };
 		AB00F285204AB53E00D9BF8A /* DPHueLightService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DPHueLightService.h; sourceTree = "<group>"; };
@@ -156,6 +155,7 @@
 		AB4E025819EE4CB000F385D0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB85126919E77C760038AD54 /* DPHueManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPHueManager.h; sourceTree = "<group>"; };
 		AB85126A19E77C760038AD54 /* DPHueManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPHueManager.m; sourceTree = "<group>"; };
+		AB8CC29B208F28160077F879 /* HueSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HueSDK.framework; sourceTree = "<group>"; };
 		ABCA828B1DDB0786000B1C81 /* DPHueDeviceRepeatExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPHueDeviceRepeatExecutor.h; sourceTree = "<group>"; };
 		ABCA828C1DDB0786000B1C81 /* DPHueDeviceRepeatExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPHueDeviceRepeatExecutor.m; sourceTree = "<group>"; };
 		ABCA828D1DDB0786000B1C81 /* DPHueTimeoutSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPHueTimeoutSchedule.h; sourceTree = "<group>"; };
@@ -173,9 +173,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB8CC29C208F28160077F879 /* HueSDK.framework in Frameworks */,
 				64BAEB541998D6A000BCDBDA /* UIKit.framework in Frameworks */,
 				AB1815C5196A3651000BE265 /* Foundation.framework in Frameworks */,
-				64BB087D19C335EE00C66903 /* HueSDK_iOS.framework in Frameworks */,
 				645C472B19CEC24E004D9459 /* DConnectSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,7 +255,7 @@
 		AB1815C3196A3651000BE265 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				64BB087C19C335EE00C66903 /* HueSDK_iOS.framework */,
+				AB8CC29B208F28160077F879 /* HueSDK.framework */,
 				64BAEB531998D6A000BCDBDA /* UIKit.framework */,
 				645C472A19CEC24E004D9459 /* DConnectSDK.framework */,
 				AB1815C4196A3651000BE265 /* Foundation.framework */,
@@ -460,7 +460,7 @@
 		AB1815B9196A3651000BE265 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "NTT DOCOMO, INC.";
 				TargetAttributes = {
 					AB28219A1A96CC48007B3D6F = {
@@ -646,12 +646,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -700,12 +702,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
