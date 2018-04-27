@@ -13,7 +13,6 @@
  @date 作成日(2014.7.15)
  */
 #import <UIKit/UIKit.h>
-#import <HueSDK_iOS/HueSDK.h>
 #import "DPHueItemBridge.h"
 #import "DPHueViewController.h"
 #import "DPHueManager.h"
@@ -50,6 +49,8 @@
  @brief PageViewControllerのroot。
  */
 @property (nonatomic, weak) UIViewController *root;
+
+@property (nonatomic) DPHueItemBridge *bridge;
 
 /*!
  @brief ViewControllerのページ数。

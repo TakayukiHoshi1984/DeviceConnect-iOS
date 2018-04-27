@@ -11,13 +11,12 @@
 #import "DPHueSystemProfile.h"
 #import "DPHueManager.h"
 #import "DPHueConst.h"
+#import "DPHueService.h"
 
 NSString *const DPHueBundleName = @"dConnectDeviceHue_resources";
 
 
-@interface DPHueDevicePlugin()
-
-@property (nonatomic, strong) NSMutableDictionary *hueBridgeListTemp;
+@interface DPHueDevicePlugin()<DPHueBridgeControllerDelegate, PHSFindNewDevicesCallback>
 @end
 @implementation DPHueDevicePlugin
 
@@ -38,7 +37,7 @@ NSString *const DPHueBundleName = @"dConnectDeviceHue_resources";
         dispatch_async(dispatch_get_main_queue(), ^{
             NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
             UIApplication *application = [UIApplication sharedApplication];
-            
+
             [notificationCenter addObserver:_self selector:@selector(enterForeground)
                        name:UIApplicationWillEnterForegroundNotification
                      object:application];
@@ -68,7 +67,7 @@ NSString *const DPHueBundleName = @"dConnectDeviceHue_resources";
  @brief バックグラウンドに回ったときの処理
  */
 - (void) enterBackground {
-    [[DPHueManager sharedManager] saveBridgeList];
+//    [[DPHueManager sharedManager] saveBridgeList];
 }
 /*!
  @brief フォアグラウンドに戻ったときの処理。
@@ -76,33 +75,41 @@ NSString *const DPHueBundleName = @"dConnectDeviceHue_resources";
  */
 - (void) enterForeground {
     __weak typeof(self) _self = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[DPHueManager sharedManager] initHue];
-    [[DPHueManager sharedManager] searchBridgeWithCompletion:^(NSDictionary *bridgesFound) {
-        for (id key in [bridgesFound keyEnumerator]) {
-            NSString *ipAddress = bridgesFound[key];
-            NSString *macAddress = key;
-            dispatch_async(dispatch_get_main_queue(), ^{
+    [[DPHueManager sharedManager] startBridgeDiscoveryWithCompletion:^(NSDictionary<NSString *,PHSBridgeDiscoveryResult *> *results) {
+        for (id key in [results keyEnumerator]) {
+            DConnectService *service = [self.serviceProvider service: key];
+            PHSBridgeDiscoveryResult *result = results[key];
+            if (!service) {
+                service = [[DPHueService alloc] initWithBridgeIpAddress:result.ipAddress uniqueId:result.uniqueId plugin:_self];
+                [self.serviceProvider addService: service];
+            }
 
-            [[DPHueManager sharedManager] startAuthenticateBridgeWithIpAddress:ipAddress
-                                                 bridgeId:macAddress
-                                                 receiver:_self localConnectionSuccessSelector:@selector(doAuthSuccess)
-                                        noLocalConnection:nil
-                                         notAuthenticated:nil];
-            });
+            [[DPHueManager sharedManager] connectForIPAddress:result.ipAddress uniqueId:result.uniqueId delegate:_self];
         }
     }];
-    });
 }
 
-- (void)doAuthSuccess
-{
-    [[DPHueManager sharedManager] disableHeartbeat];
-    [[DPHueManager sharedManager] deallocPHNotificationManagerWithReceiver:self];
-    [[DPHueManager sharedManager] deallocHueSDK];
-    NSDictionary *lights = [[DPHueManager sharedManager] getLightStatus];
-    
-    [[DPHueManager sharedManager] updateManageServices:(lights.count > 0)];
+- (void)didPushlinkBridgeWithIpAddress:(NSString*)ipAddress {
+    [[DPHueManager sharedManager] disconnectForIPAddress:ipAddress];
+}
+- (void)didConnectedWithIpAddress:(NSString*)ipAddress {
+    DPHueManager *manager = [DPHueManager sharedManager];
+    NSArray<PHSDevice*>* devices = [manager getLightStatusForIpAddress:ipAddress];
+    if (devices.count == 0) {
+        [manager searchLightForIpAddress:ipAddress delegate:nil];
+    }
+}
+- (void)didDisconnectedWithIpAddress:(NSString*)ipAddress {
+}
+- (void)didErrorWithIpAddress:(NSString*)ipAddress errors:(NSArray<PHSError *> *)errors {
+}
+
+- (void)bridge:(PHSBridge*)bridge didFindDevices:(NSArray<PHSDevice *> *)devices errors:(NSArray<PHSError *> *)errors {
+}
+
+- (void)bridge:(PHSBridge*)bridge didFinishSearch:(NSArray<PHSError *> *)errors {
+    NSString *ipAddress = bridge.bridgeConfiguration.networkConfiguration.ipAddress;
+    [[DPHueManager sharedManager] updateManageServicesForIpAddress:ipAddress online:YES];
 }
 
 - (NSString*)iconFilePath:(BOOL)isOnline
@@ -112,6 +119,9 @@ NSString *const DPHueBundleName = @"dConnectDeviceHue_resources";
     NSString* filename = isOnline ? @"dconnect_icon" : @"dconnect_icon_off";
     return [bundle pathForResource:filename ofType:@"png"];
 }
+
+
+
 #pragma mark - DevicePlugin's bundle
 - (NSBundle*)pluginBundle
 {

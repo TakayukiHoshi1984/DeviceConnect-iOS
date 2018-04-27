@@ -302,8 +302,6 @@ dConnectSDK/dConnectBrowserForIOS9/dConnectBrowserForIOS9/libs/Objective-C-HMTL-
 ant.properties
 build.xml
 
-dConnectDevicePlugin/dConnectDeviceAWSIoT/bin
-dConnectDevicePlugin/dConnectDeviceAWSIoT/Pods
 dConnectDevicePlugin/dConnectDeviceLinking/Libs
-dConnectDevicePlugin/dConnectDeviceHue/HueSDK_iOS.framework
+dConnectDevicePlugin/dConnectDeviceHue/HueSDK.framework
 

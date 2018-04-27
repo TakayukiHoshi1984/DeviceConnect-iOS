@@ -171,12 +171,13 @@
 }
 
 //指定ページへジャンプ(jumpIndex:0〜)
-- (void)showPage:(NSUInteger)jumpIndex
+- (void)showPage:(NSUInteger)jumpIndex bridge:(DPHueItemBridge*)bridge
 {
     DPHueSettingViewControllerBase *viewController =
         [self.DPHueModelController
             viewControllerAtIndex:jumpIndex storyboard:self.storyboard];
 
+    viewController.bridge = bridge;
     //コントローラーCollectionにページを設定
     NSArray *viewControllers = @[viewController];
     
@@ -200,14 +201,14 @@
 - (IBAction)closeBtnDidPushed:(id)sender {
     if ([self getSelectPageIndex] == 1) {
         //先頭の画面に戻る
-        [self showPage:0];
+        [self showPage:0 bridge:nil];
 
     }else{
         // 完了ボタンを押したときに閉じるように設定
         [self dismissViewControllerAnimated:YES completion:nil];
-        [[DPHueManager sharedManager] deallocPHNotificationManagerWithReceiver:self];
-
-        [[DPHueManager sharedManager] deallocHueSDK];
+        if ([DPHueManager sharedManager].currentEvent == PHSBridgeConnectionEventLinkButtonNotPressed) {
+            [[DPHueManager sharedManager] disconnectAllBridge];
+        }
     }
 }
 

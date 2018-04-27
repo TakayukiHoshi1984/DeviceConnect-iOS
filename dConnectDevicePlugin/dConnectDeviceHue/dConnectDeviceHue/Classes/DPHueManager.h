@@ -13,21 +13,26 @@
  @date 作成日(2014.7.15)
  */
 #import <Foundation/Foundation.h>
-#import <HueSDK_iOS/HueSDK.h>
 #import <DConnectSDK/DConnectSDK.h>
 #import <DConnectSDK/DConnectServiceProvider.h>
+#import <HueSDK/HueSDK.h>
 
+
+@protocol DPHueBridgeControllerDelegate
+
+@required
+- (void)didPushlinkBridgeWithIpAddress:(NSString*)ipAddress;
+- (void)didConnectedWithIpAddress:(NSString*)ipAddress;
+- (void)didDisconnectedWithIpAddress:(NSString*)ipAddress;
+- (void)didErrorWithIpAddress:(NSString*)ipAddress errors:(NSArray<PHSError *> *)errors;
+@end
 /*!
  @class DPHueManager
  @brief Hueのマネージャクラス。
  
  Hueの機能を管理する。
  */
-@interface DPHueManager : NSObject <PHSearchForNewDevicesDelegate>{
-    PHHueSDK *phHueSDK;
-    PHNotificationManager *notificationManager;
-    PHBridgeSearching *bridgeSearching;
-}
+@interface DPHueManager : NSObject <PHSBridgeConnectionObserver, PHSBridgeStateUpdateObserver>
 
 /*!
  @brief Hueデバイスプラグインのレスポンスステータス。
@@ -72,12 +77,18 @@ typedef enum BridgeConnectState : NSInteger {
  @brief デバイスプラグイン。
  */
 @property(nonatomic, weak) id plugin;
+@property (nonatomic) PHSBridgeConnectionEvent currentEvent;
 
 
 /*!
  @brief Lightのステートを返すブロック。
  */
 typedef void (^DPHueLightStatusBlock)(BridgeConnectState state);
+
+/*!
+ @brief 発見したブリッジのリストを返す.
+ */
+typedef void (^DPHueBridgeDiscoveryBlock)(NSDictionary<NSString *,PHSBridgeDiscoveryResult *> *results);
 
 /*!
  @brief DPHueManagerの共有インスタンスを返す。
@@ -99,90 +110,30 @@ typedef void (^DPHueLightStatusBlock)(BridgeConnectState state);
  @brief ブリッジの検索。
  @param[out] completionHandler ブリッジの検索結果を通知するブロック。
  */
--(void)searchBridgeWithCompletion:(PHBridgeSearchCompletionHandler)completionHandler;
-
-/*!
- @brief ブリッジへの認証依頼を行う。
- @param[in] ipAddress ブリッジのIPアドレス。
- @param[in] bridgeId ブリッジのMacアドレス。
- @param[in, out] receiver ブリッジからのレスポンスを通知されるインスタンス。
- @param[in, out] localConnectionSuccessSelector ブリッジからの成功レスポンスが通知されるセレクター。
- @param[in, out] noLocalConnection ブリッジからの失敗レスポンスが通知されるセレクター。
- @param[in, out] notAuthenticated ブリッジからの認証失敗のレスポンスが通知されるセレクター。
- */
--(void)startAuthenticateBridgeWithIpAddress:(NSString*)ipAddress
-                                 bridgeId:(NSString*)bridgeId
-                                   receiver:(id)receiver
-             localConnectionSuccessSelector:(SEL)localConnectionSuccessSelector
-                          noLocalConnection:(SEL)noLocalConnection
-                           notAuthenticated:(SEL)notAuthenticated;
-
-/*!
- @brief Pushlinkの確認開始。
- @param[in, out] receiver Pushlinkのレスポンスを通知されるインスタンス。
- @param[in, out] pushlinkAuthenticationSuccessSelector Pushlinkの成功レスポンスが通知されるセレクター。
- @param[in, out] pushlinkAuthenticationFailedSelector Pushlinkの失敗レスポンスが通知されるセレクター。
- @param[in, out] pushlinkNoLocalConnectionSelector PUSHLINKブリッジに接続できないことが通知されるセレクター。
- @param[in, out] pushlinkNoLocalBridgeSelector ブリッジが見つからないことが通知されるセレクター。
- @param[in, out] pushlinkButtonNotPressedSelector Pushlinkのボタンが押されていないことが通知されるセレクター。
- */
--(void)     startPushlinkWithReceiver:(id)receiver
-pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
- pushlinkAuthenticationFailedSelector:(SEL)pushlinkAuthenticationFailedSelector
-    pushlinkNoLocalConnectionSelector:(SEL)pushlinkNoLocalConnectionSelector
-        pushlinkNoLocalBridgeSelector:(SEL)pushlinkNoLocalBridgeSelector
-     pushlinkButtonNotPressedSelector:(SEL)pushlinkButtonNotPressedSelector;
-
-/*!
- @brief 使用できるライトの検索。
- @param[out] completionHandler ライトの検索結果を通知するブロック。
- */
--(void)searchLightWithCompletion:(PHBridgeSendErrorArrayCompletionHandler)completion;
 
 
-/*!
- @brief シリアルNoを指定したライトの登録。
- @param[in] serialNos ライトのシリアルNoの配列。
- @param[out] completionHandler ライトの検索結果を通知するブロック。
- */
+#pragma mark - 新規追加
+- (void)startBridgeDiscoveryWithCompletion:(DPHueBridgeDiscoveryBlock)completionHandler;
 
--(void)registerLightForSerialNo:(NSArray*)serialNos
-                     completion:
-(PHBridgeSendErrorArrayCompletionHandler)completion;
-/*!
- @brief ライトステータスの取得。
- @param[out] response DeviceConnectにレスポンスを返すためのインスタンス。
- */
--(NSDictionary*)getLightStatus;
+- (void)stopBridgeDiscovery;
 
-/*!
- @brief 指定されたライトIDのライトステータスの取得。
- @param[in] lightId ステータスを取得したいライトのID。
- @retval PHLightオブジェクト
- */
+- (void)connectForIPAddress:(NSString*)ipAddress uniqueId:(NSString*)uniqueId delegate:(id<DPHueBridgeControllerDelegate>)delegate;
 
--(PHLight *)getLightStatusForLightId:(NSString *)lightId;
+- (void)disconnectForIPAddress:(NSString*)ipAddress;
 
-/*!
- @brief ライトグループステータスの取得。
- @param[out] response DeviceConnectにレスポンスを返すためのインスタンス。
- @retval YES レスポンスパラメータを返却する。
- @retval NO レスポンスパラメータを返却しないので、@link DConnectManager::sendResponse: @endlinkで返却すること。
- */
--(NSDictionary*)getLightGroupStatus;
+-(void)searchLightForIpAddress:(NSString*)ipAddress delegate:(id<PHSFindNewDevicesCallback>)delegate;
 
+-(void)registerLightsForSerialNo:(NSArray*)serialNos
+                       ipAddress:(NSString*)ipAddress
+                        delegate:(id<PHSFindNewDevicesCallback>)delegate;
+-(NSArray<PHSDevice*>*)getLightStatusForIpAddress:(NSString*)ipAddress;
+- (void)disconnectAllBridge;
 
 /*!
  @brief ライトIDのチェック。
  @param[in] lightId ライトのID
  */
--(BOOL)checkParamLightId:(NSString*)lightId;
-
-/*!
- @brief ライトグループIDのチェック。
- @param[in] groupId ライトグループのID
- */
--(BOOL)checkParamGroupId:(NSString*)groupId;
+- (BOOL)checkParamForIpAddress:(NSString*)ipAddress lightId:(NSString*)lightId;
 
 /*!
  @brief 設定するライトのステータスをPHLightStateのインスタンスに設定。
@@ -191,9 +142,9 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
  @param[in] color ライトの色
  @retval PHLightState
  */
-- (PHLightState*) getLightStateIsOn:(BOOL)isOn
-                         brightness:(NSNumber *)brightness
-                              color:(NSString *)color;
+- (PHSLightState*) getLightStateIsOn:(BOOL)isOn
+                          brightness:(NSNumber *)brightness
+                               color:(NSString *)color;
 
 
 /*!
@@ -214,8 +165,9 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
  @retval YES レスポンスパラメータを返却する。
  @retval NO レスポンスパラメータを返却しないので、@link DConnectManager::sendResponse: @endlinkで返却すること。
  */
--(BOOL)changeLightStatusWithLightId:(NSString *)lightId
-                         lightState:(PHLightState*)lightState
+-(BOOL)changeLightStatusWithIpAddress:(NSString*)ipAddress
+                              lightId:(NSString *)lightId
+                         lightState:(PHSLightState*)lightState
                            flashing:(NSArray*)flashing
                          completion:(void(^)(void))completion;
 
@@ -231,61 +183,13 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
  @retval YES レスポンスパラメータを返却する。
  @retval NO レスポンスパラメータを返却しないので、@link DConnectManager::sendResponse: @endlinkで返却すること。
  */
--(BOOL)changeLightNameWithLightId:(NSString *)lightId
+-(BOOL)changeLightNameWithIpAddress:(NSString*)ipAddress
+                                lightId:(NSString *)lightId
                              name:(NSString *)name
                             color:(NSString *)color
                        brightness:(NSNumber *)brightness
                          flashing:(NSArray*)flashing
                        completion:(void(^)(void))completion;
-
-/*!
- @brief ライトグループのステータスを変更する。
- @param[in] groupId ライトグループのID
- @param[in] lightState 変更するステータス
- @param[in, out] completion レスポンスを返す
- @retval YES レスポンスパラメータを返却する。
- @retval NO レスポンスパラメータを返却しないので、@link DConnectManager::sendResponse: @endlinkで返却すること。
- */
-- (BOOL)changeGroupStatusWithGroupId:(NSString *)groupId
-                          lightState:(PHLightState*)lightState
-                          completion:(void(^)(void))completion;
-
-
-/*!
- @brief ライトグループの名前を変更する。
- @param[in] groupId ライトグループのID
- @param[in] name 変更後のライトグループの名前
- @param[in, out] completion レスポンスを返す
- @retval YES レスポンスパラメータを返却する。
- @retval NO レスポンスパラメータを返却しないので、@link DConnectManager::sendResponse: @endlinkで返却すること。
- */
--(BOOL)changeGroupNameWithGroupId:(NSString *)groupId
-                               name:(NSString *)name
-                         completion:(void(^)(void))completion;
-
-
-/*!
- @brief ライトグループの作成。
- @param[in] lightIds 追加するライトのID
- @param[in] groupName 作成するライトグループの名前
- @param[in, out] completion レスポンスを返す
- @retval YES レスポンスパラメータを返却する。
- @retval NO レスポンスパラメータを返却しないので、@link DConnectManager::sendResponse: @endlinkで返却すること。
- */
--(BOOL)createLightGroupWithLightIds:(NSArray*)lightIds
-                          groupName:(NSString*)groupName
-                         completion:(void(^)(NSString* groupId))completion;
-
-
-/*!
- @brief ライトグループの削除。
- @param[in] groupId 削除するライトグループのID
- @param[in, out] completion レスポンスを返す
- @retval YES レスポンスパラメータを返却する。
- @retval NO レスポンスパラメータを返却しないので、@link DConnectManager::sendResponse: @endlinkで返却すること。
- */
--(BOOL)removeLightGroupWithWithGroupId:(NSString*)groupId
-                            completion:(void(^)(void))completion;
 
 /*!
  @brief 文字列の実数判定。
@@ -295,42 +199,9 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
  */
 - (BOOL)isDigitWithString:(NSString *)numberString;
 
-
-/*!
- @brief ハートビートの有効化。
- */
--(void)enableHeartbeat;
-
-/*!
- @brief ハートビートの無効化。
- */
--(void)disableHeartbeat;
-
-/*!
- @brief PHNotificationManagerの解放。
- @param[in] receiver 登録してあるオブジェクト
- */
--(void)deallocPHNotificationManagerWithReceiver:(id)receiver;
-
-
-/*!
- @brief PHNotificationManagerとPHHueSDKの解放。
- */
--(void)deallocHueSDK;
-
-
-/*!
- @brief Hueのブリッジを保存。
- */
--(void)saveBridgeList;
-
-/*!
- @brief Hueのブリッジの読み込み。
- */
--(void)readBridgeList;
 /*!
  @brief Hueプラグインが管理するサービスのオンライン・オフラインを切り替える。
  @param[in] onlineForSet YES:オンラインに切り替える NO:オフラインに切り替える
  */
-- (void)updateManageServices : (BOOL) onlineForSet;
+- (void)updateManageServicesForIpAddress:(NSString*)ipAddress  online:(BOOL)online;
 @end

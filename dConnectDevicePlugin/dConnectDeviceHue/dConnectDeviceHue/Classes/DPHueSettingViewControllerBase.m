@@ -19,7 +19,6 @@ static DPHueItemBridge *mSelectedItemBridge;
     portConstraints = [NSArray array];
     landConstraints = [NSArray array];
     manager = [DPHueManager sharedManager];
-    [manager initHue];
     _bundle = DPHueBundle();
 }
 
@@ -46,13 +45,13 @@ static DPHueItemBridge *mSelectedItemBridge;
     }
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-                                         duration:(NSTimeInterval)duration
-{
- 
-    [self setLayoutConstraint];
-    
-}
+//- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+//                                         duration:(NSTimeInterval)duration
+//{
+// 
+//    [self setLayoutConstraint];
+//    
+//}
 
 - (void)setLayoutConstraint
 {
@@ -79,7 +78,7 @@ static DPHueItemBridge *mSelectedItemBridge;
 {
     [super viewDidDisappear:animated];
 
-    [manager deallocHueSDK];
+//    [manager deallocHueSDK];
 }
 
 - (void)showAleart:(NSString*)msg
@@ -168,7 +167,7 @@ static DPHueItemBridge *mSelectedItemBridge;
 - (void)initSelectedItemBridge
 {
     mSelectedItemBridge = nil;
-    mSelectedItemBridge = [[DPHueItemBridge alloc] init];
+    mSelectedItemBridge = [DPHueItemBridge new];
 }
 
 - (DPHueItemBridge*)getSelectedItemBridge
@@ -187,9 +186,9 @@ static DPHueItemBridge *mSelectedItemBridge;
     return YES;
 }
 
-- (void)showPage:(NSUInteger)jumpIndex
+- (void)showPage:(NSUInteger)jumpIndex 
 {
-    [self.hueViewController showPage:jumpIndex];
+    [self.hueViewController showPage:jumpIndex bridge:self.bridge];
 }
 
 //ブリッジ検索ページを開く

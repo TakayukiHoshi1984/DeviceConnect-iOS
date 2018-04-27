@@ -7,21 +7,22 @@
 //  http://opensource.org/licenses/mit-license.php
 //
 #import "DPHueSettingViewController4.h"
-
 #define PutPresentedViewController(top) \
 top = [UIApplication sharedApplication].keyWindow.rootViewController; \
 while (top.presentedViewController) { \
 top = top.presentedViewController; \
 }
-@interface DPHueSettingViewController4 () {
-    int lightCount;
-    int retryCount;
-}
+// Storyboard で設定したidentifier
+static NSString *DPHueCellIdentifier = @"cellLight";
+
+@interface DPHueSettingViewController4 ()<PHSFindNewDevicesCallback>
+
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *lightSearchingIndicator;
 @property (weak, nonatomic) IBOutlet UIView *indicator;
 
 @property (weak, nonatomic) IBOutlet UITableView *foundLightListView;
 @property (strong, nonatomic) NSString *serial;
+@property (nonatomic, strong) NSArray<PHSDevice *> *foundDevices;
 @property (weak, nonatomic) UIAlertAction *okAction;
 
 - (IBAction)searchAutomatic:(id)sender;
@@ -38,6 +39,7 @@ top = top.presentedViewController; \
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self.foundDevices = [NSMutableArray array];
     return self;
 }
 
@@ -63,7 +65,7 @@ top = top.presentedViewController; \
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return [[DPHueManager sharedManager] getLightStatus].count;
+    return [manager getLightStatusForIpAddress:self.bridge.ipAddress].count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -74,20 +76,18 @@ top = top.presentedViewController; \
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Storyboard で設定したidentifier
-    static NSString *CellIdentifier = @"cellLight";
     UITableViewCell *cell =
-    [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+    [tableView dequeueReusableCellWithIdentifier:DPHueCellIdentifier
                                     forIndexPath:indexPath];
     cell.exclusiveTouch = YES;
     cell.accessoryView.exclusiveTouch = YES;
     NSString * path = [_bundle pathForResource:@"hue_small_icon" ofType:@"png"];
     cell.imageView.image = [UIImage imageWithContentsOfFile:path];
-    NSDictionary* dic = [[DPHueManager sharedManager] getLightStatus];
+    NSArray<PHSDevice*>* lights = [manager getLightStatusForIpAddress:self.bridge.ipAddress];
     int i = 0;
-    for (PHLight *light in dic.allValues) {
+    
+    for (PHSDevice *light in lights) {
         if (indexPath.row == i) {
-            
             cell.textLabel.text = light.name;
             break;
         }
@@ -114,20 +114,15 @@ top = top.presentedViewController; \
     _lightSearchingIndicator.hidden = YES;
     _autoSearchBtn.enabled = YES;
     _manualSearchBtn.enabled = YES;
+    _indicator.hidden = YES;
     [super setCloseBtn:YES];
 }
 
 
 - (IBAction)searchAutomatic:(id)sender {
     _indicator.hidden = NO;
-    retryCount = 2;
     [self startIndicator];
-    [manager searchLightWithCompletion:^(NSArray *errors) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            lightCount = (int) [[DPHueManager sharedManager] getLightStatus].allValues.count;
-            [self reloadHue];
-        });
-    }];
+    [manager searchLightForIpAddress:self.bridge.ipAddress delegate:self];
 }
 
 - (IBAction)searchManual:(id)sender {
@@ -137,15 +132,12 @@ top = top.presentedViewController; \
 
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil];
     [serialAlert addAction:cancelAction];
+    __weak typeof(self) _self = self;
     _okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        _indicator.hidden = NO;
-        [self startIndicator];
-        NSArray *serials = @[_serial];
-        [manager registerLightForSerialNo:serials completion:^(NSArray *errors) {
-            retryCount = 2;
-            lightCount = (int) [[DPHueManager sharedManager] getLightStatus].allValues.count;
-            [self  reloadHue];
-        }];
+        _self.indicator.hidden = NO;
+        [_self startIndicator];
+        NSArray *serials = @[_self.serial];
+        [[DPHueManager sharedManager] registerLightsForSerialNo:serials ipAddress:_self.bridge.ipAddress delegate:_self];
     }];
     _okAction.enabled = NO;
     [serialAlert addAction:_okAction];
@@ -153,7 +145,7 @@ top = top.presentedViewController; \
     [serialAlert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         
         textField.placeholder = DPHueLocalizedString(_bundle, @"HueSerialNoHint");
-        textField.delegate = self;
+        textField.delegate = _self;
         textField.keyboardType = UIKeyboardTypeAlphabet;
     }];
     [self presentViewController:serialAlert animated:YES completion:nil];
@@ -172,61 +164,41 @@ shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)strin
 }
 
 
-- (void)reloadHue
-{
-    
-    DPHueItemBridge *item = [self getSelectedItemBridge];
-    [[DPHueManager sharedManager] initHue];
-    [[DPHueManager sharedManager] startAuthenticateBridgeWithIpAddress:item.ipAddress
-                                                            bridgeId:item.bridgeId
-                                                              receiver:self
-                                        localConnectionSuccessSelector:@selector(didBridgeSuccess)
-                                                     noLocalConnection:@selector(didBridgeFailed)
-                                                      notAuthenticated:@selector(didBridgeFailed)];
-}
 
-- (void)didBridgeSuccess
-{
-    [[DPHueManager sharedManager] deallocPHNotificationManagerWithReceiver:self];
-    [[DPHueManager sharedManager] deallocHueSDK];
-    dispatch_queue_t updateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(updateQueue, ^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if (retryCount < 0 || lightCount < [[DPHueManager sharedManager] getLightStatus].allValues.count) {
-                [_foundLightListView reloadData];
-                _indicator.hidden = YES;
-                [self stopIndicator];
-                if (lightCount < [[DPHueManager sharedManager] getLightStatus].allValues.count) {
-                    NSString *successMessage = [DPHueLocalizedString(_bundle, @"HueSearchLight")
-                                                stringByAppendingFormat:DPHueLocalizedString(_bundle, @"HueSearchHitLight"),
-                                                [[DPHueManager sharedManager] getLightStatus].allValues.count - lightCount];
-                    [self showAleart:successMessage];
-                } else {
-                    [self showAleart:DPHueLocalizedString(_bundle, @"HueSearchLightOld")];
-                }
-            } else {
-                retryCount--;
-                [self reloadHue];
+- (void)bridge:(PHSBridge*)bridge didFindDevices:(NSArray<PHSDevice *> *)devices errors:(NSArray<PHSError *> *)errors {
+    if (errors) {
+        [self stopIndicator];
+         [self showAleart:errors[0].description];
+        return;
+    }
+    for (PHSDevice *header in devices) {
+        BOOL duplicated = NO;
+        for (PHSDevice *cache in self.foundDevices) {
+            if ([cache.identifier isEqualToString:header.identifier]) {
+                duplicated = YES;
+                break;
             }
-        });
-    });
+        }
+        if (!duplicated) {
+            [self.foundDevices arrayByAddingObject:header];
+        }
+    }
 }
 
-- (void)didBridgeFailed
-{
-    [[DPHueManager sharedManager] deallocPHNotificationManagerWithReceiver:self];
-    [[DPHueManager sharedManager] deallocHueSDK];
-    dispatch_queue_t updateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(updateQueue, ^{
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [[DPHueManager sharedManager] deallocPHNotificationManagerWithReceiver:self];
-            [[DPHueManager sharedManager] deallocHueSDK];
-            [_foundLightListView reloadData];
-            _indicator.hidden = YES;
-            [self stopIndicator];
-            [self showAleart:DPHueLocalizedString(_bundle, @"HueSearchLightError")];
-        });
+- (void)bridge:(PHSBridge*)bridges didFinishSearch:(NSArray<PHSError *> *)errors {
+    __weak typeof(self) _self = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [_self.foundLightListView reloadData];
+        [_self stopIndicator];
+        if (self.foundDevices.count > 0) {
+            NSString *successMessage = [DPHueLocalizedString(_bundle, @"HueSearchLight")
+                                        stringByAppendingFormat:DPHueLocalizedString(_bundle, @"HueSearchHitLight"),
+                                        _self.foundDevices.count];
+            [_self showAleart:successMessage];
+        } else {
+            [_self showAleart:DPHueLocalizedString(_bundle, @"HueSearchLightOld")];
+        }
     });
 }
-
 @end

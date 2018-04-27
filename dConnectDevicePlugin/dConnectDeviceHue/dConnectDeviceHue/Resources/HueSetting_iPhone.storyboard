@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1Ej-BJ-DZG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1Ej-BJ-DZG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -85,7 +85,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Joa-ps-7SS">
                                 <rect key="frame" x="32" y="273" width="256" height="35"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="btnSearchBridge" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6a-fB-shB">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="btnSearchBridge" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6a-fB-shB">
                                         <rect key="frame" x="38" y="3" width="180" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="ブリッジにアプリを登録">
@@ -95,7 +95,7 @@
                                             <action selector="registerAppNameForHueBridge:" destination="cyp-pG-Lbs" eventType="touchUpInside" id="KiJ-pd-eM8"/>
                                         </connections>
                                     </button>
-                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xxt-ht-ffw">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xxt-ht-ffw">
                                         <rect key="frame" x="0.0" y="0.0" width="256" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -107,7 +107,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IEm-hX-QCQ">
-                                                <rect key="frame" x="70" y="8" width="20" height="20"/>
+                                                <rect key="frame" x="46" y="7" width="20" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </activityIndicatorView>
                                         </subviews>
@@ -173,12 +173,9 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Kap-pF-K49" firstAttribute="centerX" secondItem="gMX-TI-VFn" secondAttribute="centerX" id="8id-HO-EYW"/>
                             <constraint firstItem="iOS-If-ElU" firstAttribute="top" secondItem="Fdv-mv-GIA" secondAttribute="bottom" constant="4" id="Ayk-US-ETy"/>
-                            <constraint firstItem="Fdv-mv-GIA" firstAttribute="centerX" secondItem="gMX-TI-VFn" secondAttribute="centerX" id="BdH-qH-hgL"/>
                             <constraint firstItem="Joa-ps-7SS" firstAttribute="top" secondItem="8ir-pf-KsJ" secondAttribute="bottom" constant="209" id="Mdh-c4-FGm"/>
                             <constraint firstItem="Fdv-mv-GIA" firstAttribute="top" secondItem="8ir-pf-KsJ" secondAttribute="bottom" constant="45" id="Rhd-bi-HEB"/>
-                            <constraint firstItem="Joa-ps-7SS" firstAttribute="centerX" secondItem="gMX-TI-VFn" secondAttribute="centerX" id="TXO-Bp-c8c"/>
                             <constraint firstAttribute="trailing" secondItem="Fdv-mv-GIA" secondAttribute="trailing" constant="35" id="WMw-J5-EXy"/>
                             <constraint firstAttribute="trailing" secondItem="Fdv-mv-GIA" secondAttribute="trailing" constant="34" id="iWE-Ou-nNm"/>
                             <constraint firstItem="Kap-pF-K49" firstAttribute="top" secondItem="8ir-pf-KsJ" secondAttribute="bottom" constant="60" id="iqE-cn-WGP"/>
@@ -198,20 +195,18 @@
                         <outlet property="authorizeStateLabel" destination="d9d-rO-bVq" id="U3W-LS-g66"/>
                         <outlet property="landInfoRight" destination="iWE-Ou-nNm" id="Xk2-0n-1pm"/>
                         <outlet property="landInfoTop" destination="Rhd-bi-HEB" id="Nx5-gs-HXu"/>
-                        <outlet property="portImageCenter" destination="8id-HO-EYW" id="SuD-Xm-g0f"/>
                         <outlet property="portImageLeft" destination="lPb-xb-iRt" id="pcd-MT-mgI"/>
                         <outlet property="portInfoBottom" destination="Ayk-US-ETy" id="z9v-Ib-s0P"/>
-                        <outlet property="portInfoCenter" destination="BdH-qH-hgL" id="OvG-rV-C2P"/>
                         <outlet property="portInfoRight" destination="WMw-J5-EXy" id="xGm-co-ehT"/>
-                        <outlet property="portMessageCenter" destination="TXO-Bp-c8c" id="fJp-Q8-qZ9"/>
                         <outlet property="portMessageLeft" destination="jmW-4J-lDf" id="9oe-qM-fYj"/>
                         <outlet property="pushlinkIconImageView" destination="ZJH-R6-TQ5" id="QQP-Vy-EnH"/>
-                        <outlet property="pushlinkWaitIndicator" destination="IEm-hX-QCQ" id="Mxf-Ci-jkR"/>
+                        <outlet property="pushlinkWaitIndicator" destination="IEm-hX-QCQ" id="VKn-af-3t2"/>
+                        <outlet property="registerBridgeButton" destination="Q6a-fB-shB" id="F4d-S0-1Nz"/>
                         <outlet property="searchingView" destination="Xxt-ht-ffw" id="BmV-6o-ggX"/>
                         <outlet property="selectedIpAddressLabel" destination="cfN-S1-BhX" id="MWq-gl-jY8"/>
                         <outlet property="selectedMacAddressLabel" destination="9zA-4j-M9D" id="WtL-O5-pFy"/>
                         <outlet property="settingMsgLabel" destination="wnB-nS-Bae" id="wA3-lc-LTe"/>
-                        <outlet property="statusLabel" destination="3GD-9d-9jQ" id="rur-e5-a9L"/>
+                        <outlet property="statusLabel" destination="3GD-9d-9jQ" id="b8I-mb-tAe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fCd-TJ-EL8" sceneMemberID="firstResponder"/>
@@ -347,11 +342,11 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="XNh-UL-q9b"/>
+                                <exclude reference="fuw-25-RIo"/>
                                 <exclude reference="12n-es-n2Q"/>
                                 <exclude reference="Amy-AM-ARR"/>
                                 <exclude reference="uPz-as-RTp"/>
-                                <exclude reference="fuw-25-RIo"/>
-                                <exclude reference="XNh-UL-q9b"/>
                                 <exclude reference="6UT-gn-aKQ"/>
                                 <exclude reference="CgH-md-PCZ"/>
                             </mask>

@@ -15,18 +15,17 @@
 
 @interface DPHueManager()
 
-@property (nonatomic, strong) DPHueReachability *reachability;
-@property (nonatomic, strong) PHBridgeSendErrorArrayCompletionHandler completionHandler;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, PHSBridge *> *bridges;
+@property (nonatomic, strong) PHSBridgeDiscovery *bridgeDiscovery;
+@property (nonatomic) NSString *currentIpAddress;
+@property (nonatomic, weak) id<DPHueBridgeControllerDelegate> delegate;
+@property (nonatomic) DPHueDeviceRepeatExecutor *flashingExecutor;
 @end
 
 
-@implementation DPHueManager {
-    DPHueDeviceRepeatExecutor *_flashingExecutor;
-}
+@implementation DPHueManager
 
-//見つけたブリッジのリスト
-NSString *const DPHueBridgeListName = @"org.deviceconnect.ios.DPHue.ip";
-
+static NSString *const DPHueApName = @"DConnectDeviceHueiOS";
 // 共有インスタンス
 + (instancetype)sharedManager
 {
@@ -51,408 +50,192 @@ NSString *const DPHueBridgeListName = @"org.deviceconnect.ios.DPHue.ip";
 //HueSDKの初期化
 -(void)initHue
 {
-    if (!phHueSDK) {
-        phHueSDK = [[PHHueSDK alloc] init];
-        [phHueSDK startUpSDK];
-        [phHueSDK enableLogging:NO];
-        bridgeSearching = [[PHBridgeSearching alloc] initWithUpnpSearch:YES andPortalSearch:YES andIpAddressSearch:NO];
-    }
-    
-    // Reachabilityの初期処理
-    self.reachability = [DPHueReachability reachabilityWithHostName: @"www.google.com"];
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(notifiedNetworkStatus:)
-     name:DPHueReachabilityChangedNotification
-     object:nil];
-    [self.reachability startNotifier];
+    [self configureSDK];
+    self.bridges = [NSMutableDictionary dictionary];
+    self.delegate = nil;
+    self.currentIpAddress = nil;
+    self.currentEvent = PHSBridgeConnectionEventNone;
 }
 
-// ServiceProviderを登録
+
+
+- (void)configureSDK {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    // Replace device id
+    [PHSPersistence setStorageLocation:documentsDirectory andDeviceId:DPHueApName];
+    
+    [PHSLog setConsoleLogLevel:PHSLogLevelOff];
+}
+
+
+// ServiceProviderを登録 
 - (void)setServiceProvider: (DConnectServiceProvider *) serviceProvider {
     self.mServiceProvider = serviceProvider;
 }
 
-//ブリッジ検索
--(void)searchBridgeWithCompletion:(PHBridgeSearchCompletionHandler)completion
+#pragma mark - Discovery Bridges
+
+- (void)startBridgeDiscoveryWithCompletion:(DPHueBridgeDiscoveryBlock)completionHandler
 {
-    [bridgeSearching startSearchWithCompletionHandler:^(NSDictionary *bridgesFound) {
-        _hueBridgeList = bridgesFound;
-        if (completion) {
-            completion(bridgesFound);
+    [self stopBridgeDiscovery];
+    self.bridgeDiscovery = [PHSBridgeDiscovery new];
+    PHSBridgeDiscoveryOption options = PHSDiscoveryOptionUPNP | PHSDiscoveryOptionNUPNP | PHSDiscoveryOptionIPScan ;
+    [self.bridgeDiscovery search:options withCompletionHandler:^(NSDictionary<NSString *,PHSBridgeDiscoveryResult *> *results, PHSReturnCode returnCode) {
+       
+        if (completionHandler) {
+            completionHandler(results);
         }
-        [self updateManageServices: NO];
     }];
 }
 
-//ブリッジへの認証依頼
--(void)startAuthenticateBridgeWithIpAddress:(NSString*)ipAddress
-                                        bridgeId:(NSString*)bridgeId
-                                          receiver:(id)receiver
-                    localConnectionSuccessSelector:(SEL)localConnectionSuccessSelector
-                                 noLocalConnection:(SEL)noLocalConnection
-                                  notAuthenticated:(SEL)notAuthenticated
+- (void)stopBridgeDiscovery
 {
-    id registerReceiver = receiver;
-    if (!registerReceiver) {
-        registerReceiver = self;
+    if (self.bridgeDiscovery) {
+        [self.bridgeDiscovery stop];
+        self.bridgeDiscovery = nil;
     }
-    // Register for notifications about pushlinking
-    notificationManager = [PHNotificationManager defaultManager];
-    if (localConnectionSuccessSelector) {
-        //接続成功
-        [notificationManager registerObject:registerReceiver
-                               withSelector:localConnectionSuccessSelector
-                            forNotification:LOCAL_CONNECTION_NOTIFICATION];
-    }
-    if (noLocalConnection) {
-        //ブリッジに接続できません
-        [notificationManager registerObject:registerReceiver withSelector:noLocalConnection forNotification:
-         NO_LOCAL_CONNECTION_NOTIFICATION];
-    }
-    if (notAuthenticated) {
-        //未認証
-        [notificationManager registerObject:registerReceiver withSelector:notAuthenticated forNotification:
-         NO_LOCAL_AUTHENTICATION_NOTIFICATION];
-    }
-    if ((ipAddress != nil) && (bridgeId != nil)) {
-        [phHueSDK setBridgeToUseWithId:bridgeId ipAddress:ipAddress];
-    }
-//    [self enableHeartbeat];
-    [self performSelector:@selector(enableHeartbeat) withObject:nil afterDelay:0.5];
-
 }
 
-//Pushlinkの確認開始
--(void)     startPushlinkWithReceiver:(id)receiver
-pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
- pushlinkAuthenticationFailedSelector:(SEL)pushlinkAuthenticationFailedSelector
-    pushlinkNoLocalConnectionSelector:(SEL)pushlinkNoLocalConnectionSelector
-        pushlinkNoLocalBridgeSelector:(SEL)pushlinkNoLocalBridgeSelector
-     pushlinkButtonNotPressedSelector:(SEL)pushlinkButtonNotPressedSelector
+#pragma mark - Bridge authentication
+
+- (void)connectForIPAddress:(NSString*)ipAddress uniqueId:(NSString*)uniqueId delegate:(id<DPHueBridgeControllerDelegate>)delegate
 {
+    [self stopBridgeDiscovery];
+    [self disconnectForIPAddress:ipAddress];
+    self.delegate = delegate;
+    PHSBridge *bridge = [self buildBridgeForIpAddress:ipAddress uniqueId:uniqueId];
+    self.bridges[ipAddress] = bridge;
+    self.currentIpAddress = ipAddress;
     
-    id registerReceiver = receiver;
-    if (!registerReceiver) {
-        registerReceiver = self;
-    }
-
-    notificationManager = [PHNotificationManager defaultManager];
-    if (pushlinkAuthenticationSuccessSelector) {
-        //PUSHLINK認証成功
-        [notificationManager registerObject:registerReceiver
-                               withSelector:pushlinkAuthenticationSuccessSelector
-                            forNotification:PUSHLINK_LOCAL_AUTHENTICATION_SUCCESS_NOTIFICATION];
-    }
-    if (pushlinkAuthenticationFailedSelector) {
-        //PUSHLINK認証失敗
-        [notificationManager registerObject:registerReceiver
-                               withSelector:pushlinkAuthenticationFailedSelector
-                            forNotification:PUSHLINK_LOCAL_AUTHENTICATION_FAILED_NOTIFICATION];
-    }
-    if (pushlinkNoLocalConnectionSelector) {
-        //PUSHLINKブリッジに接続できない
-        [notificationManager registerObject:registerReceiver
-                               withSelector:pushlinkNoLocalConnectionSelector
-                            forNotification:PUSHLINK_NO_LOCAL_CONNECTION_NOTIFICATION];
-    }
-    if (pushlinkNoLocalBridgeSelector) {
-        //PUSHLINKブリッジが見つからない
-        [notificationManager registerObject:registerReceiver
-                               withSelector:pushlinkNoLocalBridgeSelector
-                            forNotification:PUSHLINK_NO_LOCAL_BRIDGE_KNOWN_NOTIFICATION];
-    }
-    if (pushlinkButtonNotPressedSelector) {
-        //PUSHLINKブリッジのボタンが押されていない
-        [notificationManager registerObject:registerReceiver
-                               withSelector:pushlinkButtonNotPressedSelector
-                            forNotification:PUSHLINK_BUTTON_NOT_PRESSED_NOTIFICATION];
-    }
-    [phHueSDK startPushlinkAuthentication];
-}
-
-//ライトステータスの取得
--(NSDictionary *)getLightStatus
-{
-    PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-    return cache.lights;
-}
-
-//ライトステータスの取得
--(PHLight *)getLightStatusForLightId:(NSString *)lightId
-{
-    PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-    for (PHLight *light in cache.lights.allValues) {
-        if ([light.identifier isEqualToString:lightId]) {
-            return light;
-        }
-    }
-    return nil;
-}
-//ライトの点灯
--(BOOL)setLightOnWithResponse:(DConnectResponseMessage*)response
-                      lightId:(NSString*)lightId
-                   brightness:(double)brightness
-                        color:(NSString*)color
-{
-    
-    return YES;
-}
-
-//ライトの消灯
--(BOOL)setLightOffWithResponse:(DConnectResponseMessage*)response
-                       lightId:(NSString*)lightId
-{
-    [self getLightStateIsOn:NO brightness:0 color:nil];
-    return YES;
-}
-
-//ライトの名前変更
--(BOOL)changeLightNamewithResponse:(DConnectResponseMessage*)response
-                           lightId:(NSString*)lightId
-                              name:(NSString*)name
-{
-    //nameが指定されてない場合はエラーで返す
-    if (![self checkParamRequiredStringItemWithParam:name errorState:STATE_ERROR_NO_NAME]) {
-        return YES;
-    }
-    //LightIdチェック
-    if (![self checkParamLightId:lightId]) {
-        return YES;
-    }
-    
-    return YES;//[self changeLightName:response lightId:lightId name:name];
-   
-}
-
-
-//ライトグループステータスの取得
--(NSDictionary*)getLightGroupStatus
-{
-    //キャッシュにあるグループの一覧からグループを取り出す
-    PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-    return cache.groups;
-}
-
-//ライトグループの点灯
--(BOOL)setLightGroupOnWithResponse:(DConnectResponseMessage*)response
-                           groupId:(NSString*)groupId
-                        brightness:(NSNumber *)brightness
-                             color:(NSString*)color
-{
-    //groupIdチェック
-    if (![self checkParamGroupId:groupId]) {
-        return YES;
-    }
-    
-    PHLightState *lightState = [self getLightStateIsOn:YES brightness:brightness color:color];
-    if (lightState == nil) {
-        return YES;
-    }
-
-    return YES;//[self changeGroupStatus:response groupId:groupId lightState:lightState];
-}
-
-//ライトグループの消灯
--(BOOL)setLightGroupOffWithResponse:(DConnectResponseMessage*)response
-                            groupId:(NSString*)groupId
-{
-    //groupIdチェック
-    if (![self checkParamGroupId:groupId]) {
-        return YES;
-    }
-    
-    //lightState取得
-    PHLightState *lightState = [self getLightStateIsOn:NO brightness:0 color:nil];
-    
-    //lightStateがnilならエラーなので終了
-    if (lightState == nil) {
-        return YES;
-    }
-    
-    return YES;//[self changeGroupStatus:response groupId:groupId lightState:lightState];
-}
-
-//ライトグループ名の変更
--(BOOL)changeLightGroupNameWithResponse:(DConnectResponseMessage*)response
-                                groupId:(NSString*)groupId
-                                   name:(NSString*)name
-{
-    //nameが指定されてない場合はエラーで返す
-    if (![self checkParamRequiredStringItemWithParam:name errorState:STATE_ERROR_NO_NAME]) {
-        return YES;
-    }
-    
-    //groupIdチェック
-    if (![self checkParamGroupId:groupId]) {
-        return YES;
-    }
-    
-    return YES;//[self changeGroupName:response groupId:groupId name:name];
+    [self updateManageServicesForIpAddress:ipAddress online:NO];
+    [self.bridges[ipAddress] connect];
     
 }
 
-//ライトグループの作成
--(BOOL)createLightGroupWithLightIds:(NSArray*)lightIds
-                          groupName:(NSString*)groupName
-                         completion:(void(^)(NSString* groupId))completion
+- (void)disconnectForIPAddress:(NSString*)ipAddress
 {
-    if (!groupName) {
-        _bridgeConnectState = STATE_ERROR_NO_NAME;
-        return YES;
+    PHSBridge *bridge = self.bridges[ipAddress];
+    if (!bridge) {
+        return;
     }
-    
-    if (lightIds.count <= 0) {
-        _bridgeConnectState = STATE_ERROR_NO_LIGHTID;
-        return YES;
+    self.currentIpAddress = nil;
+    [self.bridges removeObjectForKey:ipAddress];
+    [bridge disconnect];
+}
+- (void)disconnectAllBridge
+{
+    for (NSString *key in self.bridges.allKeys) {
+        PHSBridge *bridge = self.bridges[key];
+        [self.bridges removeObjectForKey:key];
+        [bridge disconnect];
     }
-    
-    PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-    
-    //lightIdでArrayを作る
-    NSMutableDictionary *lightArray = [NSMutableDictionary dictionary];
-    
-    for (PHLight *light in cache.lights.allValues) {
-        for (NSString *lightId in lightIds) {
-            if ([lightId isEqualToString:light.identifier]) {
-                lightArray[light.identifier] = light;
-            }
-        }
-    }
-    
-    //ID Listエラーチェック
-    if (lightArray.count <= 0) {
-        _bridgeConnectState = STATE_ERROR_INVALID_LIGHTID;
-        return YES;
-    }
-    
-    //限界チェック
-    if (cache.groups.count >= 16) {
-        _bridgeConnectState = STATE_ERROR_LIMIT_GROUP;
-        return YES;
-    }
-    
-    PHBridgeSendAPI *bridgeSendAPI = [[PHBridgeSendAPI alloc] init];
-    
-    //メインスレッドで動作させる
-    dispatch_sync(dispatch_get_main_queue(), ^{
+    self.currentIpAddress = nil;
+}
+// private
+- (PHSBridge *)buildBridgeForIpAddress:(NSString *)ipAddress uniqueId:(NSString*)uniqueId {
+    return [PHSBridge bridgeWithBlock:^(PHSBridgeBuilder* builder) {
+        builder.connectionTypes = PHSBridgeConnectionTypeLocal;
+        builder.ipAddress = ipAddress;
+        builder.bridgeID  = uniqueId;
         
-        [bridgeSendAPI createGroupWithName:groupName
-                                  lightIds:[lightArray allKeys]
-                         completionHandler:^(NSString *groupIdentifier, NSArray *errors) {
-            if (errors != nil) {
-                _bridgeConnectState = STATE_ERROR_CREATE_FAIL_GROUP;
-            } else {
-                _bridgeConnectState = STATE_CONNECT;
-            }
-            if (completion) {
-                completion(groupIdentifier);
-            }
-        }];
-    });
-    return NO;
-    
+        builder.bridgeConnectionObserver = self;
+        
+        [builder addStateUpdateObserver:self];
+    } withAppName:DPHueApName withDeviceName:DPHueApName];
+
 }
 
-//ライトグループの削除
--(BOOL)removeLightGroupWithWithGroupId:(NSString*)groupId
-                            completion:(void(^)(void))completion
-{
-    //groupIdチェック
-    if (![self checkParamGroupId:groupId]) {
-        return YES;
+#pragma mark - PHSBridgeConnectionObserver
+
+- (void)bridgeConnection:(PHSBridgeConnection *)bridgeConnection handleEvent:(PHSBridgeConnectionEvent)connectionEvent {
+    if (!self.delegate) {
+        return;
     }
-    
-    PHBridgeSendAPI *bridgeSendAPI = [[PHBridgeSendAPI alloc] init];
-    
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        [bridgeSendAPI removeGroupWithId:groupId completionHandler:^(NSArray *errors) {
-            [self setCompletionWithResponseCompletion:completion errors:errors
-                           errorState:STATE_ERROR_DELETE_FAIL_GROUP];
+    switch (connectionEvent) {
+        default:
+            break;
+        case PHSBridgeConnectionEventConnectionRestored:
+            [self.delegate didConnectedWithIpAddress:self.currentIpAddress];
+            [self updateManageServicesForIpAddress:self.currentIpAddress online:YES];
+            break;
+        case PHSBridgeConnectionEventCouldNotConnect:
+        case PHSBridgeConnectionEventConnectionLost:
+        case PHSBridgeConnectionEventDisconnected:
+            [self.delegate didDisconnectedWithIpAddress:self.currentIpAddress];
+            [self updateManageServicesForIpAddress:self.currentIpAddress online:NO];
+            break;
             
-        }];
-    });
-    return NO;
-}
-
-
-
-//使用できるライトの検索
--(void)searchLightWithCompletion:(PHBridgeSendErrorArrayCompletionHandler)completion {
-    PHBridgeSendAPI *bridgeSendAPI = [[PHBridgeSendAPI alloc] init];
-    [bridgeSendAPI searchForNewLightsWithDelegate:self];
-    _completionHandler = completion;
-}
-
-
-//Serialを指定してライトを登録する
--(void)registerLightForSerialNo:(NSArray*)serialNos
-                     completion:(PHBridgeSendErrorArrayCompletionHandler)completion
-{
+        case PHSBridgeConnectionEventNotAuthenticated:
+        case PHSBridgeConnectionEventLinkButtonNotPressed:
+            [self.delegate didPushlinkBridgeWithIpAddress:self.currentIpAddress];
+            [self updateManageServicesForIpAddress:self.currentIpAddress online:NO];
+            break;
+        case PHSBridgeConnectionEventAuthenticated:
+            break;
+    }
+    self.currentEvent = connectionEvent;
     
-    PHBridgeSendAPI *bridgeSendAPI = [[PHBridgeSendAPI alloc] init];
-    [bridgeSendAPI searchForNewLightsWithSerials:serialNos delegate:self];
-    _completionHandler = completion;
+}
+- (void)bridgeConnection:(PHSBridgeConnection *)bridgeConnection handleErrors:(NSArray<PHSError *> *)connectionErrors {
+
+    [self updateManageServicesForIpAddress:self.currentIpAddress online:NO];
+    if (!self.delegate) {
+        return;
+    }
+    [self.delegate didErrorWithIpAddress:self.currentIpAddress errors:connectionErrors];
 }
 
+#pragma mark - PHSBridgeStateUpdateObserver
 
-//ハートビートの有効化
--(void)enableHeartbeat {
-    PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-    if (cache != nil && cache.bridgeConfiguration != nil && cache.bridgeConfiguration.ipaddress != nil) {
-        [phHueSDK enableLocalConnection];
-    } else {
-        [phHueSDK disableLocalConnection];
-        [self searchBridgeWithCompletion:nil];
+- (void)bridge:(PHSBridge *)bridge handleEvent:(PHSBridgeStateUpdatedEvent)updateEvent {
+    if (updateEvent == PHSBridgeStateUpdatedEventInitialized) {
+        [self updateManageServicesForIpAddress:self.currentIpAddress online:YES];
+        [self startHeartbeatForBridge:bridge];
+        if (!self.delegate) {
+            return;
+        }
+        [self.delegate didConnectedWithIpAddress:self.currentIpAddress];
     }
 }
-
-//ハートビートの無効化
--(void)disableHeartbeat {
-    [phHueSDK disableLocalConnection];
+- (void)startHeartbeatForBridge:(PHSBridge *)bridge {
+    PHSBridgeConnection* connection = bridge.bridgeConnections.firstObject;
+    [connection.heartbeatManager startHeartbeatWithType:PHSBridgeStateCacheTypeFullConfig interval:10];
 }
 
-//PHNotificationManagerの解放
--(void)deallocPHNotificationManagerWithReceiver:(id)receiver {
-    id registerReceiver = receiver;
-    if (!registerReceiver) {
-        registerReceiver = self;
+#pragma mark - Search Light
+-(void)searchLightForIpAddress:(NSString*)ipAddress delegate:(id<PHSFindNewDevicesCallback>)delegate {
+    PHSBridge *bridge = self.bridges[ipAddress];
+    if (!bridge) {
+        return;
     }
-
-    if (notificationManager) {
-        [notificationManager deregisterObjectForAllNotifications:registerReceiver];
-        [notificationManager deregisterObject:registerReceiver forNotification:LOCAL_CONNECTION_NOTIFICATION];
-        [notificationManager deregisterObject:registerReceiver forNotification:NO_LOCAL_CONNECTION_NOTIFICATION];
-        [notificationManager deregisterObject:registerReceiver forNotification:NO_LOCAL_AUTHENTICATION_NOTIFICATION];
-        notificationManager = nil;
-    }
-}
-
-//HueSDKの解放
--(void)deallocHueSDK {
-    if (phHueSDK != nil) {
-        [phHueSDK disableLocalConnection];
-        [phHueSDK stopSDK];
-        phHueSDK = nil;
-    }
+    [bridge findNewDevicesWithAllowedConnections:PHSBridgeConnectionTypeLocal callback:delegate];
 }
 
 
-#pragma mark - PHSearchForNewDevicesDelegate delegate
-- (void)hueDeviceSearchStarted {
-}
-- (void)hueDeviceSearchFailed:(NSArray*)errors {
-    if (_completionHandler) {
-        _completionHandler(errors);
-        _completionHandler = nil;
+-(void)registerLightsForSerialNo:(NSArray*)serialNos
+                       ipAddress:(NSString*)ipAddress
+                        delegate:(id<PHSFindNewDevicesCallback>)delegate
+{
+    PHSBridge *bridge = self.bridges[ipAddress];
+    if (!bridge) {
+        return;
     }
+    [bridge findNewDevices:serialNos allowedConnectionTypes:PHSBridgeConnectionTypeLocal callback:delegate];
 }
-- (void)hueDeviceSearchFinished {
-    if (_completionHandler) {
-        _completionHandler([NSArray array]);
-        _completionHandler = nil;
+
+-(NSArray<PHSDevice*>*)getLightStatusForIpAddress:(NSString*)ipAddress
+{
+    PHSBridge *bridge = self.bridges[ipAddress];
+    if (!bridge) {
+        return [NSArray<PHSDevice*> array];
     }
+    return [bridge.bridgeState getDevicesOfType:PHSDomainTypeLight];
 }
+
+
+
 
 
 #pragma mark - private method
@@ -462,7 +245,7 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
                         errors:(NSArray*)errors
                   errorState:(BridgeConnectState)errorState
 {
-    if (errors != nil) {
+    if (errors != nil && errors.count > 0) {
         _bridgeConnectState = errorState;
     } else {
         _bridgeConnectState = STATE_CONNECT;
@@ -474,7 +257,7 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
 
 
 //パラメータチェック LightId
-- (BOOL)checkParamLightId:(NSString*)lightId
+- (BOOL)checkParamForIpAddress:(NSString*)ipAddress lightId:(NSString*)lightId
 {
     //LightIdが指定されてない場合はエラーで返す
     if (!lightId) {
@@ -483,8 +266,8 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
     }
     
     //キャッシュにあるライトの一覧からライトを取り出す
-    PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-    for (PHLight *light in cache.lights.allValues) {
+    NSArray<PHSDevice*>* caches = [[DPHueManager sharedManager] getLightStatusForIpAddress:ipAddress];
+    for (PHSDevice *light in caches) {
         if ([lightId isEqualToString:light.identifier]) {
             return YES;
         }
@@ -493,31 +276,6 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
     return NO;
 }
 
-//パラメータチェック groupId
-- (BOOL)checkParamGroupId:(NSString*)groupId
-{
-    //groupIdが指定されてない場合はエラーで返す
-    if (!groupId) {
-        _bridgeConnectState = STATE_ERROR_NO_GROUPID;
-        return NO;
-    }
-    if ([groupId isEqualToString:@"0"]) {
-        _bridgeConnectState = STATE_ERROR_NO_GROUPID;
-        
-        return YES;
-    }
-    
-    //キャッシュにあるグループの一覧からグループを取り出す
-    PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-    for (PHGroup *group in cache.groups.allValues) {
-        if ([groupId isEqualToString:group.identifier]) {
-            return YES;
-        }
-    }
-    
-    _bridgeConnectState = STATE_ERROR_NOT_FOUND_GROUP;
-    return NO;
-}
 
 //パラメータチェック 必須文字チェック
 - (BOOL)checkParamRequiredStringItemWithParam:(NSString*)param
@@ -584,13 +342,13 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
 }
 
 //エラーの場合、エラー情報をresponseに設定しnilをreturn
-- (PHLightState*) getLightStateIsOn:(BOOL)isOn
-                     brightness:(NSNumber *)brightness
-                          color:(NSString *)color
+- (PHSLightState*) getLightStateIsOn:(BOOL)isOn
+                          brightness:(NSNumber *)brightness
+                               color:(NSString *)color
 {
-    PHLightState *lightState = [[PHLightState alloc] init];
+    PHSLightState* lightState = [PHSLightState new];
 
-    [lightState setOnBool:isOn];
+    [lightState setOn:[NSNumber numberWithBool:isOn]];
 
     if (isOn) {
         double dBlightness = 0;
@@ -609,10 +367,9 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
         NSString *uicolor;
         [self checkColor:dBlightness blueValue:blueValue greenValue:greenValue redValue:redValue color:color myBlightnessPointer:&myBlightness uicolorPointer:&uicolor];
 
-        CGPoint xyPoint = [self convRgbToXy:uicolor];
-        if (xyPoint.x != FLT_MIN && xyPoint.y != FLT_MIN) {
-            [lightState setX:[NSNumber numberWithFloat:xyPoint.x]];
-            [lightState setY:[NSNumber numberWithFloat:xyPoint.y]];
+        PHSColor *xyPoint = [self convRgbToXy:uicolor];
+        if (xyPoint.xy.x != FLT_MIN && xyPoint.xy.y != FLT_MIN) {
+            [lightState setXYWithColor:xyPoint];
         } else {
             _bridgeConnectState = STATE_ERROR_INVALID_COLOR;
             return nil;
@@ -624,43 +381,60 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
         if (myBlightness > 254) {
             myBlightness = 254;
         }
+        
         [lightState setBrightness:[NSNumber numberWithInt:(int)myBlightness]];
     }
 
     return lightState;
 }
 
+
+
+
 /*!
  Lightのステータスチェンジ
  */
-- (BOOL) changeLightStatusWithLightId:(NSString *)lightId
-                           lightState:(PHLightState*)lightState
-                             flashing:(NSArray*)flashing
-                           completion:(void(^)(void))completion
+- (BOOL) changeLightStatusWithIpAddress:(NSString*)ipAddress
+                                lightId:(NSString *)lightId
+                             lightState:(PHSLightState*)lightState
+                               flashing:(NSArray*)flashing
+                             completion:(void(^)(void))completion
 {
-    PHBridgeSendAPI *bridgeSendAPI = [[PHBridgeSendAPI alloc] init];
+    PHSBridge *bridge = self.bridges[ipAddress];
+    if (!bridge) {
+        [self setCompletionWithResponseCompletion:completion
+                                           errors:[NSArray array]
+                                       errorState:STATE_ERROR_UPDATE_FAIL_LIGHT_STATE];
+        return NO;
+    }
+    PHSDevice* device = [bridge.bridgeState getDeviceOfType:PHSDomainTypeLight withIdentifier:lightId];
+    __weak typeof(self) _self = self;
 
     //メインスレッドで動作させる
     dispatch_sync(dispatch_get_main_queue(), ^{
+        PHSLightPoint* lightPoint = (PHSLightPoint*)device;
         if (flashing && flashing.count > 0) {
-            PHLightState* offState = [self getLightStateIsOn:NO brightness:0 color:nil];
-            [self setCompletionWithResponseCompletion:completion
+            PHSLightState* offState = [_self getLightStateIsOn:NO brightness:0 color:nil];
+            [_self setCompletionWithResponseCompletion:completion
                                                errors:nil
                                            errorState:STATE_ERROR_UPDATE_FAIL_LIGHT_STATE];
 
-            _flashingExecutor = [[DPHueDeviceRepeatExecutor alloc] initWithPattern:flashing on:^{
-                [bridgeSendAPI updateLightStateForId:lightId withLightState:lightState completionHandler:^(NSArray *errors) {
-                }];
+            _self.flashingExecutor = [[DPHueDeviceRepeatExecutor alloc] initWithPattern:flashing on:^{
+                [lightPoint updateState:lightState allowedConnectionTypes:PHSBridgeConnectionTypeLocal
+                      completionHandler:^(NSArray<PHSClipResponse *> *responses, NSArray<PHSError *> *errors, PHSReturnCode returnCode) {
+                      }];
             } off:^{
-                [bridgeSendAPI updateLightStateForId:lightId withLightState:offState completionHandler:^(NSArray *errors) {
-                }];
+                [lightPoint updateState:offState allowedConnectionTypes:PHSBridgeConnectionTypeLocal
+                      completionHandler:^(NSArray<PHSClipResponse *> *responses, NSArray<PHSError *> *errors, PHSReturnCode returnCode) {
+                      }];
             }];
 
         } else {
-            [bridgeSendAPI updateLightStateForId:lightId withLightState:lightState completionHandler:^(NSArray *errors) {
-                [self setCompletionWithResponseCompletion:completion
-                                                   errors:errors
-                                               errorState:STATE_ERROR_UPDATE_FAIL_LIGHT_STATE];
+            [lightPoint updateState:lightState allowedConnectionTypes:PHSBridgeConnectionTypeLocal
+                  completionHandler:^(NSArray<PHSClipResponse *> *responses, NSArray<PHSError *> *errors, PHSReturnCode returnCode) {
+                      [self setCompletionWithResponseCompletion:completion
+                                                         errors:errors
+                                                     errorState:STATE_ERROR_UPDATE_FAIL_LIGHT_STATE];
             }];
         }
     });
@@ -671,7 +445,8 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
 /*
  Lightの名前チェンジ
  */
--(BOOL)changeLightNameWithLightId:(NSString *)lightId
+-(BOOL)changeLightNameWithIpAddress:(NSString*)ipAddress
+                            lightId:(NSString *)lightId
                              name:(NSString *)name
                             color:(NSString *)color
                        brightness:(NSNumber *)brightness
@@ -698,95 +473,40 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
         return NO;
     }
     
-    PHBridgeSendAPI *bridgeSendAPI = [[PHBridgeSendAPI alloc] init];
-    PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
+    PHSBridge *bridge = self.bridges[ipAddress];
+    if (!bridge) {
+        [self setCompletionWithResponseCompletion:completion
+                                           errors:[NSArray array]
+                                       errorState:STATE_ERROR_UPDATE_FAIL_LIGHT_STATE];
+        return NO;
+    }
 
     //　メインスレッドで動作させる
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     dispatch_time_t timeout = dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 500);
-    PHLightState* onState = [self getLightStateIsOn:YES brightness:brightness color:color];
-    [self changeLightStatusWithLightId:lightId
+    PHSLightState* onState = [self getLightStateIsOn:YES brightness:brightness color:color];
+    [self changeLightStatusWithIpAddress:ipAddress
+                                 lightId:lightId
                             lightState:onState
                               flashing:flashing
                             completion:^ {
-//                                [self setCompletionWithResponseCompletion:completion
-//                                                                   errors:errors
-//                                                               errorState:STATE_ERROR_CHANGE_FAIL_LIGHT_NAME];
                                 dispatch_semaphore_signal(semaphore);
                             }];
     dispatch_semaphore_wait(semaphore, timeout);
+    PHSDevice* device = [bridge.bridgeState getDeviceOfType:PHSDomainTypeLight withIdentifier:lightId];
+    PHSDeviceConfiguration *conf = device.deviceConfiguration;
+    [conf setName:name];
+    [device updateConfiguration:conf allowedConnectionTypes:PHSBridgeConnectionTypeLocal completionHandler:^(NSArray<PHSClipResponse *> *responses, NSArray<PHSError *> *errors, PHSReturnCode returnCode) {
+        [self setCompletionWithResponseCompletion:completion
+                                           errors:errors
+                                       errorState:STATE_ERROR_CHANGE_FAIL_LIGHT_NAME];
 
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        for (PHLight *light in cache.lights.allValues) {
-            if ([light.identifier isEqualToString:lightId]) {
-                [light setName:name];
-                [bridgeSendAPI updateLightWithLight:light completionHandler:^(NSArray *errors) {
-                    [self setCompletionWithResponseCompletion:completion
-                                         errors:errors
-                                   errorState:STATE_ERROR_CHANGE_FAIL_LIGHT_NAME];
-                }];
-                break;
-            }
-        }
-    });
+    }];
     return NO;
 }
 
-/*!
- LightGroupのステータスチェンジ
- */
-- (BOOL)changeGroupStatusWithGroupId:(NSString *)groupId
-                          lightState:(PHLightState*)lightState
-                          completion:(void(^)(void))completion
-{
-    PHBridgeSendAPI *bridgeSendAPI = [[PHBridgeSendAPI alloc] init];
-    
-    //メインスレッドで動作させる
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        
-        // Send lightstate to light
-        [bridgeSendAPI setLightStateForGroupWithId:groupId lightState:lightState completionHandler:^(NSArray *errors) {
-            
-            [self setCompletionWithResponseCompletion:completion
-                                 errors:errors
-                           errorState:STATE_ERROR_UPDATE_FAIL_GROUP_STATE];
-            
-        }];
-    });
-    
-    return NO;
-}
 
-/*!
- LightGroupのnameチェンジ
- */
-- (BOOL) changeGroupNameWithGroupId:(NSString *)groupId
-                               name:(NSString *)name
-                         completion:(void(^)(void))completion
-{
-    PHBridgeSendAPI *bridgeSendAPI = [[PHBridgeSendAPI alloc] init];
-    PHBridgeResourcesCache *cache = [PHBridgeResourcesReader readBridgeResourcesCache];
-    
-    //メインスレッドで動作させる
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        
-        for (PHGroup *group in cache.groups.allValues) {
-            if ([group.identifier isEqualToString:groupId]) {
-                [group setName:name];
-                [bridgeSendAPI updateGroupWithGroup:group completionHandler:^(NSArray *errors) {
-                    
-                    [self setCompletionWithResponseCompletion:completion
-                                         errors:errors
-                                   errorState:STATE_ERROR_CHANGE_FAIL_GROUP_NAME];
-                    
-                }];
-                break;
-            }
-        }
-    });
-    return NO;
-    
-}
+
 
 /*
  数値判定。
@@ -808,7 +528,7 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
  Hue方式の色を取得する。
  エラーの場合は、xとyにFLT_MINを返す。
  */
-- (CGPoint) convRgbToXy:(NSString *)color
+- (PHSColor *) convRgbToXy:(NSString *)color
 {
     
     NSString *redString = [color substringWithRange:NSMakeRange(0, 2)];
@@ -820,107 +540,67 @@ pushlinkAuthenticationSuccessSelector:(SEL)pushlinkAuthenticationSuccessSelector
     unsigned int redValue, greenValue, blueValue;
     
     if (![scan scanHexInt:&redValue]) {
-        return CGPointMake(FLT_MIN, FLT_MIN);
+        return [PHSColor new];
     }
     scan = [NSScanner scannerWithString:greenString];
     if (![scan scanHexInt:&greenValue]) {
-        return CGPointMake(FLT_MIN, FLT_MIN);
+        return [PHSColor new];
     }
     scan = [NSScanner scannerWithString:blueString];
     if (![scan scanHexInt:&blueValue]) {
-        return CGPointMake(FLT_MIN, FLT_MIN);
+        return [PHSColor new];
     }
     float fRR = (float)(redValue/255.0);
     float fGG = (float)(greenValue/255.0);
-    float fBB = (float)(blueValue/255.0);
-    UIColor *uicolor = [UIColor colorWithRed:fRR green:fGG blue:fBB alpha:1.0f];
-    
-    return [PHUtilities calculateXY:uicolor forModel:@"LCT001"];
+    float fBB = (float)(blueValue/255.0);    
+    PHSColor *phsColor = [PHSColor createWithRed:(int)fRR green:(int)fGG blue:(int)fBB];
+    return phsColor;
 }
 
-
--(void)saveBridgeList {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:_hueBridgeList forKey:DPHueBridgeListName];
-    [userDefaults synchronize];
-}
-
-
--(void)readBridgeList {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    _hueBridgeList = [userDefaults dictionaryForKey:DPHueBridgeListName].mutableCopy;
-}
-
-// 通知を受け取るメソッド
--(void)notifiedNetworkStatus:(NSNotification *)notification {
-    NetworkStatus networkStatus = [self.reachability currentReachabilityStatus];
-    if (networkStatus == NotReachable) {
-        [self updateManageServices: NO];
-    } else {
-        [self updateManageServices: YES];
-    }
-}
-
-- (void)updateManageServices : (BOOL) onlineForSet {
+- (void)updateManageServicesForIpAddress:(NSString*)ipAddress  online:(BOOL)online {
     @synchronized(self) {
-
+        
         // ServiceProvider未登録なら処理しない
         if (!self.mServiceProvider) {
             return;
         }
-        
+        PHSBridge *bridge = self.bridges[ipAddress];
+        if (!bridge) {
+            return;
+        }
+
         // オフラインにする場合は、全サービスをオフラインにする(Wifi Offにされたことを想定)
-        if (!onlineForSet) {
+        if (!online) {
             for (DConnectService *service in [self.mServiceProvider services]) {
-                [service setOnline: NO];
+                [service setOnline: online];
             }
             return;
         }
-        
-        NSDictionary *bridgesFound = self.hueBridgeList;
-
-        // ServiceProviderに存在するデバイスが最新のリストに存在しなかったらそのサービスをオフラインにする
-        for (DPHueService *service in [self.mServiceProvider services]) {
-            NSString *serviceId = [service serviceId];
-            if (!bridgesFound[serviceId]) {
-                [service setOnline: NO];
-            }
-        }
-        
         // ServiceProviderに未登録のデバイスが見つかったら追加登録する。登録済ならそのサービスをオンラインにする
-        if (bridgesFound.count > 0) {
-            for (id key in [bridgesFound keyEnumerator]) {
-                NSString *serviceId = [NSString stringWithFormat:@"%@_%@", bridgesFound[key], key];
+        for (id key in [self.bridges keyEnumerator]) {
+            DConnectService *service = [self.mServiceProvider service: key];
+            PHSBridge *bridge = self.bridges[key];
+            NSString *ipAddress = bridge.bridgeConfiguration.networkConfiguration.ipAddress;
+            NSString *uniqueId = bridge.bridgeConfiguration.networkConfiguration.macAddress;
+            if (!service) {
+                service = [[DPHueService alloc] initWithBridgeIpAddress:ipAddress uniqueId:uniqueId plugin:[self plugin]];
+                [self.mServiceProvider addService: service];
+            }
+            [service setOnline:online];
+            NSArray<PHSDevice*> *lightList = [self getLightStatusForIpAddress:key];
+            for (PHSDevice *light in lightList) {
+                NSString *serviceId = [NSString stringWithFormat:@"%@_%@", key,light.identifier];
                 DConnectService *service = [self.mServiceProvider service: serviceId];
                 if (service) {
-                    [service setOnline: YES];
+                    [service setOnline: online];
                 } else {
-                    service = [[DPHueService alloc] initWithBridgeKey:key bridgeValue:bridgesFound[key] plugin: [self plugin]];
+                    service = [[DPHueLightService alloc] initWithIpAddress:key lightId:light.identifier lightName:light.name plugin:[self plugin]];
                     [self.mServiceProvider addService: service];
-                    [service setOnline:YES];
-                }
-                NSDictionary *lightList = [self getLightStatus];
-                for (PHLight *light in lightList.allValues) {
-                    NSString *serviceId = [NSString stringWithFormat:@"%@_%@_%@",bridgesFound[key],key,light.identifier];
-                    DConnectService *service = [self.mServiceProvider service: serviceId];
-                    if (service) {
-                        [service setOnline: YES];
-                    } else {
-                        service = [[DPHueLightService alloc] initWithBridgeKey:key
-                                                                   bridgeValue:bridgesFound[key]
-                                                                       lightId:light.identifier
-                                                                     lightName:light.name
-                                                                        plugin:[self plugin]];
-                        [self.mServiceProvider addService: service];
-                        [service setOnline:YES];
-                    }
+                    [service setOnline:online];
                 }
             }
-            
         }
     }
 }
-
-
 
 @end

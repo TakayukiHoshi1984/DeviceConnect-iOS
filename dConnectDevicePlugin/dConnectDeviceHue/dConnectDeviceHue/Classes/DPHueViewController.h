@@ -12,7 +12,7 @@
  @date 作成日(2014.7.15)
  */
 #import <UIKit/UIKit.h>
-
+#import "DPHueItemBridge.h"
 
 /*!
  @class DPHueViewController
@@ -42,7 +42,8 @@
 /*!
  @brief 指定した画面を表示。
  @param[in] jumpIndex 設定画面のページ。
+ @param[in] bridge 現在接続を行なっているブリッジ情報
  */
-- (void)showPage:(NSUInteger)jumpIndex;
+- (void)showPage:(NSUInteger)jumpIndex bridge:(DPHueItemBridge*)bridge;
 
 @end

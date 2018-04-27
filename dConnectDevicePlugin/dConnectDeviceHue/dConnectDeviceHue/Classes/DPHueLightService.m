@@ -11,12 +11,12 @@
 #import "DPHueLightProfile.h"
 
 @implementation DPHueLightService
-- (instancetype) initWithBridgeKey: (NSString *) bridgeKey
-                       bridgeValue: (NSString *) bridgeValue
+- (instancetype) initWithIpAddress: (NSString *) ipAddress
                            lightId: (NSString *) lightId
                          lightName: (NSString *) lightName
-                            plugin: (id) plugin {
-    NSString *serviceId = [NSString stringWithFormat:@"%@_%@_%@", bridgeValue, bridgeKey, lightId];
+                            plugin: (id) plugin
+{
+    NSString *serviceId = [NSString stringWithFormat:@"%@_%@", ipAddress, lightId];
     self = [super initWithServiceId: serviceId plugin: plugin];
     if (self) {
         [self setName: lightName];
@@ -28,7 +28,6 @@
     }
     return self;
 }
-
 #pragma mark - DConnectServiceInformationProfileDataSource Implement.
 
 - (DConnectServiceInformationProfileConnectState)profile:(DConnectServiceInformationProfile *)profile

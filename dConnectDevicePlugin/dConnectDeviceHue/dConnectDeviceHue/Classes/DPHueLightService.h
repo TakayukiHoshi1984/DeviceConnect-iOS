@@ -13,8 +13,8 @@
 
 
 @interface DPHueLightService : DConnectService<DConnectServiceInformationProfileDataSource>
-- (instancetype) initWithBridgeKey: (NSString *) bridgeKey
-                       bridgeValue: (NSString *) bridgeValue
+
+- (instancetype) initWithIpAddress: (NSString *) ipAddress
                            lightId: (NSString *) lightId
                          lightName: (NSString *) lightName
                             plugin: (id) plugin;

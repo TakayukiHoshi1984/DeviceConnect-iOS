@@ -9,7 +9,7 @@
 
 #import "DPHueSettingViewController2.h"
 
-@interface DPHueSettingViewController2 ()
+@interface DPHueSettingViewController2 ()<DPHueBridgeControllerDelegate, PHSFindNewDevicesCallback>
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *pushlinkWaitIndicator;
 @property (weak, nonatomic) IBOutlet UIView *searchingView;
 @property (weak, nonatomic) IBOutlet UIImageView *pushlinkIconImageView;
@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorizeStateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *settingMsgLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UIButton *registerBridgeButton;
 #pragma mark - Portrait Constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *portImageLeft;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *portMessageLeft;
@@ -30,7 +31,7 @@
 #pragma mark - Landscape Constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *landInfoRight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *landInfoTop;
-
+@property (nonatomic) NSString *currentIpAddress;
 #pragma mark - Common Constraints
 
 @end
@@ -47,6 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.currentIpAddress = nil;
     if ([super iphone]) {
         portConstraints = [NSArray arrayWithObjects:
                            _portInfoRight,
@@ -67,8 +69,6 @@
     landConstraints = [NSArray arrayWithObjects:
                        _landInfoRight,
                        _landInfoTop, nil];
-
-    [manager deallocPHNotificationManagerWithReceiver:self];
     [self startHueAuthentication];
 }
 
@@ -87,100 +87,42 @@
     _selectedIpAddressLabel.text = item.ipAddress;
     _selectedMacAddressLabel.text = item.bridgeId;
     _authorizeStateLabel.text = @"---";
-    [manager            startPushlinkWithReceiver:self
-            pushlinkAuthenticationSuccessSelector:@selector(didPushlinkAuthenticationSuccess)
-             pushlinkAuthenticationFailedSelector:@selector(didPushlinkAuthenticationFailed)
-                pushlinkNoLocalConnectionSelector:@selector(didPushlinkNoLocalConnection)
-                    pushlinkNoLocalBridgeSelector:@selector(didPushlinkNoLocalConnection)
-                 pushlinkButtonNotPressedSelector:@selector(didPushlinkButtonNotPressed)];
+    [manager connectForIPAddress:item.ipAddress uniqueId:item.bridgeId delegate:self];
 }
 
-
-- (void)didPushlinkAuthenticationSuccess
-{
-    [manager disableHeartbeat];
-    _statusLabel.text = @"ライト検索中!!";
-    _authorizeStateLabel.text = DPHueLocalizedString(_bundle, @"HueBridgeAuthorized");
-    [self  initHueSdk];
+- (void)didPushlinkBridgeWithIpAddress:(NSString*)ipAddress {
+    _statusLabel.text = @"認証確認中!!";
+}
+- (void)didConnectedWithIpAddress:(NSString*)ipAddress {
+    [manager updateManageServicesForIpAddress:ipAddress online:YES];
+    if ([manager getLightStatusForIpAddress:ipAddress].count == 0) {
+        _statusLabel.text = @"ライト検索中!!";
+        self.currentIpAddress = ipAddress;
+        [manager searchLightForIpAddress:ipAddress delegate:self];
+    } else {
+        [self stopIndicator];
+        [self showAleart:DPHueLocalizedString(_bundle, @"HueRegisterApp")];
+        [self showLightSearchPage];
+    }
+}
+- (void)didDisconnectedWithIpAddress:(NSString*)ipAddress {
+}
+- (void)didErrorWithIpAddress:(NSString*)ipAddress errors:(NSArray<PHSError *> *)errors {
 }
 
-- (void)initHueSdk
-{
-    DPHueItemBridge *item = [self getSelectedItemBridge];
-    [[DPHueManager sharedManager] initHue];
-    [[DPHueManager sharedManager] startAuthenticateBridgeWithIpAddress:item.ipAddress
-                                                            bridgeId:item.bridgeId
-                                                              receiver:self
-                                        localConnectionSuccessSelector:@selector(didBridgeAuthenticationSuccess)
-                                                     noLocalConnection:@selector(didFailed)
-                                                      notAuthenticated:@selector(didFailed)];
+- (void)bridge:(PHSBridge*)bridge didFindDevices:(NSArray<PHSDevice *> *)devices errors:(NSArray<PHSError *> *)errors {
 }
 
-- (void)didBridgeAuthenticationSuccess
-{
+- (void)bridge:(PHSBridge*)bridge didFinishSearch:(NSArray<PHSError *> *)errors {
+    [[DPHueManager sharedManager] updateManageServicesForIpAddress:self.currentIpAddress online:YES];
     [self stopIndicator];
     [self showAleart:DPHueLocalizedString(_bundle, @"HueRegisterApp")];
-    dispatch_queue_t updateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(updateQueue, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[DPHueManager sharedManager] deallocPHNotificationManagerWithReceiver:self];
-            [[DPHueManager sharedManager] deallocHueSDK];
-        });
-    });
-    [self showLightSearchPage];
-}
-
-- (void)didFailed
-{
-    [self stopIndicator];
-
-    dispatch_queue_t updateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(updateQueue, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[DPHueManager sharedManager] deallocPHNotificationManagerWithReceiver:self];
-            [[DPHueManager sharedManager] deallocHueSDK];
-        });
-    });
     [self showLightSearchPage];
 }
 
 
-- (void)didPushlinkAuthenticationFailed
-{
-    [manager disableHeartbeat];
-    [self stopIndicator];
 
-    _authorizeStateLabel.text = DPHueLocalizedString(_bundle, @"HueFailAuthorize");
-    [self showAleart:DPHueLocalizedString(_bundle, @"HueFailRegisterApp")];
-
-}
-
-- (void)didPushlinkNoLocalConnection
-{
-    [manager disableHeartbeat];
-    [self stopIndicator];
-
-    _authorizeStateLabel.text = DPHueLocalizedString(_bundle, @"HueFailAuthorize");;
-    [self showAleart:DPHueLocalizedString(_bundle, @"HueNotConnectingBridge")];
-
-}
-
-- (void)didPushlinkNoLocalBridge
-{
-    [manager disableHeartbeat];
-    [self stopIndicator];
-
-    _authorizeStateLabel.text = DPHueLocalizedString(_bundle, @"HueFailAuthorize");
-    [self showAleart:DPHueLocalizedString(_bundle, @"HueNotFoundBridge")];
-
-}
-- (void)didPushlinkButtonNotPressed
-{
-    //nop
-}
-
-
-
+#pragma mark - Settings Layout
 
 //縦向き座標調整
 - (void)setLayoutConstraintPortrait
@@ -243,15 +185,23 @@
 }
 -(void)startIndicator
 {
-    [_pushlinkWaitIndicator startAnimating];
-    
+    _registerBridgeButton.hidden = YES;
     _searchingView.hidden = NO;
+    _statusLabel.hidden = NO;
+    _pushlinkWaitIndicator.hidden = NO;
+    [_pushlinkWaitIndicator startAnimating];
+    [super setCloseBtn:NO];
+
 }
 
 -(void)stopIndicator
 {
-    [_pushlinkWaitIndicator stopAnimating];
+    _registerBridgeButton.hidden = NO;
     _searchingView.hidden = YES;
+    _statusLabel.hidden = YES;
+    _pushlinkWaitIndicator.hidden = YES;
+    [_pushlinkWaitIndicator stopAnimating];
+    [super setCloseBtn:YES];
 }
 
 @end

@@ -8,10 +8,9 @@
 //
 
 #import "DPHueSettingViewController1.h"
-#import <HueSDK_iOS/HueSDK.h>
 #import "DPHueItemBridge.h"
 
-@interface DPHueSettingViewController1 ()
+@interface DPHueSettingViewController1 ()<DPHueBridgeControllerDelegate>
 @property (nonatomic) NSMutableArray *bridgeItems;
 @property (weak, nonatomic) IBOutlet UITableView *bridgeListTableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *searchingBridgeIndicator;
@@ -48,8 +47,7 @@
 - (void)initItems
 {
     _bridgeItems = nil;
-    _bridgeItems = [[NSMutableArray alloc] init];
-    
+    _bridgeItems = [NSMutableArray array];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -101,12 +99,10 @@
     [self initItems];
     [_bridgeListTableView reloadData];
 
-    [manager searchBridgeWithCompletion:^(NSDictionary *bridgesFound) {
-        // Check for results
-        if (bridgesFound.count > 0) {
-            for (id key in [bridgesFound keyEnumerator]) {
-                [self addItem:bridgesFound[key] macAdress:key];
-            }
+    [manager startBridgeDiscoveryWithCompletion:^(NSDictionary<NSString *,PHSBridgeDiscoveryResult *> *results) {
+        for (id key in [results keyEnumerator]) {
+            PHSBridgeDiscoveryResult* result = results[key];
+            [self addItem:result.ipAddress macAdress:result.uniqueId];
         }
         [self stopIndicator];
     }];
@@ -195,6 +191,7 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)        tableView:(UITableView *)tableView
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     DPHueItemBridge *item = self.bridgeItems[indexPath.row];
+    self.bridge = item;
     [self selectNextPage:item];
 }
 
@@ -202,13 +199,11 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark - actions
 - (void)addItem:(NSString*)ipAdress
       macAdress:(NSString*)macAdress {
-    DPHueItemBridge *newItem = [[DPHueItemBridge alloc] init];
+    DPHueItemBridge *newItem = [DPHueItemBridge new];
     
     newItem.ipAddress = ipAdress;
     newItem.bridgeId = macAdress;
-    
-    NSIndexPath *indexPathToInsert =
-    [NSIndexPath indexPathForRow:self.bridgeItems.count inSection:0];
+    NSIndexPath *indexPathToInsert = [NSIndexPath indexPathForRow:self.bridgeItems.count inSection:0];
 
     [self.bridgeItems addObject:newItem];
     // テーブルビューの更新
@@ -221,56 +216,29 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     [self setSelectedItemBridge:selectedItemBridge];
     _processingLabel.text = DPHueLocalizedString(_bundle, @"HueBridgeConnecting");
     [self startIndicator];
-    [manager startAuthenticateBridgeWithIpAddress:selectedItemBridge.ipAddress
-                                       bridgeId:selectedItemBridge.bridgeId
-                                        receiver:self
-                   localConnectionSuccessSelector:@selector(didLocalConnectionSuccess)
-                                noLocalConnection:@selector(didNoLocalConnection)
-                                 notAuthenticated:@selector(didNotAuthenticated)
-    ];
+    [manager connectForIPAddress:selectedItemBridge.ipAddress uniqueId:selectedItemBridge.bridgeId delegate:self];
 }
 
 
--(void)didLocalConnectionSuccess {
-    [self stopIndicator];
-    dispatch_queue_t updateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(updateQueue, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[DPHueManager sharedManager] deallocPHNotificationManagerWithReceiver:self];
-            [[DPHueManager sharedManager] deallocHueSDK];
-        });
-    });
-
-    //接続できたのでライト検索へ飛ぶ
-    [self showLightSearchPage];
-    
-}
-
-- (void)didNoLocalConnection {
-    [self stopIndicator];
-    dispatch_queue_t updateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(updateQueue, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[DPHueManager sharedManager] deallocPHNotificationManagerWithReceiver:self];
-            [[DPHueManager sharedManager] deallocHueSDK];
-        });
-    });
-
-    [self showAleart:DPHueLocalizedString(_bundle, @"HueNotConnectingBridge")];
-}
-
--(void)didNotAuthenticated {
-    [self stopIndicator];
-    dispatch_queue_t updateQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(updateQueue, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[DPHueManager sharedManager] deallocPHNotificationManagerWithReceiver:self];
-            [[DPHueManager sharedManager] deallocHueSDK];
-        });
-    });
-
+#pragma mark - DPHueBridgeControllerDelegate
+- (void)didPushlinkBridgeWithIpAddress:(NSString*)ipAddress {
+    [self stopIndicator];    
     [self showAuthPage];
 }
+- (void)didConnectedWithIpAddress:(NSString*)ipAddress {
+    [self stopIndicator];
+    //接続できたのでライト検索へ飛ぶ
+    [self showLightSearchPage];
+}
+- (void)didDisconnectedWithIpAddress:(NSString*)ipAddress {
+    [self stopIndicator];
+    [self showAleart:DPHueLocalizedString(_bundle, @"HueNotConnectingBridge")];
+}
+- (void)didErrorWithIpAddress:(NSString*)ipAddress errors:(NSArray<PHSError *> *)errors {
+    [self stopIndicator];
+}
+
+
 
 -(void)startIndicator
 {

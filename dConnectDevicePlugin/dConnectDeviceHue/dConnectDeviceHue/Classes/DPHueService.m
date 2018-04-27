@@ -12,14 +12,12 @@
 
 @implementation DPHueService
 
-- (instancetype) initWithBridgeKey: (NSString *) bridgeKey
-                       bridgeValue: (NSString *) bridgeValue
-                            plugin: (id) plugin {
-    // [NSString stringWithFormat:@"%@_%@",[bridgesFound valueForKey:key],key];
-    NSString *serviceId = [NSString stringWithFormat:@"%@_%@", bridgeValue, bridgeKey];
-    self = [super initWithServiceId: serviceId plugin: plugin];
+- (instancetype) initWithBridgeIpAddress: (NSString *) ipAddress
+                                uniqueId: (NSString *) uniqueId
+                                  plugin: (id) plugin {
+    self = [super initWithServiceId:ipAddress plugin: plugin];
     if (self) {
-        NSString *name = [NSString stringWithFormat:@"Hue %@", bridgeKey];
+        NSString *name = [NSString stringWithFormat:@"Hue %@", uniqueId];
         [self setName: name];
         [self setNetworkType: DConnectServiceDiscoveryProfileNetworkTypeWiFi];
         [self setOnline: YES];
@@ -29,7 +27,6 @@
     }
     return self;
 }
-
 #pragma mark - DConnectServiceInformationProfileDataSource Implement.
 
 - (DConnectServiceInformationProfileConnectState)profile:(DConnectServiceInformationProfile *)profile
