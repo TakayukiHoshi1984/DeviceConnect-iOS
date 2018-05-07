@@ -303,5 +303,4 @@ ant.properties
 build.xml
 
 dConnectDevicePlugin/dConnectDeviceLinking/Libs
-dConnectDevicePlugin/dConnectDeviceHue/HueSDK.framework
 
